@@ -2,8 +2,24 @@
     --bg-dark: #151719;
     --dark-red: #710707;
     --font-gold: #9d8665;
+    --font-white: #ffffff;
     --font1: 80px;
     --font2: 32px;
+    --filter-gold: invert(56%) sepia(44%) saturate(278%) hue-rotate(356deg) brightness(89%) contrast(86%);
+}
+
+@keyframes twitching {
+    0% {
+        left: 0;
+    }
+    50% {
+        left: -10px;
+        color:var(--dark-red);
+    }
+    100% {
+        left: 0;
+        transform: scale(1);
+    }
 }
 
 @font-face {
@@ -35,4 +51,59 @@
     font-family: "Forum";
     src: url(assets/fonts/Forum-Regular.ttf);
     font-weight: 400;
+}
+
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.header {
+    display: block;
+    background-color: var(--bg-dark);
+}
+
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header__content {
+    display: flex;
+    padding: 74px 240px 76px 216px;
+}
+
+.header__logo {
+    display: flex;
+    align-items: center;
+    transition: 0.25s linear;
+}
+
+.header__logo:hover {
+    filter: var(--filter-gold);
+}
+
+.list {
+    display: flex;
+    list-style-type: none;
+    column-gap: 76px;
+}
+
+.header__nav-list {
+    margin-left: 525px;
+}
+
+.text_elem_nav {
+    position: relative;
+    font: 200 22px Roboto;
+    line-height: 50px;
+    letter-spacing: 2px;
+    color: var(--font-white);
+    text-decoration: none;
+    transition: 0.25s linear;
+}
+
+.text_elem_nav:hover {
+    animation: twitching 0.25s linear;
 }
