@@ -69,8 +69,11 @@
     padding: 0 20px;
 }
 
-.header__content {
+.content {
     display: flex;
+}
+
+.header__content {
     padding: 74px 240px 76px 216px;
 }
 
@@ -107,3 +110,73 @@
 .text_elem_nav:hover {
     animation: twitching 0.25s linear;
 }
+
+.welcome {
+    display: block;
+    background-color: var(--bg-dark);
+}
+
+.welcome__content {
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 114px 240px 246px 217px;
+    z-index: 999;
+}
+
+.welcome__content::before {
+    position: absolute;
+    content: "";
+    z-index: -999;
+    bottom: 0;
+    right: -20px;
+    background-image: url(assets/img/louvre_bcg.jpg);
+    width: 1215px;
+    height: 750px;
+}   
+
+.text_c_white {
+    color: var(--font-white);
+}
+
+.welcome__heading {
+    font: normal 80px Forum;
+    line-height: 90px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.welcome__text {
+    display: inline-block;
+    font: 300 28px Roboto;
+    line-height: 33px;
+    letter-spacing: 2px;
+    margin: 26px 0 76px;
+}
+
+.welcome__btn {
+    display: block;
+    background: var(--dark-red);
+    border: none;
+    border-radius: 10px;
+    padding: 24px 68px 25px 69px;
+    margin: 0;
+    cursor: pointer;
+    transition: 0.25s linear;
+}
+
+.welcome__btn:hover {
+    background: var(--font-white);
+}
+
+.welcome__btn:hover .welcome__btn-text {
+    color: var(--font-gold);
+}
+
+.welcome__btn-text {
+    font: 200 22px Roboto;
+    font-family: Roboto;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
