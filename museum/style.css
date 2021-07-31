@@ -631,3 +631,59 @@ label {
 .tickets__btn-submit:hover {
     opacity:0.7;
 }
+
+.contacts {
+    display: block;
+}
+
+.contacts__content {
+    padding: 75px 220px;
+}
+
+.contacts__heading {
+    font: normal 80px Forum;
+    line-height: 90px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--font-gold);
+}
+
+.contacts__heading::after {
+    display: inline-block;
+    position: relative;
+    content: "";
+    margin: 30px 0 64px;
+    height: 3px;
+    width: 100%;
+    background-color: var(--dark-red);
+}
+
+.contacts__info {
+    display: flex;
+    column-gap: 198px;
+}
+
+.contacts__text {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.contacts__text-heading {
+    margin: 0 0 36px;
+    font: 500 28px Roboto;
+    line-height: 33px;
+    color: var(--font-black);
+}
+
+.contacts__text-info {
+    width: max-content;
+    margin: 0;
+    font: 300 22px Roboto;;
+    line-height: 26px;
+    color: var(--font-black);
+}
+
+.contacts__text-info:nth-child(3) {
+    margin: 20px 0;
+}
