@@ -3,6 +3,7 @@
     --dark-red: #710707;
     --font-gold: #9d8665;
     --font-white: #ffffff;
+    --font-black: #000000;
     --font1: 80px;
     --font2: 32px;
     --filter-gold: invert(56%) sepia(44%) saturate(278%) hue-rotate(356deg) brightness(89%) contrast(86%);
@@ -74,10 +75,11 @@
 }
 
 .header__content {
-    padding: 74px 240px 76px 216px;
+    padding: 75px 240px 76px 216px;
 }
 
 .header__logo {
+    margin: 0;
     display: flex;
     align-items: center;
     transition: 0.25s linear;
@@ -90,11 +92,11 @@
 .list {
     display: flex;
     list-style-type: none;
-    column-gap: 76px;
 }
 
 .header__nav-list {
-    margin-left: 525px;
+    column-gap: 76px;
+    margin-left: 470px;
 }
 
 .text_elem_nav {
@@ -120,7 +122,7 @@
     position: relative;
     flex-direction: column;
     align-items: flex-start;
-    padding: 114px 240px 246px 217px;
+    padding: 113px 240px 246px 217px;
     z-index: 999;
 }
 
@@ -129,7 +131,7 @@
     content: "";
     z-index: -999;
     bottom: 0;
-    right: -20px;
+    right: 23px;
     background-image: url(assets/img/louvre_bcg.jpg);
     width: 1215px;
     height: 750px;
@@ -180,3 +182,80 @@
     letter-spacing: 2px;
 }
 
+.visiting {
+    display: block;
+}
+
+.visiting__content {
+    padding: 75px 260px 75px 220px;
+    flex-direction: column;
+}
+
+.visiting__heading::after {
+    display: inline-block;
+    position: relative;
+    content: "";
+    margin: 25px 0 69px;
+    height: 3px;
+    width: 100%;
+    background-color: var(--dark-red);
+}
+
+.visiting__heading-text {
+    font: normal 80px Forum;
+    line-height: 90px;
+    letter-spacing: 5px;
+    text-transform: uppercase;  
+    color: var(--font-gold);
+}
+
+.visiting__cards-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    row-gap: 79px;
+}
+
+.visiting__cards-item {
+    width: calc(100%/3);
+    margin: 0;
+    max-width: 440px;
+    color: var(--font-black);
+    text-decoration: none;
+}
+
+.visiting__cards-item:hover .visiting__cards-heading:after {
+    width: 100%;
+}
+
+.visiting__cards-heading {
+    margin: 25px 0 9px;
+    font: normal 32px Forum;
+    line-height: 35px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.visiting__cards-heading:after {
+    display: block;
+    position: relative;
+    content: "";
+    margin: 5px 0 10px;
+    height: 2px;
+    width: 300px;
+    background-color: var(--dark-red);
+    transition: 0.25s linear;
+}
+
+.visiting__cards-info {
+    font: 200 22px Roboto;
+    line-height: 26px;
+}
+
+.text_size_sm {
+    margin-top: 10px;
+    display: block;
+    font-size: 18px;
+    line-height: 21px;
+}
