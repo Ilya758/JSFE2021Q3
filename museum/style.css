@@ -259,3 +259,58 @@
     font-size: 18px;
     line-height: 21px;
 }
+
+.explore {
+    display: block;
+    background-color: var(--bg-dark);
+}
+
+.explore__content {
+    padding: 75px 220px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.explore__heading {
+    font: normal 80px Forum;
+    line-height: 90px;letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--font-white);
+}
+
+.explore__heading:after {
+    display: block;
+    position: relative;
+    content: "";
+    margin: 25px 0 75px;
+    height: 2px;
+    width: 100%;
+    background-color: var(--dark-red);
+    transition: 0.25s linear;
+}
+
+.explore__info, .explore__pic {
+    margin: 0;
+}
+
+.explore__text {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    font: 300 22px Roboto;
+    line-height: 38px;
+    color: var(--font-white);
+    max-width: 660px;
+}
+
+.explore__text p {
+    margin: 0;
+}
+
+.text_c_gold {
+    color: var(--font-gold);
+}
+
+.explore__pic {
+    margin-top: 15px;
+}
