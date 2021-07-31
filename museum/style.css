@@ -77,7 +77,6 @@ label {
 .container {
     max-width: 1920px;
     margin: 0 auto;
-    /*padding: 0 20px;*/
 }
 
 .content {
@@ -168,7 +167,7 @@ label {
     color: var(--font-white);
 }
 
-.welcome__heading {
+.heading {
     font: normal 80px Forum;
     line-height: 90px;
     letter-spacing: 5px;
@@ -219,20 +218,10 @@ label {
 }
 
 .visiting__heading::after {
-    display: inline-block;
-    position: relative;
-    content: "";
     margin: 25px 0 69px;
-    height: 3px;
-    width: 100%;
-    background-color: var(--dark-red);
 }
 
-.visiting__heading-text {
-    font: normal 80px Forum;
-    line-height: 90px;
-    letter-spacing: 5px;
-    text-transform: uppercase;  
+.visiting__heading-text {  
     color: var(--font-gold);
 }
 
@@ -299,13 +288,10 @@ label {
 }
 
 .explore__heading {
-    font: normal 80px Forum;
-    line-height: 90px;letter-spacing: 5px;
-    text-transform: uppercase;
     color: var(--font-white);
 }
 
-.explore__heading:after {
+.line:after {
     display: block;
     position: relative;
     content: "";
@@ -356,6 +342,7 @@ label {
     align-items: center;
     justify-content: center;
     background: url(assets/img/video.jpg);
+    max-width: 1440px;
     width: 100%;
     height: 629px;
 }
@@ -463,11 +450,8 @@ label {
 }
 
 .video__heading {
-    font: normal 80px Forum;
     width: 100%;
     max-width: 606px;
-    line-height: 90px;
-    letter-spacing: 5px;
     text-transform: uppercase;
     color: var(--font-gold);
 }
@@ -488,22 +472,7 @@ label {
 }
 
 .tickets__heading {
-    font: normal 80px Forum;
-    line-height: 90px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
     color: var(--font-white);
-}
-
-.tickets__heading:after {
-    display: block;
-    position: relative;
-    content: "";
-    margin: 25px 0 75px;
-    height: 2px;
-    width: 100%;
-    background-color: var(--dark-red);
-    transition: 0.25s linear;
 }
 
 .tickets__preview {
@@ -663,21 +632,11 @@ label {
 }
 
 .contacts__heading {
-    font: normal 80px Forum;
-    line-height: 90px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
     color: var(--font-gold);
 }
 
 .contacts__heading::after {
-    display: inline-block;
-    position: relative;
-    content: "";
     margin: 30px 0 64px;
-    height: 3px;
-    width: 100%;
-    background-color: var(--dark-red);
 }
 
 .contacts__info {
@@ -701,7 +660,7 @@ label {
 .contacts__text-info {
     width: max-content;
     margin: 0;
-    font: 300 22px Roboto;;
+    font: 300 22px Roboto;
     line-height: 26px;
     color: var(--font-black);
 }
@@ -717,10 +676,6 @@ label {
 
 .footer__content {
     padding: 75px 240px 65px;
-}
-
-.footer__logo {
-    margin: 0;
 }
 
 .footer__logo-link {
