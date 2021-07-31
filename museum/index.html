@@ -13,6 +13,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/favicon.svg">
+    <script>
+        'use strict';
+        window.addEventListener('DOMContentLoaded', () => {
+            for (let elem of ['.range_elem_time', '.range_elem_sound']) {
+                document.querySelector(elem).addEventListener('input', function handler() {
+                    let value = this.value;
+                    this.style.background = `linear-gradient(to right, var(--bg-blue) 0%, var(--bg-blue) ${value}%, #c4c4c4 ${value}%, #c4c4c4 100%)`;
+                })
+            }
+
+        })
+    </script>
 </head>
 
 <body>
@@ -133,6 +145,31 @@
                     </div>
                 </div>
                 <img src="assets/img/pic_explore_bcg.jpg" alt="Picture Explore" class="explore__pic">
+            </div>
+        </div>
+    </section>
+    <section class="video">
+        <div class="container">
+            <div class="content video__content">
+                <div class="video__pic">
+                    <div class="video__btn-play" type="button"></div>
+                </div>
+                <div class="video__controls">
+                    <button class="btn_size_cover video__controls-prev"></button>
+                    <button class="btn_size_cover video__controls-play"></button>
+                    <button class="btn_size_cover video__controls-next"></button>
+                    <input type="range" value="47" step="1" min="0" max="100"
+                        class="video__controls-range range_elem_time">
+                    <button class="btn_size_cover video__controls-mute"></button>
+                    <input type="range" value="45" step="1" min="0" max="100"
+                        class="video__controls-range range_elem_sound">
+                    <button class="btn_size_cover video__controls-fullscreen"></button>
+                </div>
+                <div class="video__info">
+                    <h2 class="video__heading">Video journey</h2>
+                    <p class="video__text">Enter and visit one of the most famous museums in the world and enjoy
+                        masterpieces such as Mona Lisa or Hammurabi's Code</p>
+                </div>
             </div>
         </div>
     </section>
