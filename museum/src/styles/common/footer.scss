@@ -3,7 +3,20 @@
     background-color: var(--bg-dark);
 
     &__content {
-        padding: 75px 240px 65px;
+        padding: 75px 240px 0;
+        @include flex(column);
+    }
+
+    &-top {
+        @include flex(row, center, initial);
+        margin-bottom: 50px
+    }
+
+    &-bottom {
+        @include flex(row, space-between, center);
+        border-top: 3px solid var(--bg-gray);
+        width: 100%;
+        padding: 50px 0;
     }
 
     &__logo {
@@ -74,5 +87,13 @@
                 }  
             }
         }
+    }
+
+    &-text {
+        font-family: Roboto;
+        font: 100 22px Roboto, sans-serif;
+        line-height: 22px;
+        text-decoration: none;
+        margin: 0;
     }
 }
