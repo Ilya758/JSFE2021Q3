@@ -32,6 +32,20 @@
 
     &__pic {
         margin: 0;
-        margin-top: 15px;
+        //margin-top: 15px;
+
+        &-container {
+            position: relative;
+
+            &:before {
+                position: absolute;
+                left: 421px;
+                content: "";
+                display: inline-block;
+                width: 39px;
+                height: 700px;
+                background: url(../images/comparison_line.svg);
+            }
+        }
     }
 }
