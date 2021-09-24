@@ -1,0 +1,37 @@
+.explore {
+    display: block;
+    background-color: var(--bg-dark);
+
+    &__content {
+        padding: 75px 240px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__heading {
+        color: var(--font-white);
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        row-gap: 25px;
+        font: 300 22px Roboto;
+        line-height: 38px;
+        color: var(--font-white);
+        max-width: 660px;
+
+        & p {
+            margin: 0;
+        }
+    }
+
+    &__info {
+        margin: 0;
+    }
+
+    &__pic {
+        margin: 0;
+        margin-top: 15px;
+    }
+}

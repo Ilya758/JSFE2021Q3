@@ -1,0 +1,110 @@
+@import "../../local_modules/normalize.css/normalize";
+
+//@import "../mixins/media";
+
+@import "../mixins/flex";
+
+@import "../utils/fonts";
+
+@import "../utils/root";
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+label {
+    margin: 0;
+}
+
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.content {
+    @include onlyFlex();
+}
+
+.list {
+    @include onlyFlex();
+    list-style-type: none;
+}
+
+.main {
+    margin: -1px 0;
+}
+
+.text {
+    &_elem_nav {
+        position: relative;
+        font: 200 22px Roboto;
+        line-height: 50px;
+        letter-spacing: 2px;
+        color: var(--font-white);
+        text-decoration: none;
+        transition: 0.25s linear;
+
+        &:hover {
+            animation: twitching 0.25s linear;
+        }
+    }
+
+    &_c {
+
+        &_white {
+            color: var(--font-white);
+        }
+
+        &_gold {
+            color: var(--font-gold);
+        }
+    }
+
+    &_size_sm {
+        margin-top: 10px;
+        display: block;
+        font-size: 18px;
+        line-height: 21px;
+    }
+}
+
+.heading {
+    font: normal 80px Forum;
+    line-height: 90px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.line:after {
+    display: block;
+    position: relative;
+    content: "";
+    margin: 25px 0 75px;
+    height: 2px;
+    width: 100%;
+    background-color: var(--dark-red);
+    transition: 0.25s linear;
+}
+
+.icons {
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: 0.25s linear;
+}
+
+$icons: youtube 23px 22px, instagram 20px 20px, facebook 12.5px 20px, twitter 20px 16.25px, pinterest 20px 20px;
+
+@each $n, $w, $h in $icons {
+    .--#{$n}-icon {
+        background: url(../images/icons/icon_#{$n}.svg) no-repeat 0 0/cover;
+        width: $w;
+        height: $h;
+    }
+}

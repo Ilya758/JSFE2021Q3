@@ -1,0 +1,45 @@
+.contacts {
+    display: block;
+
+    &__content {
+        padding: 75px 240px;
+    }
+
+    &__heading {
+        color: var(--font-gold);
+
+        &::after {
+            margin: 30px 0 64px;
+        }
+    }
+
+    &__info {
+        display: flex;
+        column-gap: 198px;
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+
+        &-heading {
+            margin: 0 0 36px;
+            font: 500 28px Roboto;
+            line-height: 33px;
+            color: var(--font-black);
+        }
+
+        &-info {
+            width: max-content;
+            margin: 0;
+            font: 300 22px Roboto;
+            line-height: 26px;
+            color: var(--font-black);
+
+            &:nth-child(3) {
+                margin: 20px 0;
+            }
+        }
+    }
+}

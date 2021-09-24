@@ -1,0 +1,45 @@
+.header {
+    display: block;
+    background-color: var(--bg-dark);
+
+    &__content {
+        padding: 75px 160px 75px 240px;
+    }
+
+    &__logo {
+        margin: 0;
+        align-items: center;
+        transition: 0.25s linear;
+
+        &-pic {
+            background: url(assets/svg/logo.svg);
+            width: 49px;
+            height: 26px;
+        }
+
+        &:hover {
+            filter: var(--filter-gold);
+        }
+
+        &-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+    }
+
+    &__heading {
+        font: normal 28px Forum;
+        line-height: 50px;
+        letter-spacing: 5px;
+        margin: 0;
+        margin-left: 20px;
+        text-transform: uppercase;
+        color: var(--font-white);
+    }
+
+    &__nav-list {
+        column-gap: 76px;
+        margin-left: 450px;
+    }
+}
