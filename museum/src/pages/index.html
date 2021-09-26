@@ -19,7 +19,7 @@
             for (let elem of ['.range_elem_time', '.range_elem_sound']) {
                 document.querySelector(elem).addEventListener('input', function handler() {
                     let value = this.value;
-                    this.style.background = `linear-gradient(to right, var(--bg-blue) 0%, var(--bg-blue) ${value}%, #c4c4c4 ${value}%, #c4c4c4 100%)`;
+                    this.style.background = `linear-gradient(to right, var(--dark-red) 0%, var(--dark-red) ${value}%, #c4c4c4 ${value}%, #c4c4c4 100%)`;
                 })
             }
 
@@ -310,9 +310,9 @@
                         <button class="video__btn-play" type="button"></button>
                     </div>
                     <div class="video__controls">
-                        <button class="btn_size_cover video__controls-prev"></button>
+                        <!-- <button class="btn_size_cover video__controls-prev"></button> -->
                         <button class="btn_size_cover video__controls-play"></button>
-                        <button class="btn_size_cover video__controls-next"></button>
+                        <!-- <button class="btn_size_cover video__controls-next"></button> -->
                         <input type="range" value="47" step="1" min="0" max="100"
                             class="video__controls-range range_elem_time">
                         <button class="btn_size_cover video__controls-mute"></button>
