@@ -67,6 +67,12 @@
             height: 8px;
             background: no-repeat 0 0/cover;
             margin-left: 60px;
+            cursor: pointer;
+            transition: 0.35s;
+
+            &:hover {
+                filter: var(--filter-gold);
+            }
 
             &-prev {
                 background-image: url(../images/icons/btn_welcome-slider_prev.svg);
@@ -83,6 +89,15 @@
     &__btn {
         max-width: 360px;
         text-decoration: none;
+        transition: 0.35s;
+
+        &:hover {
+            background-color: var(--font-gold);
+        }
+
+        &:hover span {
+            color: var(--font-white);
+        }
     }
 }
 
@@ -90,8 +105,14 @@
     width: 16px;
     height: 16px;
     background-color: var(--bg-white);
+    transition: 0.35s;
+    cursor: pointer;
 
     &:first-child {
+        background-color: #D2B183;
+    }
+
+    &:hover {
         background-color: var(--font-gold);
     }
 }

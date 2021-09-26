@@ -52,7 +52,11 @@ label {
         transition: 0.25s linear;
 
         &:hover {
-            animation: twitching 0.25s linear;
+            color: var(--font-gold);
+        }
+
+        &:active {
+            color: #7E6C51;
         }
     }
 
