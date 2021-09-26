@@ -132,12 +132,12 @@
         &__btn {
 
             &-prev {
-                background: url(../images/icons/btn-video-slider-prev.svg);
+                mask-image: url(../images/icons/btn-video-slider-prev.svg);
                 cursor: pointer;
             }
 
             &-next {
-                background: url(../images/icons/btn-video-slider-next.svg);
+                mask-image: url(../images/icons/btn-video-slider-next.svg);
                 cursor: pointer;
             }
 
@@ -157,7 +157,7 @@
             transition: 0.35s;
 
             &:hover {
-                background-color: #333333;
+                background-color: var(--dark-red);
             }
 
             &:first-child {
@@ -205,8 +205,9 @@
     width: 10px;
     height: 12px;
     transition: 0.35s;
+    background-color: #999999;
 
         &:hover {
-            filter: invert(14%) sepia(0%) saturate(0%) hue-rotate(146deg) brightness(98%) contrast(82%);
+            background-color: var(--dark-red);
         }
 }
