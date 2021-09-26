@@ -34,6 +34,21 @@
             max-width: 440px;
             color: var(--font-black);
             text-decoration: none;
+            transition: 0.35s;
+
+            &:hover {
+                color: var(--font-gold);
+            }
+
+            & img {
+                transition: 0.35s;
+            }
+
+            &:hover img{
+                border-radius: 5px;
+                box-shadow: 0 0 20px 5px var(--font-gold);
+                transform: scale(1.05);
+            }
 
             &:hover .visiting__cards-heading:after {
                 width: 100%;

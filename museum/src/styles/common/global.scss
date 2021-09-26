@@ -123,13 +123,17 @@ $icons: youtube 23px 22px, instagram 20px 20px, facebook 12.5px 20px, twitter 20
     background: var(--dark-red);
     border: none;
     border-radius: 10px;
-    padding: 24px 68px 25px 69px;
+    padding: 24px 68px 25px 66px;
     margin: 0;
     cursor: pointer;
     transition: 0.25s linear;
 
     &:hover {
         background: var(--font-white);
+    }
+
+    &:hover span {
+        color: var(--font-black);
     }
 
     span {
