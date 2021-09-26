@@ -28,6 +28,145 @@
 </head>
 
 <body>
+    <div class="popup-tickets">
+        <div class="container">
+            <div class="popup-tickets__content content">
+                <form class="popup-tickets__form" action="#">
+                    <div class="popup-tickets__info">
+                        <div class="popup-tickets__registration">
+                            <span class="popup-tickets__logo icons"></span>
+                            <h2 class="popup-tickets__heading heading">Booking tickets</h2>
+                            <span class="popup-tickets__text line text_c_red text">Tour to Louvre</span>
+                        </div>
+                        <div class="popup-tickets__dateContainer">
+                            <div class="popup-tickets__inputContainer input_type_date">
+                                <input placeholder="Date" class="input popup-tickets__input-date text"
+                                    onfocus="(this.type='date')" onblur="(this.type='text')" type="text">
+                            </div>
+                            <div class="popup-tickets__inputContainer input_type_time">
+                                <input placeholder="Time"
+                                    class="input popup-tickets__input-time input_margin_zero text popup-tickets__input-time"
+                                    onfocus="(this.type='time')" onblur="(this.type='text')" type="text">
+                            </div>
+                        </div>
+                        <div class="popup-tickets__inputContainer input_type_text">
+                            <input placeholder="Name" class="input popup-tickets__input-name text" type="text"
+                                onfocus="(this.type='date')" onblur="(this.type='text')">
+                        </div>
+                        <div class="popup-tickets__inputContainer input_type_email">
+                            <input placeholder="Email" class="input popup-tickets__input-email text" type="text"
+                                onfocus="(this.type='email')" onblur="(this.type='text')">
+                        </div>
+                        <div class="popup-tickets__inputContainer input_type_phone">
+                            <input placeholder="Phone" class="input popup-tickets__input-phone text" type="text"
+                                onfocus="(this.type='tel')" onblur="(this.type='text')">
+                        </div>
+                        <div class="popup-tickets__inputContainer input_type_select">
+                            <select disabled class="input popup-tickets__input-select text">
+                                <option value="1">Ticket Type</option>
+                            </select>
+                        </div>
+                        <div class="popup-tickets__costContainer">
+                            <h2 class="popup-tickets__subheading heading line">Entry Ticket</h2>
+                            <div class="popup-tickets__basic">
+                                <span class="popup-tickets__text text">Basic 18+ (20 €)</span>
+                                <div class="popup-tickets__container tickets__btn-container">
+                                    <button type="button">–</button>
+                                    <input type="number" name="amount" value="2" min="0" max="20">
+                                    <button type="button">+</button>
+                                </div>
+                            </div>
+                            <div class="popup-tickets__senior">
+                                <span class="popup-tickets__text text">Senior 65+ (10 €)</span>
+                                <div class="popup-tickets__container tickets__btn-container">
+                                    <button type="button">–</button>
+                                    <input type="number" name="amount" value="2" min="0" max="20">
+                                    <button type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-tickets__requisites">
+                        <div class="popup-tickets__requisites-info">
+                            <span class="popup-tickets__requisites-text text">Overview</span>
+                            <h4 class="popup-tickets__requisites-heading text text_c_red">Tour to Louvre</h4>
+                            <ul class="popup-tickets__date-list list">
+                                <li class="popup-tickets__date-item item text_size_sm"><span
+                                        class="icons --icon-date"></span> Friday, August 19</li>
+                                <li class="popup-tickets__date-item item text_size_sm"><span
+                                        class="icons --icon-time"></span> 16 : 30</li>
+                                <li class="popup-tickets__date-item item text_size_sm"><span
+                                        class="icons --icon-checked"></span> Temporary exhibition</li>
+                            </ul>
+                            <div class="popup-tickets__requisites-cost">
+                                <div class="popup-tickets__requisites-basic">
+                                    <div class="popup-tickets__requisites-basicInfo">
+                                        <span class="popup-tickets__requisites-amount text_size_sm">2</span>
+                                        <span class="popup-tickets__requisites-text">Basic (20 €)</span>
+                                    </div>
+                                    <span class="popup-tickets__requisites-textTotal">40 €</span>
+                                </div>
+                                <div class="popup-tickets__requisites-senior">
+                                    <div class="popup-tickets__requisites-basicInfo">
+                                        <span class="popup-tickets__requisites-amount text_size_sm">2</span>
+                                        <span class="popup-tickets__requisites-text">Senior (10 €)</span>
+                                    </div>
+                                    <span class="popup-tickets__requisites-textTotal">20 €</span>
+                                </div>
+                                <div class="popup-tickets__requisites-total line">
+                                    <span class="popup-tickets__requisites-text">Total</span>
+                                    <span class="popup-tickets__requisites-text">60 €</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popup-tickets__paymentCard">
+                            <div class="popup-tickets__paymentCard-front">
+                                <span class="popup-tickets__paymentCard-text">Card number</span>
+                                <input class="popup-tickets__paymentCard-input input_size_m">
+                                <span class="popup-tickets__paymentCard-text">Expiration date</span>
+                                <div class="popup-tickets__paymentCard-date">
+                                    <div class="popup-tickets__paymentCard-dateContainer">
+                                        <input class="popup-tickets__paymentCard-dateInput" type="number" min="01"
+                                            max="12" value="03">
+                                        <div class="paymentCard-controls">
+                                            <span class="icons paymentCard-controls__arrow-up"></span>
+                                            <span class="icons paymentCard-controls__arrow-down"></span>
+                                        </div>
+                                    </div>
+                                    <div class="popup-tickets__paymentCard-dateContainer">
+                                        <input class="popup-tickets__paymentCard-dateInput" type="number" min="2024"
+                                            value="2024">
+                                        <div class="paymentCard-controls">
+                                            <span class="icons paymentCard-controls__arrow-up"></span>
+                                            <span class="icons paymentCard-controls__arrow-down"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="popup-tickets__paymentCard-text">Cardholder name</span>
+                                <input class="popup-tickets__paymentCard-input input_size_l">
+                            </div>
+                            <div class="popup-tickets__paymentCard-back">
+                                <div class="popup-tickets__paymentCard-info">
+                                    <span class="popup-tickets__paymentCard-text paymentCard-backText">CVC/CVV</span>
+                                    <input class="popup-tickets__paymentCard-cvvInput text">
+                                    <p class="popup-tickets__paymentCard-text">
+                                        The last
+                                        3 or 4 digits
+                                        on back
+                                        <br>
+                                        of the card
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="popup-tickets__btn-submit btn_type_action" type="submit">
+                            <span class="text_c_white">Book</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <header class="header">
         <div class="container">
             <div class="content header__content">
@@ -69,7 +208,7 @@
                     <span class="text_c_white welcome__text">
                         From the castle to the museum
                     </span>
-                    <button class="welcome__btn" type="button">
+                    <button class="welcome__btn btn_type_action" type="button">
                         <span class="text_c_white welcome__btn-text">Discover the Louvre</span>
                     </button>
                     <div class="welcome-slider__controls">
@@ -320,6 +459,7 @@
             </div>
         </div>
     </footer>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
