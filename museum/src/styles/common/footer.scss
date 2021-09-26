@@ -96,4 +96,17 @@
         text-decoration: none;
         margin: 0;
     }
+
+    &__author {
+        transition: 0.35s;
+
+        &:hover {
+            color: var(--font-gold);
+        }
+
+        &:active {
+            color: #7E6C51;
+        }
+
+    }
 }
