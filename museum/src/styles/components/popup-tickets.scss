@@ -408,10 +408,23 @@
 
     &__btn {
 
+        &-submit {
+
+            &:hover {
+                background-color: var(--font-gold);
+            }
+
+        }
+
         &-submit.btn_type_action {
             border-radius: 0;
             padding: 11px 85px 10px;
             margin: 67px 30px 26px 0;
+            transition: 0.35s;
+
+            &:hover span{
+                color: var(--font-white);
+            }
 
             span {
                 font-weight: 300;
@@ -550,6 +563,41 @@
 
 .text {
     font: 400 18px Roboto, sans-serif;
+}
+
+.btn {
+
+    &_state {
+
+        &_ripple {
+            position: relative;
+            overflow: hidden;
+
+            &:focus-visible {
+                outline: none;
+            }
+
+            &:after {
+                display: none;
+                content: "";
+                position: absolute;
+                border-radius: 50%;
+                background-color: rgba(180, 180, 180, 0.5);
+                width: 100px;
+                height: 100px;
+                margin-top: -50px;
+                margin-left: -50px;
+                top: 50%;
+                left: 50%;
+                animation: ripple 1s;
+                opacity: 0;
+            }
+        
+            &:focus:not(:active)::after {
+                display: block;
+            }
+        }
+    }  
 }
 
 input[type="date"]::-webkit-inner-spin-button,
