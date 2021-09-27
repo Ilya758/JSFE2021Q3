@@ -97,7 +97,7 @@ label {
         position: relative;
         font: 200 22px Roboto;
         line-height: 50px;
-        letter-spacing: 2px;
+        letter-spacing: 2.2px;
         color: var(--font-white);
         text-decoration: none;
         transition: 0.25s linear;
@@ -150,7 +150,7 @@ label {
     position: relative;
     content: "";
     margin: 25px 0 75px;
-    height: 2px;
+    height: 3px;
     width: 100%;
     background-color: var(--dark-red);
     transition: 0.25s linear;
@@ -173,31 +173,55 @@ $icons: youtube 23px 22px, instagram 20px 20px, facebook 12.5px 20px, twitter 20
     }
 }
 
-.btn_type_action {
-    display: block;
-    background: var(--dark-red);
-    border: none;
-    border-radius: 10px;
-    padding: 24px 68px 25px 66px;
-    margin: 0;
-    cursor: pointer;
-    transition: 0.25s linear;
+.btn {
 
-    &:hover {
-        background: var(--font-white);
+    &_align {
+
+        @each $item in left, right {
+            &_#{$item} {
+                text-align: #{$item};
+            }
+        }
     }
 
-    &:hover span {
-        color: var(--font-black);
+    &_type {
+
+        &_action {
+            display: block;
+            background: var(--dark-red);
+            border: none;
+            border-radius: 10px;
+            padding: 24px 68px 25px 66px;
+            margin: 0;
+            cursor: pointer;
+            transition: 0.25s linear;
+
+            &:hover {
+                background: var(--font-white);
+            }
+
+            &:hover span {
+                color: var(--font-black);
+            }
+
+            span {
+                font: 200 22px Roboto;
+                font-family: Roboto;
+                text-align: center;
+                letter-spacing: 2px;
+            }
+        }
     }
 
-    span {
-        font: 200 22px Roboto;
-        font-family: Roboto;
-        text-align: center;
-        letter-spacing: 2px;
+    &_size {
+
+        &_s {
+            font-size: 18px !important;
+        }
+
     }
 }
+
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

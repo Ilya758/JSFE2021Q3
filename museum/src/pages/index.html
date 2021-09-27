@@ -56,7 +56,7 @@
                                 onfocus="(this.type='date')" onblur="(this.type='text')">
                         </div>
                         <div class="popup-tickets__inputContainer input_type_email">
-                            <input placeholder="Email" class="input popup-tickets__input-email text" type="text"
+                            <input placeholder="E-mail" class="input popup-tickets__input-email text" type="text"
                                 onfocus="(this.type='email')" onblur="(this.type='text')">
                         </div>
                         <div class="popup-tickets__inputContainer input_type_phone">
@@ -72,22 +72,22 @@
                             <h2 class="popup-tickets__subheading heading line">Entry Ticket</h2>
                             <div class="popup-tickets__basic">
                                 <span class="popup-tickets__text text">Basic 18+ (20 €)</span>
-                                <div class="popup-tickets__container tickets__btn-container">
-                                    <button onclick="this.nextElementSibling.stepDown();" class="button_c_white"
-                                        type="button">–</button>
+                                <div class="popup-tickets__container tickets__btn-container container_indent_top">
+                                    <button onclick="this.nextElementSibling.stepDown();"
+                                        class="button_c_white btn_size_s" type="button">–</button>
                                     <input type="number" name="amount" value="2" min="0" max="20">
-                                    <button onclick="this.previousElementSibling.stepUp();" class="button_c_white"
-                                        type="button">+</button>
+                                    <button onclick="this.previousElementSibling.stepUp();"
+                                        class="button_c_white btn_size_s" type="button">+</button>
                                 </div>
                             </div>
                             <div class="popup-tickets__senior">
                                 <span class="popup-tickets__text text">Senior 65+ (10 €)</span>
                                 <div class="popup-tickets__container tickets__btn-container">
-                                    <button onclick="this.nextElementSibling.stepDown();" class="button_c_white"
-                                        type="button">–</button>
+                                    <button onclick="this.nextElementSibling.stepDown();"
+                                        class="button_c_white btn_size_s" type="button">–</button>
                                     <input type="number" name="amount" value="2" min="0" max="20">
-                                    <button onclick="this.previousElementSibling.stepUp();" class="button_c_white"
-                                        type="button">+</button>
+                                    <button onclick="this.previousElementSibling.stepUp();"
+                                        class="button_c_white btn_size_s" type="button">+</button>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                     <span class="popup-tickets__requisites-textTotal">20 €</span>
                                 </div>
                                 <div class="popup-tickets__requisites-total line">
-                                    <span class="popup-tickets__requisites-text">Total</span>
+                                    <span class="popup-tickets__requisites-text">Total:</span>
                                     <span class="popup-tickets__requisites-text">60 €</span>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
                                     <span class="popup-tickets__paymentCard-text paymentCard-backText">CVC/CVV</span>
                                     <input class="popup-tickets__paymentCard-cvvInput text">
                                     <p class="popup-tickets__paymentCard-text">
-                                        The last
+                                        The last <br>
                                         3 or 4 digits
                                         on back
                                         <br>
@@ -192,6 +192,9 @@
                         </li>
                         <li class="item header__nav-item">
                             <a href="#video" class="text_elem_nav header__nav-link">Video</a>
+                        </li>
+                        <li class="item header__nav-item">
+                            <a href="#gallery" class="text_elem_nav header__nav-link">Gallery</a>
                         </li>
                         <li class="item header__nav-item">
                             <a href="#tickets" class="text_elem_nav header__nav-link">Tickets</a>
@@ -324,29 +327,29 @@
                         <!-- <button class="btn_size_cover video__controls-prev"></button> -->
                         <button class="btn_size_cover video__controls-play"></button>
                         <!-- <button class="btn_size_cover video__controls-next"></button> -->
-                        <input type="range" value="47" step="1" min="0" max="100"
+                        <input type="range" value="53" step="1" min="0" max="100"
                             class="video__controls-range range_elem_time">
                         <button class="btn_size_cover video__controls-mute"></button>
-                        <input type="range" value="45" step="1" min="0" max="100"
+                        <input type="range" value="43" step="1" min="0" max="100"
                             class="video__controls-range range_elem_sound">
                         <button class="btn_size_cover video__controls-fullscreen"></button>
                     </div>
                     <ul class="video-slider__playlist list">
                         <li class="video-slider__item item">
-                            <iframe width="452" height="254" src="https://www.youtube.com/embed/aWmJ5DgyWPI"
-                                title="YouTube video player"
+                            <iframe style="border: none;" width="452" height="254"
+                                src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen loading="lazy"></iframe>
                         </li>
                         <li class="video-slider__item item">
-                            <iframe width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo"
-                                title="YouTube video player"
+                            <iframe style="border: none;" width="452" height="254"
+                                src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen loading="lazy"></iframe>
                         </li>
                         <li class="video-slider__item item">
-                            <iframe width="452" height="254" src="https://www.youtube.com/embed/NOhDysLnTvY"
-                                title="YouTube video player"
+                            <iframe style="border: none;" width="452" height="254"
+                                src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen loading="lazy"></iframe>
                         </li>
@@ -448,15 +451,19 @@
                             <h3 class="tickets__amount-heading">Amount</h3>
                             <span class="tickets__amount-text">Basic 18+</span>
                             <div class="tickets__btn-container">
-                                <button onclick="this.nextElementSibling.stepDown()" type="button">–</button>
-                                <input type="number" name="amount" value="1">
-                                <button onclick="this.previousElementSibling.stepUp()" type="button">+</button>
+                                <button class="btn_align_left" onclick="this.nextElementSibling.stepDown()"
+                                    type="button">–</button>
+                                <input type="number" name="amount" value="1" min="0" max="20">
+                                <button class="btn_align_right" onclick="this.previousElementSibling.stepUp()"
+                                    type="button">+</button>
                             </div>
                             <span class="tickets__amount-text">Senior 65+</span>
                             <div class="tickets__btn-container">
-                                <button onclick="this.nextElementSibling.stepDown()" type="button">–</button>
-                                <input type="number" name="amount" value="1">
-                                <button onclick="this.previousElementSibling.stepUp()" type="button">+</button>
+                                <button class="btn_align_left" onclick="this.nextElementSibling.stepDown()"
+                                    type="button">–</button>
+                                <input type="number" name="amount" value="1" min="0" max="20">
+                                <button class="btn_align_right" onclick="this.previousElementSibling.stepUp()"
+                                    type="button">+</button>
                             </div>
                             <span class="tickets__cost">Total €220</span>
                             <button class="tickets__btn-submit" type="submit">
@@ -506,19 +513,19 @@
                     <nav class="footer__nav">
                         <ul class="list footer__nav-list">
                             <li class="item footer__nav-item">
-                                <a href="#welcome" class="text_elem_nav footer__nav-link">Welcome</a>
-                            </li>
-                            <li class="item footer__nav-item">
-                                <a href="#video" class="text_elem_nav footer__nav-link">Video</a>
-                            </li>
-                            <li class="item footer__nav-item">
                                 <a href="#visiting" class="text_elem_nav footer__nav-link">Visiting</a>
+                            </li>
+                            <li class="item footer__nav-item">
+                                <a href="#gallery" class="text_elem_nav footer__nav-link">Gallery</a>
+                            </li>
+                            <li class="item footer__nav-item">
+                                <a href="#explore" class="text_elem_nav footer__nav-link">Explore</a>
                             </li>
                             <li class="item footer__nav-item">
                                 <a href="#tickets" class="text_elem_nav footer__nav-link">Tickets</a>
                             </li>
                             <li class="item footer__nav-item">
-                                <a href="#explore" class="text_elem_nav footer__nav-link">Explore</a>
+                                <a href="#video" class="text_elem_nav footer__nav-link">Video</a>
                             </li>
                             <li class="item footer__nav-item">
                                 <a href="#contacts" class="text_elem_nav footer__nav-link">Contacts</a>

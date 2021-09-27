@@ -3,8 +3,20 @@
     background-color: var(--bg-dark);
 
     &__content {
-        padding: 75px 240px 0;
+        padding: 74px 240px 0;
         @include flex(column);
+        position: relative;
+
+        &:after {
+            display: inline-block;
+            position: absolute;
+            content: "";
+            bottom: 119px;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background-color: var(--bg-gray); 
+        }
     }
 
     &-top {
@@ -14,9 +26,8 @@
 
     &-bottom {
         @include flex(row, space-between, center);
-        border-top: 3px solid var(--bg-gray);
         width: 100%;
-        padding: 50px 0;
+        padding: 46px 0;
     }
 
     &__logo {
@@ -40,18 +51,23 @@
         line-height: 50px;
         letter-spacing: 5px;
         margin-left: 20px;
+        position: relative;
+        top: 4px;
+        left: 5px;
         text-transform: uppercase;
         color: var(--font-white);
     }
 
     &__nav {
-        margin: 0 398px 0 145px;
+        margin: 0 395px 0 145px;
 
         &-list {
             max-width: 366px;
             display: flex;
             flex-wrap: wrap;
-            column-gap: 153px;
+            column-gap: 148px;
+            position: relative;
+            top: 3px;
         }
 
         &-item {
@@ -64,7 +80,7 @@
     &__social {
         display: flex;
         align-items: flex-end;
-        column-gap: 24px;
+        column-gap: 25px;
         margin-bottom: 14px;
 
         &-link {
@@ -90,9 +106,9 @@
     }
 
     &-text {
-        font-family: Roboto;
         font: 100 22px Roboto, sans-serif;
         line-height: 22px;
+        letter-spacing: 2px;
         text-decoration: none;
         margin: 0;
     }

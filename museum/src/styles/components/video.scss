@@ -3,17 +3,17 @@
 
     &__content {
         flex-direction: column;
-        padding: 90px 240px 75px;
+        padding: 74px 240px 75px;
     }
 
     &__pic {
         display: flex;
         align-items: center;
         justify-content: center;
-        background: url(../images/video.jpg);
+        background: url(../images/video.jpg) -22px 0/cover no-repeat;
         max-width: 1440px;
         width: 100%;
-        height: 628px;
+        height: 649px;
     }
 
     &__btn-play {
@@ -34,7 +34,7 @@
         background-color: var(--bg-dark);
         margin: 0;
         width: 100%;
-        padding: 28px 41px;
+        padding: 25px 31px;
 
         /*&-prev {
             background: url(../images/icons/btn_prev.svg);
@@ -60,7 +60,7 @@
 
         &-range {
             -webkit-appearance: none;
-            background: linear-gradient(to right, var(--dark-red) 0, var(--dark-red) 47%, #c4c4c4 47%, #c4c4c4 100%);
+            background: linear-gradient(to right, var(--dark-red) 0, var(--dark-red) 53%, #c4c4c4 53%, #c4c4c4 100%);
             height: 8px;
 
             &::-webkit-slider-thumb {
@@ -96,7 +96,7 @@
         display: flex;
         align-items: center;
         margin: 0 0 75px 0;
-        column-gap: 115px;
+        column-gap: 114px;
     }
 
     &__heading {
@@ -108,7 +108,7 @@
 
     &__text {
         font: 300 22px Roboto; 
-        line-height: 38px;
+        line-height: 41px;
         color: var(--font-black);
     }
 
@@ -126,7 +126,7 @@
 
         &__controls {
             @include flex();
-            margin-top: 40px;
+            margin-top: 36px;
         }
 
         &__btn {
@@ -176,12 +176,13 @@
 
     &_time {
         width: 929px;
-        margin: 0 41px;
+        margin: 0 35px;
     }
 
     &_sound {
         width: 155px;
-        margin: 0 48px 0 20px;
+        margin: 0 33px;
+        background: linear-gradient(to right, var(--dark-red) 0, var(--dark-red) 43%, #c4c4c4 43%, #c4c4c4 100%);
     }
 }
 

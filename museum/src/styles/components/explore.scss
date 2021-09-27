@@ -3,7 +3,7 @@
     background-color: var(--bg-dark);
 
     &__content {
-        padding: 75px 240px;
+        padding: 75px 240px 87px;
         display: flex;
         justify-content: space-between;
     }
@@ -32,10 +32,11 @@
 
     &__pic {
         margin: 0;
-        //margin-top: 15px;
 
         &-container {
             position: relative;
+            margin: 0;
+            top: 15px;
 
             &:before {
                 position: absolute;

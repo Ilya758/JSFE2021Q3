@@ -1,4 +1,3 @@
-
 .tickets {
     display: block;
 
@@ -8,6 +7,10 @@
 
     &__heading {
         color: var(--font-gold);
+
+        &:after {
+            margin: 24px 0 74px;
+        }
     }
 
     &__preview {
@@ -21,13 +24,17 @@
     &__info {
         display: flex;
         flex-direction: column;
-        margin: 0 240px 0 60px;
+        margin: 0 240px 0 58px;
 
         &-heading {
             font: bold 28px Roboto;
             line-height: 33px;
             color: var(--font-black);
-            margin: 0 0 50px;
+            margin: 0 0 52px;
+            top: 1px;
+            left: 2px;
+            position: relative;
+            letter-spacing: 0px;
         }
 
         &-text {
@@ -66,16 +73,20 @@
             font: bold 28px Roboto;
             line-height: 33px;
             color: var(--font-black);
+            top: 1px;
+            left: -1px;
+            position: relative;
+            letter-spacing: 0px;
         }
 
         &-text {
             font: 300 22px Roboto;
             line-height: 26px;
             color: var(--font-black);
-            margin: 11px 0 14px 25px;
+            margin: 27px 0 14px 25px;
 
             &:nth-child(4) {
-                margin-top: 35px;
+                margin-top: 11px;
             }
         }
     }
@@ -96,7 +107,7 @@
             max-width: 150px;
             display: flex;
             margin-right: 0;
-            padding: 0 12px;
+            padding: 0 11px 0 9px;
     
             & input::-webkit-inner-spin-button, & input::-webkit-outer-spin-button {
                 -webkit-appearance: none;
@@ -104,12 +115,17 @@
     
             & button {
                 font: normal 32px Roboto;
-                line-height: 37px;
+                //line-height: 37px;
                 color: var(--font-black);
                 background-color: none;
                 border: none;
+                width: 50px;
+                height: 44px;
                 cursor: pointer;
+                line-height: 21px;
             }
+    
+    
 
             & .button_c_white {
                 color: var(--font-white);
@@ -118,10 +134,14 @@
             }
     
             & input {
-                margin: 10px 36px 10px 37px;
+                margin: 0;
                 font: 300 22px Roboto;
-                line-height: 26px;  
-                max-width: 10px;
+                line-height: 21px;
+                max-width: 35px;
+                background: transparent;
+                text-align: center;
+                line-height: 24px;  
+                //max-width: 10px;
                 //background-color: var(--font-white);
                 border: none;
                 color: var(--font-black);
@@ -129,11 +149,12 @@
         }
 
         &-submit {
-            margin-top: 50px;
-            background-color: var(--bg-dark);
+            background: var(--bg-dark);
+            margin-top: 60px;
+            border-radius: 1px;
             border: none;
-            padding: 10px 38px 10px 37px;
-            transition: 0.25s linear;
+            padding: 13px 36px 11px 38px;
+            transition: .25s linear;
             cursor: pointer;
 
             &:hover {
@@ -149,7 +170,7 @@
         &-text {
             font: 300 22px Roboto;
             line-height: 26px;
-            letter-spacing: 2px;
+            letter-spacing: 2.1px;
             color: var(--font-white);
             transition: 0.25s linear;
         }
@@ -165,7 +186,7 @@
         cursor: pointer;
 
         &:nth-child(3) {
-            margin: 50px 0;
+            margin: 25px 0;
         }
     }
 }
@@ -178,7 +199,7 @@
     height: 17px;
     border: 2px solid var(--bg-dark);
     border-radius: 50%;
-    top: 2px;
+    top: 4px;
     left: -23px;
 }
 

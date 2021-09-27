@@ -6,7 +6,7 @@
         position: relative;
         flex-direction: column;
         align-items: flex-start;
-        padding: 113px 240px 0 240px;
+        padding: 149px 240px 0 240px;
         z-index: 999;
 
         &::before, &::after {
@@ -41,16 +41,17 @@
 
         &__controls {
             @include flex(center, space-between, center);
-            margin-top: 192px;
+            margin-top: 150px;
             background-color: var(--bg-dark);
             width: fit-content;
-            padding: 40px 75px 40px 74px;
+            padding: 46px 75px 48px 73px;
             margin-right: 0;
         }
 
         &__pagination {
             font: 400 22px Roboto, sans-serif; 
-            margin-right: 55px;
+            margin-right: 53px;
+            letter-spacing: 2px;
         }
 
         &__dots {
@@ -80,7 +81,7 @@
 
             &-next {
                 background-image: url(../images/icons/btn_welcome-slider_next.svg);
-                margin-left: 25px;
+                margin-left: 20px;
             }
         }
 

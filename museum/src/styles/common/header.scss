@@ -3,7 +3,7 @@
     background-color: var(--bg-dark);
 
     &__content {
-        padding: 75px 160px 62px 240px;
+        padding: 49px 160px 52px 240px;
     }
 
     &__logo {
@@ -32,14 +32,17 @@
         font: normal 28px Forum;
         line-height: 50px;
         letter-spacing: 5px;
+        line-height: 50px;
+        top: 4px;
+        position: relative;
         margin: 0;
-        margin-left: 20px;
+        margin-left: 23px;
         text-transform: uppercase;
         color: var(--font-white);
     }
 
     &__nav-list {
-        column-gap: 76px;
-        margin-left: 450px;
+        column-gap: 55px;
+        margin-left: 387px;
     }
 }
