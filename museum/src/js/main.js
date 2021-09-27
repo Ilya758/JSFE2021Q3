@@ -36,4 +36,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     shuffle();
     makeMasonry();
+
+    const buyBtn = document.querySelector('.tickets__btn-submit');
+    const closePopupBtn = document.querySelector('.popup-tickets__btn-close');
+    const overlay = document.querySelector('.overlay');
+    closePopupBtn.addEventListener('click', toggleVisibility);
+    buyBtn.addEventListener('click', toggleVisibility);
+
+    document.addEventListener('click', (event) => {
+
+        if (event.target === overlay) {
+            toggleVisibility();
+        }
+
+    });
+
+    function toggleVisibility() {
+        const popup = document.querySelector('.popup-tickets');
+
+        if (popup.classList.contains('popup-tickets_state_active')) {
+            popup.classList.remove('popup-tickets_state_active');
+            popup.classList.add('popup-tickets_state_disabled');
+            overlay.classList.remove('overlay_state_fadeIn');
+            popup.style.left = '-3000px';
+
+            setTimeout(() => {
+                popup.classList.remove('popup-tickets_state_disabled');
+            }, 1010);
+        } else {
+            popup.classList.add('popup-tickets_state_active');
+            popup.style.left = '50%';
+            overlay.classList.add('overlay_state_fadeIn');
+        }
+    }
+
 });
