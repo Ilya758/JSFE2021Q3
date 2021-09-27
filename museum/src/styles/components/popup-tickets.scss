@@ -1,9 +1,70 @@
 .popup-tickets {
+    position: fixed;
+    background: white;
+    width: 100%;
+    z-index: 1001;
     display: block;
+    top: 50%;
+    left: -3000px;
+    transform: translate(-50%, -50%);
+
+    &_state {
+        
+        &_active {
+            animation: 1s fromLeft;
+        }
+
+        &_disabled {
+            animation: 1s toLeft;
+        }
+
+    }
 
     &__content {
         @include flex(row, space-between, center);
         padding: 91px 240px;
+        max-width: 1440px;
+        position: relative;
+    }
+
+    &__btn {
+
+        &-close {
+            position: absolute;
+            width: 25px;
+            top: 30px;
+            right: 30px;
+            height: 25px;
+            cursor: pointer;
+            
+            &:hover::before, &:hover::after {
+                background-color: var(--font-gold);
+            }
+
+            &::before, &::after {
+                background: var(--bg-dark);
+                position: absolute;
+                display: inline-block;
+                content: "";
+                top: 11px;
+                width: 25px;
+                transform: translate(-50%, -50%);
+                height: 2px;
+                transition: .35s;
+
+               
+            }
+            
+            &::before {
+                transform: rotate(45deg)
+            }
+
+            &::after {
+                transform: rotate(135deg)
+            }
+
+        }
+
     }
 
     &__form {
@@ -109,7 +170,7 @@
     }
 
     &__container {
-        //border: 1px solid var(--font-black);
+        border: none;
         padding: 0;
         max-width: 105px;
 

@@ -13,6 +13,24 @@ html {
     scroll-behavior: smooth;
 }
 
+@keyframes fromLeft {
+    0% {
+        left: -3000px;
+    }
+    100% {
+        left: 50%;
+    }
+}
+
+@keyframes toLeft {
+    0% {
+        left: 50%;
+    }
+    100% {
+        left: -3000px;
+    }
+}
+
 * {
     margin: 0 auto;
     padding: 0;
@@ -21,6 +39,28 @@ html {
 
 label {
     margin: 0;
+}
+
+.active {
+    display: flex !important;
+}
+
+.overlay {
+    visibility: hidden;
+    position: fixed;
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.75);
+    transition: 1s linear;
+    opacity: 0;
+
+    &_state_fadeIn {
+        visibility: initial;
+        opacity: 1;
+        z-index: 1000;
+    }
+
 }
 
 .container {
