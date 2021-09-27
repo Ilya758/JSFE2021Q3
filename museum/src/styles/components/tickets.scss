@@ -110,13 +110,19 @@
                 border: none;
                 cursor: pointer;
             }
+
+            & .button_c_white {
+                color: var(--font-white);
+                background: var(--bg-dark);
+                border: 1px solid var(--bg-dark);
+            }
     
             & input {
                 margin: 10px 36px 10px 37px;
                 font: 300 22px Roboto;
                 line-height: 26px;  
                 max-width: 10px;
-                background-color: var(--font-white);
+                //background-color: var(--font-white);
                 border: none;
                 color: var(--font-black);
             }
