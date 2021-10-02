@@ -14,7 +14,7 @@
 
 @mixin tablet {
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1023px) {
         @content;
     }
 }
@@ -70,7 +70,7 @@
 
 @mixin sPhones {
 
-    @media screen and (max-width: 380px) {
+    @media screen and (max-width: 419px) {
         @content;
     }
 }
