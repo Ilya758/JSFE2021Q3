@@ -2,39 +2,111 @@
     display: block;
 
     &__content {
+
+        // @include flex(row, space-between, center);
+
         padding: 75px 240px;
         flex-direction: column;
+
+        @include media-custom(1920px) {
+            padding: 60px 100px;
+        }
+
+        @include media-custom(1600px) {
+            padding: 60px 0;
+        }
+
+        @include mediumDesktops() {
+            padding: 40px 0;
+        }
     }
 
     &__heading {
-
-        &::after {
+        &.line::after {
             margin: 25px 0 69px;
+
+            @include largeDesktops() {
+                margin: 20px 0 60px;
+            }
+
+            @include mediumDesktops() {
+                margin-bottom: 40px;
+            }
         }
 
-        &-text {  
+        &-text {
             color: var(--font-gold);
         }
-
     }
 
     &__cards {
-        
         &-list {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             width: 100%;
             row-gap: 73px;
+            column-gap: 30px;
+
+            @include media-custom(1600px) {
+                margin: 0 90px;
+                width: calc(100% - 180px);
+            }
+
+            @include largeDesktops() {
+                margin: 0 20px;
+                width: calc(100% - 40px);
+            }
+
+            @include tablet() {
+                margin: 0 108px;
+                width: calc(100% - 216px);
+                column-gap: 0;
+            }
+
+            @include mediumDesktops() {
+                margin: 0 56px;
+                width: calc(100% - 112px);
+            }
+
+            @include reviews() {
+                margin: 0 50px;
+                width: calc(100% - 100px);
+            }
         }
 
         &-item {
-            width: calc(100%/3);
+
+            @include flex(column, center, flex-start);
+
+            width: calc(100% / 3);
             margin: 0;
             max-width: 440px;
             color: var(--font-black);
             text-decoration: none;
             transition: 0.35s;
+
+            @include media-custom(1440px) {
+                width: calc(100% / 2);
+            }
+
+            @include tablet() {
+                max-width: 330px;
+            }
+
+            @include mediumDesktops() {
+                max-width: 280px;
+            }
+
+            @include reviews() {
+                width: 100%;
+                max-width: none;
+            }
+
+            a {
+                width: 100%;
+                margin: 0;
+            }
 
             &:hover {
                 color: var(--font-gold);
@@ -44,13 +116,13 @@
                 transition: 0.35s;
             }
 
-            &:hover img{
+            &:hover img {
                 border-radius: 5px;
                 box-shadow: 0 0 20px 5px var(--font-gold);
                 transform: scale(1.05);
             }
 
-            &:hover .visiting__cards-heading:after {
+            &:hover .visiting__cards-heading::after {
                 width: 100%;
             }
         }
@@ -62,7 +134,24 @@
             letter-spacing: 5px;
             text-transform: uppercase;
 
-            &:after {
+            @include tablet() {
+                font-size: 28px;
+                line-height: 31px;
+                letter-spacing: 3px;
+            }
+
+            @include mediumDesktops() {
+                font-size: 22px;
+                line-height: 24px;
+            }
+
+            @include mPhones() {
+                font-size: 18px;
+                line-height: 20px;
+                letter-spacing: 5px;
+            }
+
+            &::after {
                 display: block;
                 position: relative;
                 content: "";
@@ -71,12 +160,35 @@
                 width: 300px;
                 background-color: var(--dark-red);
                 transition: 0.25s linear;
+
+                @include tablet() {
+                    width: 150px;
+                }
+
+                @include sPhones() {
+                    width: 75px;
+                }
             }
         }
 
         &-info {
             font: 200 22px Roboto;
             line-height: 26px;
+
+            @include tablet() {
+                font-size: 20px;
+                line-height: 23px;
+            }
+
+            @include mediumDesktops() {
+                font-size: 18px;
+                line-height: 21px;
+            }
+
+            @include mPhones() {
+                font-size: 16px;
+                line-height: 19px;
+            }
         }
     }
 }

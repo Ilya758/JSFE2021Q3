@@ -8,7 +8,6 @@
 
 @import "../utils/root";
 
-
 html {
     scroll-behavior: smooth;
 }
@@ -17,6 +16,7 @@ html {
     0% {
         left: -3000px;
     }
+
     100% {
         left: 50%;
     }
@@ -26,19 +26,41 @@ html {
     0% {
         left: 50%;
     }
+
     100% {
         left: -3000px;
     }
 }
 
+@keyframes navFromLeft {
+    0% {
+        left: -1000px;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes navToLeft {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: -1000px;
+    }
+}
+
 @keyframes ripple {
     0% {
-      opacity: 1;
-      transform: scale(0);
+        opacity: 1;
+        transform: scale(0);
     }
+
     100% {
-      opacity: 0;
-      transform: scale(10);
+        opacity: 0;
+        transform: scale(10);
     }
 }
 
@@ -52,6 +74,15 @@ label {
     margin: 0;
 }
 
+a {
+    color: var(--font-black);
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+}
+
 .active {
     display: flex !important;
 }
@@ -62,7 +93,7 @@ label {
     opacity: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.75);
+    background: rgba(0, 0, 0, 0.75);
     transition: 1s linear;
     opacity: 0;
 
@@ -71,20 +102,26 @@ label {
         opacity: 1;
         z-index: 1000;
     }
-
 }
 
 .container {
     max-width: 1920px;
     margin: 0 auto;
+
+    @include media-custom(1919px) {
+        padding: 0 20px;
+    }
 }
 
 .content {
+
     @include onlyFlex();
 }
 
 .list {
+
     @include onlyFlex();
+
     list-style-type: none;
 }
 
@@ -101,18 +138,9 @@ label {
         color: var(--font-white);
         text-decoration: none;
         transition: 0.25s linear;
-
-        &:hover {
-            color: var(--font-gold);
-        }
-
-        &:active {
-            color: #7E6C51;
-        }
     }
 
     &_c {
-
         &_white {
             color: var(--font-white);
         }
@@ -135,6 +163,11 @@ label {
         display: block;
         font-size: 18px;
         line-height: 21px;
+
+        @include mediumDesktops() {
+            font-size: 16px;
+            line-height: 19px;
+        }
     }
 }
 
@@ -143,17 +176,49 @@ label {
     line-height: 90px;
     letter-spacing: 5px;
     text-transform: uppercase;
+
+    @include largeDesktops() {
+        font-size: 50px;
+        line-height: 75px;
+    }
+
+    @include mediumDesktops() {
+        font-size: 40px;
+        line-height: 60px;
+    }
+
+    @include reviews() {
+        font-size: 28px;
+        line-height: 40px;
+    }
 }
 
-.line:after {
-    display: block;
-    position: relative;
-    content: "";
-    margin: 25px 0 75px;
-    height: 3px;
-    width: 100%;
-    background-color: var(--dark-red);
-    transition: 0.25s linear;
+.line {
+    &-break {
+
+        @include largeDesktops() {
+            display: none;
+        }
+    }
+
+    &::after {
+        display: block;
+        position: relative;
+        content: "";
+        margin: 25px 0 75px;
+        height: 3px;
+        width: 100%;
+        background-color: var(--dark-red);
+        transition: 0.25s linear;
+
+        @include largeDesktops() {
+            margin: 20px 0 60px;
+        }
+
+        @include mediumDesktops() {
+            margin-bottom: 40px;
+        }
+    }
 }
 
 .icons {
@@ -174,7 +239,6 @@ $icons: youtube 23px 22px, instagram 20px 20px, facebook 12.5px 20px, twitter 20
 }
 
 .btn {
-
     &_align {
 
         @each $item in left, right {
@@ -185,7 +249,6 @@ $icons: youtube 23px 22px, instagram 20px 20px, facebook 12.5px 20px, twitter 20
     }
 
     &_type {
-
         &_action {
             display: block;
             background: var(--dark-red);
@@ -214,17 +277,45 @@ $icons: youtube 23px 22px, instagram 20px 20px, facebook 12.5px 20px, twitter 20
     }
 
     &_size {
-
         &_s {
             font-size: 18px !important;
         }
-
     }
 }
 
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+    appearance: none;
     margin: 0;
+}
+
+@each $el in header, footer {
+
+    .#{$el}__social {
+        display: flex;
+        align-items: flex-end;
+        column-gap: 25px;
+        margin-bottom: 14px;
+
+        &-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            border: 1px solid #666666;
+            filter: drop-shadow(0 0 0 #666666);
+            border-radius: 50px;
+            width: 48px;
+            height: 48px;
+            transition: 0.25s linear;
+
+            &:hover {
+                border-color: var(--font-gold);
+
+                & .icons {
+                    filter: var(--filter-gold);
+                }
+            }
+        }
+    }
 }

@@ -4,8 +4,19 @@
 
     &__content {
         padding: 74px 240px 0;
+
         @include flex(column);
+
         position: relative;
+
+        @include media-custom(1919px) {
+            padding: 62px 0 0;
+            justify-content: space-between;
+        }
+
+        @include mediumDesktops() {
+            padding: 40px 0 0;
+        }
 
         &:after {
             display: inline-block;
@@ -15,13 +26,28 @@
             left: 0;
             height: 3px;
             width: 100%;
-            background-color: var(--bg-gray); 
+            background-color: var(--bg-gray);
         }
     }
 
     &-top {
+
         @include flex(row, center, initial);
-        margin-bottom: 50px
+
+        width: 100%;
+        margin-bottom: 50px;
+
+        @include tablet() {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            margin-bottom: 40px;
+            padding-right: 90px;
+        }
+
+        @include reviews() {
+            grid-template-columns: 1fr;
+            padding-right: 0;
+        }
     }
 
     &-bottom {
@@ -31,10 +57,33 @@
     }
 
     &__logo {
+        margin: 0;
+
+        @include mediumDesktops() {
+            grid-column: 1 / 1;
+        }
+
+        @include reviews() {
+            grid-column: 1 / 1;
+            margin-bottom: 20px;
+        }
+
+        @include sPhones() {
+            justify-self: center;
+        }
 
         &-pic {
             width: 49px;
             height: 26px;
+
+            @include tablet() {
+                margin: 0;
+            }
+
+            @include reviews() {
+                width: 29px;
+                height: 16px;
+            }
         }
 
         &-link {
@@ -42,7 +91,6 @@
             align-items: center;
             text-decoration: none;
         }
-
     }
 
     &__heading {
@@ -55,10 +103,28 @@
         left: 5px;
         text-transform: uppercase;
         color: var(--font-white);
+
+        @include reviews() {
+            font-size: 16px;
+            line-height: 18px;
+        }
     }
 
     &__nav {
         margin: 0 395px 0 145px;
+
+        @include media-custom(1919px) {
+            margin: 0 0 0 45px;
+        }
+
+        @include tablet() {
+            margin-left: 0;
+            grid-column: 2 / span 1;
+        }
+
+        @include reviews() {
+            grid-column: 1 / span 1;
+        }
 
         &-list {
             max-width: 366px;
@@ -67,40 +133,99 @@
             column-gap: 148px;
             position: relative;
             top: 3px;
+
+            @include largeDesktops() {
+                max-width: 313px;
+                column-gap: 100px;
+            }
+
+            @include tablet() {
+                margin: 0;
+                width: 100%;
+                max-width: none;
+                column-gap: 125px;
+            }
+
+            @include reviews() {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                column-gap: calc(100% / 4);
+            }
+
+            @include mPhones() {
+                column-gap: calc(100% / 6);
+            }
+
+            @include sPhones() {
+                display: flex;
+            }
         }
 
         &-item {
             margin: 0;
             width: calc(100% / 2);
             flex: 1;
+
+            &:hover::after {
+                filter: var(--filter-gold);
+            }
+
+            &:hover .text_elem_nav {
+                color: var(--font-gold);
+            }
+
+            &:active .text_elem_nav {
+                color: #7e6c51;
+            }
+
+            @include reviews() {
+                width: calc(100% / 3);
+            }
+
+            @include sPhones() {
+                width: 100%;
+                flex: auto;
+                text-align: center;
+            }
+        }
+
+        &-link {
+
+            @include media-custom(1600px) {
+                font-size: 22px;
+                //line-height: 26px;
+            }
+
+            @include mediumDesktops() {
+                font-size: 18px;
+                //line-height: 21px;
+            }
+
+            @include reviews() {
+                font-size: 16px;
+                //line-height: 19px;
+            }
         }
     }
 
     &__social {
-        display: flex;
-        align-items: flex-end;
-        column-gap: 25px;
-        margin-bottom: 14px;
+        margin-right: 0;
 
-        &-link {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            border: 1px solid #666666;
-            filter: drop-shadow(0px 0px 0px #666666);
-            border-radius: 50px;
-            width: 48px;
-            height: 48px;
-            transition: 0.25s linear;
+        @include tablet() {
+            grid-column: 2 / span 1;
+            margin-top: 40px;
+            width: 100%;
+        }
 
-            &:hover {
-                border-color: var(--font-gold);
+        @include reviews() {
+            grid-column: 1 / span 1;
+            padding: 0 60px;
+            column-gap: 5px;
+        }
 
-                & .icons {
-                    filter: var(--filter-gold);
-                }  
-            }
+        @include sPhones() {
+            flex-direction: column;
+            row-gap: 10px;
         }
     }
 
@@ -110,6 +235,21 @@
         letter-spacing: 2px;
         text-decoration: none;
         margin: 0;
+
+        @include media-custom(1600px) {
+            font-size: 22px;
+        }
+
+        @include reviews() {
+            font-size: 16px;
+        }
+    }
+
+    &__schoolname {
+
+        @include reviews() {
+            display: none;
+        }
     }
 
     &__author {
@@ -122,6 +262,5 @@
         &:active {
             color: #7E6C51;
         }
-
     }
 }

@@ -1,466 +1,648 @@
-.popup-tickets {
-    position: fixed;
-    background: white;
-    width: 100%;
-    z-index: 1001;
-    display: block;
-    top: 50%;
-    left: -3000px;
-    transform: translate(-50%, -50%);
+.popup {
 
-    &_state {
-        
-        &_active {
-            animation: 1s fromLeft;
-        }
-
-        &_disabled {
-            animation: 1s toLeft;
-        }
-
+    &-container {
+        padding: 0 30px;
     }
 
-    &__content {
-        @include flex(row, space-between, center);
-        padding: 90px 240px;
-        //max-width: 1440px;
-        position: relative;
-    }
-
-    &__registration {
-        margin: 0;
+    &-tickets {
+        position: fixed;
+        background: white;
         width: 100%;
-    }
-
-    &__btn {
-
-        &-close {
-            position: absolute;
-            width: 25px;
-            top: 30px;
-            right: 14.2%;
-            height: 25px;
-            cursor: pointer;
-            
-            &:hover::before, &:hover::after {
-                background-color: var(--font-gold);
-            }
-
-            &::before, &::after {
-                background: var(--bg-dark);
-                position: absolute;
-                display: inline-block;
-                content: "";
-                top: 11px;
-                width: 34px;
-                transform: translate(-50%, -50%);
-                height: 2px;
-                transition: .35s;
-
-               
-            }
-            
-            &::before {
-                transform: rotate(45deg)
-            }
-
-            &::after {
-                transform: rotate(135deg)
-            }
-
-        }
-
-    }
-
-    &__form {
-        @include flex(row, space-between, flex-start);
-        //border: 1px solid #000;
-    }
-
-    &__logo {
-        width: 85px;
-        height: 43px;
-        filter: var(--filter-gold);
-        background: url(../images/logo.svg) 0 0/contain no-repeat;
-        margin: -3px 0 0 2px;
-    }
-
-    &__heading {
-        font-size: 50px;
-        color: var(--font-gold);
-        line-height: 58px;
-        letter-spacing: 0.1px;
-        margin-bottom: 10px;
-    }
-
-    &__text {
-        margin-left: 1px;
-        letter-spacing: -0.1px;
-
-        &.line:after {
-            margin: 9px 0 61px; 
-        }
-    }
-
-    &__info {
-        @include flex(column, center, center);
-        padding-left: 1px;
-        margin-right: 40px;
-    }
-
-    &__input {
-
-        &-date {
-            margin-right: 20px;
-            content: attr(placeholder);       
-        }
-
-        &-time {
-
-            &::after {
-                right: 15px;
-            }
-
-        }
-
-        &-date.input, &-time.input  {
-            width: 190px;
-        }
-
-        &-select {
-            -webkit-appearance: none;
-            color: var(--font-black);
-            opacity: 1;
-        }
-    }
-
-    &__inputContainer {
+        z-index: 1001;
         display: block;
-        position: relative;
-        margin-bottom: 20px;
+        //display: block !important; // ИСПРАВИТЬ!!!
+        top: 50%;
+        left: -3000px;
+        transform: translate(-50%, -50%);
 
-        &::before, &::after {
-            position: absolute;
-            content: "";
-            display: inline-block;
-            background-repeat: no-repeat;
-            //background: no-repeat 0 0/cover center center;
-        }
-    }
-    
-    &__subheading {
-        font: 18px Forum, sans-serif;
-        line-height: 20px;
-        letter-spacing: 0.1px;
-        color: var(--font-gold);
-        text-transform: none;
-
-        &.line::after {
-            margin: 5px 0 15px;
-        }
-    }
-
-    &__costContainer {
-        border: 1px solid var(--font-black);
-        width: 100%;
-        padding: 9px 14px 14px;
-    }
-
-    &__basic {
-        @include flex(row, space-between, center);
-        margin-bottom: 17px;
-    }
-
-    &__senior {
-        @include flex(row, space-between, center);
-    }
-
-    &__container {
-        border: none;
-        padding: 0;
-        max-width: 105px;
-        position: relative;
-
-        &.container_indent_top:last-child {
-            top: -1px;
-            right: 0;
+        @include tablet() {
+            overflow: auto;
+            height: 100%;
         }
 
-        &:last-child {
-            top: 0px;
-            right: -1px;
+        &_state {
+            &_active {
+                animation: 1s fromLeft;
+            }
+
+            &_disabled {
+                animation: 1s toLeft;
+            }
         }
 
-        & button {
-            //display: flex;
-            width: 35px;
-            height: 25px;
-            line-height: 21px;
-        }
+        &__content {
 
-        & input {
-            margin: 0;
-            background-color: var(--bg-white);
-            border: 1px solid var(--font-black);
-            color: var(--font-black);
-            font-size: 18px;
-            line-height: 21px;
-            max-width: 35px;
-            text-align: center;
-        }
-    }
+            @include flex(row, space-between, center);
 
-    &__requisites {
-        width: 530px;
-        @include flex(column, center, flex-end);
-        border: 1px solid var(--border-gray);
-        box-sizing: border-box;
-
-        &-info {
+            padding: 90px 240px;
+            //max-width: 1440px;
             position: relative;
+
+            @include media-custom(1600px) {
+                padding: 75px 0;
+                justify-content: center;
+            }
+
+            @include tablet() {
+                padding: 80px 0 40px;
+            }
+
+            @include reviews() {
+                padding-bottom: 50px;
+            }
+        }
+
+        &__registration {
+            margin: 0;
             width: 100%;
-            padding: 24px 29px 0;
-            box-sizing: border-box;
+        }
 
-            &::before {
+        &__btn {
+            &-close {
                 position: absolute;
-                content: "";
-                right: 29px;
-                background: url(../images/louvre.jpg) 0 0/cover no-repeat;
-                width: 150px;
-                height: 120px;
+                width: 25px;
+                top: 30px;
+                right: 14.2%;
+                height: 25px;
+                cursor: pointer;
+
+                @include media-custom(1600px) {
+                    right: 15px;
+                }
+
+                &:hover::before,
+                &:hover::after {
+                    background-color: var(--font-gold);
+                }
+
+                &::before,
+                &::after {
+                    background: var(--bg-dark);
+                    position: absolute;
+                    display: inline-block;
+                    content: "";
+                    top: 11px;
+                    width: 34px;
+                    transform: translate(-50%, -50%);
+                    height: 2px;
+                    transition: 0.35s;
+                }
+
+                &::before {
+                    transform: rotate(45deg);
+                }
+
+                &::after {
+                    transform: rotate(135deg);
+                }
             }
         }
 
-        &-text {
-            margin: 0;
+        &__form {
 
-            &:nth-child(1) {
+            @include flex(row, space-between, flex-start);
+
+            @include tablet() {
+                flex-direction: column;
+                width: 100%;
+                max-width: 530px;
+            }
+        }
+
+        &__logo {
+            width: 85px;
+            height: 43px;
+            filter: var(--filter-gold);
+            background: url(../images/logo.svg) 0 0/contain no-repeat;
+            margin: -3px 0 0 2px;
+        }
+
+        &__heading {
+            font-size: 50px;
+            color: var(--font-gold);
+            line-height: 58px;
+            letter-spacing: 0.1px;
+            margin-bottom: 10px;
+
+            @include reviews() {
                 font-size: 32px;
-                line-height: 39px;
+                line-height: 35px;
             }
-
-            
         }
 
-        /* &-text.text {
-            font-size: var(--font2);
-            font-weight: 500;
-            line-height: 37px;
-        }*/
-
-        &-textTotal {
-            margin-right: 0;
-        }
-
-        &-heading.text {
-            font-size: 22px;
-            line-height: 30px;
-        }
-
-        &-cost {
-            margin-top: 20px;
-        }
-
-        &-basic, &-senior {
-            @include flex(row, space-between, center);
-            font: 400 22px Roboto, sans-serif;
-            line-height: 26px;
-        }
-
-        &-basic {
-            margin-bottom: 6px;
-        }
-
-        &-basicInfo {
-            @include flex(row, space-between, center);
-            margin-left: 0;
-        }
-
-        &-amount {
-            background: #030303;
-            color: #a4a4a3;
-            font-family: Roboto, sans-serif;
-            padding: 0 11px 0px;
-            border-radius: 5px;
-            margin: -1px 10px 0 0;
-        }
-
-        &-total {
-            position: relative;
-            margin: 20px 0 10px 1px;
-            font: 400 32px Roboto, sans-serif;
-            line-height: 37px;
-            @include flex(row, space-between, center);
+        &__text {
+            margin-left: 1px;
+            letter-spacing: -0.1px;
 
             &.line::after {
-                position: absolute;
-                top: -13px;
-                margin: 0; 
+                margin: 9px 0 61px;
+
+                @include tablet() {
+                    margin-bottom: 40px;
+                }
+            }
+        }
+
+        &__info {
+
+            @include flex(column, center, center);
+
+            padding-left: 1px;
+            margin-right: 40px;
+
+            @include tablet() {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        &__input {
+            &-date {
+                margin-right: 20px;
+                content: attr(placeholder);
             }
 
+            &-time {
+                &::after {
+                    right: 15px;
+                }
+            }
+
+            &-date.input,
+            &-time.input {
+                width: 190px;
+
+                @include tablet() {
+                    max-width: 251px;
+                    width: 100%;
+                }
+
+                @include reviews() {
+                    max-width: none;
+                }
+            }
+
+            &-select {
+                appearance: none;
+                color: var(--font-black);
+                opacity: 1;
+            }
         }
-    }
 
-    &__date {
-
-        &-list {
-            @include flex(column, center, center);
-            margin-top: 4px;
-        }
-
-        &-item {
-            margin: 0;
-            width: 100%;
-            text-align: left;
-            line-height: 27px !important;
-            font: 300 18px Roboto, sans-serif; 
-            @include flex(row, flex-start, center);
-        }
-
-    }
-
-    &__dateContainer {
-        @include onlyFlex();
-    }
-
-    &__paymentCard {
-        position: relative;
-        margin-left: 30px;
-        &-dateContainer:first-child {
-            /*@include flex(row, space-between, center);
+        &__inputContainer {
+            display: block;
+            position: relative;
             margin-bottom: 20px;
-        */
-            margin-right: 15px;
-        }
 
-        &-front {
-            background-color: #bcbcbc;
-            padding: 15px 20px 3px;
-            border-radius: 4px;
-            @include flex(column, center, flex-start);
+            @include tablet() {
+                margin: 0 0 20px 0;
+            }
 
-            &::before {
-                display: inline-block;
-                content: "";
+            &::before,
+            &::after {
                 position: absolute;
-                right: 21px;
-                top: 33px;
-                background: url(../images/icons/icon_payment.svg);
-                width: 55px;
-                height: 63px;
+                content: "";
+                display: inline-block;
+                background-repeat: no-repeat;
+                //background: no-repeat 0 0/cover center center;
             }
         }
 
-        &-back {
-            background-color: #939393;
-            position: absolute;
-            z-index: -1;
-            bottom: -30px;
-            left: 110px;
-            max-height: 360px;
-            width: 360px;
-            height: 100%;
-            padding: 15px 20px;
-            border-radius: 4px;
-            @include flex(column, center, flex-start);
+        &__subheading {
+            font: 18px Forum, sans-serif;
+            line-height: 20px;
+            letter-spacing: 0.1px;
+            color: var(--font-gold);
+            text-transform: none;
 
-            &::before {
-                display: inline-block;
-                position: absolute;
-                content: "";
-                top: 25px;
+            &.line::after {
+                margin: 5px 0 15px;
+            }
+        }
+
+        &__costContainer {
+            border: 1px solid var(--font-black);
+            width: 100%;
+            padding: 9px 14px 14px;
+
+            @include tablet() {
+                margin-bottom: 51px;
+            }
+        }
+
+        &__basic {
+
+            @include flex(row, space-between, center);
+
+            margin-bottom: 17px;
+        }
+
+        &__senior {
+
+            @include flex(row, space-between, center);
+        }
+
+        &__basic, &__senior {
+
+            @include reviews() {
+                flex-direction: column;
+                row-gap: 10px;
+            }
+
+        }
+
+        &__container {
+            border: none;
+            padding: 0;
+            max-width: 105px;
+            position: relative;
+
+            @include reviews() {
+                position: static;
+                margin: 0;
+            }
+
+            &.container_indent_top:last-child {
+                top: -1px;
                 right: 0;
-                width: 360px;
-                height: 45px;
-                background: var(--bg-dark);
             }
 
-            p {
-                margin-top: 7px;
-                padding: 0 10px;
-                font-size: 10px;
-                line-height: 12px;
+            &:last-child {
+                top: 0;
+                right: -1px;
+            }
+
+            & button {
+                //display: flex;
+                width: 35px;
+                height: 25px;
+                line-height: 21px;
+            }
+
+            & input {
+                margin: 0;
+                background-color: var(--bg-white);
+                border: 1px solid var(--font-black);
+                color: var(--font-black);
+                font-size: 18px;
+                line-height: 21px;
+                max-width: 35px;
+                text-align: center;
             }
         }
 
-        &-info {
-            margin-top: 71px;
-            margin-right: 0;
-            @include flex(column, center, center);
-            max-width: 75px;
+        &__requisites {
+            width: 530px;
+
+            @include flex(column, center, flex-end);
+
+            border: 1px solid var(--border-gray);
+            box-sizing: border-box;
+
+            @include reviews() {
+                width: 100%;
+            }
+
+            &-info {
+                position: relative;
+                width: 100%;
+                padding: 24px 29px 0;
+                box-sizing: border-box;
+
+                @include reviews() {
+                    padding: 24px 15px 0;
+                }
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    right: 29px;
+                    background: url(../images/louvre.jpg) 0 0/cover no-repeat;
+                    width: 150px;
+                    height: 120px;
+
+                    @include reviews() {
+                        right: 15px;
+                        width: 120px;
+                        height: 96px;
+                    }
+
+                    @include sPhones() {
+                        display: none;
+                    }
+                }
+            }
+
+            &-text {
+                margin: 0;
+
+                &:nth-child(1) {
+                    font-size: 32px;
+                    line-height: 39px;
+
+                    @include sPhones() {
+                        font-size: 20px;
+                    }
+                }
+            }
+
+            /* &-text.text {
+                font-size: var(--font2);
+                font-weight: 500;
+                line-height: 37px;
+            } */
+
+            &-textTotal {
+                margin-right: 0;
+            }
+
+            &-heading.text {
+                font-size: 22px;
+                line-height: 30px;
+            }
+
+            &-cost {
+                margin-top: 20px;
+            }
+
+            &-basic,
+            &-senior {
+
+                @include flex(row, space-between, center);
+
+                font: 400 22px Roboto, sans-serif;
+                line-height: 26px;
+
+                @include sPhones() {
+                    font-size: 14px;
+                }
+            }
+
+            &-basic {
+                margin-bottom: 6px;
+            }
+
+            &-basicInfo {
+
+                @include flex(row, space-between, center);
+
+                margin-left: 0;
+            }
+
+            &-amount {
+                background: #030303;
+                color: #a4a4a3;
+                font-family: Roboto, sans-serif;
+                padding: 0 11px 0;
+                border-radius: 5px;
+                margin: -1px 10px 0 0;
+            }
+
+            &-total {
+                position: relative;
+                margin: 20px 0 10px 1px;
+                font: 400 32px Roboto, sans-serif;
+                line-height: 37px;
+
+                @include flex(row, space-between, center);
+
+                @include sPhones() {
+                    font-size: 20px;
+                }
+
+                &.line::after {
+                    position: absolute;
+                    top: -13px;
+                    margin: 0;
+                }
+            }
         }
 
-        &-cvvInput {
-            border: 1px solid #a4a4a3;
-            max-width: 75px;
-            height: 35px;
+        &__date {
+            &-list {
+
+                @include flex(column, center, center);
+
+                margin-top: 4px;
+            }
+
+            &-item {
+                margin: 0;
+                width: 100%;
+                text-align: left;
+                line-height: 27px !important;
+                font: 300 18px Roboto, sans-serif;
+
+                @include flex(row, flex-start, center);
+
+                @include sPhones() {
+                    font-size: 14px;
+                }
+            }
         }
 
-        &-text {
-            font: 12px Roboto, sans-serif;  
-            margin: 0 0 5px 0;
-        }
+        &__dateContainer {
 
-        &-date {
-            margin: 0 0 10px;
             @include onlyFlex();
-        }
 
-        &-dateInput {
-            text-align: left;
-            padding: 8px 9px 12px;
-            height: 35px;
-            width: 72px;
-            font-size: 12px;
-            border: 1px solid #a4a4a3;
-            border-right: none;
-        }
-
-        &-dateContainer {
-            @include flex();
-        }
-
-        &-input {
-            border: 1px solid #a4a4a3;
-            margin-bottom: 10px;
-            height: 35px;
-        }
-
-
-        /*&-back {
-            //position: absolute;
-            zin
-        }*/
-
-    }
-
-    &__btn {
-
-        &-submit {
-
-            &:hover {
-                background-color: var(--font-gold);
+            @include tablet() {
+                margin: 0;
+                width: 100%;
+                justify-content: space-between;
             }
 
-        }
-
-        &-submit.btn_type_action {
-            border-radius: 0;
-            padding: 11px 84px 7px 85px;
-            margin: 56px 29px 25px 0;
-            transition: 0.35s;
-
-            &:hover span{
-                color: var(--font-white);
-            }
-
-            span {
-                font-weight: 300;
-                letter-spacing: 0.4px;
+            @include reviews() {
+                flex-direction: column;
             }
         }
 
+        &__paymentCard {
+            position: relative;
+            margin-left: 30px;
+
+            @include reviews() {
+
+                @include flex(column, center, center);
+
+                padding: 0 15px;
+                margin: 0;
+                width: 100%;
+            }
+
+            &-dateContainer:first-child {
+                /* @include flex(row, space-between, center);
+                margin-bottom: 20px;
+            */
+                margin-right: 15px;
+            }
+
+            &-front {
+                position: relative;
+                background-color: #bcbcbc;
+                padding: 15px 20px 3px;
+                border-radius: 4px;
+
+                @include flex(column, center, flex-start);
+
+                @include reviews() {
+                    width: 100%;
+                    margin-bottom: 25px;
+                }
+
+                &::before {
+                    display: inline-block;
+                    content: "";
+                    position: absolute;
+                    right: 21px;
+                    top: 33px;
+                    background: url(../images/icons/icon_payment.svg);
+                    width: 55px;
+                    height: 63px;
+
+                    @include sPhones() {
+                        display: none;
+                    }
+                }
+            }
+
+            &-back {
+                background-color: #939393;
+                position: absolute;
+                z-index: -1;
+                bottom: -30px;
+                left: 110px;
+                max-height: 360px;
+                width: 360px;
+                height: 100%;
+                padding: 15px 20px;
+                border-radius: 4px;
+
+                @include flex(column, center, flex-start);
+
+                @include reviews() {
+                    position: relative;
+                    left: 0;
+                    top: 0;
+                    z-index: 0;
+                    width: 100%;
+                }
+
+                &::before {
+                    display: inline-block;
+                    position: absolute;
+                    content: "";
+                    top: 25px;
+                    right: 0;
+                    width: 360px;
+                    height: 45px;
+                    background: var(--bg-dark);
+
+                    @include reviews() {
+                        width: 100%;
+                    }
+                }
+
+                p {
+                    margin-top: 7px;
+                    padding: 0 10px;
+                    font-size: 10px;
+                    line-height: 12px;
+                }
+            }
+
+            &-info {
+                margin-top: 71px;
+                margin-right: 0;
+
+                @include flex(column, center, center);
+
+                max-width: 75px;
+            }
+
+            &-cvvInput {
+                border: 1px solid #a4a4a3;
+                max-width: 75px;
+                height: 35px;
+            }
+
+            &-text {
+                font: 12px Roboto, sans-serif;
+                margin: 0 0 5px 0;
+            }
+
+            &-date {
+                margin: 0 0 10px;
+
+                @include onlyFlex();
+            }
+
+            &-dateInput {
+                text-align: left;
+                padding: 8px 9px 12px;
+                height: 35px;
+                width: 72px;
+                font-size: 12px;
+                font-family: "Roboto";
+                border: 1px solid #a4a4a3;
+                border-right: none;
+
+                @include sPhones() {
+                    width: 100%;
+                    font-size: 9px;
+                }
+            }
+
+            &-dateContainer {
+
+                @include flex();
+            }
+
+            &-input {
+                border: 1px solid #a4a4a3;
+                margin-bottom: 10px;
+                height: 35px;
+            }
+
+
+            /* &-back {
+                //position: absolute;
+                zin
+            } */
+        }
+
+        &__btn {
+            &-submit {
+                &:hover {
+                    background-color: var(--font-gold);
+                }
+            }
+
+            &-submit.btn_type_action {
+                border-radius: 0;
+                padding: 11px 84px 7px 85px;
+                margin: 56px 29px 25px 0;
+                transition: 0.35s;
+
+                @include reviews() {
+                    margin-top: 40px;
+                }
+
+                @include sPhones() {
+                    width: 100%;
+                    margin: 20px 0;
+                    padding: 10px;
+                }
+
+                &:hover span {
+                    color: var(--font-white);
+                }
+
+                span {
+                    font-weight: 300;
+                    letter-spacing: 0.4px;
+                }
+            }
+        }
     }
 }
 
@@ -480,7 +662,6 @@
     }
 
     &_size {
-
         &_m {
             width: 100%;
             max-width: 215px;
@@ -488,14 +669,15 @@
 
         &_l {
             width: 320px;
-        }
 
+            @include reviews() {
+                width: 100%;
+            }
+        }
     }
 
     &_type {
-
         &_date {
-
             &::before {
                 background: url(../images/icons/icon_date.svg);
                 width: 15px;
@@ -503,19 +685,21 @@
                 left: 15px;
                 top: calc(50% - 15px/2);
             }
-    
+
             &::after {
                 background: url(../images/icons/btn_arrow-select.svg);
                 right: 35px;
                 top: calc(50% - 17px/2);
                 width: 17px;
                 height: 17px;
-            }
 
+                @include reviews() {
+                    right: 17px;
+                }
+            }
         }
 
         &_time {
-
             &::before {
                 background: url(../images/icons/icon_time.svg);
                 width: 15px;
@@ -523,7 +707,7 @@
                 left: 15px;
                 top: calc(50% - 15px/2);
             }
-    
+
             &::after {
                 background: url(../images/icons/btn_arrow-select.svg);
                 right: 15px;
@@ -596,9 +780,7 @@
 }
 
 .btn {
-
     &_state {
-
         &_ripple {
             position: relative;
             overflow: hidden;
@@ -607,7 +789,7 @@
                 outline: none;
             }
 
-            &:after {
+            &::after {
                 display: none;
                 content: "";
                 position: absolute;
@@ -622,21 +804,20 @@
                 animation: ripple 1s;
                 opacity: 0;
             }
-        
+
             &:focus:not(:active)::after {
                 display: block;
             }
         }
-    }  
+    }
 }
 
 input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="time"]::-webkit-calendar-picker-indicator {
     display: none;
-    -webkit-appearance: none;
+    appearance: none;
 }
-
 
 ::placeholder {
     color: var(--font-black);
@@ -653,12 +834,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .paymentCard {
-
     &-backText {
         letter-spacing: -0.2px;
         margin: 0 6px 5px 0;
     }
-
 }
 
 .paymentCard-controls {
@@ -666,14 +845,16 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     height: 35px;
     border: 1px solid #a4a4a3;
     background: var(--bg-white);
+
     @include flex(column, center, space-between);
 
     &__arrow {
+
         @include flex(column, center, center);
 
         @each $el in up, down {
             &-#{$el} {
-                background :url(../images/icons/icon_arrow-#{$el}.svg);
+                background: url(../images/icons/icon_arrow-#{$el}.svg);
                 width: 6px;
                 height: 4px;
             }

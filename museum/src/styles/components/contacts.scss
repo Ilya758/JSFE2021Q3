@@ -3,6 +3,18 @@
 
     &__content {
         padding: 75px 240px 69px;
+
+        @include media-custom(1600px) {
+            padding: 60px 0;
+        }
+
+        @include mediumDesktops() {
+            padding: 40px 0 67px;
+        }
+
+        @include reviews() {
+            padding: 40px 0;
+        }
     }
 
     &__heading {
@@ -10,12 +22,28 @@
 
         &::after {
             margin: 27px 0 75px;
+
+            @include largeDesktops() {
+                margin: 20px 0 60px;
+            }
+
+            @include mediumDesktops() {
+                margin-bottom: 40px;
+            }
         }
     }
 
     &__info {
         display: flex;
         column-gap: 198px;
+
+        @include media-custom(1600px) {
+            column-gap: 16px;
+        }
+
+        @include mediumDesktops() {
+            flex-direction: column;
+        }
     }
 
     &__text {
@@ -28,6 +56,22 @@
             font: 500 28px Roboto;
             line-height: 33px;
             color: var(--font-black);
+
+            @include largeDesktops() {
+                font-size: 24px;
+                line-height: 28px;
+            }
+
+            @include mediumDesktops() {
+                margin-bottom: 40px;
+                font-size: 20px;
+                line-height: 23px;
+            }
+
+            @include mediumDesktops() {
+                font-size: 16px;
+                line-height: 19px;
+            }
         }
 
         &-info {
@@ -39,13 +83,54 @@
             text-decoration: none;
             transition: 0.35s;
 
+            @include largeDesktops() {
+                font-size: 20px;
+                line-height: 23px;
+            }
+
+            @include mediumDesktops() {
+                font-size: 18px;
+                line-height: 21px;
+            }
+
+            @include mediumDesktops() {
+                font-size: 16px;
+                line-height: 19px;
+            }
+
             &:nth-child(3) {
                 margin: 25px 0;
+
+                @include largeDesktops() {
+                    margin: 15px 0;
+                }
             }
 
             &:nth-child(n+3):hover {
                 color: var(--font-gold);
                 text-shadow: 1px 2px 5px var(--font-gold);
+            }
+        }
+    }
+
+    &__map {
+        margin-right: 0;
+
+        @include mediumDesktops() {
+            margin: auto;
+            width: 100%;
+        }
+
+        &-pic {
+
+            @include media-custom(1600px) {
+                max-width: 694px;
+            }
+
+            @include mediumDesktops() {
+                margin-top: 40px;
+                max-width: none;
+                object-fit: cover;
             }
         }
     }

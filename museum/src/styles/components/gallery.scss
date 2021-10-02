@@ -4,26 +4,61 @@
     max-height: 2200px;
     overflow: hidden;
 
+    @include media-custom(1600px) {
+        max-height: 1460px;
+    }
+
+    @include mediumDesktops() {
+        max-height: 1220px;
+    }
+
+    @include reviews() {
+        max-height: 757px;
+    }
+
     &-container {
         position: relative;
         max-height: 2200px;
+
+        @include media-custom(1600px) {
+            max-height: 1460px;
+        }
+
+        @include mediumDesktops() {
+            max-height: 1220px;
+        }
+
+        @include reviews() {
+            max-height: 757px;
+        }
     }
 
     &__content {
         padding: 75px 240px 0;
-    }
 
-    &
+        @include media-custom(1919px) {
+            padding: 60px 0;
+        }
+    }
 
     &__heading {
         color: var(--font-white);
         margin-bottom: 75px;
+
+        @include media-custom(1600px) {
+            margin-bottom: 60px;
+        }
+
+        @include mediumDesktops() {
+            margin-bottom: 40px;
+        }
     }
 
     &__gridList {
         display: grid;
         justify-content: space-between;
         row-gap: 24px;
+        column-gap: 36px;
         grid-auto-flow: dense;
         grid-auto-rows: 1fr;
         padding: 0;
@@ -48,6 +83,23 @@
             grid-column-start: 3;
             grid-row-end: span 3;
             top: 50px;
+        }
+
+        @include mediumDesktops() {
+            &:nth-child(n + 1) {
+                top: 0;
+            }
+
+            &:nth-child(2n + 1) {
+                top: 50px;
+                grid-column-start: 1;
+                grid-row-end: span 4;
+            }
+
+            &:nth-child(2n + 2) {
+                grid-column-start: 2;
+                grid-row-end: span 3;
+            }
         }
     }
 

@@ -3,28 +3,51 @@
 
     &__content {
         padding: 75px 240px;
+
+        @include media-custom(1600px) {
+            padding: 60px 0;
+        }
     }
 
     &__heading {
         color: var(--font-gold);
 
-        &:after {
+        &::after {
             margin: 24px 0 74px;
         }
     }
 
     &__preview {
         display: flex;
+
+        @include reviews() {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &-pic {
+            margin: 0;
+        }
     }
 
     &__pic {
         margin: 0;
+        width: auto;
+
+        @include sPhones() {
+            width: 100%;
+        }
     }
 
     &__info {
         display: flex;
         flex-direction: column;
         margin: 0 240px 0 58px;
+
+        @include media-custom(1919px) {
+            display: none;
+        }
 
         &-heading {
             font: bold 28px Roboto;
@@ -34,7 +57,7 @@
             top: 1px;
             left: 2px;
             position: relative;
-            letter-spacing: 0px;
+            letter-spacing: 0;
         }
 
         &-text {
@@ -46,7 +69,7 @@
         &-checkbox {
             opacity: 0;
 
-            &:checked~.checkmark:before {
+            &:checked ~ .checkmark::before {
                 background: var(--font-black);
                 position: relative;
                 display: inline-block;
@@ -59,14 +82,16 @@
                 border-radius: 50%;
             }
         }
-
-
     }
 
     &__amount {
         display: flex;
         margin-right: 0;
         flex-direction: column;
+
+        @include reviews() {
+            margin: 40px 0 0;
+        }
 
         &-heading {
             margin-right: 0;
@@ -76,7 +101,11 @@
             top: 1px;
             left: -1px;
             position: relative;
-            letter-spacing: 0px;
+            letter-spacing: 0;
+
+            @include largeDesktops() {
+                margin: 0;
+            }
         }
 
         &-text {
@@ -84,6 +113,15 @@
             line-height: 26px;
             color: var(--font-black);
             margin: 27px 0 14px 25px;
+
+            @include largeDesktops() {
+                margin-left: 0;
+            }
+
+            @include reviews() {
+                font-size: 16px;
+                line-height: 19px;
+            }
 
             &:nth-child(4) {
                 margin-top: 11px;
@@ -98,21 +136,33 @@
         line-height: 33px;
         letter-spacing: 1.65px;
         color: var(--font-black);
+
+        @include largeDesktops() {
+            letter-spacing: 4px;
+        }
+
+        @include reviews() {
+            margin-top: 40px;
+        }
     }
 
     &__btn {
-
         &-container {
             border: 3px solid var(--font-black);
             max-width: 150px;
             display: flex;
             margin-right: 0;
             padding: 0 11px 0 9px;
-    
-            & input::-webkit-inner-spin-button, & input::-webkit-outer-spin-button {
-                -webkit-appearance: none;
-            } 
-    
+
+            @include media-custom(1600px) {
+                max-width: 175px;
+            }
+
+            & input::-webkit-inner-spin-button,
+            & input::-webkit-outer-spin-button {
+                appearance: none;
+            }
+
             & button {
                 font: normal 32px Roboto;
                 //line-height: 37px;
@@ -124,15 +174,13 @@
                 cursor: pointer;
                 line-height: 21px;
             }
-    
-    
 
             & .button_c_white {
                 color: var(--font-white);
                 background: var(--bg-dark);
                 border: 1px solid var(--bg-dark);
             }
-    
+
             & input {
                 margin: 0;
                 font: 300 22px Roboto;
@@ -140,11 +188,15 @@
                 max-width: 35px;
                 background: transparent;
                 text-align: center;
-                line-height: 24px;  
+                line-height: 24px;
                 //max-width: 10px;
                 //background-color: var(--font-white);
                 border: none;
                 color: var(--font-black);
+
+                @include media-custom(1600px) {
+                    max-width: 55px;
+                }
             }
         }
 
@@ -154,7 +206,7 @@
             border-radius: 1px;
             border: none;
             padding: 13px 36px 11px 38px;
-            transition: .25s linear;
+            transition: 0.25s linear;
             cursor: pointer;
 
             &:hover {
@@ -162,7 +214,6 @@
             }
         }
 
-        
         &-submit:hover &-text {
             color: var(--font-black) !important;
         }
@@ -173,13 +224,16 @@
             letter-spacing: 2.1px;
             color: var(--font-white);
             transition: 0.25s linear;
-        }
 
+            @include reviews() {
+                font-size: 16px;
+                line-height: 0px;
+            }
+        }
     }
 }
 
 .label {
- 
     &__container {
         position: relative;
         right: -25px;
@@ -202,4 +256,3 @@
     top: 4px;
     left: -23px;
 }
-
