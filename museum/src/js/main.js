@@ -40,6 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const buyBtn = document.querySelector('.tickets__btn-submit');
     const closePopupBtn = document.querySelector('.popup-tickets__btn-close');
     const overlay = document.querySelector('.overlay');
+    const nav = document.querySelector('.header__nav');
+    const navBtn = document.querySelector('.header__nav-btn');
+    const heading = document.querySelector('.welcome__heading');
+    const welcomeBtn = document.querySelector('.welcome__btn');
+    const welcomeText = document.querySelector('.welcome__text');
+
     closePopupBtn.addEventListener('click', toggleVisibility);
     buyBtn.addEventListener('click', toggleVisibility);
 
@@ -47,6 +53,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (event.target === overlay) {
             toggleVisibility();
+        }
+
+        if (
+            event.target === navBtn ||
+          Array.from(document.querySelectorAll('.header__nav-link')).find((el) => el === event.target) ||
+          (event.target !== nav &&
+          nav.classList.contains('header__nav_state_fadeIn'))) {
+            toggleNavVisibility();
+            const elems = [
+                [navBtn],
+                [heading, 'header__heading'],
+                [welcomeText, 'welcome__text'],
+                [welcomeBtn, 'welcome__btn']
+            ];
+
+            elems.forEach((el) => {
+
+                if (el[0] === navBtn) {
+                    el[0].classList.toggle('header__nav-btn_state_active');
+                } else {
+                    el[0].classList.toggle(`${el[1]}_state_fade`);
+                }
+
+            });
         }
 
     });
