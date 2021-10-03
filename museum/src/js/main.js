@@ -111,4 +111,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    const rangeTime = document.querySelector('.range_elem_time');
+    const rangeSound = document.querySelector('.range_elem_sound');
+
+    function fixValueRange() {
+        if (window.innerWidth <= 1024) {
+            for (const el of [[rangeTime, 40], [rangeSound, 39]]) {
+                setValueOfRange(el[0], el[1]);
+            }
+        }
+
+        if (window.innerWidth <= 76) {
+            for (const el of [[rangeTime, 31], [rangeSound, 40]]) {
+                setValueOfRange(el[0], el[1]);
+            }
+        }
+
+        if (window.innerWidth <= 421) {
+            for (const el of [[rangeTime, 40], [rangeSound, 38]]) {
+                setValueOfRange(el[0], el[1]);
+            }
+        }
+    }
+
+    fixValueRange();
+
+    window.addEventListener('resize', fixValueRange);
+
+    function setValueOfRange(el, val) {
+        el.value = val;
+        el.style.background = `linear-gradient(to right, var(--dark-red) 0%, var(--dark-red) ${val}%, #c4c4c4 ${val}%, #c4c4c4 100%)`;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        for (const elem of [rangeTime, rangeSound]) {
+            elem.addEventListener('input', function handler() {
+
+                setValueOfRange(elem, elem.value);
+            });
+        }
+    });
+
 });
