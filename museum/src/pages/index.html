@@ -13,18 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="icon" href="images/favicon.ico">
-    <script>
-        'use strict';
-        window.addEventListener('DOMContentLoaded', () => {
-            for (let elem of ['.range_elem_time', '.range_elem_sound']) {
-                document.querySelector(elem).addEventListener('input', function handler() {
-                    let value = this.value;
-                    this.style.background = `linear-gradient(to right, var(--dark-red) 0%, var(--dark-red) ${value}%, #c4c4c4 ${value}%, #c4c4c4 100%)`;
-                })
-            }
-
-        })
-    </script>
 </head>
 
 <body>
