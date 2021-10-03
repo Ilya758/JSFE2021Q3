@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        if (window.innerWidth <= 76) {
+        if (window.innerWidth <= 768) {
             for (const el of [[rangeTime, 31], [rangeSound, 40]]) {
                 setValueOfRange(el[0], el[1]);
             }
