@@ -34,21 +34,21 @@ html {
 
 @keyframes navFromLeft {
     0% {
-        left: -1000px;
+        left: -1100px;
     }
 
     100% {
-        left: 0;
+        left: -00;
     }
 }
 
 @keyframes navToLeft {
     0% {
-        left: 0;
+        left: -0;
     }
 
     100% {
-        left: -1000px;
+        left: -1100px;
     }
 }
 
@@ -133,11 +133,15 @@ img {
     &_elem_nav {
         position: relative;
         font: 200 22px Roboto;
-        line-height: 50px;
+        line-height: 52px;
         letter-spacing: 2.2px;
         color: var(--font-white);
         text-decoration: none;
         transition: 0.25s linear;
+
+        @include mediumDesktops() {
+            line-height: 48px;
+        }
     }
 
     &_c {
@@ -167,6 +171,27 @@ img {
         @include mediumDesktops() {
             font-size: 16px;
             line-height: 19px;
+        }
+    }
+
+    &_margin {
+        &_right {
+            display: inline-flex;
+            flex: 1;
+            justify-content: flex-end;
+
+            @include sPhones() {
+                display: inline;
+                flex: 0;
+                margin: 0;
+            }
+        }
+
+        &_left {
+
+            @include reviews() {
+                margin-left: 13px;
+            }
         }
     }
 }
@@ -212,11 +237,15 @@ img {
         transition: 0.25s linear;
 
         @include largeDesktops() {
-            margin: 20px 0 60px;
+            margin: 22px 0 59px;
         }
 
         @include mediumDesktops() {
             margin-bottom: 40px;
+        }
+
+        @include reviews() {
+            margin-top: 20px;
         }
     }
 }
@@ -272,6 +301,10 @@ $icons: youtube 23px 22px, instagram 20px 20px, facebook 12.5px 20px, twitter 20
                 font-family: Roboto;
                 text-align: center;
                 letter-spacing: 2px;
+
+                @include media-custom(1600px) {
+                    letter-spacing: 1.3px;
+                }
             }
         }
     }

@@ -2,6 +2,33 @@
     display: block;
     background-color: var(--bg-dark);
 
+    &-container {
+        position: relative;
+
+        &:after {
+            display: inline-block;
+            position: absolute;
+            content: "";
+            bottom: 116px;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background-color: var(--bg-gray);
+
+            @include largeDesktops() {
+                bottom: 118px;
+            }
+
+            @include mediumDesktops() {
+                bottom: 94px;
+            }
+
+            @include sPhones() {
+                bottom: 90px;
+            }
+        }
+    }
+
     &__content {
         padding: 74px 240px 0;
 
@@ -10,23 +37,12 @@
         position: relative;
 
         @include media-custom(1919px) {
-            padding: 62px 0 0;
+            padding: 48px 0 0;
             justify-content: space-between;
         }
 
         @include mediumDesktops() {
-            padding: 40px 0 0;
-        }
-
-        &:after {
-            display: inline-block;
-            position: absolute;
-            content: "";
-            bottom: 119px;
-            left: 0;
-            height: 3px;
-            width: 100%;
-            background-color: var(--bg-gray);
+            padding: 38px 0 0;
         }
     }
 
@@ -37,11 +53,11 @@
         width: 100%;
         margin-bottom: 50px;
 
-        @include tablet() {
+        @include mediumDesktops() {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             margin-bottom: 40px;
-            padding-right: 90px;
+            padding-right: 89px;
         }
 
         @include reviews() {
@@ -53,7 +69,11 @@
     &-bottom {
         @include flex(row, space-between, center);
         width: 100%;
-        padding: 46px 0;
+        padding: 43px 0;
+
+        @include mediumDesktops() {
+            padding: 30px 0;
+        }
     }
 
     &__logo {
@@ -65,10 +85,14 @@
 
         @include reviews() {
             grid-column: 1 / 1;
-            margin-bottom: 20px;
+            margin-bottom: 27px;
         }
 
         @include sPhones() {
+            justify-self: flex-start;
+        }
+
+        @include xsPhones() {
             justify-self: center;
         }
 
@@ -108,16 +132,20 @@
             font-size: 16px;
             line-height: 18px;
         }
+
+        @include sPhones() {
+            margin-left: 15px;
+        }
     }
 
     &__nav {
         margin: 0 395px 0 145px;
 
-        @include media-custom(1919px) {
-            margin: 0 0 0 45px;
+        @include largeDesktops() {
+            margin: 0 0 0 47px;
         }
 
-        @include tablet() {
+        @include mediumDesktops() {
             margin-left: 0;
             grid-column: 2 / span 1;
         }
@@ -139,11 +167,11 @@
                 column-gap: 100px;
             }
 
-            @include tablet() {
+            @include mediumDesktops() {
                 margin: 0;
                 width: 100%;
                 max-width: none;
-                column-gap: 125px;
+                column-gap: 164px;
             }
 
             @include reviews() {
@@ -156,7 +184,7 @@
                 column-gap: calc(100% / 6);
             }
 
-            @include sPhones() {
+            @include xsPhones() {
                 display: flex;
             }
         }
@@ -186,6 +214,44 @@
                 width: 100%;
                 flex: auto;
                 text-align: center;
+
+                &:nth-child(1) {
+                    text-align: left;
+                }
+
+                &:nth-child(2) {
+                    grid-area: 2 / 2 / span 1 / span 1;
+                    //grid-column: 2 / span 1;
+                    //grid-row: 2 / span 1;
+                }
+
+                &:nth-child(3) {
+                    grid-area: 2 / 1 / span 1 / span 1;
+                    text-align: left;
+                    //grid-column: 1 / span 1;
+                    //grid-row: 2 / span 1;
+                }
+
+                &:nth-child(5) {
+                    text-align: left;
+                    grid-area: 1 / 2 / span 1 / span 1;
+                    //grid-column: 2 / span 1;
+                    //grid-row: 1 / span 1;
+                }
+
+                &:nth-child(6) {
+                    text-align: right;
+                }
+            }
+
+            &:nth-child(4),
+            &:nth-child(5) {
+
+                @include sPhones() {
+                    position: relative;
+                    left: -5px;
+                    text-align: center;
+                }
             }
         }
 
@@ -210,10 +276,16 @@
 
     &__social {
         margin-right: 0;
+        margin-bottom: 17px;
 
-        @include tablet() {
+        @include largeDesktops() {
+            margin-bottom: 12px;
+        }
+
+        @include mediumDesktops() {
             grid-column: 2 / span 1;
             margin-top: 40px;
+            margin-bottom: 11px;
             width: 100%;
         }
 
@@ -224,6 +296,10 @@
         }
 
         @include sPhones() {
+            margin-top: 29px;
+        }
+
+        @include xsPhones() {
             flex-direction: column;
             row-gap: 10px;
         }

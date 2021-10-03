@@ -4,14 +4,13 @@
     &__content {
         flex-direction: column;
         align-items: center;
-        padding: 74px 240px 75px;
-
+        padding: 75px 240px;
         @include media-custom(1600px) {
-            padding: 60px 0;
+            padding: 59px 0;
         }
 
         @include mediumDesktops() {
-            padding: 40px 0;
+            padding: 39px 0;
         }
 
         @include reviews() {
@@ -80,26 +79,38 @@
         background-color: var(--bg-dark);
         margin: 0;
         width: 100%;
-        padding: 25px 31px;
+        padding: 25px 31px 24px;
 
         @include media-custom(1600px) {
-            padding: 15px 31px;
+            padding: 13px 39px 17px 40px;
         }
 
         @include mediumDesktops() {
-            padding: 12px 31px;
+            padding: 15px 31px 11px;
         }
 
         @include reviews() {
             padding: 16px 20px;
         }
 
+        @include sPhones() {
+            padding: 20px 20px 16px;
+        }
+
         &-play {
-            margin: 0 35px 0 0;
+            margin: 0 49px 0 0;
             background: url(../images/icons/btn_play_small.svg) center/cover;
             max-width: 23px;
             height: 30px;
             cursor: pointer;
+
+            @include largeDesktops() {
+                margin-right: 30px;
+            }
+
+            @include mediumDesktops() {
+                margin-right: 34px;
+            }
 
             @include reviews() {
                 margin-right: 30px;
@@ -148,12 +159,13 @@
         }
 
         &-mute {
-            margin: 0 50px;
+            margin: 0 48px;
             max-width: 38px;
             height: 30px;
             background: url(../images/icons/btn_sound.svg) center/cover;
 
             @include largeDesktops() {
+                margin: 0 30px;
                 max-width: 27px;
                 height: 21px;
             }
@@ -169,12 +181,13 @@
         }
 
         &-fullscreen {
-            margin-left: 50px;
+            margin-left: 47px;
             max-width: 36px;
             height: 36px;
             background: url(../images/icons/btn_fullscreen.svg) center/cover;
 
             @include largeDesktops() {
+                margin-left: 30px;
                 max-width: 27px;
                 height: 27px;
             }
@@ -195,7 +208,7 @@
         display: flex;
         width: 100%;
         align-items: center;
-        margin: 0 0 75px 0;
+        margin: 0 0 76px 0;
         column-gap: 114px;
         text-align: left;
 
@@ -204,7 +217,7 @@
         }
 
         @include mediumDesktops() {
-            margin-bottom: 20px;
+            margin-bottom: 21px;
         }
     }
 
@@ -235,17 +248,17 @@
 
             @include flex(row, space-between, center);
 
-            margin-top: 40px;
+            margin-top: 38px;
 
             @include mediumDesktops() {
-                margin-top: 40px;
+                margin-top: 21px;
             }
 
             @include reviews() {
                 margin-top: 40px;
             }
 
-            @include sPhones() {
+            @include xsPhones() {
                 flex-direction: column;
             }
         }
@@ -268,11 +281,11 @@
             margin-top: 36px;
 
             @include mediumDesktops() {
-                margin: 21px 0 41px;
+                margin: 16px 0 41px;
             }
 
             @include reviews() {
-                margin: 40px 0 0;
+                margin: 36px 0 0;
             }
         }
 
@@ -333,7 +346,7 @@
 
             @include media-custom(1023px) {
                 width: 354px;
-                height: 179px;
+                height: 199px;
             }
 
             @include reviews() {
@@ -356,10 +369,16 @@
 
         @include mediumDesktops() {
             position: absolute;
-            top: 0;
+            top: -2px;
             left: 0;
             width: 100%;
             max-width: none;
+            height: 5px;
+        }
+
+        @include sPhones() {
+            top: 0;
+            height: 4px;
         }
     }
 

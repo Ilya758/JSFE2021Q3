@@ -13,16 +13,20 @@
         z-index: 999;
 
         @include media-custom(1600px) {
-            padding: 50px 0;
+            padding: 50px 0 4px;
         }
 
-        @include tablet() {
+        @include mediumDesktops() { // исправил
             align-items: center;
-            padding: 34px 0;
+            padding: 0 0 21px;
         }
 
-        @include mPhones() {
-            padding: 24px 0;
+        @include reviews() {
+            padding: 14px 0;
+        }
+
+        @include sPhones() {
+            padding: 14px 0 10px;
         }
 
         &::before,
@@ -41,7 +45,7 @@
                 right: 0;
             }
 
-            @include tablet() {
+            @include largeDesktops() {
                 display: none;
             }
         }
@@ -68,7 +72,7 @@
             margin-right: 0;
         }
 
-        @include tablet() {
+        @include mediumDesktops() {
             position: relative;
         }
     }
@@ -83,13 +87,15 @@
             line-height: 90px;
         }
 
-        @include tablet() {
+        @include mediumDesktops() {
             text-align: center;
             font-size: 40px;
             line-height: 60px;
         }
 
-        @include mPhones() {
+        @include reviews() {
+            position: relative;
+            left: -5px;
             font-size: 28px;
             line-height: 40px;
         }
@@ -105,19 +111,26 @@
         line-height: 33px;
         letter-spacing: 2px;
         margin: 26px 0 76px;
+        transition: 0.75s;
+
+        &_state_fade {
+            opacity: 0;
+        }
 
         @include media-custom(1600px) {
+            margin-bottom: 50px;
             font-size: 24px;
             line-height: 28px;
         }
 
-        @include tablet() {
+        @include mediumDesktops() {
             font-size: 20px;
             line-height: 23px;
-            margin-bottom: 50px;
+            margin-bottom: 47px;
         }
 
-        @include mPhones() {
+        @include reviews() {
+            margin-bottom: 49px;
             font-size: 16px;
             line-height: 19px;
         }
@@ -128,22 +141,27 @@
 
             @include flex(center, space-between, center);
 
-            margin-top: 150px;
+            margin-top: 146px;
             background-color: var(--bg-dark);
             width: fit-content;
-            padding: 46px 75px 48px 73px;
+            padding: 42px 75px 40px 73px;
             margin-right: 0;
 
             @include media-custom(1600px) {
                 margin-top: 72px;
+                padding-top: 39px;
             }
 
-            @include tablet() {
-                margin: 44px 0 10px;
+            @include mediumDesktops() {
+                margin: 25px 0 10px;
                 padding: 0;
             }
 
-            @include sPhones() {
+            @include reviews() {
+                margin-top: 16px;
+            }
+
+            @include xsPhones() {
                 flex-direction: column;
             }
         }
@@ -155,13 +173,14 @@
             line-height: 40px;
 
             @include media-custom(1600px) {
-                margin-right: 45px;
+                margin-right: 42px;
                 font-size: 20px;
             }
 
-            @include mPhones() {
+            @include reviews() {
                 margin-right: 25px;
                 font-size: 16px;
+                letter-spacing: 0.4px;
             }
         }
 
@@ -169,10 +188,14 @@
 
             @include flex(row, center, center);
 
+            @include reviews() {
+                margin-right: 25px;
+            }
+
             & li:nth-child(-n+4) {
                 margin-right: 25px;
 
-                @include mPhones() {
+                @include reviews() {
                     margin-right: 10px;
                 }
             }
@@ -187,11 +210,15 @@
             cursor: pointer;
             transition: 0.35s;
 
-            @include tablet() {
+            @include media-custom(1600px) {
                 margin-left: 45px;
             }
 
-            @include mPhones() {
+            @include largeDesktops() {
+                margin-left: 45px;
+            }
+
+            @include reviews() {
                 margin-left: 25px;
             }
 
@@ -202,12 +229,16 @@
             &-prev {
                 background-image: url(../images/icons/btn_welcome-slider_prev.svg);
 
-                @include mPhones() {
+                /*@include reviews() {
+                    margin: 10px auto;
+                }*/
+
+                @include reviews() {
                     width: 20px;
-                    margin-left: 15px;
+                    margin: 0 15px 0 0;
                 }
 
-                @include sPhones() {
+                @include xsPhones() {
                     margin: 20px auto 10px;
                 }
             }
@@ -216,13 +247,17 @@
                 background-image: url(../images/icons/btn_welcome-slider_next.svg);
                 margin-left: 20px;
 
-                @include mPhones() {
+                /*@include reviews() {
+                    margin: 10px auto;
+                }*/
+
+                @include reviews() {
                     width: 20px;
-                    margin-left: 15px;
+                    margin-left: 0;
                     background-position-x: -10px;
                 }
 
-                @include sPhones() {
+                @include xsPhones() {
                     margin: 10px auto 0;
                 }
             }
@@ -232,17 +267,21 @@
     &__btn {
         max-width: 360px;
         text-decoration: none;
-        transition: 0.35s;
+        transition: 0.75s;
+
+        &_state_fade {
+            opacity: 0;
+        }
 
         @include media-custom(1600px) {
-            padding: 15px 35px;
-            max-width: 300px;
+            padding: 16px 44px 15px 45px;
+            max-width: 301px;
             height: 60px;
             font-size: 20px;
             line-height: 23px;
         }
 
-        @include tablet() {
+        @include mediumDesktops() {
             display: none;
         }
 
@@ -266,6 +305,11 @@
     @include media-custom(1600px) {
         width: 12px;
         height: 12px;
+    }
+
+    @include reviews() {
+        width: 7px;
+        height: 7px;
     }
 
     &:first-child {

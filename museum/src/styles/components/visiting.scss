@@ -8,16 +8,20 @@
         padding: 75px 240px;
         flex-direction: column;
 
-        @include media-custom(1920px) {
-            padding: 60px 100px;
+        @include media-custom(1919px) {
+            padding: 64px 100px;
         }
 
         @include media-custom(1600px) {
-            padding: 60px 0;
+            padding: 60px 0 55px;
         }
 
         @include mediumDesktops() {
-            padding: 40px 0;
+            padding: 40px 0 78px;
+        }
+
+        @include reviews() {
+            padding-bottom: 41px;
         }
     }
 
@@ -45,7 +49,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             width: 100%;
-            row-gap: 73px;
+            row-gap: 70px;
             column-gap: 30px;
 
             @include media-custom(1600px) {
@@ -54,6 +58,7 @@
             }
 
             @include largeDesktops() {
+                row-gap: 55px;
                 margin: 0 20px;
                 width: calc(100% - 40px);
             }
@@ -67,6 +72,7 @@
             @include mediumDesktops() {
                 margin: 0 56px;
                 width: calc(100% - 112px);
+                row-gap: 40px;
             }
 
             @include reviews() {
@@ -141,6 +147,7 @@
             }
 
             @include mediumDesktops() {
+                margin-top: 18px;
                 font-size: 22px;
                 line-height: 24px;
             }
@@ -165,7 +172,11 @@
                     width: 150px;
                 }
 
-                @include sPhones() {
+                @include mediumDesktops() {
+                    margin-top: 10px;
+                }
+
+                @include xsPhones() {
                     width: 75px;
                 }
             }

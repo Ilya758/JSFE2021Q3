@@ -1,7 +1,10 @@
 .popup {
-
     &-container {
-        padding: 0 30px;
+        padding: 0 25px;
+
+        @include reviews() {
+            padding: 0 29px;
+        }
     }
 
     &-tickets {
@@ -10,12 +13,13 @@
         width: 100%;
         z-index: 1001;
         display: block;
-        //display: block !important; // ИСПРАВИТЬ!!!
         top: 50%;
+        //top: 0;
+        //left: 0;
         left: -3000px;
         transform: translate(-50%, -50%);
 
-        @include tablet() {
+        @include mediumDesktops() {
             overflow: auto;
             height: 100%;
         }
@@ -43,8 +47,9 @@
                 justify-content: center;
             }
 
-            @include tablet() {
+            @include mediumDesktops() {
                 padding: 80px 0 40px;
+                max-width: 590px;
             }
 
             @include reviews() {
@@ -62,12 +67,20 @@
                 position: absolute;
                 width: 25px;
                 top: 30px;
-                right: 14.2%;
+                right: 13.3%;
                 height: 25px;
                 cursor: pointer;
 
                 @include media-custom(1600px) {
-                    right: 15px;
+                    right: 3px;
+                }
+
+                @include mediumDesktops() {
+                    right: 5.7%;
+                }
+
+                @include mPhones() {
+                    right: 1.5%;
                 }
 
                 &:hover::before,
@@ -102,7 +115,11 @@
 
             @include flex(row, space-between, flex-start);
 
-            @include tablet() {
+            max-width: 970px;
+            width: 100%;
+            column-gap: 40px;
+
+            @include mediumDesktops() {
                 flex-direction: column;
                 width: 100%;
                 max-width: 530px;
@@ -124,7 +141,19 @@
             letter-spacing: 0.1px;
             margin-bottom: 10px;
 
+            @include media-custom(992px) {
+                font-size: 40px;
+                letter-spacing: -2px;
+            }
+
+            @include mediumDesktops() {
+                margin-bottom: 12px;
+                font-size: 50px;
+                letter-spacing: 0.1px;
+            }
+
             @include reviews() {
+                margin-bottom: 16px;
                 font-size: 32px;
                 line-height: 35px;
             }
@@ -137,8 +166,8 @@
             &.line::after {
                 margin: 9px 0 61px;
 
-                @include tablet() {
-                    margin-bottom: 40px;
+                @include mediumDesktops() {
+                    margin-bottom: 39px;
                 }
             }
         }
@@ -148,9 +177,9 @@
             @include flex(column, center, center);
 
             padding-left: 1px;
-            margin-right: 40px;
+            margin: 0;
 
-            @include tablet() {
+            @include mediumDesktops() {
                 width: 100%;
                 margin-left: 0;
             }
@@ -158,7 +187,7 @@
 
         &__input {
             &-date {
-                margin-right: 20px;
+                //margin-right: 20px;
                 content: attr(placeholder);
             }
 
@@ -170,9 +199,10 @@
 
             &-date.input,
             &-time.input {
-                width: 190px;
+                max-width: 190px;
+                width: 100%;
 
-                @include tablet() {
+                @include mediumDesktops() {
                     max-width: 251px;
                     width: 100%;
                 }
@@ -194,7 +224,7 @@
             position: relative;
             margin-bottom: 20px;
 
-            @include tablet() {
+            @include mediumDesktops() {
                 margin: 0 0 20px 0;
             }
 
@@ -225,7 +255,7 @@
             width: 100%;
             padding: 9px 14px 14px;
 
-            @include tablet() {
+            @include mediumDesktops() {
                 margin-bottom: 51px;
             }
         }
@@ -244,11 +274,10 @@
 
         &__basic, &__senior {
 
-            @include reviews() {
+            @include xsPhones() {
                 flex-direction: column;
                 row-gap: 10px;
             }
-
         }
 
         &__container {
@@ -292,7 +321,9 @@
         }
 
         &__requisites {
-            width: 530px;
+            max-width: 530px;
+            margin: 0;
+            width: 100vw;
 
             @include flex(column, center, flex-end);
 
@@ -309,7 +340,7 @@
                 padding: 24px 29px 0;
                 box-sizing: border-box;
 
-                @include reviews() {
+                @include mediumDesktops() {
                     padding: 24px 15px 0;
                 }
 
@@ -321,13 +352,16 @@
                     width: 150px;
                     height: 120px;
 
-                    @include reviews() {
+                    @include mediumDesktops() {
                         right: 15px;
+                    }
+
+                    @include reviews() {
                         width: 120px;
                         height: 96px;
                     }
 
-                    @include sPhones() {
+                    @include xsPhones() {
                         display: none;
                     }
                 }
@@ -340,7 +374,7 @@
                     font-size: 32px;
                     line-height: 39px;
 
-                    @include sPhones() {
+                    @include xsPhones() {
                         font-size: 20px;
                     }
                 }
@@ -373,7 +407,7 @@
                 font: 400 22px Roboto, sans-serif;
                 line-height: 26px;
 
-                @include sPhones() {
+                @include xsPhones() {
                     font-size: 14px;
                 }
             }
@@ -406,7 +440,7 @@
 
                 @include flex(row, space-between, center);
 
-                @include sPhones() {
+                @include xsPhones() {
                     font-size: 20px;
                 }
 
@@ -414,6 +448,10 @@
                     position: absolute;
                     top: -13px;
                     margin: 0;
+
+                    @include mediumDesktops() {
+                        top: -12px;
+                    }
                 }
             }
         }
@@ -435,7 +473,7 @@
 
                 @include flex(row, flex-start, center);
 
-                @include sPhones() {
+                @include xsPhones() {
                     font-size: 14px;
                 }
             }
@@ -445,7 +483,9 @@
 
             @include onlyFlex();
 
-            @include tablet() {
+            column-gap: 20px;
+
+            @include mediumDesktops() {
                 margin: 0;
                 width: 100%;
                 justify-content: space-between;
@@ -458,14 +498,21 @@
 
         &__paymentCard {
             position: relative;
-            margin-left: 30px;
+            padding-left: 30px;
+            //margin-left: 30px;
+            width: 100%;
+
+            @include mediumDesktops() {
+                margin: 5px 0 0;
+                padding: 0;
+            }
 
             @include reviews() {
 
                 @include flex(column, center, center);
 
                 padding: 0 15px;
-                margin: 0;
+                //margin: 0;
                 width: 100%;
             }
 
@@ -478,15 +525,24 @@
 
             &-front {
                 position: relative;
-                background-color: #bcbcbc;
                 padding: 15px 20px 3px;
+                z-index: 1;
+                margin-left: 0;
+                max-width: 360px;
+                background-color: #bcbcbc;
                 border-radius: 4px;
 
                 @include flex(column, center, flex-start);
 
+                @include mediumDesktops() {
+                    max-width: 360px;
+                    margin-left: 15px;
+                }
+
                 @include reviews() {
                     width: 100%;
-                    margin-bottom: 25px;
+                    margin: 0 0 25px 0;
+                    letter-spacing: -0.6px;
                 }
 
                 &::before {
@@ -499,7 +555,7 @@
                     width: 55px;
                     height: 63px;
 
-                    @include sPhones() {
+                    @include xsPhones() {
                         display: none;
                     }
                 }
@@ -508,16 +564,20 @@
             &-back {
                 background-color: #939393;
                 position: absolute;
-                z-index: -1;
+                //z-index: -1;
                 bottom: -30px;
-                left: 110px;
-                max-height: 360px;
+                right: 29px;
+                max-width: 360px;
                 width: 360px;
                 height: 100%;
                 padding: 15px 20px;
                 border-radius: 4px;
 
                 @include flex(column, center, flex-start);
+
+                @include mediumDesktops() {
+                    right: 14px;
+                }
 
                 @include reviews() {
                     position: relative;
@@ -547,6 +607,13 @@
                     padding: 0 10px;
                     font-size: 10px;
                     line-height: 12px;
+
+                    @include reviews() {
+                        margin-top: 5px;
+                        padding: 0 9px 0 15px;
+                        font-size: 9px;
+                        line-height: 11px;
+                    }
                 }
             }
 
@@ -557,6 +624,10 @@
                 @include flex(column, center, center);
 
                 max-width: 75px;
+
+                @include reviews() {
+                    margin-top: 72px;
+                }
             }
 
             &-cvvInput {
@@ -568,6 +639,10 @@
             &-text {
                 font: 12px Roboto, sans-serif;
                 margin: 0 0 5px 0;
+
+                @include reviews() {
+                    margin-bottom: 4px;
+                }
             }
 
             &-date {
@@ -581,12 +656,16 @@
                 padding: 8px 9px 12px;
                 height: 35px;
                 width: 72px;
-                font-size: 12px;
-                font-family: "Roboto";
+                font: 12px "Roboto", sans-serif;
                 border: 1px solid #a4a4a3;
                 border-right: none;
 
-                @include sPhones() {
+                @include reviews() {
+                    padding-top: 12px;
+                    font-size: 13px;
+                }
+
+                @include xsPhones() {
                     width: 100%;
                     font-size: 9px;
                 }
@@ -619,15 +698,20 @@
 
             &-submit.btn_type_action {
                 border-radius: 0;
-                padding: 11px 84px 7px 85px;
+                padding: 11px 88px 7px 86px;
                 margin: 56px 29px 25px 0;
                 transition: 0.35s;
+
+                @include mediumDesktops() {
+                    padding: 8px 88px 10px 86px;
+                    margin: 54px 14px 24px 0;
+                }
 
                 @include reviews() {
                     margin-top: 40px;
                 }
 
-                @include sPhones() {
+                @include xsPhones() {
                     width: 100%;
                     margin: 20px 0;
                     padding: 10px;
@@ -639,7 +723,7 @@
 
                 span {
                     font-weight: 300;
-                    letter-spacing: 0.4px;
+                    letter-spacing: -0.8px;
                 }
             }
         }
@@ -688,8 +772,8 @@
 
             &::after {
                 background: url(../images/icons/btn_arrow-select.svg);
-                right: 35px;
-                top: calc(50% - 17px/2);
+                right: 17px;
+                top: calc(50% - 17px / 2);
                 width: 17px;
                 height: 17px;
 
@@ -837,6 +921,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     &-backText {
         letter-spacing: -0.2px;
         margin: 0 6px 5px 0;
+
+        @include reviews() {
+            margin: 0 0 5px;
+            font-size: 13px;
+        }
     }
 }
 

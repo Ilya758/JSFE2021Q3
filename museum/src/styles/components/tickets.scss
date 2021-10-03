@@ -2,10 +2,15 @@
     display: block;
 
     &__content {
-        padding: 75px 240px;
+        padding: 75px 240px 71px;
 
         @include media-custom(1600px) {
-            padding: 60px 0;
+            padding: 60px 0 58px;
+        }
+
+        @include mediumDesktops() {
+            //padding-bottom: 40px;
+            padding: 41px 0 40px;
         }
     }
 
@@ -13,7 +18,15 @@
         color: var(--font-gold);
 
         &::after {
-            margin: 24px 0 74px;
+            margin: 21px 0 76px;
+
+            @include largeDesktops() {
+                margin-bottom: 61px;
+            }
+
+            @include mediumDesktops() {
+                margin: 20px 0 40px;
+            }
         }
     }
 
@@ -89,8 +102,17 @@
         margin-right: 0;
         flex-direction: column;
 
+        @include largeDesktops() {
+            margin-right: 29px;
+        }
+
+        @include mediumDesktops() {
+            margin-right: 49px;
+        }
+
         @include reviews() {
-            margin: 40px 0 0;
+            margin: 35px 0 0;
+            text-align: center;
         }
 
         &-heading {
@@ -106,6 +128,11 @@
             @include largeDesktops() {
                 margin: 0;
             }
+
+            @include sPhones() {
+                font-size: 16px;
+                line-height: 19px;
+            }
         }
 
         &-text {
@@ -115,16 +142,34 @@
             margin: 27px 0 14px 25px;
 
             @include largeDesktops() {
-                margin-left: 0;
+                margin: 30px 0 9px;
+            }
+
+            @include mediumDesktops() {
+                margin: 39px 0 9px;
+                text-align: left;
             }
 
             @include reviews() {
                 font-size: 16px;
                 line-height: 19px;
+                margin: 20px 0 15px;
             }
 
             &:nth-child(4) {
                 margin-top: 11px;
+
+                @include largeDesktops() {
+                    margin-top: 30px;
+                }
+
+                @include mediumDesktops() {
+                    margin-top: 26px; // 30
+                }
+
+                @include sPhones() {
+                    margin-top: 20px;
+                }
             }
         }
     }
@@ -138,11 +183,25 @@
         color: var(--font-black);
 
         @include largeDesktops() {
-            letter-spacing: 4px;
+            display: inline-flex;
+            margin: 25px 9px 0 0;
+            text-align: left;
+        }
+
+        @include mediumDesktops() {
+            margin-top: 39px;
         }
 
         @include reviews() {
             margin-top: 40px;
+        }
+
+        @include sPhones() {
+            margin-right: 0;
+            justify-content: center;
+            font-size: 16px;
+            line-height: 19px;
+            letter-spacing: 0.6px;
         }
     }
 
@@ -156,6 +215,7 @@
 
             @include media-custom(1600px) {
                 max-width: 175px;
+                padding: 0 14px 0 12px;
             }
 
             & input::-webkit-inner-spin-button,
@@ -208,6 +268,19 @@
             padding: 13px 36px 11px 38px;
             transition: 0.25s linear;
             cursor: pointer;
+
+            @include largeDesktops() {
+                margin-top: 69px;
+            }
+
+            @include mediumDesktops() {
+                margin-top: 40px;
+            }
+
+            @include sPhones() {
+                margin-top: 37px;
+                padding: 17px 36px 15px 38px;
+            }
 
             &:hover {
                 background-color: var(--font-gold);

@@ -3,7 +3,7 @@
     background-color: var(--bg-dark);
 
     &__content {
-        padding: 75px 240px 87px;
+        padding: 75px 240px 89px;
         display: flex;
         justify-content: space-between;
 
@@ -13,18 +13,26 @@
         }
 
         @include largeDesktops() {
-            padding: 60px 0;
+            padding: 59px 0 76px;
         }
 
         @include mediumDesktops() {
-            padding: 40px 0;
+            padding: 40px 0 52px;
         }
     }
 
     &__heading {
         color: var(--font-white);
 
-        @include sPhones() {
+        &::after {
+
+            @include mediumDesktops() {
+                margin-bottom: 25px;
+            }
+
+        }
+
+        @include xsPhones() {
             font-size: 20px;
         }
     }
@@ -76,14 +84,20 @@
         margin: 0;
         width: auto;
 
+        @include mediumDesktops() {
+            width: 100%;
+        }
+
         @include reviews() {
             width: 100%;
         }
 
         &-container {
             position: relative;
-            margin: 0;
             top: 15px;
+            margin: 0;
+            width: 100%;
+            max-height: 705px;
 
             @include media-custom(1920px) {
 
@@ -91,7 +105,7 @@
             }
 
             @include media-custom(1600px) {
-                margin-top: 62px;
+                margin-top: 44px;
             }
 
             @include mediumDesktops() {
@@ -115,8 +129,17 @@
             content: "";
             display: inline-block;
             width: 39px;
-            height: 700px;
-            background: url(../images/comparison_line.svg) center/cover;
+            height: 100%;
+            background: url(../images/comparison_line.svg) center 0/cover;
+
+            @include largeDesktops() {
+                left: 553px;
+            }
+
+            @include mediumDesktops() {
+                background-position-y: 11px;
+                left: 421px;
+            }
 
             @include reviews() {
                 left: 220px;
@@ -125,6 +148,10 @@
             }
 
             @include sPhones() {
+                background-position-y: 5px;
+            }
+
+            @include xsPhones() {
                 left: 100px;
             }
         }
