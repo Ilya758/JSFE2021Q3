@@ -163,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let link = document.querySelectorAll('.video-slider__link')[ndx];
         let media = document.querySelectorAll('.video-slider__iframe')[ndx];
         let btn = document.querySelectorAll('.video-slider__youtube-btn')[ndx];
-        console.log(btn);
         let id = parseMediaUrl(media);
 
         video.addEventListener('click', () => {
@@ -181,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let regexp = /https:\/\/i\.ytimg\.com\/vi\/([a-zA-Z0-9_-]+)/i;
         let url = media.src;
         let match = url.match(regexp);
-        console.log(match);
         return match[1];
     }
 
@@ -195,7 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
         iframe.width = 452;
         iframe.height = 254;
 
-        console.log(iframe);
         return iframe;
     }
 
@@ -206,4 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     findVideos();
+
+    console.log('- Вёрстка соответствует макету. Ширина экрана 1024px +40\n- Вёрстка соответствует макету. Ширина экрана 768px +40\n- Вёрстка соответствует макету. Ширина экрана 420px +40\n- Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки +6\n- Совмещается адаптивная и респонсивная (резиновая) вёрстка +14\n- На ширине экрана 1024рх и меньше реализовано адаптивное меню +12\n- Оптимизация скорости загрузки страницы +8 (сервис при проверке показал результат в 97 баллов для мобильных устройств)');
 });
