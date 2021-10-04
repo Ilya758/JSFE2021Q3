@@ -91,9 +91,6 @@
     &__nav {
         margin-right: 0;
 
-        /* @include media-custom(1600px) {;
-        } */
-
         @include media-custom(1600px) {
             position: absolute;
             display: none;
@@ -101,9 +98,7 @@
             left: -1100px;
             z-index: 9999;
             padding: 23px 127px 252px 35px;
-            //display: block;
             background: var(--bg-dark);
-            //left: 55px;
         }
 
         @include mediumDesktops() {

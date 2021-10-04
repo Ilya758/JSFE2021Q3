@@ -14,7 +14,7 @@
 
 @mixin tablet {
 
-    @media screen and (max-width: 1024px) { // тут поменял
+    @media screen and (max-width: 1024px) {
         @content;
     }
 }

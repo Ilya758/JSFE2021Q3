@@ -221,22 +221,16 @@
 
                 &:nth-child(2) {
                     grid-area: 2 / 2 / span 1 / span 1;
-                    //grid-column: 2 / span 1;
-                    //grid-row: 2 / span 1;
                 }
 
                 &:nth-child(3) {
                     grid-area: 2 / 1 / span 1 / span 1;
                     text-align: left;
-                    //grid-column: 1 / span 1;
-                    //grid-row: 2 / span 1;
                 }
 
                 &:nth-child(5) {
                     text-align: left;
                     grid-area: 1 / 2 / span 1 / span 1;
-                    //grid-column: 2 / span 1;
-                    //grid-row: 1 / span 1;
                 }
 
                 &:nth-child(6) {
@@ -259,17 +253,14 @@
 
             @include media-custom(1600px) {
                 font-size: 22px;
-                //line-height: 26px;
             }
 
             @include mediumDesktops() {
                 font-size: 18px;
-                //line-height: 21px;
             }
 
             @include reviews() {
                 font-size: 16px;
-                //line-height: 19px;
             }
         }
     }

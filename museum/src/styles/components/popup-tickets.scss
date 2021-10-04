@@ -14,8 +14,6 @@
         z-index: 1001;
         display: block;
         top: 50%;
-        //top: 0;
-        //left: 0;
         left: -3000px;
         transform: translate(-50%, -50%);
 
@@ -39,7 +37,6 @@
             @include flex(row, space-between, center);
 
             padding: 90px 240px;
-            //max-width: 1440px;
             position: relative;
 
             @include media-custom(1600px) {
@@ -187,7 +184,6 @@
 
         &__input {
             &-date {
-                //margin-right: 20px;
                 content: attr(placeholder);
             }
 
@@ -234,7 +230,6 @@
                 content: "";
                 display: inline-block;
                 background-repeat: no-repeat;
-                //background: no-repeat 0 0/cover center center;
             }
         }
 
@@ -302,7 +297,6 @@
             }
 
             & button {
-                //display: flex;
                 width: 35px;
                 height: 25px;
                 line-height: 21px;
@@ -379,12 +373,6 @@
                     }
                 }
             }
-
-            /* &-text.text {
-                font-size: var(--font2);
-                font-weight: 500;
-                line-height: 37px;
-            } */
 
             &-textTotal {
                 margin-right: 0;
@@ -499,7 +487,6 @@
         &__paymentCard {
             position: relative;
             padding-left: 30px;
-            //margin-left: 30px;
             width: 100%;
 
             @include mediumDesktops() {
@@ -512,14 +499,10 @@
                 @include flex(column, center, center);
 
                 padding: 0 15px;
-                //margin: 0;
                 width: 100%;
             }
 
             &-dateContainer:first-child {
-                /* @include flex(row, space-between, center);
-                margin-bottom: 20px;
-            */
                 margin-right: 15px;
             }
 
@@ -564,7 +547,6 @@
             &-back {
                 background-color: #939393;
                 position: absolute;
-                //z-index: -1;
                 bottom: -30px;
                 right: 29px;
                 max-width: 360px;
@@ -681,12 +663,6 @@
                 margin-bottom: 10px;
                 height: 35px;
             }
-
-
-            /* &-back {
-                //position: absolute;
-                zin
-            } */
         }
 
         &__btn {

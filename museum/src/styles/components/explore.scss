@@ -111,16 +111,6 @@
             @include mediumDesktops() {
                 margin-top: 0;
             }
-
-            /* &:before {
-                position: absolute;
-                left: 421px;
-                content: "";
-                display: inline-block;
-                width: 39px;
-                height: 700px;
-                background: url(../images/comparison_line.svg);
-            } */
         }
 
         &-range {

@@ -9,7 +9,6 @@
         }
 
         @include mediumDesktops() {
-            //padding-bottom: 40px;
             padding: 41px 0 40px;
         }
     }
@@ -164,7 +163,7 @@
                 }
 
                 @include mediumDesktops() {
-                    margin-top: 26px; // 30
+                    margin-top: 26px;
                 }
 
                 @include sPhones() {
@@ -225,7 +224,6 @@
 
             & button {
                 font: normal 32px Roboto;
-                //line-height: 37px;
                 color: var(--font-black);
                 background: none;
                 border: none;
@@ -249,8 +247,6 @@
                 background: transparent;
                 text-align: center;
                 line-height: 24px;
-                //max-width: 10px;
-                //background-color: var(--font-white);
                 border: none;
                 color: var(--font-black);
 
