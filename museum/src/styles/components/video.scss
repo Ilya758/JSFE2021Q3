@@ -258,7 +258,7 @@
                 margin-top: 40px;
             }
 
-            @include xsPhones() {
+            @include media-custom(419px) {
                 flex-direction: column;
             }
         }
