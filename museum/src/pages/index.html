@@ -265,13 +265,33 @@
                     <a href="tours1.html" target="_blank" class="welcome__btn btn_type_action">
                         <span class="text_c_white welcome__btn-text">Discover the Louvre</span>
                     </a>
-                    <picture class="welcome__image">
-                        <source srcset="images/welcome-slider/1_size_l.jpg 700w"
-                            sizes="(min-width: 1601px) 1000px, (min-width: 921px) 700px">
-                        <img src="images/welcome-slider/1.jpg" style="width: 100%;" alt="Mona Liza">
-                    </picture>
+                    <div class="swiper-container welcome-slider">
+                        <div class="swiper-wrapper welcome-slider__wrapper">
+                            <div class="swiper-slide welcome-slider__slide">
+                                <img class="welcome__image" src="images/welcome-slider/1.jpg" style="width: 100%;"
+                                    alt="Mona Liza">
+                            </div>
+                            <div class="swiper-slide welcome-slider__slide">
+                                <img class="welcome__image" src="images/welcome-slider/2.jpg" style="width: 100%;"
+                                    alt="Battle">
+                            </div>
+                            <div class="swiper-slide welcome-slider__slide">
+                                <img class="welcome__image" src="images/welcome-slider/3.jpg" style="width: 100%;"
+                                    alt="La belle ferronnière">
+                            </div>
+                            <div class="swiper-slide welcome-slider__slide">
+                                <img class="welcome__image" src="images/welcome-slider/4.jpg" style="width: 100%;"
+                                    alt="Le Radeau de La Méduse">
+                            </div>
+                            <div class="swiper-slide welcome-slider__slide">
+                                <img class="welcome__image" src="images/welcome-slider/5.jpg" style="width: 100%;"
+                                    alt="Vermeer and the Masters">
+                            </div>
+                        </div>
+                    </div>
                     <div class="welcome-slider__controls">
-                        <span class="welcome-slider__pagination text_c_white">01 | 05</span>
+                        <span class="welcome-slider__pagination text_c_white"><span
+                                class="text_state_changable">01</span> | 05</span>
                         <ul class="welcome-slider__dots list">
                             <li class="dot"></li>
                             <li class="dot"></li>
@@ -709,6 +729,8 @@
             </div>
         </div>
     </footer>
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script src="js/welcome-slider.js"></script>
     <script src="js/main.js"></script>
 </body>
 
