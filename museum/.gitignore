@@ -126,4 +126,4 @@ package.json
 
 build/
 
-src/local_modules/normalize.css/
+src/local_modules
