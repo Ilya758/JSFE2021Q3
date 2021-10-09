@@ -80,9 +80,63 @@
         }
     }
 
-    &__pic {
+    &__pictures {
+        position: relative;
+        top: 15px;
+        margin: 0;
+        width: 100%;
+        height: 700px;
+
+        @include media-custom(1920px) {
+            max-width: 720px;
+
+            @include flex();
+        }
+
+        @include media-custom(1600px) {
+            margin-top: 44px;
+        }
+
+        @include mediumDesktops() {
+            margin-top: 0;
+            height: auto;
+        }
+
+        &-container {
+            position: absolute;
+            display: flex;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+
+            &:not(.explore__pictures-overlay) {
+
+                @include mediumDesktops() {
+                    position: relative;
+                }
+            }
+        }
+
+        &-overlay {
+            height: 100%;
+
+            & .explore__picture {
+                height: 100%;
+                object-fit: cover;
+                object-position: left;
+
+            }
+
+            @include media-custom(1920px) {
+                left: 0;
+            }
+        }
+    }
+
+    &__picture {
         margin: 0;
         width: auto;
+        user-select: none;
 
         @include mediumDesktops() {
             width: 100%;
@@ -92,42 +146,23 @@
             width: 100%;
         }
 
-        &-container {
-            position: relative;
-            top: 15px;
-            margin: 0;
-            width: 100%;
-            max-height: 705px;
-
-            @include media-custom(1920px) {
-
-                @include flex();
-            }
-
-            @include media-custom(1600px) {
-                margin-top: 44px;
-            }
-
-            @include mediumDesktops() {
-                margin-top: 0;
-            }
-        }
-
         &-range {
             position: absolute;
             left: 421px;
             content: "";
+            z-index: 999;
             display: inline-block;
             width: 39px;
             height: 100%;
+            cursor: ew-resize;
             background: url(../images/comparison_line.svg) center 0/cover;
 
             @include largeDesktops() {
+                background-position: center;
                 left: 553px;
             }
 
             @include mediumDesktops() {
-                background-position-y: 11px;
                 left: 421px;
             }
 
@@ -135,10 +170,8 @@
                 left: 220px;
                 width: 20px;
                 height: 100%;
-            }
-
-            @include sPhones() {
-                background-position-y: 5px;
+                background-size: contain;
+                background-repeat: no-repeat;
             }
 
             @include xsPhones() {
@@ -146,4 +179,16 @@
             }
         }
     }
+}
+
+.img-comp-slider {
+    position: absolute;
+    z-index: 9;
+    cursor: ew-resize;
+    /*установите внешний вид ползунка:*/
+    width: 40px;
+    height: 40px;
+    background-color: #2196F3;
+    opacity: 0.7;
+    border-radius: 50%;
 }
