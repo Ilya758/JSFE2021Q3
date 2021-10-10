@@ -76,6 +76,27 @@
     &__gridItem {
         height: fit-content;
         position: relative;
+        transition: 1s;
+        transform: translate(0, 30%);
+        opacity: 0;
+
+        &_state_fadeFromBottom {
+            opacity: 1;
+            transform: translate(0, 0);
+
+        }
+
+        /*&_state_fadeFromBottom {
+
+            &.active {
+                transform: translate(0, 0);
+            }
+
+        }*/
+
+        &_state_fadeToBottom {
+            //animation: fadeToBottom 1s;
+        }
 
         &:nth-child(3n + 1) {
             top: 50px;
@@ -119,5 +140,25 @@
         position: absolute;
         background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
         bottom: 0;
+    }
+}
+
+@keyframes fadeFromBottom {
+    0% {
+        bottom: 100px;
+    }
+
+    100% {
+        bottom: 0;
+    }
+}
+
+@keyframes fadeToBottom {
+    0% {
+        bottom: 0;
+    }
+
+    100% {
+        bottom: 100px;
     }
 }

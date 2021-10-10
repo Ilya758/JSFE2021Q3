@@ -1,7 +1,87 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM is loaded.');
 
-    const items = document.querySelectorAll('.gallery__gridItem');
+    const gridList = document.querySelector('.gallery__gridList');
+
+    window.addEventListener('scroll', () => {
+
+        window.addEventListener('mousewheel', (event) => {
+            console.log(event.deltaY);
+            if (event.deltaY >= 0) {
+                fadeFromBottom();
+            } else {
+                fadeToBottom();
+            }
+        });
+
+    });
+
+    function fadeFromBottom() {
+        let rect = gridList.getBoundingClientRect();
+        let coordY = rect.y + window.pageYOffset;
+
+        if (window.pageYOffset > coordY - 600) {
+            document.body.dataset.scroll = 'down';
+            setTimeout(() => {
+                toggleAnimationToGridItems(0, 2, 'add');
+            }, 250);
+        }
+        if ((window.pageYOffset > coordY - 300)) {
+            setTimeout(() => {
+                toggleAnimationToGridItems(3, 5, 'add');
+            }, 250);
+        }
+        if ((window.pageYOffset > coordY)) {
+            setTimeout(() => {
+                toggleAnimationToGridItems(6, 8, 'add');
+            }, 250);
+        }
+        if ((window.pageYOffset > coordY + 300)) {
+            setTimeout(() => {
+                toggleAnimationToGridItems(9, 11, 'add');
+            }, 250);
+        }
+    }
+
+    function fadeToBottom() {
+        const cls = document.querySelectorAll('.gallery__gridItem_state_fadeFromBottom');
+
+        if (cls.length === 3) {
+            setTimeout(() => {
+                toggleAnimationToGridItems(0, 2);
+            }, 250);
+        }
+        if (cls.length === 6) {
+            setTimeout(() => {
+                toggleAnimationToGridItems(3, 5);
+            }, 250);
+        }
+        if (cls.length === 9) {
+            setTimeout(() => {
+                toggleAnimationToGridItems(6, 8);
+            }, 250);
+        }
+        if (cls.length === 12) {
+            setTimeout(() => {
+                toggleAnimationToGridItems(9, 11);
+            }, 250);
+        }
+    }
+
+    const gridItems = document.querySelectorAll('.gallery__gridItem');
+
+    function toggleAnimationToGridItems(start, end, op) {
+        const cls = 'gallery__gridItem_state_fadeFromBottom';
+
+        for (let i = start; i <= end; i++) {
+
+            if (op === 'add') {
+                gridItems[i].classList.add(cls);
+            } else {
+                gridItems[i].classList.remove(cls);
+            }
+        }
+    }
 
     function makeMasonry() {
         setTimeout(() => {
