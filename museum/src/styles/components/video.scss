@@ -1,3 +1,23 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 .video {
     display: block;
 
@@ -18,15 +38,37 @@
         }
     }
 
-    &__pic {
+    &__container {
+
+        @include flex(column, center, center);
+
+        width: 100%;
+
+        &_state_fullscreen {
+            justify-content: space-between;
+        }
+    }
+
+    &__container-main {
+        position: relative;
         margin: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: url(../images/video.jpg) -22px center/cover no-repeat;
         max-width: 1440px;
         width: 100%;
         height: 649px;
+
+        &_state_fullscreen {
+            max-width: none !important;
+            height: 100% !important;
+        }
+
+        & video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         @include media-custom(1600px) {
             max-width: none;
@@ -44,12 +86,17 @@
     }
 
     &__btn-play {
+        position: absolute;
         background: url(../images/icons/btn_play.svg) center/cover;
         width: 220px;
         height: 220px;
         cursor: pointer;
         transition: 0.25s linear;
         border: none;
+
+        &_state_fade {
+            opacity: 0;
+        }
 
         @include largeDesktops() {
             width: 152px;
@@ -103,6 +150,10 @@
             max-width: 23px;
             height: 30px;
             cursor: pointer;
+
+            &_state_pre-pause {
+                background: url(../images/icons/btn_pause.svg) center/cover;
+            }
 
             @include largeDesktops() {
                 margin-right: 30px;
@@ -163,6 +214,10 @@
             max-width: 38px;
             height: 30px;
             background: url(../images/icons/btn_sound.svg) center/cover;
+
+            &_state_mute {
+                background: url(../images/icons/btn_mute.svg) center/cover;
+            }
 
             @include largeDesktops() {
                 margin: 0 30px;
@@ -439,7 +494,7 @@
     &_sound {
         max-width: 155px;
         width: 100%;
-        background: linear-gradient(to right, var(--dark-red) 0, var(--dark-red) 43%, #c4c4c4 43%, #c4c4c4 100%);
+        background: linear-gradient(to right, var(--dark-red) 0, var(--dark-red) 100%, #c4c4c4 100%, #c4c4c4 100%);
 
         @include largeDesktops() {
             max-width: 143px;
@@ -480,5 +535,44 @@
 
     &:hover {
         background-color: var(--dark-red);
+    }
+}
+
+video::-webkit-media-controls {
+    display:none !important;
+}
+
+.rewinder {
+    &_width {
+        &_full {
+            max-width: none;
+        }
+    }
+}
+
+.playback-rate {
+    position: absolute;
+    display: inline-block;
+    width: fit-content;
+    border: 1px solid #000000;
+    box-shadow: 0 0 20px 5px var(--dark-red);
+    top: 20%;
+    background: var(--bg-dark);
+    color: white;
+    right: 10%;
+    font: 300 30px Roboto;
+    user-select: none;
+    border-radius: 50%;
+    padding: 15px 5px;
+    opacity: 0;
+
+    &_state_fadeIn {
+        opacity: 1;
+        animation: fadeIn 0.5s;
+    }
+
+    &_state_fadeOut {
+        opacity: 0;
+        animation: fadeOut 0.5s;
     }
 }

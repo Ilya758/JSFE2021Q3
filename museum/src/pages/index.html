@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="icon" href="images/favicon.ico">
+    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 
 <body>
@@ -429,17 +430,22 @@
                         <p class="video__text">Enter and visit one of the most famous museums in the world and enjoy
                             masterpieces such as Mona Lisa or Hammurabi's Code</p>
                     </div>
-                    <div class="video__pic">
+                    <div class="video__container">
+                        <div class="video__container-main">
+                            <span class="playback-rate">1.00</span>
+                            <video src="video/video0.mp4" poster="video/poster0.jpg" data-state="pre-pause"
+                                data-focus="disabled">
+                            </video>
                         <button class="video__btn-play" type="button"></button>
                     </div>
                     <div class="video__controls">
                         <button class="btn_size_cover video__controls-play"></button>
                         <input type="range" value="53" step="1" min="0" max="100"
                             class="video__controls-range range_elem_time">
-                        <button class="btn_size_cover video__controls-mute"></button>
-                        <input type="range" value="43" step="1" min="0" max="100"
+                            <button class="btn_size_cover video__controls-mute" data-state="no-mute"></button>
+                            <input type="range" value="100" step="1" min="0" max="100"
                             class="video__controls-range range_elem_sound">
-                        <button class="btn_size_cover video__controls-fullscreen"></button>
+                            <button class="btn_size_cover video__controls-fullscreen" data-full="disabled"></button>
                     </div>
                     <ul class="video-slider__playlist list">
                         <li class="video-slider__item item">
@@ -731,6 +737,7 @@
     </footer>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <script src="js/welcome-slider.js"></script>
+    <script src="js/videoplayer.js"></script>
     <script src="js/range.js"></script>
     <script src="js/main.js"></script>
 </body>
