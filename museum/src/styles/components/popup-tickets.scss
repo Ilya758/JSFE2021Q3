@@ -161,7 +161,7 @@
             letter-spacing: -0.1px;
 
             &.line::after {
-                margin: 9px 0 61px;
+                margin: 9px 0 60px;
 
                 @include mediumDesktops() {
                     margin-bottom: 39px;
@@ -173,10 +173,13 @@
 
             @include flex(column, center, center);
 
+            max-width: 400px;
+            width: 100%;
             padding-left: 1px;
             margin: 0;
 
             @include mediumDesktops() {
+                max-width: none;
                 width: 100%;
                 margin-left: 0;
             }
@@ -218,7 +221,9 @@
         &__inputContainer {
             display: block;
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 4px;
+            width: 100%;
+            transition: 0.35s;
 
             @include mediumDesktops() {
                 margin: 0 0 20px 0;
@@ -468,6 +473,8 @@
         }
 
         &__dateContainer {
+            margin: 0 0 10px;
+            width: 100%;
 
             @include onlyFlex();
 
@@ -712,6 +719,11 @@
     width: 100%;
     height: 45px;
     padding-left: 43px;
+    transition: 0.35s border;
+
+    &:focus {
+        outline: none;
+    }
 
     &_margin_zero {
         margin: 0;
@@ -785,7 +797,7 @@
                 width: 15px;
                 height: 15px;
                 left: 15px;
-                top: calc(50% - 15px/2);
+                top: 15px;
             }
         }
 
@@ -797,7 +809,7 @@
                 width: 15px;
                 height: 11px;
                 left: 15px;
-                top: calc(50% - 11px/2);
+                top: 18px;
             }
         }
 
@@ -809,13 +821,13 @@
                 width: 14px;
                 height: 23px;
                 left: 15px;
-                top: calc(50% - 23px/2);
+                top: 12px;
             }
         }
 
         &_select {
             width: 100%;
-
+            margin-bottom: 20px;
             &::before {
                 background: url(../images/icons/icon_ticketType.svg) no-repeat;
                 width: 15px;
@@ -832,6 +844,12 @@
                 height: 17px;
             }
         }
+    }
+
+    &_state_invalid {
+        opacity: 1;
+        border: 1px solid #ff0000;
+        transition: border 0.35s;
     }
 }
 
@@ -875,8 +893,14 @@
 input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="time"]::-webkit-calendar-picker-indicator {
-    display: none;
-    appearance: none;
+
+    width: 100%;
+    opacity: 0;
+    //z-index: -99999;
+}
+
+input[type="time"]:hover input[type="time"]::-webkit-calendar-picker-indicator {
+    background: none;
 }
 
 ::placeholder {
@@ -928,5 +952,16 @@ input[type="time"]::-webkit-calendar-picker-indicator {
         &-up {
             margin-bottom: 3px;
         }
+    }
+}
+
+input::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+option{
+    &:nth-child(2) {
+        background: #E7E7E7;
+        padding: 10px;
     }
 }

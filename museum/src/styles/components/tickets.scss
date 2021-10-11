@@ -73,6 +73,7 @@
         }
 
         &-text {
+            z-index: -1;
             font: 300 22px Roboto;
             line-height: 26px;
             color: var(--font-black);
@@ -324,4 +325,10 @@
     border-radius: 50%;
     top: 4px;
     left: -23px;
+}
+
+.text_ticketType,
+.text_ticketTime,
+.text_ticketDate {
+    margin-left: 0;
 }

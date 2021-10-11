@@ -192,7 +192,23 @@ img {
             }
         }
     }
+
+    &_state {
+
+        &_hidden {
+            opacity: 0;
+            font-size: 15px !important;
+            transition: 0.35s;
+        }
+
+        &_invalid {
+            opacity: 1;
+            //font-size: 15px !important;
+            color: #ff0000;
+        }
+    }
 }
+
 
 .heading {
     font: normal 80px Forum;
