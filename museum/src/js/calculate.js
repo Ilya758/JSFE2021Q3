@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* eslint-disable max-nested-callbacks*/
     function calculate() {
         let radioCost = 20;
+
         const calcText = document.querySelectorAll('.text_state_calculate');
         const subBtn = document.querySelectorAll('.btn_substract');
         const addBtn = document.querySelectorAll('.btn_add');
@@ -19,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
             setRadioButtonAfterReloading();
             recost();
             recountAmountInForm();
+        } else {
+            localStorage.setItem('checkedCost', radioCost);
         }
 
         function setRadioButtonAfterReloading() {
