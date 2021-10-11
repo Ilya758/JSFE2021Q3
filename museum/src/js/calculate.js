@@ -30,8 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (+el.value === matchCost) {
                     el.setAttribute('checked', true);
-
-                    // console.log(el.hasAttribute('checked'));
                 } else {
                     el.checked = false;
                 }
@@ -54,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ticketsList.addEventListener('click', (event) => {
             if (event.target.tagName === 'SPAN') {
                 const ticketTypeText = document.querySelector('.text_ticketType');
+                const select = document.querySelector('.popup-tickets__input-select');
                 radioCost = getCostFromRadio(event);
                 localStorage.setItem('checkedCost', radioCost);
                 let findTypeText;
@@ -61,12 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 cost.forEach((el) => {
                     if (+el[1] === radioCost) {
                         findTypeText = el[0];
+                        Array.from(select.children).forEach((option) => {
+                            option.removeAttribute('selected');
+                            if (option.textContent === findTypeText) {
+                                option.selected = 'selected';
+                            }
+                        });
                     }
                 });
 
                 ticketTypeText.textContent = findTypeText;
-
-                // ticketTypeText.textContent =
 
                 recost();
                 recountAmountInForm();
@@ -203,8 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 radioCost = JSON.parse(localStorage.getItem('checkedCost'));
             }
 
-            const basicTextInForm = document.querySelectorAll('span.popup-tickets__text.text.text_state_changable')[0];
-            const seniorTextInForm = document.querySelectorAll('span.popup-tickets__text.text.text_state_changable')[1];
+            const basicTextInForm = document.querySelectorAll('span.popup-tickets__text.text.text_cost_changable')[0];
+            const seniorTextInForm = document.querySelectorAll('span.popup-tickets__text.text.text_cost_changable')[1];
 
             basicTextInForm.textContent = `Basic (${radioCost} €)`;
             seniorTextInForm.textContent = `Senior (${radioCost / 2} €)`;
@@ -252,17 +255,27 @@ document.addEventListener('DOMContentLoaded', () => {
         function setSelectedValueToTicketType() {
             const select = document.querySelector('.popup-tickets__input-select');
 
-            select.addEventListener('blur', (event) => {
+            select.addEventListener('blur', () => {
                 const ticketTypeText = document.querySelector('.text_ticketType');
 
                 Array.from(select.children).forEach((el) => {
                     if (el.value === select.value) {
                         ticketTypeText.textContent = el.textContent;
+
+                        const radioBtns = document.querySelectorAll('input[type="radio"]');
+
+                        radioBtns.forEach((radio) => {
+                            const txt = radio.nextElementSibling.nextElementSibling;
+
+                            if (txt.textContent === ticketTypeText.textContent) {
+                                radio.checked = 'checked';
+                            }
+                        });
+
                         radioCost = getCostFromSelect(el);
                         localStorage.setItem('checkedCost', radioCost);
                         recost();
                         recountAmountInForm();
-
                     }
                 });
 
@@ -319,7 +332,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     calculate();
-
-    // localStorage.clear();
-
 });
