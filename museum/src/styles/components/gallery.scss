@@ -83,19 +83,6 @@
         &_state_fadeFromBottom {
             opacity: 1;
             transform: translate(0, 0);
-
-        }
-
-        /*&_state_fadeFromBottom {
-
-            &.active {
-                transform: translate(0, 0);
-            }
-
-        }*/
-
-        &_state_fadeToBottom {
-            //animation: fadeToBottom 1s;
         }
 
         &:nth-child(3n + 1) {

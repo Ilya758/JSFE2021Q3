@@ -314,10 +314,6 @@
             @include reviews() {
                 margin-top: 40px;
             }
-
-            /*@include media-custom(419px) {
-                flex-direction: column;
-            }*/
         }
 
         &__item {
@@ -400,9 +396,6 @@
                 background-color: var(--dark-red);
             }
 
-            /*&:first-child {
-                background-color: #333333;
-            }*/
             &.swiper-pagination-bullet-active {
                 background-color: #333333;
             }
@@ -433,7 +426,6 @@
 
             @include media-custom(1023px) {
                 max-width: 354px;
-                //width: 354px;
                 height: 199px;
             }
 

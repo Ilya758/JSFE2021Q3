@@ -27,8 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function keydownHandler(event) {
 
-        console.log(event.shiftKey && event.keyCode === 188);
-
         if (video.dataset.focus === 'active' && event.keyCode === 32) {
             event.preventDefault();
             playAndStop(event);
@@ -39,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (event.shiftKey && event.keyCode === 188) {
-            console.log(video.playbackRate);
+
             if (video.playbackRate >= 0.50) {
                 video.playbackRate -= 0.25;
                 generatePlaybackRate();
@@ -47,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (event.shiftKey && event.keyCode === 190) {
-            console.log(video.playbackRate);
+
             if (video.playbackRate < 2.5) {
                 video.playbackRate += 0.25;
                 generatePlaybackRate();

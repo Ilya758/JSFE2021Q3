@@ -20,42 +20,30 @@ document.addEventListener('DOMContentLoaded', () => {
         breakpoints: {
             1600: {
                 slidesPerView: 3,
-
-                // loopSlides: 3,
                 spaceBetween: 42,
                 centeredSlides: false,
             },
             1440: {
                 slidesPerView: 3,
-
-                // loopSlides: 3,
                 spaceBetween: 42,
                 centeredSlides: true,
             },
             1024: {
                 spaceBetween: 42,
                 slidesPerView: 3,
-
-                // loopSlides: 3,
             },
             768: {
                 slidesPerView: 2,
-
-                // loopSlides: 2,
                 spaceBetween: 20,
             },
 
             420: {
                 slidesPerView: 2,
-
-                // loopSlides: 2,
                 centeredSlides: false,
             },
             0: {
                 centeredSlides: true,
                 slidesPerView: 1,
-
-                // loopSlides: 1,
             }
         }
     });
