@@ -668,15 +668,34 @@
                 <div class="tickets__content">
                     <h2 class="line heading tickets__heading">Buy tickets</h2>
                     <div class="tickets__preview">
-                        <picture class="tickets__preview-pic">
-                            <source media="(min-width: 1601px)" srcset="images/ticket_preview.jpg 720w" sizes="720px">
-                            <source media="(min-width: 1024px)" srcset="images/ticket_preview_700w.jpg 700w"
-                                sizes="700px">
-                            <source media="(min-width: 768px)" srcset="images/ticket_preview_444w.jpg 444w"
-                                sizes="444px">
-                            <source media="(min-width: 0)" srcset="images/ticket_preview_380w.jpg 380w" sizes="380px">
-                            <img src="images/ticket_preview.jpg" alt="Tickets preview" class="tickets__pic">
-                        </picture>
+                        <div class="swiper-container tickets-slider">
+                            <div class="swiper-wrapper tickets-wrapper">
+                                <div class="tickets-slide swiper-slide">
+                                    <img src="images/visiting/colonnade_perrault.jpg" alt="colonnade_perrault"
+                                        class="tickets__pic">
+                                </div>
+                                <div class="tickets-slide swiper-slide">
+                                    <img src="images/visiting/denon_wing.jpg" alt="colonnade_perrault"
+                                        class="tickets__pic">
+                                </div>
+                                <div class="tickets-slide swiper-slide">
+                                    <img src="images/visiting/greek_hall.jpg" alt="colonnade_perrault"
+                                        class="tickets__pic">
+                                </div>
+                                <div class="tickets-slide swiper-slide">
+                                    <img src="images/visiting/mona_lisa.jpg" alt="colonnade_perrault"
+                                        class="tickets__pic">
+                                </div>
+                                <div class="tickets-slide swiper-slide">
+                                    <img src="images/visiting/night_palace.jpg" alt="colonnade_perrault"
+                                        class="tickets__pic">
+                                </div>
+                                <div class="tickets-slide swiper-slide">
+                                    <img src="images/visiting/royal_palace.jpg" alt="colonnade_perrault"
+                                        class="tickets__pic">
+                                </div>
+                            </div>
+                        </div>
                         <div class="tickets__info">
                             <h3 class="tickets__info-heading">Ticket Type</h3>
                             <label class="label__container">
@@ -823,6 +842,7 @@
     <script src="js/calculate.js"></script>
     <script src="js/validate.js"></script>
     <script src="js/map.js"></script>
+    <script src="js/tickets-slider.js"></script>
     <script src="js/main.js"></script>
 </body>
 

@@ -301,6 +301,37 @@
             }
         }
     }
+
+    &-slider {
+        display: flex;
+        width: 100%;
+        max-width: 720px;
+        top: 0;
+        right: 0;
+        z-index: -1;
+        overflow: hidden;
+
+        @include largeDesktops() {
+            max-width: 700px;
+            max-height: 440px;
+        }
+
+        @include tablet() {
+            max-width: 444px;
+            max-height: 340px;
+        }
+    }
+
+    &-wrapper {
+        display: flex;
+    }
+
+    &-slide {
+        img {
+            object-fit: cover;
+            width: 100%;
+        }
+    }
 }
 
 .label {
