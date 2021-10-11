@@ -316,7 +316,6 @@
     height: 16px;
     background-color: var(--bg-white);
     transition: 0.35s;
-    cursor: pointer;
 
     @include media-custom(1600px) {
         width: 12px;
@@ -330,6 +329,7 @@
 
     &:hover {
         background-color: var(--font-gold);
+        cursor: pointer;
     }
 }
 
