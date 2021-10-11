@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loop: true,
     });
     /* eslint-enable no-undef*/
-    const counter = document.querySelector('.text_state_changable');
+    const counter = document.querySelector('.text_slider_changable');
     const welcomeWrapper = document.querySelector('.welcome-slider__wrapper');
 
     welcomeWrapper.addEventListener('transitionend', () => {
