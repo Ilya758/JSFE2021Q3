@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="icon" href="images/favicon.ico">
     <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css" rel="stylesheet">
 </head>
 
 <body>
@@ -738,15 +740,7 @@
                             <a class="contacts__text-info" href="tel:+33(0)140205050">phone: +33(0) 1 40 20 50 50</a>
                             <a class="contacts__text-info" href="mailto:info@louvre.fr">mail: info@louvre.fr</a>
                         </div>
-                        <div class="contacts__map">
-                            <picture class="tickets__preview-pic">
-                                <source media="(min-width: 1601px)" srcset="images/map.png 720w" sizes="720px">
-                                <source media="(min-width: 1024px)" srcset="images/map_694w.png 694w" sizes="700px">
-                                <source media="(min-width: 768px)" srcset="images/map_728w.png 728w" sizes="444px">
-                                <source media="(min-width: 0)" srcset="images/map_380w.png 380w" sizes="380px">
-                                <img class="contacts__map-pic" src="images/map.png" alt="Map">
-                            </picture>
-                        </div>
+                        <div id="map"></div>
                     </div>
                 </div>
             </div>
@@ -828,6 +822,7 @@
     <script src="js/range.js"></script>
     <script src="js/calculate.js"></script>
     <script src="js/validate.js"></script>
+    <script src="js/map.js"></script>
     <script src="js/main.js"></script>
 </body>
 

@@ -42,6 +42,7 @@
     }
 
     &__info {
+        position: relative;
         display: flex;
         column-gap: 198px;
 
@@ -143,4 +144,63 @@
             }
         }
     }
+}
+
+#map {
+    position: relative;
+    right: 0;
+    width: 100%;
+    max-width: 960px;
+    height: 620px;
+    max-height: 620px;
+
+    @include largeDesktops() {
+        height: 454px;
+    }
+
+    @include mediumDesktops() {
+        margin-top: 40px;
+        height: 476px;
+    }
+
+    @include reviews() {
+        height: 248px;
+    }
+}
+
+.marker {
+    background: url(../images/icons/icon_marker.svg) center/cover;
+    height: 55px;
+    width: 24px;
+    cursor: pointer;
+}
+
+/*#info {
+    position: absolute;
+    display: table;
+    //position: relative;
+    margin: 0px auto;
+    word-wrap: anywhere;
+    white-space: pre-wrap;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 12px;
+    text-align: center;
+    color: var(--bg-dark);
+    background: var(--bg-white);
+}
+*/
+.mapboxgl-popup-close-button,
+.mapboxgl-popup-close-button:focus {
+    outline: none;
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+    margin: 7px 4px 0 0 !important;
+}
+
+.mapboxgl-ctrl-group button {
+    width: 29px !important;
+    height: 25px !important;
 }
