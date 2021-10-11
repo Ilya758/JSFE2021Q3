@@ -298,8 +298,10 @@
     }
 
     &-slider {
+        width: 100%;
+        overflow: hidden;
+
         &__playlist {
-            width: 100%;
 
             @include flex(row, space-between, center);
 
@@ -313,9 +315,9 @@
                 margin-top: 40px;
             }
 
-            @include media-custom(419px) {
+            /*@include media-custom(419px) {
                 flex-direction: column;
-            }
+            }*/
         }
 
         &__item {
@@ -398,7 +400,10 @@
                 background-color: var(--dark-red);
             }
 
-            &:first-child {
+            /*&:first-child {
+                background-color: #333333;
+            }*/
+            &.swiper-pagination-bullet-active {
                 background-color: #333333;
             }
 
@@ -410,24 +415,30 @@
         &__iframe {
             top: 0;
             left: 0;
+
+            @include flex(row, space-between, center);
+
+            margin: 0 auto;
             width: 100%;
             object-fit: none;
+            max-width: 452px;
             max-height: 254px;
             border: none;
 
-            @include media-custom(1919px) {
-                width: 300px;
+            @include largeDesktops {
+                max-width: 300px;
                 height: 170px;
                 object-fit: cover;
             }
 
             @include media-custom(1023px) {
-                width: 354px;
+                max-width: 354px;
+                //width: 354px;
                 height: 199px;
             }
 
             @include reviews() {
-                width: 180px;
+                max-width: 180px;
                 height: 101px;
             }
         }
@@ -453,6 +464,10 @@
 
                     @include media-custom(1919px) {
                         width: fit-content;
+                    }
+
+                    @include tablet() {
+                        max-width: 354px;
                     }
                 }
             }

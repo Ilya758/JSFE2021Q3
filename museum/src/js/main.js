@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function makeMasonry() {
         setTimeout(() => {
 
-            items.forEach((el) => {
+            gridItems.forEach((el) => {
                 const img = el.children[0];
 
                 if (img.width === img.height) {
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
             .sort(() => Math.random() - 0.5);
 
-        items.forEach((el, i) => {
+        gridItems.forEach((el, i) => {
             const img = document.createElement('img');
             img.src = `images/gallery/gallery${array[i]}.jpg`;
             img.alt = `gallery${array[i]}`;
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function generateURL(id) {
-        let query = '?rel=0&showinfo=0&autoplay=1';
+        let query = '?rel=0&showinfo=0&autoplay=1?enablejsapi=1';
 
         return 'https://www.youtube.com/embed/' + id + query;
     }
