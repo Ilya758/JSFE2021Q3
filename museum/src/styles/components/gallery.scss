@@ -134,8 +134,7 @@
     }
 
     &__gradientContainer {
-        max-width: 1440px;
-        width: 1440px;
+        width: calc(100vw - 40px);
         height: 360px;
         position: absolute;
         background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
