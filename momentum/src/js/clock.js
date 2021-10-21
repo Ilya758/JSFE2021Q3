@@ -1,5 +1,8 @@
+import greeting from './greeting';
 export default () => {
     const time = document.querySelector('.main__time');
+
+    greeting();
 
     (function showTime() {
         const date = new Date();
@@ -11,6 +14,11 @@ export default () => {
 
         if (time.textContent === '00:00:00') {
             showDate();
+            greeting();
+        }
+
+        if (time.textContent === '06:00:00' || time.textContent === '12:00:00' || time.textContent === '18:00:00') {
+            greeting();
         }
 
         setTimeout(() => {
