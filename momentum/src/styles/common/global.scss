@@ -1,7 +1,91 @@
-@import "~normalize.css";
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-@import "../mixins/flex";
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-@import "../utils/fonts";
+body {
+    min-width: 480px;
+    min-height: 100vh;
+    font-family: "Arial-MT", sans-serif;
+    font-size: 16px;
+    color: $font-color-white;
+    text-align: center;
+    background: url("../assets/img/bg.jpg") center/cover, $bcg-color-dark;
+    background-blend-mode: multiply;
+    transition: background-image 1s ease-in-out;
+}
 
-@import "../utils/root";
+.icon {
+    &-slider {
+        position: absolute;
+        top: 50%;
+        margin-top: -16px;
+        cursor: pointer;
+    }
+
+    &-change-quote {
+        margin-bottom: 30px;
+        background-image: url("../assets/svg/reload.svg");
+    }
+
+    &-player,
+    &-slider,
+    &-change-quote {
+        width: 32px;
+        height: 32px;
+        background-size: 32px 32px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+        opacity: 0.8;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &:active {
+            transform: scale(1.1);
+        }
+    }
+
+    &-weather {
+        font-size: 44px;
+    }
+}
+
+@each $name in play, pause, play-prev, play-next {
+    .#{$name} {
+        background-image: url(../assets/svg/#{$name}.svg);
+    }
+}
+
+.play {
+    width: 40px;
+    height: 40px;
+    background-size: 40px 40px;
+}
+
+@each $name in prev, next {
+    .slide-#{$name} {
+        background-image: url(../assets/svg/slider-#{$name}.svg);
+    }
+}
+
+.slide-next {
+    right: 20px;
+}
+
+.slide-prev {
+    left: 20px;
+}
