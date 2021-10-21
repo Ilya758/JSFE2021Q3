@@ -1,5 +1,5 @@
 import './styles';
 
-import Clock from './clock';
+import clock from './clock';
 
-Clock();
+clock();
