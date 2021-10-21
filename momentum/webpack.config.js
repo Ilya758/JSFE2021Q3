@@ -106,6 +106,7 @@ module.exports = {
     plugins: [
         new HTMLWebpackPlugin({
             title: 'My First Webpack App!!!',
+            template: './index.html',
         }),
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
