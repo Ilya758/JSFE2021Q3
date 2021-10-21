@@ -1,0 +1,59 @@
+.main {
+    &__content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 40vh;
+        min-height: 260px;
+        padding: 20px;
+    }
+
+    &__time {
+        min-height: 124px;
+        margin-bottom: 10px;
+        font: 100px "Arial-MT", sans-serif;
+        letter-spacing: -4px;
+    }
+
+    &__date {
+        min-height: 28px;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    &__greeting-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: stretch;
+        align-items: center;
+        min-height: 48px;
+        width: 100vw;
+        font-size: 40px;
+    }
+
+    &__greeting {
+        flex: 1;
+        padding: 10px;
+        font-family: "Arial", sans-serif;
+        text-align: right;
+    }
+
+    &__name {
+        flex: 1;
+        max-width: 50%;
+        padding: 10px;
+        font: 40px "Arial", sans-serif;
+        text-align: left;
+        color: $font-color-white;
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+
+        &::placeholder {
+            opacity: 0.6;
+        }
+    }
+}
