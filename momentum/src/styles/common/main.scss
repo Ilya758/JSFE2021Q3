@@ -14,13 +14,13 @@
     &__time {
         min-height: 124px;
         margin-bottom: 10px;
-        font: 100px "Arial-MT", sans-serif;
+        font: 100px $font-main, sans-serif;
         letter-spacing: -4px;
     }
 
     &__date {
         min-height: 28px;
-        font-size: 24px;
+        font: 24px $font-add, sans-serif;
         margin-bottom: 20px;
     }
 
@@ -37,7 +37,7 @@
     &__greeting {
         flex: 1;
         padding: 10px;
-        font-family: "Arial", sans-serif;
+        font-family: $font-add, sans-serif;
         text-align: right;
     }
 
@@ -45,7 +45,7 @@
         flex: 1;
         max-width: 50%;
         padding: 10px;
-        font: 40px "Arial", sans-serif;
+        font: 40px $font-add, sans-serif;
         text-align: left;
         color: $font-color-white;
         background-color: transparent;
