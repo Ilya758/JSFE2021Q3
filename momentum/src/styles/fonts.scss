@@ -1,5 +1,16 @@
-/* @font-face {
-    font-family: ;
-    src: url();
+@font-face {
+    font-family: "Arial-MT";
+    src: url("../assets/fonts/Arial-MT.woff") format("woff");
+    font-weight: 400;
 }
-*/
+
+@font-face {
+    font-family: "Owfont";
+    src:
+        url("../assets/fonts/owfont-regular.eot") format("embedded-opentype"),
+        url("../assets/fonts/owfont-regular.otf") format("opentype"),
+        url("../assets/fonts/owfont-regular.svg") format("svg"),
+        url("../assets/fonts/owfont-regular.ttf") format("truetype"),
+        url("../assets/fonts/owfont-regular.woff") format("woff");
+    font-weight: 400;
+}
