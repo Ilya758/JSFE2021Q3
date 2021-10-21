@@ -16,7 +16,6 @@ body {
     font-family: 16px $font-add, sans-serif;
     color: $font-color-white;
     text-align: center;
-    background: url("../assets/img/bg.jpg") center/cover, $bcg-color-dark;
     background-blend-mode: multiply;
     transition: background-image 1s ease-in-out;
 }
