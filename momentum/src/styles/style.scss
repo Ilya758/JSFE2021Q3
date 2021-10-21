@@ -1,7 +1,10 @@
-/* @import '~normalize.css';
+@import "~normalize.css";
 
-@import './fonts';
-*/
+@import "./mixins/flex";
+
+@import "./utils/fonts";
+
+@import "./utils/variables";
 
 @import './common/header';
 
