@@ -6,20 +6,20 @@ export default () => {
     const dayOfTime = greeting();
 
     function getRandomNum() {
-        let num = Math.floor(1 + Math.random() * 21);
+        let num = Math.floor(1 + Math.random() * 20);
 
         return num < 10 ? `0${num}` : num;
     }
 
     function setBg(isClicked, op) {
         const img = new Image();
-        const preUrl = 'https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/';
+        const preUrl = 'https://raw.githubusercontent.com/ilya758/stage1-tasks/assets/images/';
 
         if (isClicked) {
             const url = document.body.style.backgroundImage;
             let imageNumber = url.match(/[0-9]{2}/g);
 
-            img.src = `${preUrl}${dayOfTime}/${correctNumber(imageNumber, op)}.jpg`;
+            img.src = `${preUrl}${dayOfTime}/${correctNumber(imageNumber[1], op)}.jpg`;
         } else {
             img.src = `${preUrl}${dayOfTime}/${getRandomNum()}.jpg`;
         }
