@@ -12,6 +12,10 @@
 
     &__quote {
         min-height: 32px;
+
+        &-container {
+            font-family: $font-main;
+        }
     }
 
     &__author {
