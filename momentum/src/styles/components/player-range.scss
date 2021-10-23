@@ -1,0 +1,75 @@
+.header {
+    &__player {
+
+        @include flex(row, flex-start);
+
+        gap: 10px 20px;
+        width: 100%;
+        display: grid;
+
+        &-range {
+            appearance: none;
+            height: 8px;
+            border-radius: 10px;
+            background: $bcg-color-gray;
+            cursor: w-resize;
+
+            /* @include largeDesktops() {
+                height: 5px;
+            }
+
+            @include mediumDesktops() {
+                height: 4px;
+            } */
+
+            &::-webkit-slider-thumb {
+                appearance: none;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                background-color: $bcg-color-orange;
+                transition: 0.25s linear;
+
+                /*
+                @include media-custom(1600px) {
+                    width: 13px;
+                    height: 13px;
+                }
+
+                @include reviews() {
+                    width: 10px;
+                    height: 10px;
+                } */
+            }
+
+            &:hover::-webkit-slider-thumb {
+                transform: scale(1.05);
+            }
+        }
+
+        &-songName,
+        &-currentTime,
+        &-duration {
+            font-family: $font-main;
+        }
+
+        &-songName {
+            grid-area: 1 / 1 / 2 / span 6;
+        }
+    }
+}
+
+.range {
+    &_elem {
+        &_duration {
+            max-width: 200px;
+        }
+
+        &_sound {
+            max-width: 70px;
+            background: linear-gradient(to right, #8bc34a, 100%, #cf4b4b);
+            opacity: 1;
+            transition: $trans;
+        }
+    }
+}

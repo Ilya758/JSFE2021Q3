@@ -15,12 +15,77 @@
             align-items: center;
             justify-content: space-between;
             width: 120px;
-            margin-bottom: 28px;
         }
-    }
 
-    &__playlist {
-        text-align: left;
+        &-item {
+            //position: relative;
+            //left: 40px;
+            list-style-type: none;
+            font-family: $font-main;
+            text-align: left;
+            transition: $trans;
+            cursor: pointer;
+
+            span {
+                position: relative;
+                left: 40px;
+                z-index: -999;
+            }
+
+            &.pause::before {
+                mask: url(../assets/svg/pause.svg) 0/cover;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                //left: -40px;
+                mask: url(../assets/svg/play.svg) 0/cover;
+                width: 18px;
+                height: 18px;
+                background-color: $bcg-color-white;
+                opacity: 0.8;
+                transition: $trans;
+            }
+
+            &:hover {
+                color: $font-color-orange;
+
+                &::before {
+                    background-color: $bcg-color-orange;
+                }
+            }
+        }
+
+        &-playlist {
+            position: absolute;
+            top: 110px;
+            display: grid;
+            z-index: 999;
+            margin-top: 10px;
+            row-gap: 10px;
+        }
+
+        &-mute {
+            font-family: 'Arial', sans-serif;
+            padding: 2px 4px;
+            background: transparent;
+            border: 2px solid $border-color-orange;
+            transition: $trans;
+            color: $border-color-white;
+            cursor: pointer;
+            opacity: 0.8;
+
+            &:hover {
+                box-shadow: 0 0 10px 0 $bcg-color-orange;
+                border-radius: 10px;
+                text-shadow: 0 0 10px $border-color-white;
+            }
+
+            &:active {
+                opacity: 1;
+            }
+        }
     }
 
     &__weather {
@@ -31,6 +96,7 @@
         row-gap: 5px;
         width: 180px;
         min-height: 180px;
+        font: 16px "Arial", sans-serif;
         text-align: left;
 
         &-error {
@@ -67,7 +133,7 @@
         color: $font-color-white;
         border: 0;
         outline: 0;
-        border-bottom: 1px solid $border-color;
+        border-bottom: 1px solid $border-color-white;
         background-color: transparent;
 
         &::placeholder {
@@ -82,14 +148,14 @@
     }
 }
 
-.play-item::before {
-    content: "\2713";
-    position: absolute;
-    left: 0;
-    top: 2px;
-    font-weight: 900;
-}
+.song {
+    &_state {
+        &_active {
+            color: $font-color-orange;
 
-.item-active::before {
-    color: #c5b358;
+            &::before {
+                background-color: $bcg-color-orange;
+            }
+        }
+    }
 }

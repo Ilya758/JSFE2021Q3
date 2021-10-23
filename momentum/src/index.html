@@ -15,12 +15,54 @@
         <div class="container">
             <div class="header__content">
                 <div class="header__player">
+                    <audio preload="auto" class="header__audioplayer"
+                        src="./assets/sounds/30 Seconds To Mars - Edge of the Earth.mp3" data-state="pause"
+                        data-count="0"></audio>
                     <div class="header__player-controls">
                         <button class="play-prev icon-player"></button>
                         <button class="play icon-player"></button>
                         <button class="play-next icon-player"></button>
                     </div>
-                    <ul class="header__player-playlist"></ul>
+                    <span class="header__player-songName">30 Seconds To Mars - Edge of the Earth</span>
+                    <span class="header__player-currentTime">00:00</span>
+                    <input class="header__player-range range_elem_duration" type="range" name="duration" value="0"
+                        min="0" max="100">
+                    <span class="header__player-duration">04:38</span>
+                    <input class="header__player-range range_elem_sound" type="range" name="volume" value="100" min="0"
+                        max="100">
+                    <button class="header__player-mute" type="button">Mute</button>
+                    <ul class="header__player-playlist">
+                        <li class="header__player-item song_state_active">
+                            <span></span>
+                        </li>
+                        <li class="header__player-item">
+                            <span></span>
+                        </li>
+                        <li class="header__player-item">
+                            <span></span>
+                        </li>
+                        <li class="header__player-item">
+                            <span></span>
+                        </li>
+                        <li class="header__player-item">
+                            <span></span>
+                        </li>
+                        <li class="header__player-item">
+                            <span></span>
+                        </li>
+                        <li class="header__player-item">
+                            <span></span>
+                        </li>
+                        <li class="header__player-item">
+                            <span></span>
+                        </li>
+                        <li class="header__player-item">
+                            <span></span>
+                        </li>
+                        <li class="header__player-item">
+                            <span></span>
+                        </li>
+                    </ul>
                 </div>
                 <div class="header__weather">
                     <input type="text" class="input__city" name="city" placeholder="[Enter the city]" />

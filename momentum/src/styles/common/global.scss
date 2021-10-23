@@ -62,7 +62,7 @@ body {
     }
 }
 
-@each $name in play, pause, play-prev, play-next {
+@each $name in play, /*pause,*/ play-prev, play-next {
     .#{$name} {
         background-image: url(../assets/svg/#{$name}.svg);
     }
@@ -72,6 +72,10 @@ body {
     width: 40px;
     height: 40px;
     background-size: 40px 40px;
+
+    &.pause {
+        background-image: url(../assets/svg/pause.svg);
+    }
 }
 
 @each $name in prev, next {
