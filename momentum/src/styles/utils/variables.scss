@@ -1,10 +1,17 @@
 // font-colors
+$font-color-orange: #ffc600;
 $font-color-white: #ffffff;
 // bcg colors
 $bcg-color-dark: rgba(0, 0, 0, 0.5);
+$bcg-color-orange: #ffc600;
+$bcg-color-white: #ffffff;
+$bcg-color-gray: rgb(182, 182, 182);
 //border-color
-$border-color: #ffffff;
+$border-color-white: #ffffff;
+$border-color-orange: #ffc600;
 // fonts
-$font-main: "Arial";
-$font-sec: "Owfont";
-$font-add: "Arial-MT";
+$font-main: "Arial", sans-serif;
+$font-sec: "Owfont", sans-serif;
+$font-add: "Arial-MT", sans-serif;
+// transition
+$trans: 0.35s linear;
