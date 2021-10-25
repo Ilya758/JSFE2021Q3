@@ -23,4 +23,22 @@
     &__author {
         min-height: 20px;
     }
+
+    &-bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 20px 0 0;
+    }
+
+    &-text {
+        font: 400 18px $font-main;
+        color: var(--font-white);
+        line-height: 22px;
+        letter-spacing: 2px;
+        text-decoration: none;
+        margin: 0;
+    }
 }

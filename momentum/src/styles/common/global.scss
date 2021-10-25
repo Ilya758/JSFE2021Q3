@@ -128,7 +128,8 @@ body {
 
 .settings {
     position: absolute;
-    left: 40px;
+    left: 20px;
+    bottom: 50px;
     width: 40px;
     height: 40px;
     outline: none;
@@ -153,5 +154,13 @@ body {
 
     &:active {
         opacity: 1;
+    }
+}
+
+.author {
+    transition: $trans;
+
+    &:hover {
+        color: $font-color-orange;
     }
 }
