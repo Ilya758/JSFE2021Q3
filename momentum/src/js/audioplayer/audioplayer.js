@@ -139,7 +139,6 @@ export default () => {
                 songCounter = event.target.dataset.count;
                 audioplayer.dataset.count = songCounter;
                 const src = playlist[songCounter].src;
-                console.log(playlist[songCounter].duration);
                 duration.textContent = playlist[songCounter].duration;
 
                 if (event.target.classList.contains('song_state_active')) {
