@@ -1,0 +1,33 @@
+.preloader {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #e0e0e0;
+    z-index: 1001;
+
+    &__icon {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 100px;
+        height: 100px;
+        transform: translate(-50%, -50%);
+        background: url(../assets/img/preloader.gif) 0/cover;
+    }
+}
+
+.loaded {
+    &.preloader {
+        display: none;
+    }
+
+    &_state {
+        &_hiding {
+            .preloader {
+                opacity: 0;
+                transition: 0.3s;
+            }
+        }
+    }
+}

@@ -2,7 +2,7 @@
 export default () => {
     window.onload = function () {
         const audio = document.querySelector('.header__audioplayer');
-
+        console.log(111);
         const context = new AudioContext();
         const analyser = context.createAnalyser();
         const source = context.createMediaElementSource(audio);

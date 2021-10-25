@@ -18,9 +18,11 @@ import translate from './translate';
 
 import visualizer from './visualizer';
 
-// import unsplash from './unsplash';
+import preloader from './preloader';
 
-clock()();
+const getTime = clock();
+
+getTime();
 greeting();
 setValuesToStorage();
 slider();
@@ -29,5 +31,4 @@ audioplayer();
 settings();
 translate();
 visualizer();
-
-// unsplash();
+preloader();
