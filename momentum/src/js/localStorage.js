@@ -21,7 +21,8 @@ export default () => {
         const city = document.querySelector('.input__city');
 
         city.addEventListener('blur', () => {
-            const data = getWeather(city.value);
+            const radio = Array.from(document.querySelectorAll('.button_type_language')).find((r) => r.checked);
+            const data = getWeather(city.value, radio.value);
 
             data.then((d) => {
                 localStorage.setItem('errorText', document.querySelector('.header__weather-error').textContent);
