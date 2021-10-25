@@ -9,6 +9,11 @@
         width: 100%;
         max-width: 315px;
         transition: $trans;
+
+        @include reviews() {
+            left: 0;
+            bottom: 150px;
+        }
     }
 
     &__heading {

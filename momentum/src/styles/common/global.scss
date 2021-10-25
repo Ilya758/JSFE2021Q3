@@ -18,10 +18,14 @@
     max-width: 1920px;
     margin: 0 auto;
     padding: 0 20px;
+
+    @include reviews() {
+        padding: 0 10px;
+    }
 }
 
 body {
-    min-width: 480px;
+    //min-width: 480px;
     min-height: 100vh;
     font-family: 16px $font-add, sans-serif;
     color: $font-color-white;
@@ -112,6 +116,7 @@ body {
 
 .hidden {
     opacity: 0;
+    z-index: -999;
 }
 
 .text_font_main {
@@ -130,6 +135,14 @@ body {
     opacity: 0.8;
     transition: $trans;
     cursor: pointer;
+
+    @include reviews() {
+        left: 20px;
+    }
+
+    @include widjets() {
+        bottom: 120px;
+    }
 
     &:hover {
         transform: rotate(90deg);

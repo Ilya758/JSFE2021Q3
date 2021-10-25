@@ -7,30 +7,35 @@
         width: 100%;
         display: grid;
 
+        @include mediumDesktops() {
+            grid-template-columns: repeat(2, minmax(0, 150px));
+        }
+
+        @include reviews() {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
         &-range {
             appearance: none;
-            height: 8px;
-            border-radius: 10px;
-            background: $bcg-color-gray;
+            height: 3px;
+            background: rgb(109, 109, 109);
             cursor: w-resize;
-
-            /* @include largeDesktops() {
-                height: 5px;
-            }
-
-            @include mediumDesktops() {
-                height: 4px;
-            } */
 
             &::-webkit-slider-thumb {
                 appearance: none;
                 width: 15px;
                 height: 15px;
                 border-radius: 50%;
-                background-color: $bcg-color-orange;
+                background-color: rgb(212, 212, 212);
+                border-color: 1px solid $border-color-gray;
+                //box-shadow: 0 0 10px 5px $box-shadow-orange;
                 transition: 0.25s linear;
 
-                /*
+                &:active {
+                    transform: scale(1.05);
+                }
+
                 @include media-custom(1600px) {
                     width: 13px;
                     height: 13px;
@@ -39,7 +44,7 @@
                 @include reviews() {
                     width: 10px;
                     height: 10px;
-                } */
+                }
             }
 
             &:hover::-webkit-slider-thumb {
@@ -53,8 +58,26 @@
             font-family: $font-main;
         }
 
+        &-currentTime {
+
+            @include mediumDesktops() {
+                text-align: right;
+            }
+        }
+
+        &-duration {
+
+            @include mediumDesktops() {
+                text-align: left;
+            }
+        }
+
         &-songName {
             grid-area: 1 / 1 / 2 / span 6;
+
+            @include mediumDesktops() {
+                grid-column-end: span 3;
+            }
         }
     }
 }
@@ -63,6 +86,10 @@
     &_elem {
         &_duration {
             max-width: 200px;
+
+            @include tablet() {
+                grid-area: 3/ 1;
+            }
         }
 
         &_sound {

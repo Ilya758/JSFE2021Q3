@@ -14,16 +14,33 @@
     &__time {
         min-height: 124px;
         margin-bottom: 10px;
-        font: 100px $font-main, sans-serif;
+        font: 100px $font-add;
         letter-spacing: -4px;
         transition: $trans-long;
+
+        @include mediumDesktops() {
+            font-size: 80px;
+        }
+
+        @include reviews() {
+            min-height: 0;
+        }
+
+        @include widjets() {
+            font-size: 52px;
+        }
     }
 
     &__date {
         min-height: 28px;
-        font: 24px $font-add, sans-serif;
+        font: 24px $font-main;
         margin-bottom: 20px;
         transition: $trans-long;
+
+        @include reviews() {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
     }
 
     &__greeting-container {
@@ -32,7 +49,7 @@
         justify-content: stretch;
         align-items: center;
         min-height: 48px;
-        width: 100vw;
+        width: calc(100vw - 40px);
         font-size: 40px;
         transition: $trans-long;
     }
@@ -40,20 +57,36 @@
     &__greeting {
         flex: 1;
         padding: 10px;
-        font-family: $font-add, sans-serif;
+        font-family: $font-main;
         text-align: right;
+
+        @include reviews() {
+            font-size: 22px;
+        }
+
+        @include widjets() {
+            font-size: 16px;
+        }
     }
 
     &__name {
         flex: 1;
         max-width: 50%;
         padding: 10px;
-        font: 40px $font-add, sans-serif;
+        font: 40px $font-main;
         text-align: left;
         color: $font-color-white;
         background-color: transparent;
         border: 0;
         outline: 0;
+
+        @include reviews() {
+            font-size: 22px;
+        }
+
+        @include widjets() {
+            font-size: 16px;
+        }
 
         &::placeholder {
             opacity: 0.6;

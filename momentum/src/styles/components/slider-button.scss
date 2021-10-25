@@ -52,6 +52,10 @@
             transition: all 0.75s cubic-bezier(1, 0.13, 0.15, 0.99), 0.5s box-shadow linear, 0.5s opacity linear;
             cursor: pointer;
 
+            @include reviews() {
+                margin-left: 0;
+            }
+
             &_state_active {
                 box-shadow: 0 0 8px 1px #ffc600;
                 opacity: 1;

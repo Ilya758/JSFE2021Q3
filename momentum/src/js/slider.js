@@ -79,7 +79,7 @@ export default () => {
         }
 
         img.onload = () => {
-            document.body.style.backgroundImage = `url(${img.src})`;
+            document.body.style.background = `url(${img.src}) 0/cover`;
         };
     }
 };
