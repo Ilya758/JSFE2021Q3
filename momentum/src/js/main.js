@@ -10,8 +10,9 @@ import getQuotes from './getQuotes';
 
 import audioplayer from './audioplayer/audioplayer';
 
-clock();
+import translate from './translate';
 setValuesToStorage();
 slider();
 getQuotes();
 audioplayer();
+translate();
