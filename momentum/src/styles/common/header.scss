@@ -10,6 +10,9 @@
     }
 
     &__player {
+        //visibility: hidden;
+        transition: $trans-long;
+
         &-controls {
             display: flex;
             align-items: center;
@@ -93,11 +96,15 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
+        padding: 10px;
         row-gap: 5px;
-        width: 180px;
+        width: 220px;
         min-height: 180px;
+        background: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 10px 5px $bcg-color-dark;
         font: 16px "Arial", sans-serif;
         text-align: left;
+        transition: 0.75s;
 
         &-error {
             margin-top: -10px;
