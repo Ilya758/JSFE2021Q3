@@ -20,7 +20,6 @@ export default () => {
     });
 
     function setLangToSettings(lang) {
-        console.log(lang);
         const settings = document.querySelector('.settings__heading');
         const fields = document.querySelectorAll('.settings__text');
         const engSettings = ['Language', ' Audioplayer', 'Weather', 'Time', 'Date', 'Greeting', 'Quotes', 'Oscilloscope', 'Photosource'];
