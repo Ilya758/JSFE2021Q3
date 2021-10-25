@@ -16,6 +16,8 @@ import settings from './settings';
 
 import translate from './translate';
 
+import visualizer from './visualizer';
+
 // import unsplash from './unsplash';
 
 clock()();
@@ -26,5 +28,6 @@ getQuotes();
 audioplayer();
 settings();
 translate();
+visualizer();
 
 // unsplash();
