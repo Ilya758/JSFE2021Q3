@@ -1,10 +1,13 @@
 /* eslint-disable no-undef */
+
+import greeting from './greeting';
+
 export default async (src) => {
-    let preUrl, postUrl, query, key, url, response, data;
+    const query = greeting();
+    let preUrl, postUrl, key, url, response, data;
 
     if (src === 'unsplash') {
         preUrl = 'https://api.unsplash.com/photos/random?orientation=landscape&query=';
-        query = 'evening';
         key = '&client_id=NhzepGPSFB4OD5WD7qRNoCm1HM0cg-yqkP9h54wRtXk';
         url = `${preUrl}${query}${key}`;
         response = await fetch(url);
@@ -16,7 +19,6 @@ export default async (src) => {
         };
     } else {
         preUrl = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=';
-        query = 'evening';
         key = '6bf9d377824659884ff77ad110d2057e';
         postUrl = '&extras=url_l&format=json&nojsoncallback=1';
         url = `${preUrl}${key}&tags=${query}${postUrl}`;
