@@ -102,6 +102,9 @@ export default () => {
         const value = volume.value;
         audioplayer.volume = value / 100;
         volume.style.background = `linear-gradient(to right, #8bc34a, ${value}%, #cf4b4b)`;
+        if (value) {
+            mute.classList.remove('muted');
+        }
     }
 
     function getCurrentTime() {
@@ -178,8 +181,10 @@ export default () => {
         if (audioplayer.volume !== 0) {
             prevVol = audioplayer.volume;
             audioplayer.volume = 0;
+            mute.classList.add('muted');
         } else {
             audioplayer.volume = prevVol;
+            mute.classList.remove('muted');
         }
     }
 

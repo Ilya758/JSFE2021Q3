@@ -82,8 +82,8 @@
         &-mute {
             font-family: 'Arial', sans-serif;
             padding: 2px 4px;
+            border: none;
             background: transparent;
-            border: 2px solid $border-color-orange;
             transition: $trans;
             color: $border-color-white;
             cursor: pointer;
