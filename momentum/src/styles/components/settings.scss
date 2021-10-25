@@ -1,0 +1,35 @@
+.settings {
+    &__container {
+        position: absolute;
+        left: 40px;
+        padding: 5px;
+        background: $bcg-color-dark;
+        box-shadow: 0 0 10px 5px $box-shadow-dark;
+        width: 100%;
+        max-width: 315px;
+    }
+
+    &__heading {
+        font-size: 20px;
+        text-align: left;
+    }
+
+    &__list {
+
+        @include flex(column, center, flex-start);
+
+        margin-top: 20px;
+        row-gap: 10px;
+    }
+
+    &__item {
+
+        @include flex(row, space-between, center);
+
+        padding: 5px;
+        width: 100%;
+        border-bottom: 1px solid #ffffff57;
+        text-align: left;
+        list-style-type: none;
+    }
+}

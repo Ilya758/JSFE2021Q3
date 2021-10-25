@@ -1,0 +1,47 @@
+.settings {
+    &__tooltip {
+        &-text {
+            position: absolute;
+            bottom: 35px;
+            right: 0;
+            left: 0;
+            padding: 10px;
+            z-index: -999;
+            opacity: 0;
+            width: auto;
+            text-align: center;
+            font-family: $font-main;
+            color: $font-color-orange;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid transparent;
+            border-radius: 30px;
+            animation: appear reverse 0.5s linear;
+            transition: 0.25s linear;
+        }
+
+        &:hover > &-text {
+            animation: appear 0.5s linear;
+            opacity: 1;
+            z-index: 999;
+        }
+    }
+}
+
+.tooltip {
+    display: inline-block;
+    width: 20px;
+    font-family: $font-main;
+    text-align: center;
+    border: 1px solid $border-color-orange;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/** .photosource {
+    &__container {
+
+        @include flex(row, space-between, center);
+
+        width: 100%;
+    }
+} */

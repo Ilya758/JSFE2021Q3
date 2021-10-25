@@ -97,6 +97,94 @@
     <footer class="footer">
         <div class="container">
             <div class="footer__content">
+                <div class="settings__container">
+                    <h3 class="settings__heading text_font_main">Settings / Visibility</h3>
+                    <ul class="settings__list">
+                        <li class="settings__item">
+                            <span class="settings__text text_font_main">Language</span>
+                            <div class="radio__container">
+                                <label for="ru">
+                                    <span class="text_font_main">RU</span>
+                                    <input id="ru" class="radio__button button_type_language" type="radio" name="lang"
+                                        value="ru-RU">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="en">
+                                    <span class="text_font_main">EN</span>
+                                    <input id="en" class="radio__button button_type_language" type="radio" name="lang"
+                                        value="en-EN" checked="checked">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </li>
+                        <li class="settings__item">
+                            <span class="settings__text text_font_main">Audioplayer</span>
+                            <div class="settings__slider-track" data-count="0" data-enabled="false">
+                                <div class="settings__slider-thumb"></div>
+                            </div>
+                        </li>
+                        <li class="settings__item">
+                            <span class="settings__text text_font_main">Weather</span>
+                            <div class="settings__slider-track" data-count="1" data-enabled="false">
+                                <div class="settings__slider-thumb"></div>
+                            </div>
+                        </li>
+                        <li class="settings__item">
+                            <span class="settings__text text_font_main">Time</span>
+                            <div class="settings__slider-track" data-count="2" data-enabled="false">
+                                <div class="settings__slider-thumb"></div>
+                            </div>
+                        </li>
+                        <li class="settings__item">
+                            <span class="settings__text text_font_main">Date</span>
+                            <div class="settings__slider-track" data-count="3" data-enabled="false">
+                                <div class="settings__slider-thumb"></div>
+                            </div>
+                        </li>
+                        <li class="settings__item">
+                            <span class="settings__text text_font_main">Greeting</span>
+                            <div class="settings__slider-track" data-count="4" data-enabled="false">
+                                <div class="settings__slider-thumb"></div>
+                            </div>
+                        </li>
+                        <li class="settings__item">
+                            <span class="settings__text text_font_main">Quotes</span>
+                            <div class="settings__slider-track" data-count="5" data-enabled="false">
+                                <div class="settings__slider-thumb"></div>
+                            </div>
+                        </li>
+                        <li class="settings__item">
+                            <div class="settings__text text_font_main photosource__container">Photosource
+                            </div>
+                            <div class="radio__container">
+                                <span class="settings__tooltip"><span class="tooltip">?</span>
+                                    <span class="settings__tooltip-text text_size_m">
+                                        1 - Github, 2 - Flickr, 3 - Unsplash
+                                    </span>
+                                </span>
+                                <span class="settings__text text_font_main"></span>
+                                <label for="gh">
+                                    <span class="text_font_main">1</span>
+                                    <input id="gh" class="radio__button button_type_src" type="radio" name="src"
+                                        value="github" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="fli">
+                                    <span class="text_font_main">2</span>
+                                    <input id="fli" class="radio__button button_type_src" type="radio" name="src"
+                                        value="flickr">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="uns">
+                                    <span class="text_font_main">3</span>
+                                    <input id="uns" class="radio__button button_type_src" type="radio" name="src"
+                                        value="unsplash">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <div class="footer__quote-container">
                 <button class="icon-change-quote"></button>
                 <div class="footer__quote-container">
