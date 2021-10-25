@@ -74,7 +74,7 @@ body {
 
 @each $name in play, /*pause,*/ play-prev, play-next {
     .#{$name} {
-        background-image: url(../assets/svg/#{$name}.svg);
+        background: url(../assets/svg/#{$name}.svg) 0/cover;
     }
 }
 
@@ -116,4 +116,26 @@ body {
 
 .text_font_main {
     font-family: $font-main;
+}
+
+.settings {
+    position: absolute;
+    left: 40px;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    border: none;
+    mask: url(../assets/svg/settings.svg) 0/cover;
+    background-color: $bcg-color-white;
+    opacity: 0.8;
+    transition: $trans;
+    cursor: pointer;
+
+    &:hover {
+        transform: rotate(90deg);
+    }
+
+    &:active {
+        opacity: 1;
+    }
 }

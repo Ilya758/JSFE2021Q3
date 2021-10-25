@@ -2,11 +2,13 @@
     &__container {
         position: absolute;
         left: 40px;
+        bottom: 80px;
         padding: 5px;
         background: $bcg-color-dark;
         box-shadow: 0 0 10px 5px $box-shadow-dark;
         width: 100%;
         max-width: 315px;
+        transition: $trans;
     }
 
     &__heading {

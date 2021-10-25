@@ -25,6 +25,17 @@ export default () => {
     const radioLang = document.querySelectorAll('.button_type_language');
     const sources = document.querySelectorAll('.button_type_src');
 
+    const btnSettings = document.querySelector('.settings');
+
+    btnSettings.addEventListener('click', () => {
+        toggleVisibilityOfSettingsContainer();
+    });
+
+    function toggleVisibilityOfSettingsContainer() {
+        const container = document.querySelector('.settings__container');
+        container.classList.toggle('hidden');
+    }
+
     Array.from(sources).forEach((src) => {
         src.addEventListener('click', () => {
             getActivePhotosource();
