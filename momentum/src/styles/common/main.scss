@@ -16,12 +16,14 @@
         margin-bottom: 10px;
         font: 100px $font-main, sans-serif;
         letter-spacing: -4px;
+        transition: $trans-long;
     }
 
     &__date {
         min-height: 28px;
         font: 24px $font-add, sans-serif;
         margin-bottom: 20px;
+        transition: $trans-long;
     }
 
     &__greeting-container {
@@ -32,6 +34,7 @@
         min-height: 48px;
         width: 100vw;
         font-size: 40px;
+        transition: $trans-long;
     }
 
     &__greeting {
