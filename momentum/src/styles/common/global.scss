@@ -25,7 +25,6 @@
 }
 
 body {
-    //min-width: 480px;
     min-height: 100vh;
     font-family: 16px $font-add, sans-serif;
     color: $font-color-white;
@@ -76,7 +75,7 @@ body {
     }
 }
 
-@each $name in play, /*pause,*/ play-prev, play-next {
+@each $name in play, play-prev, play-next {
     .#{$name} {
         background: url(../assets/svg/#{$name}.svg) 0/cover;
     }

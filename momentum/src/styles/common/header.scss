@@ -16,7 +16,6 @@
     }
 
     &__player {
-        //visibility: hidden;
         transition: $trans-long;
 
         &-controls {
@@ -27,8 +26,6 @@
         }
 
         &-item {
-            //position: relative;
-            //left: 40px;
             list-style-type: none;
             font-family: $font-main;
             text-align: left;
@@ -48,7 +45,6 @@
             &::before {
                 content: "";
                 position: absolute;
-                //left: -40px;
                 mask: url(../assets/svg/play.svg) 0/cover;
                 width: 18px;
                 height: 18px;
