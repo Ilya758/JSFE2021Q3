@@ -1,6 +1,7 @@
 
 .footer {
     &__content {
+        position: relative;
 
         @include flex(column, flex-end, center);
 
@@ -15,6 +16,7 @@
 
         &-container {
             font-family: $font-main;
+            transition: $trans-long;
         }
     }
 
