@@ -2,8 +2,11 @@
 /* eslint-disable no-undef */
 import greeting from './greeting';
 
+import photosource from './photosource';
+
 export default () => {
-    const dayOfTime = greeting();
+    const dayOfTime = greeting('en-EN');
+    const radio = document.querySelectorAll('.button_type_src');
 
     function getRandomNum() {
         let num = Math.floor(1 + Math.random() * 20);
@@ -11,22 +14,23 @@ export default () => {
         return num < 10 ? `0${num}` : num;
     }
 
+    Array.from(radio).forEach((r) => [
+        r.addEventListener('click', () => {
+            setBg();
+            setActivePhotosource();
+        })
+    ]);
+
     function setBg(isClicked, op) {
-        const img = new Image();
-        const preUrl = 'https://raw.githubusercontent.com/ilya758/stage1-tasks/assets/images/';
+        const src = setActivePhotosource();
 
-        if (isClicked) {
-            const url = document.body.style.backgroundImage;
-            let imageNumber = url.match(/[0-9]{2}/g);
-
-            img.src = `${preUrl}${dayOfTime}/${correctNumber(imageNumber[1], op)}.jpg`;
+        if (src.value === 'github') {
+            setImageFromGithub(isClicked, op);
+        } else if (src.value === 'flickr') {
+            photosource('flickr');
         } else {
-            img.src = `${preUrl}${dayOfTime}/${getRandomNum()}.jpg`;
+            photosource('unsplash');
         }
-
-        img.onload = () => {
-            document.body.style.backgroundImage = `url(${img.src})`;
-        };
     }
 
     setBg();
@@ -47,11 +51,35 @@ export default () => {
         };
     })();
 
+    function setActivePhotosource() {
+        const activeSrc = Array.from(radio).find((r) => r.checked);
+        localStorage.setItem('src', activeSrc.value);
+        return activeSrc;
+    }
+
     function correctNumber(n, op = 'dec') {
         if (op === 'inc') {
             return n > 19 ? '01' : n < 9 ? `0${++n}` : ++n;
         }
 
         return n < 2 ? '20' : n <= 10 ? `0${--n}` : --n;
+    }
+
+    function setImageFromGithub(isClicked, op) {
+        const img = new Image();
+        const preUrl = 'https://raw.githubusercontent.com/ilya758/stage1-tasks/assets/images/';
+
+        if (isClicked) {
+            const url = document.body.style.backgroundImage;
+            let imageNumber = url.match(/[0-9]{2}/g);
+
+            img.src = `${preUrl}${dayOfTime}/${correctNumber(imageNumber[1], op)}.jpg`;
+        } else {
+            img.src = `${preUrl}${dayOfTime}/${getRandomNum()}.jpg`;
+        }
+
+        img.onload = () => {
+            document.body.style.backgroundImage = `url(${img.src})`;
+        };
     }
 };

@@ -2,8 +2,6 @@ import greeting from './greeting';
 export default () => {
     const time = document.querySelector('.main__time');
 
-    greeting();
-
     (function showTime() {
         const date = new Date();
         const hours = date.getHours();
@@ -30,20 +28,28 @@ export default () => {
         return unit < 10 ? `0${unit}` : unit;
     }
 
-    function showDate() {
+    function showDate(lang = 'en-EN') {
+        greeting(lang);
         const dateText = document.querySelector('.main__date');
         const options = {
-            year: '2-digit',
+            day: '2-digit',
             month: 'long',
             weekday: 'long'
         };
 
-        const date = new Date().toLocaleString('en-EN', options);
+        const date = new Date().toLocaleString(lang, options);
         const sd = date.split(' ');
 
-        const correctDate = `${sd[2]}, ${sd[0]} ${sd[1]}`;
+        let correctDate;
+
+        if (lang === 'ru-RU') {
+            correctDate = `${sd[0][0].toUpperCase() + sd[0].slice(1)} ${sd[1]} ${sd[2]}`;
+        } else {
+            correctDate = `${sd[0]} ${sd[2]} ${sd[1]}`;
+        }
+
         dateText.textContent = correctDate;
     }
 
-    showDate();
+    return showDate;
 };

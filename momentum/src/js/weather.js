@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-export default async (val) => {
+export default async (val, lang = 'en-EN') => {
     if (!val) {
         val = 'Минск';
     }
@@ -10,7 +10,7 @@ export default async (val) => {
     const weatherDescription = document.querySelector('.weather-description');
     const wind = document.querySelector('.wind');
     const humidity = document.querySelector('.humidity');
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${val}&lang=ru&appid=405a6a61aacc8e0d5cdf86c2331f3a53&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${val}&lang=${lang.slice(0, 2)}&appid=405a6a61aacc8e0d5cdf86c2331f3a53&units=metric`;
 
     try {
         const response = await fetch(url);
@@ -26,9 +26,14 @@ export default async (val) => {
         weatherIcon.className = `icon-weather owf owf-${data.weather[0].id}`;
         temperature.textContent = `${Math.floor(data.main.temp)}°C, `;
         weatherDescription.textContent = data.weather[0].description;
-        wind.textContent = `Скорость ветра: ${Math.floor(data.wind.speed)} м/с`;
-        humidity.textContent = `Влажность: ${data.main.humidity}%`;
 
+        if (lang === 'en-EN') {
+            wind.textContent = `Wind: ${Math.floor(data.wind.speed)} m/s`;
+            humidity.textContent = `Humidity: ${data.main.humidity}%`;
+        } else {
+            wind.textContent = `Скорость ветра: ${Math.floor(data.wind.speed)} м/с`;
+            humidity.textContent = `Влажность: ${data.main.humidity}%`;
+        }
         return data;
     } catch (e) {
         toggleVisibilityOfWeatherInfo('error', e.message);
