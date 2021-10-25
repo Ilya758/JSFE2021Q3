@@ -30,5 +30,8 @@ getQuotes();
 audioplayer();
 settings();
 translate();
-visualizer();
 preloader();
+
+document.addEventListener('click', () => {
+    visualizer();
+}, { once: true });
