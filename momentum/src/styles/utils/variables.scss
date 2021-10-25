@@ -9,9 +9,13 @@ $bcg-color-gray: rgb(182, 182, 182);
 //border-color
 $border-color-white: #ffffff;
 $border-color-orange: #ffc600;
+//box-shadow
+$box-shadow-dark: rgba(0, 0, 0, 0.5);
+$box-shadow-gray: rgb(128, 128, 128);
 // fonts
 $font-main: "Arial", sans-serif;
 $font-sec: "Owfont", sans-serif;
 $font-add: "Arial-MT", sans-serif;
 // transition
 $trans: 0.35s linear;
+$trans-long: 0.75s linear;
