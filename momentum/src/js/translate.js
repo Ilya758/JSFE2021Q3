@@ -23,8 +23,8 @@ export default () => {
         console.log(lang);
         const settings = document.querySelector('.settings__heading');
         const fields = document.querySelectorAll('.settings__text');
-        const engSettings = ['Language', ' Audioplayer', 'Weather', 'Time', 'Date', 'Greeting', 'Quotes', 'Photosource'];
-        const rusSettings = ['Язык', ' Аудиоплеер', 'Погода', 'Время', 'Дата', 'Приветствие', 'Цитаты', 'Фоторесурс'];
+        const engSettings = ['Language', ' Audioplayer', 'Weather', 'Time', 'Date', 'Greeting', 'Quotes', 'Oscilloscope', 'Photosource'];
+        const rusSettings = ['Язык', ' Аудиоплеер', 'Погода', 'Время', 'Дата', 'Приветствие', 'Цитаты', 'Осциллограф', 'Фоторесурс'];
         let titles;
 
         if (lang === 'en-EN') {

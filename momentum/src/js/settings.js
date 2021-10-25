@@ -20,7 +20,8 @@ export default () => {
     const date = document.querySelector('.main__date');
     const greetingElement = document.querySelector('.main__greeting-container');
     const quoteContainer = document.querySelector('.footer__quote-container');
-    const elems = [audioplayer, weather, time, date, greetingElement, quoteContainer];
+    const visualizer = document.getElementById('canvas');
+    const elems = [audioplayer, weather, time, date, greetingElement, quoteContainer, visualizer];
 
     const radioLang = document.querySelectorAll('.button_type_language');
     const sources = document.querySelectorAll('.button_type_src');
@@ -85,7 +86,7 @@ export default () => {
     function getStateAfterReload() {
         let enabledTracks = [];
 
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 7; i++) {
             let currentTrack = localStorage.getItem(i);
             if (currentTrack === 'true') {
                 enabledTracks.push(tracks[i]);
