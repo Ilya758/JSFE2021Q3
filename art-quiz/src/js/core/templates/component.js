@@ -6,6 +6,10 @@ class Component {
             this.element.className = className;
         }
     }
+
+    render() {
+        return this.element;
+    }
 }
 
 export default Component;

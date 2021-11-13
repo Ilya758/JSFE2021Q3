@@ -2,7 +2,7 @@ import Component from './component';
 
 class ComponentWrapper extends Component {
     constructor(tagName, className) {
-        super(tagName, className);
+        super(tagName);
         this.innerContainer = document.createElement('div');
         this.innerContainer.className = 'container';
         this.content = document.createElement('div');
