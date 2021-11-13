@@ -1,0 +1,20 @@
+.main-page {
+    &__content {
+        display: grid;
+        padding: 70px 50px 23px 20px;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    &__buttons {
+
+        @include onlyFlex();
+
+        margin-bottom: 242px;
+        column-gap: 40px;
+    }
+}
+
+#main-page {
+    flex: 1;
+}

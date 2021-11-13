@@ -1,3 +1,81 @@
 * {
     box-sizing: border-box;
 }
+
+.container {
+    max-width: 1920px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.content {
+
+    @include onlyFlex();
+}
+
+.icon {
+    display: inline-block;
+
+    &-settings {
+        width: 36px;
+        height: 36px;
+        background-color: $bcg-color-white;
+        justify-self: flex-end;
+        mask: url("../assets/svg/icon-settings.svg");
+        transition: $trans;
+
+        &:hover {
+            background-color: $bcg-color-pink;
+            transform: rotate(90deg);
+        }
+    }
+
+    &-logo-app {
+        margin: 242px 0 165px;
+    }
+}
+
+.text {
+    text-decoration: none;
+
+    &_color {
+        &_white {
+            color: $font-color-white;
+        }
+    }
+}
+
+.button {
+    padding: 20px 99px;
+    border: 1px solid $border-color-white;
+    border-radius: 60px;
+    font: 500 22px $font-main;
+    line-height: 22px;
+    transition: $trans;
+    user-select: none;
+
+    &:hover {
+        background-color: $bcg-color-white;
+        color: $font-color-dark;
+    }
+
+    &:active {
+        border-color: $border-color-pink;
+        background-color: $bcg-color-pink;
+        color: $font-color-dark;
+    }
+}
+
+.logo-school {
+    width: 85px;
+    height: 31px;
+    background: url(../assets/svg/logo-school.svg);
+}
+
+#root {
+    height: 100vh;
+
+    @include flex(column, center, space-between);
+
+    background: url("../assets/img/main-large.png") 0 0/cover no-repeat;
+}
