@@ -6,7 +6,7 @@ class ComponentWrapper extends Component {
         this.innerContainer = document.createElement('div');
         this.innerContainer.className = 'container';
         this.content = document.createElement('div');
-        this.content.className = `${className}__content`;
+        this.content.className = `content ${className}__content`;
         this.innerContainer.append(this.content);
         this.element.append(this.innerContainer);
     }
