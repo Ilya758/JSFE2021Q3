@@ -13,20 +13,22 @@ class MainPage extends Page {
             'settings'
         ).render();
         this.logoApp = new Component('img', 'icon icon-logo-app').render();
+        this.logoApp.src = './assets/svg/icon-app-mainpage.svg';
+        this.logoApp.alt = 'App Main Logo';
         this.artistQuizButton = new ButtonLink(
-            'text text_color_white',
+            'text text_color_white button',
             'categories',
             'Artist Quiz',
             'artists'
         ).render();
         this.picturesQuizButton = new ButtonLink(
-            'text text_color_white',
+            'text text_color_white button',
             'categories',
             'Pictures Quiz',
             'pictures'
         ).render();
         this.buttonsContainer = new Component('div', `${id}__buttons`).render();
-        console.log(this.buttonsContainer);
+        // console.log(this.buttonsContainer);
         this.buttonsContainer.append(
             this.artistQuizButton,
             this.picturesQuizButton
