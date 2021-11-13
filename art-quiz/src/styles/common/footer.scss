@@ -1,3 +1,20 @@
 .footer {
     display: block;
+
+    &__content {
+        display: grid;
+        align-items: center;
+        padding: 0 20px 18px;
+        grid-template-columns: repeat(2, 1fr) 31px;
+    }
+
+    &__text {
+        font: 500 16px $font-main;
+        line-height: 20px;
+
+        &:nth-child(2) {
+            margin-right: 60px;
+            justify-self: flex-end;
+        }
+    }
 }
