@@ -39,6 +39,19 @@ class View {
         const newPage = new NewPage(id);
         this.root.prepend(newPage.render());
     }
+
+    fillTheVolumeGradient() {
+        const volumeSlider = document.querySelector('.settings-volume__slider');
+        const value = volumeSlider.value;
+        const BCG_PINK = '#ffbca2';
+        const BCG_GRAY = '#a4a4a4';
+        volumeSlider.style.background = `linear-gradient(to right, ${BCG_PINK} 0%, ${BCG_PINK} ${value}%, ${BCG_GRAY} ${value}%, ${BCG_GRAY} 100%)`;
+    }
+
+    initListeners() {
+        const volumeSlider = document.querySelector('.settings-volume__slider');
+        volumeSlider.addEventListener('input', this.fillTheVolumeGradient);
+    }
 }
 
 export default View;
