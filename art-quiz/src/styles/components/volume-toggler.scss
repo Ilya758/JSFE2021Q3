@@ -1,0 +1,23 @@
+.volume {
+    &-toggler {
+        &__slider {
+
+            @include flex(row, flex-start, center);
+
+            width: 48px;
+            height: 24px;
+            background: $bcg-color-gray-first;
+            border-radius: 1000px;
+            grid-area: 2 / 2 / 2 / 3;
+        }
+
+        &__thumb {
+            position: relative;
+            left: 4px;
+            width: 16px;
+            height: 16px;
+            background-color: $bcg-color-white;
+            border-radius: 50%;
+        }
+    }
+}

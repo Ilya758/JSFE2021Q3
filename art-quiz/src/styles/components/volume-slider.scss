@@ -1,0 +1,23 @@
+.settings {
+    &-volume {
+        &__slider {
+            width: 100%;
+            max-width: 492px;
+            height: 3px;
+            margin: 55px 0 18px;
+            appearance: none;
+            background-color: $bcg-color-gray-first;
+            border-radius: 5px;
+            outline: none;
+
+            &::-webkit-slider-thumb {
+                width: 16px;
+                height: 16px;
+                -webkit-appearance: none;
+                background: $bcg-color-white;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+        }
+    }
+}
