@@ -15,6 +15,8 @@
 
 .icon {
     display: inline-block;
+    border: none;
+    outline: none;
 
     &-settings {
         width: 36px;
@@ -32,6 +34,69 @@
 
     &-logo-app {
         margin: 242px 0 165px;
+    }
+
+    &-left-arrow-exit {
+        width: 10px;
+        height: 20px;
+        background-color: $bcg-color-white;
+        mask: url("../assets/svg/icon-arrow-return.svg");
+        transition: $trans;
+
+        &:hover {
+            background-color: $bcg-color-pink;
+        }
+    }
+
+    &-cross-exit {
+        width: 18px;
+        height: 18px;
+        background-color: $bcg-color-white;
+        justify-self: flex-end;
+        mask: url("../assets/svg/icon-quit.svg");
+        transition: $trans;
+
+        &:hover {
+            background-color: $bcg-color-pink;
+        }
+    }
+
+    &-mute {
+        width: 29px;
+        height: 20px;
+        background-color: $bcg-color-white;
+        mask: url("../assets/svg/icon-mute.svg") 0 0/cover no-repeat;
+        transition: $trans;
+
+        &:hover {
+            background-color: $bcg-color-pink;
+        }
+    }
+
+    &-sound {
+        width: 20px;
+        height: 20px;
+        background-color: $bcg-color-white;
+        mask: url("../assets/svg/icon-sound.svg") 0 0/cover no-repeat;
+        transition: $trans;
+
+        &:hover {
+            background-color: $bcg-color-pink;
+        }
+    }
+
+    @each $btn in add, sub {
+        &-#{$btn} {
+            width: 33px;
+            height: 33px;
+            background-color: $bcg-color-white;
+            mask: url(../assets/svg/icon-time-#{$btn}.svg) 0 0/cover no-repeat;
+            transition: $trans;
+
+            &:hover {
+                background-color: $bcg-color-pink;
+            }
+        }
     }
 }
 
@@ -64,6 +129,11 @@
         background-color: $bcg-color-pink;
         color: $font-color-dark;
     }
+    &_bcg {
+        &_initial {
+            background-color: initial;
+        }
+    }
 }
 
 .logo-school {
@@ -77,5 +147,11 @@
 
     @include flex(column, center, space-between);
 
-    background: url("../assets/img/main-large.png") 0 0/cover no-repeat;
+
+.heading {
+    &__text {
+        margin: 0;
+        font: 500 34px $font-main;
+        line-height: 28px;
+    }
 }

@@ -1,0 +1,106 @@
+.settings {
+    &__content {
+
+        @include flex(column, center, space-between);
+
+        padding: 43px 50px 0;
+    }
+
+    &__text {
+        font: 500 22px $font-main;
+        line-height: 28px;
+    }
+
+    &__exit {
+        &-container {
+            display: grid;
+            align-items: center;
+            grid-template-columns: 10px 1fr 1fr;
+
+            .settings__text {
+                margin-left: 23px;
+            }
+        }
+    }
+
+    &-volume {
+        &__container {
+            margin: 132px 0 80px;
+        }
+
+        &__buttons {
+            &-container {
+
+                @include flex(row, space-between, center);
+
+                max-width: 492px;
+            }
+        }
+    }
+
+    &-time {
+        &__container {
+            display: grid;
+            max-width: fit-content;
+            align-items: center;
+
+            .heading__text {
+                margin-bottom: 40px;
+                grid-area: 1;
+            }
+
+            .settings__text {
+                grid-area: 2 / 1;
+            }
+        }
+    }
+
+    &-game {
+        &__duration {
+            &-container {
+                max-width: fit-content;
+                margin-top: 80px;
+
+                .heading__text {
+                    margin-bottom: 40px;
+                }
+
+                .settings__text {
+                    margin: 0 24px;
+                }
+            }
+        }
+    }
+
+    &-duration {
+        &__container {
+
+            @include flex(row, flex-start, center);
+        }
+    }
+
+    &-change {
+        &__buttons {
+            &-container {
+
+                @include flex(row, flex-end);
+
+                margin-top: 115px;
+
+                .button {
+                    width: 100%;
+                    max-width: 287px;
+                }
+
+                .button:nth-child(2) {
+                    margin-left: 8px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+#settings {
+    flex: 1;
+}
