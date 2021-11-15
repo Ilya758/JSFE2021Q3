@@ -49,11 +49,12 @@
     }
 
     &-cross-exit {
-        width: 18px;
+        width: 100%;
+        max-width: 18px;
         height: 18px;
         background-color: $bcg-color-white;
         justify-self: flex-end;
-        mask: url("../assets/svg/icon-quit.svg");
+        mask: url("../assets/svg/icon-quit.svg") 0 0/cover no-repeat;
         transition: $trans;
 
         &:hover {
