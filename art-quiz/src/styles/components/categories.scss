@@ -65,4 +65,29 @@
             }
         }
     }
+
+    &__button-text,
+    &__text {
+        font: 500 22px $font-main;
+        line-height: 18px;
+    }
+
+    &__link {
+        margin-left: 120px;
+    }
+
+    &__button {
+        border: none;
+        margin-right: auto;
+        background: initial;
+        outline: none;
+
+        &-text {
+            transition: $trans;
+
+            &:hover {
+                color: $font-color-pink;
+            }
+        }
+    }
 }
