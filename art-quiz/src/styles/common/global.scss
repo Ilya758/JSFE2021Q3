@@ -98,6 +98,15 @@
             }
         }
     }
+
+    &-repeat {
+        width: 25px;
+        height: 25px;
+        margin-right: 12px;
+        background-color: $bcg-color-dark;
+        mask: url("../assets/svg/icon-repeat.svg") 0 0/cover no-repeat;
+        transition: $trans;
+    }
 }
 
 .text {
@@ -110,6 +119,10 @@
 
         &_pink {
             color: $font-color-pink;
+        }
+
+        &_dark {
+            color: $font-color-dark;
         }
     }
 }
@@ -133,6 +146,7 @@
         background-color: $bcg-color-pink;
         color: $font-color-dark;
     }
+
     &_bcg {
         &_initial {
             background-color: initial;
