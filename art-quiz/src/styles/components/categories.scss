@@ -20,7 +20,8 @@
         max-width: 206px;
 
         &-text {
-            font-size: 20px;
+            font: 500 20px $font-main;
+            line-height: 20px;
         }
 
         .categories__item-text {

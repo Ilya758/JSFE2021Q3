@@ -76,12 +76,12 @@ class Categories extends Page {
             const item = new Component('li', 'categories__item').render();
             const catText = new Text(
                 'span',
-                'text text_color_white categories__text categories__item-text',
+                'text text_color_white categories__item-text',
                 cat
             ).render();
             const catScore = new Text(
                 'span',
-                'text text_color_pink categories__text categories__item-text',
+                'text text_color_pink categories__item-text',
                 '10/10'
             ).render();
 
