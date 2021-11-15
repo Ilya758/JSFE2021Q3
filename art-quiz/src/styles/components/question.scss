@@ -1,0 +1,120 @@
+.question {
+    &__content {
+
+        @include flex(column);
+
+        padding: 50px 306px 0 317px;
+    }
+
+    &__container {
+
+        @include flex(column);
+
+        width: 100%;
+        margin-top: 65px;
+
+        h1 {
+            width: 100%;
+            max-width: 825px;
+            margin: 0;
+            text-align: left;
+        }
+    }
+
+    &__top {
+        &-container {
+
+            @include flex(row);
+
+            width: 100%;
+        }
+    }
+
+    &__heading {
+        &-text {
+            font: 700 28px $font-main;
+            letter-spacing: -0.5px;
+            line-height: 28px;
+        }
+    }
+
+    &__picture {
+        width: 100%;
+        max-width: 825px;
+        max-height: 498px;
+        border-radius: 20px;
+
+        &-container {
+
+            @include flex(row);
+
+            position: relative;
+            width: 100%;
+            margin: 44px 0 45px;
+        }
+    }
+
+    &__pagination {
+        &-list {
+
+            @include flex();
+
+            position: absolute;
+            bottom: 0;
+            margin: 0 0 40px;
+            column-gap: 20px;
+        }
+
+        &-item {
+            width: 15px;
+            height: 15px;
+            background: $bcg-color-gray-second;
+            border-radius: 50%;
+        }
+    }
+
+    &__answers {
+        &-list {
+
+            @include flex(row, space-between);
+
+            width: 100%;
+            max-width: 825px;
+            flex-wrap: wrap;
+            column-gap: 25px;
+            row-gap: 15px;
+        }
+
+        &-item {
+            width: calc(100% / 2 - 25px);
+        }
+
+        &-button {
+            width: 100%;
+            padding: 20px 99px;
+            border: none;
+            border: 1px solid $border-color-white;
+            background: initial;
+            border-radius: 60px;
+            font: 500 22px $font-main;
+            line-height: 22px;
+            transition: $trans;
+            user-select: none;
+
+            &:hover {
+                background-color: $bcg-color-white;
+                color: $font-color-dark;
+            }
+
+            &:active {
+                border-color: $border-color-pink;
+                background-color: $bcg-color-pink;
+                color: $font-color-dark;
+            }
+        }
+    }
+}
+
+#question {
+    flex: 1;
+}
