@@ -126,6 +126,12 @@
             color: $font-color-dark;
         }
     }
+
+    &_margin {
+        &_horiz {
+            margin: 0 79px 0 89px;
+        }
+    }
 }
 
 .button {

@@ -1,0 +1,34 @@
+.header {
+    &-score {
+        &__content {
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 50px 0;
+        }
+
+        &__links {
+            &-container {
+
+                @include flex(row, flex-end);
+
+                flex: 1;
+                margin-right: 120px;
+            }
+        }
+    }
+
+    &-exit {
+        &__container {
+
+            @include flex();
+
+            flex: 1;
+            justify-content: flex-start;
+            margin-left: 54px;
+
+            .settings__text {
+                margin-left: 15px;
+            }
+        }
+    }
+}
