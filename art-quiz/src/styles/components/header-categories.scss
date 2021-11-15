@@ -1,0 +1,19 @@
+.header {
+    &-categories {
+        &__content {
+
+            @include flex(row, flex-start ,center);
+
+            width: 100%;
+            padding: 44px 47px 0 52px;
+
+            .categories__text {
+                margin: 0 89px;
+            }
+        }
+    }
+}
+
+#categories {
+    flex: 1;
+}
