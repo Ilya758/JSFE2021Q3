@@ -6,9 +6,11 @@
     &__list {
         display: grid;
         width: 100%;
+        padding: 0 50px;
         column-gap: 25px;
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: repeat(2, 1fr);
+        justify-items: center;
         row-gap: 48px;
     }
 
