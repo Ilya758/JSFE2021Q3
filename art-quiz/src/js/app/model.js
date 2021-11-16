@@ -3,6 +3,10 @@ class Model {
         window.localStorage.setItem(item, value);
     }
 
+    static getGameCategory() {
+        return window.localStorage.getItem('gameSetup');
+    }
+
     static setGameCategory(setup) {
         this.gameSetup = setup;
         Model.commit('gameSetup', setup);
