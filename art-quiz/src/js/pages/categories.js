@@ -21,7 +21,7 @@ class Categories extends Page {
         this.logoApp.alt = 'App Second Logo';
         this.mainButton = new ButtonLink(
             'text text_color_white categories__button-text categories__link',
-            'main',
+            'main-page',
             'Home'
         ).render();
         this.categoriesText = new Text(
@@ -29,10 +29,10 @@ class Categories extends Page {
             'text categories__text text_color_pink',
             'Categories'
         ).render();
-        this.scoreButton = new Button(
+        this.scoreButton = new ButtonLink(
             'text text_color_white categories__button-text categories__button',
-            'button',
-            'score'
+            'score',
+            'Score'
         ).render();
         this.scoreButton.textContent = 'Score';
         this.settingsButton = new ButtonLink(
