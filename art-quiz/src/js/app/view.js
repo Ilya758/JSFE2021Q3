@@ -1,8 +1,20 @@
 import Component from '../core/templates/component';
 import ComponentWrapper from '../core/templates/component-wrapper';
 import MainPage from '../pages/main';
+import Settings from '../pages/settings';
+import QuestionArtist from '../pages/question-artist';
+import Categories from '../pages/categories';
+import Score from '../pages/score';
 
 class View {
+    static pageIds = {
+        'main-page': MainPage,
+        settings: Settings,
+        categories: Categories,
+        question: QuestionArtist,
+        score: Score,
+    };
+
     static renderFooter() {
         const footer = new ComponentWrapper('footer', 'footer').render();
         const footerContent = footer.querySelector('.footer__content');
