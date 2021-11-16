@@ -7,7 +7,7 @@ class Controller {
     constructor() {
         this.model = new Model();
         this.view = new View();
-        this.router = new Router();
+        this.router = new Router().init();
     }
 
     start() {
