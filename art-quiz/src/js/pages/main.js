@@ -16,13 +16,13 @@ class MainPage extends Page {
         this.logoApp.src = './assets/svg/icon-app-mainpage.svg';
         this.logoApp.alt = 'App Main Logo';
         this.artistQuizButton = new ButtonLink(
-            'text text_color_white button',
+            'text text_color_white button main-page__button',
             'categories',
             'Artist Quiz',
-            'artists'
+            'artist'
         ).render();
         this.picturesQuizButton = new ButtonLink(
-            'text text_color_white button',
+            'text text_color_white button main-page__button',
             'categories',
             'Pictures Quiz',
             'pictures'
