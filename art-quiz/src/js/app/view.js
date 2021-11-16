@@ -45,7 +45,8 @@ class View {
         View.render();
     }
 
-    static render(NewPage = MainPage, id = 'main-page') {
+    static render(NewPage = MainPage, id = 'main-page', gameSetup) {
+        this.gameSetup = gameSetup;
         const root = document.querySelector('#root');
 
         Array.from(root.children).forEach(child => {
@@ -53,8 +54,8 @@ class View {
                 child.remove();
             }
         });
-        console.log(NewPage);
-        const newPage = new NewPage(id);
+
+        const newPage = new NewPage(id, gameSetup);
         document.querySelector('#root').prepend(newPage.render());
     }
 

@@ -7,8 +7,9 @@ import Button from '../core/components/button';
 import Card from '../core/components/card';
 
 class Categories extends Page {
-    constructor(id) {
+    constructor(id, gameSetup) {
         super(id);
+        this.gameSetup = gameSetup;
         this.header = new ComponentWrapper('header', `header-${id}`).render();
         this.headerContent = this.header.querySelector(
             '.header-categories__content'
