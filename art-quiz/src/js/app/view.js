@@ -70,6 +70,17 @@ class View {
         const volumeSlider = document.querySelector('.settings-volume__slider');
         volumeSlider.addEventListener('input', this.fillTheVolumeGradient);
     }
+
+    static bindGameCategory(handler) {
+        this.mainPageButtons =
+            document.getElementsByClassName('main-page__button');
+        Array.from(this.mainPageButtons).forEach(btn => {
+            btn.addEventListener('click', event => {
+                const gameCaterory = event.target.dataset.role;
+                handler(gameCaterory);
+            });
+        });
+    }
 }
 
 export default View;
