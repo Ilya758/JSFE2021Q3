@@ -42,14 +42,20 @@ class View {
     constructor() {
         this.root = document.querySelector('#root');
         this.root.append(View.renderFooter());
+        View.render();
     }
 
-    render(NewPage = MainPage, id = 'main-page') {
-        if (document.querySelector(`#${id}`)) {
-            document.querySelector(`#${id}`).remove();
-        }
+    static render(NewPage = MainPage, id = 'main-page') {
+        const root = document.querySelector('#root');
+
+        Array.from(root.children).forEach(child => {
+            if (child.tagName.toLowerCase() !== 'footer') {
+                child.remove();
+            }
+        });
+        console.log(NewPage);
         const newPage = new NewPage(id);
-        this.root.prepend(newPage.render());
+        document.querySelector('#root').prepend(newPage.render());
     }
 
     fillTheVolumeGradient() {
