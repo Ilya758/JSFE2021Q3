@@ -11,7 +11,7 @@ class Model {
         window.localStorage.setItem(item, value);
     }
 
-    static getGameCategory() {
+    static getGameSetup() {
         return window.localStorage.getItem('gameSetup');
     }
 
