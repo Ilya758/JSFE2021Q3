@@ -28,6 +28,10 @@ class Model {
         return this.gameIsOver;
     }
 
+    static resetGameCategory() {
+        this.gameCategory = null;
+        this.commit('gameCategory', this.gameCategory);
+    }
 }
 
 export default Model;
