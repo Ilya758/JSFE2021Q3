@@ -34,11 +34,17 @@ class Router {
         Model.setGameCategory(setup);
     }
 
-    static handleQuestionGeneration() {
-        if (Model.getGameCategory() === 'artist') {
-            Model.getArtistQuestion();
-        } else {
-            Model.getPicturesQuestion();
+    static async handleQuestionGeneration(event) {
+        if (Model.getGameState) {
+            const questionInfo = await Model.startQuiz(event);
+            const currentHash = Router.getHash();
+            View.render(
+                View.pageIds[currentHash],
+                currentHash,
+                Model.getGameSetup(),
+                questionInfo
+            );
+        }
         }
 
     static resetHashAfterReload() {
