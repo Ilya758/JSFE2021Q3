@@ -24,6 +24,10 @@ class Model {
         this.commit('gameSetup', setup);
     }
 
+    static getQuestionInfo() {
+        return this.questionInfo;
+    }
+
 
     static async startQuiz(event) {
         this.gameIsOver = false;
