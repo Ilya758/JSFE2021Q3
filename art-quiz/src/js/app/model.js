@@ -15,6 +15,10 @@ class Model {
         return window.localStorage.getItem('gameSetup');
     }
 
+    static getGameCategory() {
+        return window.localStorage.getItem('gameCategory');
+    }
+
     static setGameCategory(setup) {
         this.gameSetup = setup;
         this.commit('gameSetup', setup);
