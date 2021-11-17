@@ -8,18 +8,23 @@ class Router {
 
     handleHash() {
         this.hash = window.location.hash ? window.location.hash.slice(1) : '';
-        const gameSetup = Model.getGameCategory();
 
-        if (this.hash) {
-            View.render(View.pageIds[this.hash], this.hash, gameSetup);
+    handleHash() {
+        const currentHash = Router.getHash();
+        const gameSetup = Model.getGameSetup();
+
+        if (currentHash === 'question') {
+            View.bindQuestionInfo(Router.handleQuestionGeneration);
+        } else if (currentHash) {
+            View.render(View.pageIds[currentHash], currentHash, gameSetup);
+
+            if (currentHash === 'categories') {
+                View.bindQuestionInfo(Router.handleQuestionGeneration);
+            }
+
+            View.bindGameCategory(Router.handleGameCategory);
         } else {
             View.render();
-        }
-
-        View.bindGameCategory(Router.handleGameCategory);
-
-        if (this.hash === 'categories') {
-            View.bindQuestionInfo(Router.handleQuestionGeneration);
         }
     }
 
