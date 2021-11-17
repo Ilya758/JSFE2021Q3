@@ -82,6 +82,18 @@ class View {
             });
         });
     }
+
+    static bindQuestionInfo(handler) {
+        const categoriesButtons = document.querySelectorAll(
+            '.categories__img-link'
+        );
+
+        categoriesButtons.forEach(catBtn => {
+            catBtn.addEventListener('click', () => {
+                handler();
+            });
+        });
+    }
 }
 
 export default View;
