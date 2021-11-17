@@ -13,6 +13,10 @@ class Router {
         }
 
         View.bindGameCategory(Router.handleGameCategory);
+
+        if (this.hash === 'categories') {
+            View.bindQuestionInfo(Router.handleQuestionGeneration);
+        }
     }
 
     init() {
@@ -24,6 +28,14 @@ class Router {
 
     static handleGameCategory(setup) {
         Model.setGameCategory(setup);
+    }
+
+    static handleQuestionGeneration() {
+        if (Model.getGameCategory() === 'artist') {
+            Model.getArtistQuestion();
+        } else {
+            Model.getPicturesQuestion();
+        }
     }
 }
 
