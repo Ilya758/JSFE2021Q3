@@ -7,8 +7,9 @@ import TimeProgressBar from '../core/components/time-progressbar';
 import Card from '../core/components/card';
 
 class Question extends Page {
-    constructor(id, gameSetup) {
+    constructor(id, gameSetup, questionInfo) {
         super(id);
+        this.questionInfo = questionInfo;
         this.gameSetup = gameSetup;
         this.wrapper = new ComponentWrapper('main', id).render();
         this.content = this.wrapper.querySelector('.question__content');
