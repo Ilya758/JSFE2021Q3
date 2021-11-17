@@ -24,6 +24,19 @@ class Model {
         this.commit('gameSetup', setup);
     }
 
+
+    static async startQuiz(event) {
+        this.gameIsOver = false;
+        this.currentRound = 1;
+        this.commit('gameIsOver', this.gameIsOver);
+
+        if (this.gameSetup === 'artist') {
+            return Model.getArtistQuestion(event);
+        }
+
+        return Model.getPicturesQuestion(event);
+    }
+
     static getGameState() {
         return this.gameIsOver;
     }
