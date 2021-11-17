@@ -45,7 +45,12 @@ class View {
         View.render();
     }
 
-    static render(NewPage = MainPage, id = 'main-page', gameSetup) {
+    static render(
+        NewPage = MainPage,
+        id = 'main-page',
+        gameSetup,
+        questionInfo
+    ) {
         this.gameSetup = gameSetup;
         const root = document.querySelector('#root');
 
@@ -55,7 +60,7 @@ class View {
             }
         });
 
-        const newPage = new NewPage(id, gameSetup);
+        const newPage = new NewPage(id, gameSetup, questionInfo);
         document.querySelector('#root').prepend(newPage.render());
     }
 
