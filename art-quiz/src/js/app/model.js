@@ -23,6 +23,11 @@ class Model {
         this.gameSetup = setup;
         this.commit('gameSetup', setup);
     }
+
+    static getGameState() {
+        return this.gameIsOver;
+    }
+
 }
 
 export default Model;
