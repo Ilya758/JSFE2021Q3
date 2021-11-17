@@ -1,4 +1,19 @@
 class Model {
+    static CATEGORIES = [
+        'portrait',
+        'landscape',
+        'still-life',
+        'impressionism',
+        'expressionism',
+        'avant-garde',
+        'renaissance',
+        'surrealism',
+        'kitsch',
+        'minimalism',
+        'interior',
+        'nude',
+    ];
+
     constructor() {
         this.gameIsOver = true;
         this.currentRound = 0;
