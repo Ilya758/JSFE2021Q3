@@ -17,7 +17,7 @@ class Model {
 
     static setGameCategory(setup) {
         this.gameSetup = setup;
-        Model.commit('gameSetup', setup);
+        this.commit('gameSetup', setup);
     }
 }
 
