@@ -2,6 +2,10 @@ import Model from './model';
 import View from './view';
 
 class Router {
+    constructor() {
+        View.bindResetHash(Router.resetHashAfterReload());
+    }
+
     handleHash() {
         this.hash = window.location.hash ? window.location.hash.slice(1) : '';
         const gameSetup = Model.getGameCategory();
@@ -36,6 +40,9 @@ class Router {
         } else {
             Model.getPicturesQuestion();
         }
+
+    static resetHashAfterReload() {
+        window.location.hash = '#main-page';
     }
 }
 

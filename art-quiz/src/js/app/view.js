@@ -89,9 +89,11 @@ class View {
         );
 
         categoriesButtons.forEach(catBtn => {
-            catBtn.addEventListener('click', () => {
-                handler();
-            });
+    static bindResetHash(handler) {
+        document.addEventListener('unload', () => {
+            handler();
+        });
+    }
         });
     }
 }
