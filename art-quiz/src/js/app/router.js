@@ -6,8 +6,10 @@ class Router {
         View.bindResetHash(Router.resetHashAfterReload());
     }
 
-    handleHash() {
+    static getHash() {
         this.hash = window.location.hash ? window.location.hash.slice(1) : '';
+        return this.hash;
+    }
 
     handleHash() {
         const currentHash = Router.getHash();
