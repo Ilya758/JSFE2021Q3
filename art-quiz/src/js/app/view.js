@@ -2,7 +2,7 @@ import Component from '../core/templates/component';
 import ComponentWrapper from '../core/templates/component-wrapper';
 import MainPage from '../pages/main';
 import Settings from '../pages/settings';
-import QuestionArtist from '../pages/question-artist';
+import Question from '../pages/question';
 import Categories from '../pages/categories';
 import Score from '../pages/score';
 
@@ -11,7 +11,7 @@ class View {
         'main-page': MainPage,
         settings: Settings,
         categories: Categories,
-        question: QuestionArtist,
+        question: Question,
         score: Score,
     };
 

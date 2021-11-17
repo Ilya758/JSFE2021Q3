@@ -6,9 +6,10 @@ import Button from '../core/components/button';
 import TimeProgressBar from '../core/components/time-progressbar';
 import Card from '../core/components/card';
 
-class QuestionArtist extends Page {
-    constructor(id) {
+class Question extends Page {
+    constructor(id, gameSetup) {
         super(id);
+        this.gameSetup = gameSetup;
         this.wrapper = new ComponentWrapper('main', id).render();
         this.content = this.wrapper.querySelector('.question__content');
         this.topContainer = new Component(
@@ -36,33 +37,30 @@ class QuestionArtist extends Page {
             'div',
             'question__container'
         ).render();
-        this.questionHeader = new Text(
-            'h1',
-            'text text_color_white question__heading-text',
-            'Which is Edward Munch picture?'
-        ).render();
-        this.questionAnswersContainer = new Component(
+        /** this.questionAnswersContainer = new Component(
             'div',
             'question__answers-container'
-        ).render();
+        ).render(); */
         /**this.questionPictureContainer = new Component(
             'div',
             'question__picture-container'
         ).render(); */
-        this.questionContainer.append(
-            this.questionHeader,
-            this.generateAnswersList(),
-            this.generatePaginationList()
-        );
+        this.generateAnswersList();
         this.content.append(this.topContainer, this.questionContainer);
         this.container.append(this.wrapper);
     }
 
     generatePaginationList() {
+        let relativeClass = '';
+
+        if (this.gameSetup === 'pictures') {
+            relativeClass = 'list_pos_rel';
+        }
+
         const CLASS = 'question__pagination';
         this.questionPaginationList = new Component(
             'ul',
-            `list ${CLASS}-list list_pos_rel`
+            `list ${CLASS}-list ${relativeClass}`
         ).render();
 
         for (let i = 0; i < 10; ) {
@@ -76,6 +74,21 @@ class QuestionArtist extends Page {
 
     generateAnswersList() {
         const CLASS = 'question__answers';
+
+        if (this.gameSetup === 'artist') {
+            this.generateArtistQuiz(CLASS);
+        } else {
+            this.generatePicturesQuiz(CLASS);
+        }
+    }
+
+    generatePicturesQuiz(CLASS) {
+        this.questionHeader = new Text(
+            'h1',
+            'text text_color_white question__heading-text',
+            'Which is Edward Munch picture?'
+        ).render();
+        this.questionContainer.prepend(this.questionHeader);
         this.answersList = new Component(
             'ul',
             `list ${CLASS}-list list_margin_top list_type_pics`
@@ -94,8 +107,61 @@ class QuestionArtist extends Page {
             item.append(label);
             this.answersList.append(item);
         }
+
+        this.questionContainer.append(
+            this.answersList,
+            this.generatePaginationList()
+        );
+
         return this.answersList;
+    }
+
+    generateArtistQuiz(CLASS) {
+        this.questionHeader = new Text(
+            'h1',
+            'text text_color_white question__heading-text',
+            'Who is the author of this picture?'
+        ).render();
+        this.questionPictureContainer = new Component(
+            'div',
+            'question__picture-container'
+        ).render();
+        this.questionPicture = new Card(
+            'question__picture',
+            './assets/img/test.jpg',
+            'Pic'
+        ).render();
+        this.questionPictureContainer.append(
+            this.questionPicture,
+            this.generatePaginationList()
+        );
+        this.questionContainer.append(
+            this.questionHeader,
+            this.questionPictureContainer
+        );
+
+        this.questionPaginationList = new Component(
+            'ul',
+            `list ${CLASS}-list`
+        ).render();
+
+        for (let i = 0; i < 4; ) {
+            i += 1;
+            const item = new Component('li', `${CLASS}-item`).render();
+            const button = new Button(
+                `text text_color_white ${CLASS}-button`,
+                'button',
+                'answer'
+            ).render();
+            button.textContent = 'Answer';
+            item.append(button);
+            this.questionPaginationList.append(item);
+        }
+
+        this.questionContainer.append(this.questionPaginationList);
+
+        return this.questionPaginationList;
     }
 }
 
-export default QuestionArtist;
+export default Question;
