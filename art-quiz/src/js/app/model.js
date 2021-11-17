@@ -24,6 +24,53 @@ class Model {
         this.commit('gameSetup', setup);
     }
 
+    static async getArtistQuestion(event) {
+        const category = event.target.parentElement.dataset.role;
+        this.commit('gameCategory', category);
+
+        if (this.currentRound !== 10 && this.currentRound !== 1) {
+            this.currentRound += 1;
+        }
+
+        this.commit('currentRound', this.currentRound);
+
+        const categoryNum = Model.CATEGORIES.indexOf(this.getGameCategory());
+        let photoAddNum = 0;
+        const COUNT_ROUNDS = 10;
+
+        if (this.gameSetup === 'pictures') {
+            photoAddNum = 120;
+        }
+
+        const questionNumber =
+            photoAddNum + categoryNum * COUNT_ROUNDS + this.currentRound;
+        const url =
+            'https://raw.githubusercontent.com/Ilya758/image-data/master/images.json';
+        const response = await fetch(url);
+        const data = await response.json();
+        const currentCorrectAnswer = await data[questionNumber].author;
+        const authorsName = new Set();
+        authorsName.add(currentCorrectAnswer);
+
+        while (authorsName.size < 4) {
+            const randomNum = Math.floor(Math.random() * 240);
+            const author = data[randomNum].author;
+            authorsName.add(author);
+        }
+
+        const shuffleAuthorsNameArray = Model.shuffle(Array.from(authorsName));
+
+        this.questionInfo = {
+            currentCorrectAnswer,
+            questionNumber,
+            shuffleAuthorsNameArray,
+        };
+
+        this.commit('questionInfo', JSON.stringify(this.questionInfo));
+
+        return this.questionInfo;
+    }
+
     static getQuestionInfo() {
         return this.questionInfo;
     }
