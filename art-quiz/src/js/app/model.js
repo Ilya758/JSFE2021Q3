@@ -32,6 +32,20 @@ class Model {
         this.gameCategory = null;
         this.commit('gameCategory', this.gameCategory);
     }
+
+    static shuffle(array) {
+        const mutatedArray = array;
+        for (let i = array.length - 1; i > 0; ) {
+            i -= 1;
+            let j = Math.floor(Math.random() * (i + 1));
+            [mutatedArray[i], mutatedArray[j]] = [
+                mutatedArray[j],
+                mutatedArray[i],
+            ];
+        }
+
+        return mutatedArray;
+    }
 }
 
 export default Model;
