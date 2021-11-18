@@ -94,6 +94,12 @@ class View {
         );
 
         categoriesButtons.forEach(catBtn => {
+            catBtn.addEventListener('click', event => {
+                handler(event);
+            });
+        });
+    }
+
     static bindResetHash(handler) {
         document.addEventListener('unload', () => {
             handler();
