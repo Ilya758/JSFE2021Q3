@@ -133,6 +133,18 @@
             background-image: url("../assets/svg/icon-error.svg");
         }
     }
+
+    &_cup {
+        width: 166px;
+        height: 156px;
+        background: url("../assets/svg/icon-result.svg") 0 0/cover no-repeat;
+    }
+
+    &_gameover {
+        width: 166px;
+        height: 157px;
+        background: url("../assets/svg/icon-gameover.svg") 0 0/cover no-repeat;
+    }
 }
 
 .text {
