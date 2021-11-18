@@ -53,10 +53,6 @@ class Model {
         let photoAddNum = 0;
         const COUNT_ROUNDS = 10;
 
-        if (this.gameSetup === 'pictures') {
-            photoAddNum = 120;
-        }
-
         const questionNumber =
             photoAddNum + categoryNum * COUNT_ROUNDS + this.currentRound;
         const url =
