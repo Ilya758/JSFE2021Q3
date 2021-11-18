@@ -83,11 +83,25 @@ class Question extends Page {
         }
     }
 
-    generatePicturesQuiz(CLASS) {
+    async generatePicturesQuiz(CLASS) {
+        const [
+            paintingName,
+            questionAuthor,
+            questionNumber,
+            paintingNums,
+            year,
+        ] = [
+            this.questionInfo.paintingName,
+            this.questionInfo.questionAuthor,
+            this.questionInfo.questionNumber,
+            this.questionInfo.shufflePaintingsNums,
+            this.questionInfo.year,
+        ];
+
         this.questionHeader = new Text(
             'h1',
             'text text_color_white question__heading-text',
-            'Which is Edward Munch picture?'
+            `Which is ${questionAuthor} picture?`
         ).render();
         this.questionContainer.prepend(this.questionHeader);
         this.answersList = new Component(
@@ -99,14 +113,21 @@ class Question extends Page {
             i += 1;
             const item = new Component('li', `${CLASS}-item`).render();
             const label = new Component('label', `${CLASS}-label`).render();
-            const src = `./assets/img/pictures-0${i}.jpg`;
-            const img = new Card(`${CLASS}-img`, src, 'Pic').render();
+
+            const imgUrl = `https://raw.githubusercontent.com/Ilya758/image-data/master/img/${paintingNums[i]}.jpg`;
+
+            const img = new Card(
+                `${CLASS}-img`,
+                imgUrl,
+                `Picture${i}`
+            ).render();
             const radioBtn = new Component('input', `${CLASS}-radio`).render();
             radioBtn.name = 'answer';
             radioBtn.type = 'radio';
             label.append(img, radioBtn);
             item.append(label);
             this.answersList.append(item);
+            i += 1;
         }
 
         this.questionContainer.append(
@@ -117,7 +138,17 @@ class Question extends Page {
         return this.answersList;
     }
 
-    generateArtistQuiz(CLASS) {
+    async generateArtistQuiz(CLASS) {
+        const [correctAnswer, paintingName, questionNum, authors, year] = [
+            this.questionInfo.currentCorrectAnswer,
+            this.questionInfo.paintingName,
+            this.questionInfo.questionNumber,
+            this.questionInfo.shuffleAuthorsNameArray,
+            this.year,
+        ];
+
+        const imgUrl = `https://raw.githubusercontent.com/Ilya758/image-data/master/full/${questionNum}full.jpg`;
+
         this.questionHeader = new Text(
             'h1',
             'text text_color_white question__heading-text',
@@ -129,7 +160,7 @@ class Question extends Page {
         ).render();
         this.questionPicture = new Card(
             'question__picture',
-            './assets/img/test.jpg',
+            imgUrl,
             'Pic'
         ).render();
         this.questionPictureContainer.append(
@@ -154,9 +185,10 @@ class Question extends Page {
                 'button',
                 'answer'
             ).render();
-            button.textContent = 'Answer';
+            button.textContent = authors[i];
             item.append(button);
             this.questionPaginationList.append(item);
+            i += 1;
         }
 
         this.questionContainer.append(this.questionPaginationList);
