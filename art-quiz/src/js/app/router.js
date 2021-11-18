@@ -55,6 +55,7 @@ class Router {
         }
 
     static resetHashAfterReload() {
+        Model.resetGameCategory();
         window.location.hash = '#main-page';
     }
 }
