@@ -108,6 +108,31 @@
         mask: url("../assets/svg/icon-repeat.svg") 0 0/cover no-repeat;
         transition: $trans;
     }
+
+    &_pos {
+        &_abs {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+        }
+    }
+
+    &_answer {
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        width: 60px;
+        height: 60px;
+        background: no-repeat 0 0/cover;
+
+        &_success {
+            background-image: url("../assets/svg/icon-success.svg");
+        }
+
+        &_error {
+            background-image: url("../assets/svg/icon-error.svg");
+        }
+    }
 }
 
 .text {
