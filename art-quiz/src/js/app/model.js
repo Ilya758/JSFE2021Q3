@@ -63,7 +63,13 @@ class Model {
             'https://raw.githubusercontent.com/Ilya758/image-data/master/images.json';
         const response = await fetch(url);
         const data = await response.json();
-        const currentCorrectAnswer = await data[questionNumber].author;
+
+        const [currentCorrectAnswer, year, paintingName] = [
+            await data[questionNumber].author,
+            await data[questionNumber].year,
+            await data[questionNumber].name,
+        ];
+
         const authorsName = new Set();
         authorsName.add(currentCorrectAnswer);
 
@@ -78,6 +84,8 @@ class Model {
         this.questionInfo = {
             currentCorrectAnswer,
             questionNumber,
+            year,
+            paintingName,
             shuffleAuthorsNameArray,
         };
 
