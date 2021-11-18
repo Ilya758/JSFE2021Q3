@@ -98,6 +98,55 @@ class Model {
         return this.questionInfo;
     }
 
+    static async getPicturesQuestion(event) {
+        const category = event.target.parentElement.dataset.role;
+        this.commit('gameCategory', category);
+
+        if (this.currentRound !== 10 && this.currentRound !== 1) {
+            this.currentRound += 1;
+        }
+
+        this.commit('currentRound', this.currentRound);
+
+        const categoryNum = Model.CATEGORIES.indexOf(this.getGameCategory());
+        let photoAddNum = 120;
+        const COUNT_ROUNDS = 10;
+
+        const questionNumber =
+            photoAddNum + categoryNum * COUNT_ROUNDS + this.currentRound;
+        const url =
+            'https://raw.githubusercontent.com/Ilya758/image-data/master/images.json';
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const [questionAuthor, paintingName, year] = [
+            await data[questionNumber].author,
+            await data[questionNumber].name,
+            await data[questionNumber].year,
+        ];
+
+        const paintings = new Set();
+        paintings.add(questionNumber);
+
+        while (paintings.size < 4) {
+            const randomNum = Math.floor(Math.random() * 240);
+            paintings.add(randomNum);
+        }
+
+        const shufflePaintingsNums = Model.shuffle(Array.from(paintings));
+
+        this.questionInfo = {
+            questionAuthor,
+            questionNumber,
+            year,
+            paintingName,
+            shufflePaintingsNums,
+        };
+
+        this.commit('questionInfo', JSON.stringify(this.questionInfo));
+
+        return this.questionInfo;
+    }
 
     static async startQuiz(event) {
         this.gameIsOver = false;
