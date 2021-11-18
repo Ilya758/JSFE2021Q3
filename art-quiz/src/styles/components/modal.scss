@@ -97,4 +97,56 @@
             }
         }
     }
+
+    &-complete {
+        padding: 220px 0 0;
+
+        &__content {
+
+            @include flex();
+
+            position: relative;
+            flex-direction: column;
+            padding: 47px 41px 40px;
+            background-color: $bcg-color-white;
+            border-radius: 20px;
+        }
+
+        &__heading {
+            margin: 31px 0 37px;
+            font: 600 42px $font-main;
+            line-height: 51px;
+        }
+
+        &__score {
+            margin: 0;
+            font: 700 82px $font-main;
+            line-height: 102px;
+        }
+
+        &__buttons {
+            &-container {
+
+                @include onlyFlex();
+
+                width: 100%;
+                margin-top: 60px;
+                column-gap: 20px;
+            }
+        }
+
+        &__button {
+            width: 100%;
+            max-width: 210px;
+            border: 1.5px solid $border-color-dark;
+
+            &:first-child {
+                padding: 20px 75px;
+            }
+
+            &:last-child {
+                padding: 20px 54px;
+            }
+        }
+    }
 }
