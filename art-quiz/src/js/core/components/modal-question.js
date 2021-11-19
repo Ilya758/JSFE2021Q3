@@ -7,8 +7,10 @@ import Card from './card';
 class ModalQuestion extends Modal {
     static CLASS = 'modal-question';
 
-    constructor() {
+    constructor(responseInfo) {
         super(ModalQuestion.CLASS);
+
+        this.responseInfo = responseInfo;
 
         this.content = this.wrapper.querySelector(
             `.${ModalQuestion.CLASS}__content`
@@ -19,16 +21,17 @@ class ModalQuestion extends Modal {
             `${ModalQuestion.CLASS}__picture-container`
         ).render();
 
-        this.answerIcon = new Component(
-            'span',
-            'icon icon_answer icon_answer_success'
-        ).render();
+        this.answerIcon = ModalQuestion.generateCorrectIcon(this.responseInfo);
 
-        this.correctPicture = ModalQuestion.generateCorrectPic();
+        this.correctPicture = ModalQuestion.generateCorrectPic(
+            this.responseInfo
+        );
 
         this.pictureContainer.append(this.correctPicture, this.answerIcon);
 
-        this.generateCorrectInfo();
+        this.infoContainer = ModalQuestion.generateCorrectInfo(
+            this.responseInfo
+        );
 
         this.nextButton = new Button(
             'button modal-question__button',
@@ -36,7 +39,6 @@ class ModalQuestion extends Modal {
             'next-question'
         ).render();
         this.nextButton.textContent = 'Next';
-        this.infoContainer = this.generateCorrectInfo();
 
         this.content.append(
             this.pictureContainer,
@@ -45,34 +47,50 @@ class ModalQuestion extends Modal {
         );
     }
 
-    static generateCorrectPic() {
-        const imgUrl =
-            'https://raw.githubusercontent.com/Ilya758/image-data/master/img/0.jpg';
+    static generateCorrectPic(info) {
+        const imgNumber = info.questionNumber;
+        const imgUrl = `https://raw.githubusercontent.com/Ilya758/image-data/master/img/${imgNumber}.jpg`;
 
         const img = new Card(
             `${ModalQuestion.CLASS}__picture`,
             imgUrl,
-            `Picture${1}`
+            `Picture${imgNumber}`
         ).render();
 
         return img;
     }
 
-    generateCorrectInfo() {
+    static generateCorrectIcon(info) {
+        let cls;
+
+        if (info.curAnswer) {
+            cls = 'success';
+        } else {
+            cls = 'error';
+        }
+
+        const icon = new Component(
+            'span',
+            `icon icon_answer icon_answer_${cls}`
+        ).render();
+
+        return icon;
+    }
+
+    static generateCorrectInfo(info) {
         const container = new Component(
             'div',
             `${ModalQuestion.CLASS}__container`
         ).render();
-
         this.heading = new Text(
             'h2',
             'text text_color_dark modal__heading modal-question__heading',
-            'Girl with a Pearl Earring'
+            `${info.paintingName}`
         ).render();
         this.text = new Text(
             'h3',
             'text text_color_dark modal-question__text',
-            'Johannes Vermeer, 1665'
+            `${info.currentCorrectAnswer}, ${info.year}`
         ).render();
 
         container.append(this.heading, this.text);

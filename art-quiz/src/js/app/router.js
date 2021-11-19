@@ -1,3 +1,4 @@
+import Question from '../pages/question';
 import Model from './model';
 import View from './view';
 
@@ -11,12 +12,12 @@ class Router {
         return this.hash;
     }
 
-    handleHash() {
+    async handleHash() {
         const currentHash = Router.getHash();
         const gameSetup = Model.getGameSetup();
 
         if (currentHash === 'question') {
-            View.bindQuestionInfo(Router.handleQuestionGeneration);
+            await View.bindQuestionInfo(Router.handleQuestionGeneration);
         } else if (currentHash) {
             View.render(View.pageIds[currentHash], currentHash, gameSetup);
 
@@ -45,18 +46,23 @@ class Router {
         if (Model.getGameState) {
             const questionInfo = await Model.startQuiz(event);
             const currentHash = Router.getHash();
-            View.render(
+            await View.render(
                 View.pageIds[currentHash],
                 currentHash,
                 Model.getGameSetup(),
                 questionInfo
             );
+            await Question.bindAnswer(Router.handleAnswer);
         }
-        }
+    }
 
     static resetHashAfterReload() {
         Model.resetGameCategory();
         window.location.hash = '#main-page';
+    }
+
+    static handleAnswer(button) {
+        return Model.getCorrectAnswer(button);
     }
 }
 

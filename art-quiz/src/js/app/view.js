@@ -45,7 +45,7 @@ class View {
         View.render();
     }
 
-    static render(
+    static async render(
         NewPage = MainPage,
         id = 'main-page',
         gameSetup,
@@ -88,7 +88,7 @@ class View {
         });
     }
 
-    static bindQuestionInfo(handler) {
+    static async bindQuestionInfo(handler) {
         const categoriesButtons = document.querySelectorAll(
             '.categories__img-link'
         );

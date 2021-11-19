@@ -5,6 +5,7 @@ import Text from '../core/components/text';
 import Button from '../core/components/button';
 import TimeProgressBar from '../core/components/time-progressbar';
 import Card from '../core/components/card';
+import ModalQuestion from '../core/components/modal-question';
 
 class Question extends Page {
     constructor(id, gameSetup, questionInfo) {
@@ -183,7 +184,7 @@ class Question extends Page {
             const button = new Button(
                 `text text_color_white ${CLASS}-button`,
                 'button',
-                'answer'
+                authors[i]
             ).render();
             button.textContent = authors[i];
             item.append(button);
@@ -194,6 +195,21 @@ class Question extends Page {
         this.questionContainer.append(this.questionPaginationList);
 
         return this.questionPaginationList;
+    }
+
+    static async bindAnswer(handler) {
+        this.answerButtons = document
+            .querySelector('#root')
+            .querySelectorAll('.question__answers-button');
+
+        this.answerButtons.forEach(btn => {
+            btn.addEventListener('click', async event => {
+                const responseInfo = await handler(event);
+                const questionModal = new ModalQuestion(responseInfo).render();
+                questionModal.classList.add('active');
+                document.querySelector('#root').before(questionModal);
+            });
+        });
     }
 }
 

@@ -20,6 +20,7 @@ class Model {
         this.roundIsOver = true;
         this.currentAnswer = false;
         this.questionInfo = null;
+        this.currentAnswersArray = null;
     }
 
     static commit(item, value) {
@@ -177,6 +178,34 @@ class Model {
         }
 
         return mutatedArray;
+    }
+
+    static getCorrectAnswer(button) {
+        const curAnswer = button.target.dataset.role;
+        const curCorrectAnswer = this.questionInfo.currentCorrectAnswer;
+
+        const thisAnswerIsCorrect = curAnswer === curCorrectAnswer;
+        const curRound = this.currentRound;
+        // const category = this.getGameCategory();
+
+        if (curRound === 1) {
+            this.currentAnswersArray = Model.getInitAnswersArray();
+        }
+
+        this.currentAnswersArray[curRound - 1] = thisAnswerIsCorrect;
+
+        this.commit('currentAnswers', JSON.stringify(this.currentAnswersArray));
+
+        const callbackInfo = this.getQuestionInfo();
+        callbackInfo.curAnswer = thisAnswerIsCorrect;
+
+        return callbackInfo;
+    }
+
+    static getInitAnswersArray() {
+        return [...Array(10).keys()].map(() => {
+            return false;
+        });
     }
 }
 
