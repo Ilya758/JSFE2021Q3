@@ -64,6 +64,35 @@ class Router {
     static handleAnswer(button) {
         return Model.getCorrectAnswer(button);
     }
+
+    static async handleNewQuestion() {
+        if (Model.getCurrentRound() === '10') {
+            const results = await Model.getCurrentRoundResults();
+            const categoryCompleteModal = new ModalRoundComplete(
+                results
+            ).render();
+
+            const nextCategory = Model.getNextCategory();
+
+            View.showFinalResults(
+                categoryCompleteModal,
+                Router.handleQuestionGeneration
+            );
+        } else {
+            const questionInfo = await Model.generateNewQuestion();
+            const currentHash = Router.getHash();
+            await View.render(
+                View.pageIds[currentHash],
+                currentHash,
+                Model.getGameSetup(),
+                questionInfo
+            );
+            await Question.bindAnswer(
+                Router.handleAnswer,
+                Router.handleNewQuestion
+            );
+        }
+    }
 }
 
 export default Router;

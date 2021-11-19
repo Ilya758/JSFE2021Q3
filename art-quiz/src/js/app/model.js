@@ -157,6 +157,17 @@ class Model {
         return Model.getPicturesQuestion(event);
     }
 
+    static async generateNewQuestion() {
+        this.currentRound += 1;
+        const category = this.getGameCategory();
+
+        if (this.gameSetup === 'artist') {
+            return Model.getArtistQuestion('', category);
+        }
+
+        return Model.getPicturesQuestion('', category);
+    }
+
     static getGameState() {
         return this.gameIsOver;
     }
