@@ -171,9 +171,18 @@
     }
 }
 
+.bcg {
+    &_color {
+        &_gray {
+            background: rgba(1, 1, 1, 0.6);
+        }
+    }
+}
+
 .button {
     padding: 20px 99px;
     border: 1px solid $border-color-white;
+    background-color: transparent;
     border-radius: 60px;
     font: 500 22px $font-main;
     line-height: 22px;
@@ -209,6 +218,9 @@
 
     @include flex(column, center, space-between);
 
+    //background-color: gray;
+    background: url("../assets/img/main-large.png") 0 0/cover no-repeat;
+}
 
 .heading {
     &__text {
@@ -221,4 +233,8 @@
 .list {
     padding: 0;
     list-style: none;
+}
+
+.active {
+    display: flex !important;
 }
