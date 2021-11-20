@@ -49,7 +49,7 @@ class Model {
     }
 
     static async getArtistQuestion(event, cat) {
-        const category = cat || event.target.parentElement.dataset.role;
+        const category = cat || event.parentElement.dataset.role;
         this.commit('gameCategory', category);
         this.commit('currentRound', this.currentRound);
 
@@ -238,13 +238,17 @@ class Model {
 
     static async getCurrentRoundResults() {
         const currentAnswers = JSON.parse(this.getCurrentAnswers());
-        const overallQuestions = currentAnswers.length;
-        const correctAnswers = currentAnswers.filter(el => el === true).length;
+        if (currentAnswers !== null) {
+            const overallQuestions = currentAnswers.length;
+            const correctAnswers = currentAnswers.filter(
+                el => el === true
+            ).length;
 
-        return {
-            overallQuestions,
-            correctAnswers,
-        };
+            return {
+                overallQuestions,
+                correctAnswers,
+            };
+        }
     }
 
     static getNextCategory() {
@@ -279,8 +283,6 @@ class Model {
             currentAnswers;
 
         this.commit('overallResults', JSON.stringify(this.overallResults));
-
-        console.log(this.overallResults);
     }
 
     static getOverallResults() {
@@ -292,6 +294,42 @@ class Model {
             [...Array(12).keys()].map(() => Model.getInitAnswersArray()),
             [...Array(12).keys()].map(() => Model.getInitAnswersArray()),
         ];
+    }
+
+    static async setStateOfQuizCategory() {
+        const currentNdxOfArrayCategory = Model.CATEGORIES.indexOf(
+            this.getGameCategory()
+        );
+        this.categoryState = JSON.parse(Model.getStateOfQuizCategory());
+
+        if (!this.categoryState) {
+            this.categoryState = this.setOverallResultsArray();
+            this.commit('categoryState', JSON.stringify(this.categoryState));
+        }
+
+        if (currentNdxOfArrayCategory !== -1) {
+            const correctAnswers = await Model.getCurrentRoundResults();
+            this.categoryState = JSON.parse(Model.getStateOfQuizCategory());
+            let setupNdx;
+
+            if (Model.getGameSetup() === 'artist') {
+                setupNdx = 0;
+            } else {
+                setupNdx = 1;
+            }
+
+            this.categoryState[setupNdx][currentNdxOfArrayCategory] = [
+                true,
+                correctAnswers.correctAnswers,
+            ];
+
+            this.commit('categoryState', JSON.stringify(this.categoryState));
+        }
+        return this.categoryState;
+    }
+
+    static getStateOfQuizCategory() {
+        return window.localStorage.getItem('categoryState');
     }
 }
 

@@ -21,7 +21,13 @@ class Router {
             /** await View.bindQuestionInfo(Router.handleQuestionGeneration); */
             /**  await Question.bindNewQuestion(Router.handleNewQuestion); */
         } else if (currentHash) {
-            View.render(View.pageIds[currentHash], currentHash, gameSetup);
+            const categoryState = await Model.setStateOfQuizCategory();
+            await View.render(
+                View.pageIds[currentHash],
+                currentHash,
+                gameSetup,
+                categoryState
+            );
 
             if (currentHash === 'categories') {
                 View.bindQuestionInfo(Router.handleQuestionGeneration);
@@ -79,7 +85,6 @@ class Router {
             ).render();
 
             Model.saveCurrentResultsToOverallArray();
-
             View.showFinalResults(
                 categoryCompleteModal,
                 Router.handleQuestionGeneration,

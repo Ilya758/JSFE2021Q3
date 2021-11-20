@@ -49,18 +49,24 @@ class View {
         NewPage = MainPage,
         id = 'main-page',
         gameSetup,
-        questionInfo
+        questionInfo,
+        categoryState
     ) {
         this.gameSetup = gameSetup;
+        this.categoryState = categoryState;
         const root = document.querySelector('#root');
-
         Array.from(root.children).forEach(child => {
             if (child.tagName.toLowerCase() !== 'footer') {
                 child.remove();
             }
         });
 
-        const newPage = new NewPage(id, gameSetup, questionInfo);
+        const newPage = new NewPage(
+            id,
+            gameSetup,
+            questionInfo,
+            this.categoryState
+        );
         document.querySelector('#root').prepend(newPage.render());
     }
 
@@ -95,7 +101,11 @@ class View {
 
         categoriesButtons.forEach(catBtn => {
             catBtn.addEventListener('click', event => {
-                handler(event);
+                if (event.target.tagName === 'SPAN') {
+                    handler(event.target.parentElement);
+                } else {
+                    handler(event.target);
+                }
             });
         });
     }

@@ -6,9 +6,10 @@ import Text from '../core/components/text';
 import Card from '../core/components/card';
 
 class Categories extends Page {
-    constructor(id, gameSetup) {
+    constructor(id, gameSetup, categoryState) {
         super(id);
         this.gameSetup = gameSetup;
+        this.categoryState = categoryState;
         this.header = new ComponentWrapper('header', `header-${id}`).render();
         this.headerContent = this.header.querySelector(
             '.header-categories__content'
@@ -48,11 +49,11 @@ class Categories extends Page {
         );
         this.main = new ComponentWrapper('main', id).render();
         this.mainContent = this.main.querySelector('.categories__content');
-        this.mainContent.append(this.gridContainerInit());
+        this.mainContent.append(this.gridContainerInit(this.categoryState));
         this.container.append(this.header, this.main);
     }
 
-    gridContainerInit() {
+    gridContainerInit(state) {
         this.gridContainer = new Component(
             'ul',
             'list categories__list'
@@ -72,17 +73,29 @@ class Categories extends Page {
             'Nude',
         ];
         CATEGORIES.forEach((cat, ndx) => {
+            const ndxSetup = this.gameSetup === 'artist' ? 0 : 1;
+            const isCategoryPlayed = state[ndxSetup][ndx][0];
+            let correctAnswers = state[ndxSetup][ndx][1];
+
+            if (correctAnswers === false) {
+                correctAnswers = 0;
+            }
+
             const item = new Component('li', 'categories__item').render();
             const catText = new Text(
                 'span',
                 'text text_color_white categories__item-text',
                 cat
             ).render();
-            const catScore = new Text(
-                'span',
-                'text text_color_pink categories__item-text',
-                '10/10'
-            ).render();
+            let catScore = '';
+
+            if (isCategoryPlayed) {
+                catScore = new Text(
+                    'span',
+                    'text text_color_pink categories__item-text',
+                    `${correctAnswers}/10`
+                ).render();
+            }
 
             function propHandler(prop) {
                 const lowerCaseProp = prop.toLowerCase();
@@ -104,21 +117,29 @@ class Categories extends Page {
                 ndx + 1
             )}.jpg`;
             const img = new Card('categories__img', src, cat).render();
+            img.style.filter = `grayscale(${1 - correctAnswers / 10})`;
 
-            const repeatTextContainer = new Component(
-                'div',
-                'categories__repeat-container'
-            ).render();
-            const repeatIcon = new Component(
-                'span',
-                'icon icon-repeat'
-            ).render();
-            const playAgainText = new Text(
-                'span',
-                'text categories__text text_color_dark',
-                'Play again'
-            ).render();
-            repeatTextContainer.append(repeatIcon, playAgainText);
+            let repeatTextContainer;
+
+            if (isCategoryPlayed) {
+                repeatTextContainer = new Component(
+                    'div',
+                    'categories__repeat-container'
+                ).render();
+                const repeatIcon = new Component(
+                    'span',
+                    'icon icon-repeat'
+                ).render();
+                const playAgainText = new Text(
+                    'span',
+                    'text categories__text text_color_dark',
+                    'Play again'
+                ).render();
+                repeatTextContainer.append(repeatIcon, playAgainText);
+            } else {
+                repeatTextContainer = '';
+            }
+
             imgLink.append(img, repeatTextContainer);
 
             item.append(catText, catScore, imgLink);
