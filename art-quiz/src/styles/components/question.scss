@@ -173,3 +173,17 @@
         }
     }
 }
+
+.item {
+    &_state {
+        &_success {
+            border: transparent;
+            background-color: $bcg-color-green;
+        }
+
+        &_error {
+            border: transparent;
+            background-color: $bcg-color-pink;
+        }
+    }
+}

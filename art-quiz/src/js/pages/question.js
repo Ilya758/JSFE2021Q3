@@ -232,6 +232,17 @@ class Question extends Page {
         this.answerButtons.forEach(btn => {
             btn.addEventListener('click', async event => {
                 const responseInfo = await handler(event);
+                const answerIsCorrect = responseInfo.curAnswer;
+                let addClass = '';
+
+                if (answerIsCorrect) {
+                    addClass = 'success';
+                } else {
+                    addClass = 'error';
+                }
+
+                event.target.classList.add(`item_state_${addClass}`);
+
                 const questionModal = new ModalQuestion(responseInfo).render();
                 questionModal.classList.add('active');
                 document.querySelector('#root').prepend(questionModal);
