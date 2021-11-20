@@ -23,6 +23,10 @@ class Model {
         this.currentAnswersArray = null;
     }
 
+    static getCategories() {
+        return Model.CATEGORIES;
+    }
+
     static commit(item, value) {
         window.localStorage.setItem(item, value);
     }
@@ -35,18 +39,19 @@ class Model {
         return window.localStorage.getItem('gameCategory');
     }
 
+    static getCurrentRound() {
+        return window.localStorage.getItem('currentRound');
+    }
+
     static setGameCategory(setup) {
         this.gameSetup = setup;
         this.commit('gameSetup', setup);
     }
 
-    static async getArtistQuestion(event) {
-        const category = event.target.parentElement.dataset.role;
+    static async getArtistQuestion(event, cat) {
+        const category = cat || event.target.parentElement.dataset.role;
         this.commit('gameCategory', category);
 
-        if (this.currentRound !== 10 && this.currentRound !== 1) {
-            this.currentRound += 1;
-        }
 
         this.commit('currentRound', this.currentRound);
 
@@ -95,8 +100,8 @@ class Model {
         return this.questionInfo;
     }
 
-    static async getPicturesQuestion(event) {
-        const category = event.target.parentElement.dataset.role;
+    static async getPicturesQuestion(event, cat) {
+        const category = cat || event.target.parentElement.dataset.role;
         this.commit('gameCategory', category);
 
         if (this.currentRound !== 10 && this.currentRound !== 1) {
@@ -145,16 +150,16 @@ class Model {
         return this.questionInfo;
     }
 
-    static async startQuiz(event) {
+    static async startQuiz(event, nextCategory) {
         this.gameIsOver = false;
         this.currentRound = 1;
         this.commit('gameIsOver', this.gameIsOver);
 
         if (this.gameSetup === 'artist') {
-            return Model.getArtistQuestion(event);
+            return Model.getArtistQuestion(event, nextCategory);
         }
 
-        return Model.getPicturesQuestion(event);
+        return Model.getPicturesQuestion(event, nextCategory);
     }
 
     static async generateNewQuestion() {
@@ -217,6 +222,30 @@ class Model {
         return [...Array(10).keys()].map(() => {
             return false;
         });
+    }
+
+    static getCurrentAnswers() {
+        return window.localStorage.getItem('currentAnswers');
+    }
+
+    static async getCurrentRoundResults() {
+        const currentAnswers = JSON.parse(this.getCurrentAnswers());
+        const overallQuestions = currentAnswers.length;
+        const correctAnswers = currentAnswers.filter(el => el === true).length;
+
+        return {
+            overallQuestions,
+            correctAnswers,
+        };
+    }
+
+    static getNextCategory() {
+        const currentCategory = Model.getGameCategory();
+        const categories = Model.getCategories();
+        const currentCategoryNdx = categories.indexOf(currentCategory);
+        const nextCategory = categories[currentCategoryNdx + 1];
+
+        return nextCategory;
     }
 }
 

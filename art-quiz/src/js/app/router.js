@@ -1,3 +1,4 @@
+import ModalRoundComplete from '../core/components/modal-round-complete';
 import Question from '../pages/question';
 import Model from './model';
 import View from './view';
@@ -42,9 +43,9 @@ class Router {
         Model.setGameCategory(setup);
     }
 
-    static async handleQuestionGeneration(event) {
+    static async handleQuestionGeneration(event, nextCategory) {
         if (Model.getGameState) {
-            const questionInfo = await Model.startQuiz(event);
+            const questionInfo = await Model.startQuiz(event, nextCategory);
             const currentHash = Router.getHash();
             await View.render(
                 View.pageIds[currentHash],
@@ -52,7 +53,10 @@ class Router {
                 Model.getGameSetup(),
                 questionInfo
             );
-            await Question.bindAnswer(Router.handleAnswer);
+            await Question.bindAnswer(
+                Router.handleAnswer,
+                Router.handleNewQuestion
+            );
         }
     }
 
@@ -68,15 +72,15 @@ class Router {
     static async handleNewQuestion() {
         if (Model.getCurrentRound() === '10') {
             const results = await Model.getCurrentRoundResults();
+            const nextCategory = Model.getNextCategory();
             const categoryCompleteModal = new ModalRoundComplete(
                 results
             ).render();
 
-            const nextCategory = Model.getNextCategory();
-
             View.showFinalResults(
                 categoryCompleteModal,
-                Router.handleQuestionGeneration
+                Router.handleQuestionGeneration,
+                nextCategory
             );
         } else {
             const questionInfo = await Model.generateNewQuestion();

@@ -197,7 +197,7 @@ class Question extends Page {
         return this.questionPaginationList;
     }
 
-    static async bindAnswer(handler) {
+    static async bindAnswer(handler, secondHandler) {
         this.answerButtons = document
             .querySelector('#root')
             .querySelectorAll('.question__answers-button');
@@ -207,7 +207,15 @@ class Question extends Page {
                 const responseInfo = await handler(event);
                 const questionModal = new ModalQuestion(responseInfo).render();
                 questionModal.classList.add('active');
-                document.querySelector('#root').before(questionModal);
+                document.querySelector('#root').prepend(questionModal);
+
+                const nextQuestionButton = document
+                    .querySelector('#root')
+                    .querySelector('.modal-question__button');
+
+                nextQuestionButton.addEventListener('click', () => {
+                    secondHandler();
+                });
             });
         });
     }

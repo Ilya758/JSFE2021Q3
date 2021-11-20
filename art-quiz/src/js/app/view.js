@@ -105,6 +105,22 @@ class View {
             handler();
         });
     }
+
+    static showFinalResults(info, handler, nextCategory) {
+        const categoryCompleteModal = info;
+        categoryCompleteModal.classList.add('active');
+        const prevModal = document.querySelector('.modal-question');
+
+        prevModal.remove();
+
+        document.querySelector('#root').prepend(categoryCompleteModal);
+
+        const nextQuizButton = document
+            .querySelector('#root')
+            .querySelectorAll('.modal-complete__button')[1];
+
+        nextQuizButton.addEventListener('click', () => {
+            handler('', nextCategory);
         });
     }
 }

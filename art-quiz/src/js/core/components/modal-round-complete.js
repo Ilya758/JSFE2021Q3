@@ -8,8 +8,10 @@ import ButtonLink from './button-link';
 class ModalRoundComplete extends Modal {
     static CLASS = 'modal-complete';
 
-    constructor() {
+    constructor(results) {
         super(ModalRoundComplete.CLASS);
+
+        this.results = results;
 
         this.content = this.wrapper.querySelector(
             `.${ModalRoundComplete.CLASS}__content`
@@ -21,7 +23,9 @@ class ModalRoundComplete extends Modal {
             'text text_color_dark modal-complete__heading',
             'Congratulations!'
         ).render();
-        this.currentScoreText = ModalRoundComplete.getCurrentScore();
+        this.currentScoreText = ModalRoundComplete.getCurrentScore(
+            this.results
+        );
 
         this.buttonsContainer = new Component(
             'div',
@@ -49,11 +53,12 @@ class ModalRoundComplete extends Modal {
         );
     }
 
-    static getCurrentScore() {
+    static getCurrentScore(answers) {
+        const correctAnswersCount = answers.correctAnswers;
         const score = new Text(
             'h3',
             'text text_color_dark modal-complete__score',
-            '8/10'
+            `${correctAnswersCount}/10`
         ).render();
 
         return score;
