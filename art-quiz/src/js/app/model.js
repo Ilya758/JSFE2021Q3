@@ -51,9 +51,15 @@ class Model {
     static async getArtistQuestion(event, cat) {
         const category = cat || event.target.parentElement.dataset.role;
         this.commit('gameCategory', category);
-
-
         this.commit('currentRound', this.currentRound);
+
+        if (+this.currentRound === 1) {
+            this.currentAnswersArray = Model.getInitAnswersArray();
+            this.commit(
+                'currentAnswers',
+                JSON.stringify(this.currentAnswersArray)
+            );
+        }
 
         const categoryNum = Model.CATEGORIES.indexOf(this.getGameCategory());
         let photoAddNum = 0;
@@ -82,17 +88,19 @@ class Model {
         }
 
         const shuffleAuthorsNameArray = Model.shuffle(Array.from(authorsName));
-
+        const currentRound = +this.getCurrentRound();
+        const currentAnswers = Model.getCurrentAnswers();
         this.questionInfo = {
             currentCorrectAnswer,
             questionNumber,
             year,
             paintingName,
             shuffleAuthorsNameArray,
+            currentRound,
+            currentAnswers,
         };
 
         this.commit('questionInfo', JSON.stringify(this.questionInfo));
-
         return this.questionInfo;
     }
 

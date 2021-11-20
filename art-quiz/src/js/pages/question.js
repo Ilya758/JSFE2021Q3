@@ -43,7 +43,7 @@ class Question extends Page {
             'div',
             'question__answers-container'
         ).render(); */
-        /**this.questionPictureContainer = new Component(
+        /** this.questionPictureContainer = new Component(
             'div',
             'question__picture-container'
         ).render(); */
@@ -52,7 +52,9 @@ class Question extends Page {
         this.container.append(this.wrapper);
     }
 
-    generatePaginationList() {
+    generatePaginationList(round, currentAnswers) {
+        const CURRENT_ROUND = round;
+        const answers = JSON.parse(currentAnswers);
         let relativeClass = '';
 
         if (this.gameSetup === 'pictures') {
@@ -64,10 +66,25 @@ class Question extends Page {
             'ul',
             `list ${CLASS}-list ${relativeClass}`
         ).render();
-
         for (let i = 0; i < 10; ) {
-            i += 1;
             const item = new Component('li', `${CLASS}-item`).render();
+            i += 1;
+            let addClassToDot = '';
+
+            if (i < CURRENT_ROUND) {
+                if (answers[i - 1] === true) {
+                    addClassToDot = 'success';
+                } else {
+                    addClassToDot = 'error';
+                }
+            }
+
+            if (i === CURRENT_ROUND) {
+                addClassToDot = 'active';
+            }
+
+            item.classList.add(`dot_state_${addClassToDot}`);
+
             this.questionPaginationList.append(item);
         }
 
@@ -91,12 +108,14 @@ class Question extends Page {
             questionNumber,
             paintingNums,
             year,
+            currentRound,
         ] = [
             this.questionInfo.paintingName,
             this.questionInfo.questionAuthor,
             this.questionInfo.questionNumber,
             this.questionInfo.shufflePaintingsNums,
             this.questionInfo.year,
+            this.questionInfo.currentRound,
         ];
 
         this.questionHeader = new Text(
@@ -111,7 +130,6 @@ class Question extends Page {
         ).render();
 
         for (let i = 0; i < 4; ) {
-            i += 1;
             const item = new Component('li', `${CLASS}-item`).render();
             const label = new Component('label', `${CLASS}-label`).render();
 
@@ -133,19 +151,29 @@ class Question extends Page {
 
         this.questionContainer.append(
             this.answersList,
-            this.generatePaginationList()
+            this.generatePaginationList(currentRound)
         );
 
         return this.answersList;
     }
 
     async generateArtistQuiz(CLASS) {
-        const [correctAnswer, paintingName, questionNum, authors, year] = [
+        const [
+            correctAnswer,
+            paintingName,
+            questionNum,
+            authors,
+            year,
+            currentRound,
+            currentAnswers,
+        ] = [
             this.questionInfo.currentCorrectAnswer,
             this.questionInfo.paintingName,
             this.questionInfo.questionNumber,
             this.questionInfo.shuffleAuthorsNameArray,
-            this.year,
+            this.questionInfo.year,
+            this.questionInfo.currentRound,
+            this.questionInfo.currentAnswers,
         ];
 
         const imgUrl = `https://raw.githubusercontent.com/Ilya758/image-data/master/full/${questionNum}full.jpg`;
@@ -166,7 +194,7 @@ class Question extends Page {
         ).render();
         this.questionPictureContainer.append(
             this.questionPicture,
-            this.generatePaginationList()
+            this.generatePaginationList(currentRound, currentAnswers)
         );
         this.questionContainer.append(
             this.questionHeader,
@@ -179,7 +207,6 @@ class Question extends Page {
         ).render();
 
         for (let i = 0; i < 4; ) {
-            i += 1;
             const item = new Component('li', `${CLASS}-item`).render();
             const button = new Button(
                 `text text_color_white ${CLASS}-button`,
