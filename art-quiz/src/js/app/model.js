@@ -325,7 +325,6 @@ class Model {
 
         if (!this.categoryState) {
             this.categoryState = this.setOverallResultsArray();
-            this.commit('categoryState', JSON.stringify(this.categoryState));
         }
 
         if (currentNdxOfArrayCategory !== -1) {
