@@ -155,3 +155,21 @@
         }
     }
 }
+
+.dot {
+    &_state {
+        &_success {
+            background-color: $bcg-color-green;
+            transform: scale(1.25);
+        }
+
+        &_error {
+            background-color: $bcg-color-red;
+        }
+
+        &_active {
+            background-color: $bcg-color-white;
+            transform: scale(1.5);
+        }
+    }
+}
