@@ -120,7 +120,17 @@ class View {
             .querySelectorAll('.modal-complete__button')[1];
 
         nextQuizButton.addEventListener('click', () => {
-            handler('', nextCategory);
+            if (!nextCategory) {
+                const modalComplete = document.querySelector('.modal-complete');
+                modalComplete.remove();
+                categoryCompleteModal.classList.add('active');
+
+                const gameOverModal = new ModalGameOver().render();
+                gameOverModal.classList.add('active');
+                document.querySelector('#root').prepend(gameOverModal);
+            } else {
+                handler('', nextCategory);
+            }
         });
     }
 }
