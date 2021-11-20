@@ -48,6 +48,10 @@ class Model {
         this.commit('gameSetup', setup);
     }
 
+    static resetGameCategory() {
+        this.commit('gameCategory', '');
+    }
+
     static async getArtistQuestion(event, cat) {
         const category = cat || event.parentElement.dataset.role;
         this.commit('gameCategory', category);
@@ -339,9 +343,11 @@ class Model {
                 true,
                 correctAnswers.correctAnswers,
             ];
-
-            this.commit('categoryState', JSON.stringify(this.categoryState));
         }
+
+        this.commit('categoryState', JSON.stringify(this.categoryState));
+        this.resetGameCategory();
+
         return this.categoryState;
     }
 
