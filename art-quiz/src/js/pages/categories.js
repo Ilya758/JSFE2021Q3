@@ -3,7 +3,6 @@ import Page from '../core/templates/page';
 import ButtonLink from '../core/components/button-link';
 import Component from '../core/templates/component';
 import Text from '../core/components/text';
-import Button from '../core/components/button';
 import Card from '../core/components/card';
 
 class Categories extends Page {
@@ -72,7 +71,6 @@ class Categories extends Page {
             'Interior',
             'Nude',
         ];
-
         CATEGORIES.forEach((cat, ndx) => {
             const item = new Component('li', 'categories__item').render();
             const catText = new Text(
@@ -102,7 +100,9 @@ class Categories extends Page {
                 '',
                 propHandler(cat)
             ).render();
-            const src = `./assets/img/pictures-${numberHandler(ndx + 1)}.jpg`;
+            const src = `./assets/img/${this.gameSetup}-${numberHandler(
+                ndx + 1
+            )}.jpg`;
             const img = new Card('categories__img', src, cat).render();
 
             const repeatTextContainer = new Component(
