@@ -18,7 +18,8 @@ class Router {
         const gameSetup = Model.getGameSetup();
 
         if (currentHash === 'question') {
-            await View.bindQuestionInfo(Router.handleQuestionGeneration);
+            /** await View.bindQuestionInfo(Router.handleQuestionGeneration); */
+            /**  await Question.bindNewQuestion(Router.handleNewQuestion); */
         } else if (currentHash) {
             View.render(View.pageIds[currentHash], currentHash, gameSetup);
 
