@@ -77,6 +77,8 @@ class Router {
                 results
             ).render();
 
+            Model.saveCurrentResultsToOverallArray();
+
             View.showFinalResults(
                 categoryCompleteModal,
                 Router.handleQuestionGeneration,

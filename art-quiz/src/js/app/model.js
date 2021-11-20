@@ -247,6 +247,44 @@ class Model {
 
         return nextCategory;
     }
+
+    static saveCurrentResultsToOverallArray() {
+        const currentAnswers = JSON.parse(Model.getCurrentAnswers());
+        const currentNdxOfArrayCategory = Model.CATEGORIES.indexOf(
+            this.getGameCategory()
+        );
+        let setupNdx;
+
+        if (Model.getGameSetup() === 'artist') {
+            setupNdx = 0;
+        } else {
+            setupNdx = 1;
+        }
+
+        this.overallResults = JSON.parse(Model.getOverallResults());
+
+        if (this.overallResults === null) {
+            this.overallResults = Model.setOverallResultsArray();
+        }
+
+        this.overallResults[setupNdx][currentNdxOfArrayCategory] =
+            currentAnswers;
+
+        this.commit('overallResults', JSON.stringify(this.overallResults));
+
+        console.log(this.overallResults);
+    }
+
+    static getOverallResults() {
+        return window.localStorage.getItem('overallResults');
+    }
+
+    static setOverallResultsArray() {
+        return [
+            [...Array(12).keys()].map(() => Model.getInitAnswersArray()),
+            [...Array(12).keys()].map(() => Model.getInitAnswersArray()),
+        ];
+    }
 }
 
 export default Model;
