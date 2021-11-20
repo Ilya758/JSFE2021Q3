@@ -78,6 +78,14 @@ class ModalQuestion extends Modal {
     }
 
     static generateCorrectInfo(info) {
+        const addNdx = info.questionNumber;
+        let correctAnswer;
+        if (addNdx > 120) {
+            correctAnswer = info.questionAuthor;
+        } else {
+            correctAnswer = info.currentCorrectAnswer;
+        }
+
         const container = new Component(
             'div',
             `${ModalQuestion.CLASS}__container`
@@ -90,7 +98,7 @@ class ModalQuestion extends Modal {
         this.text = new Text(
             'h3',
             'text text_color_dark modal-question__text',
-            `${info.currentCorrectAnswer}, ${info.year}`
+            `${correctAnswer}, ${info.year}`
         ).render();
 
         container.append(this.heading, this.text);

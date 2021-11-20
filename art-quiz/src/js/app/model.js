@@ -109,11 +109,16 @@ class Model {
     }
 
     static async getPicturesQuestion(event, cat) {
-        const category = cat || event.target.parentElement.dataset.role;
+        const category = cat || event.parentElement.dataset.role;
         this.commit('gameCategory', category);
+        this.commit('currentRound', this.currentRound);
 
-        if (this.currentRound !== 10 && this.currentRound !== 1) {
-            this.currentRound += 1;
+        if (+this.currentRound === 1) {
+            this.currentAnswersArray = Model.getInitAnswersArray();
+            this.commit(
+                'currentAnswers',
+                JSON.stringify(this.currentAnswersArray)
+            );
         }
 
         this.commit('currentRound', this.currentRound);
@@ -144,6 +149,8 @@ class Model {
         }
 
         const shufflePaintingsNums = Model.shuffle(Array.from(paintings));
+        const currentRound = +this.getCurrentRound();
+        const currentAnswers = Model.getCurrentAnswers();
 
         this.questionInfo = {
             questionAuthor,
@@ -151,6 +158,8 @@ class Model {
             year,
             paintingName,
             shufflePaintingsNums,
+            currentRound,
+            currentAnswers,
         };
 
         this.commit('questionInfo', JSON.stringify(this.questionInfo));
@@ -206,11 +215,19 @@ class Model {
 
     static getCorrectAnswer(button) {
         const curAnswer = button.target.dataset.role;
-        const curCorrectAnswer = this.questionInfo.currentCorrectAnswer;
 
-        const thisAnswerIsCorrect = curAnswer === curCorrectAnswer;
+        let curCorrectAnswer;
+        let thisAnswerIsCorrect;
+
+        if (Model.getGameSetup() === 'artist') {
+            curCorrectAnswer = this.questionInfo.currentCorrectAnswer;
+            thisAnswerIsCorrect = curAnswer === curCorrectAnswer;
+        } else {
+            curCorrectAnswer = this.questionInfo.questionNumber;
+            thisAnswerIsCorrect = +curAnswer === curCorrectAnswer;
+        }
+
         const curRound = this.currentRound;
-        // const category = this.getGameCategory();
 
         if (curRound === 1) {
             this.currentAnswersArray = Model.getInitAnswersArray();

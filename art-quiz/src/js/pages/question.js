@@ -109,6 +109,7 @@ class Question extends Page {
             paintingNums,
             year,
             currentRound,
+            currentAnswers,
         ] = [
             this.questionInfo.paintingName,
             this.questionInfo.questionAuthor,
@@ -116,6 +117,7 @@ class Question extends Page {
             this.questionInfo.shufflePaintingsNums,
             this.questionInfo.year,
             this.questionInfo.currentRound,
+            this.questionInfo.currentAnswers,
         ];
 
         this.questionHeader = new Text(
@@ -140,6 +142,7 @@ class Question extends Page {
                 imgUrl,
                 `Picture${i}`
             ).render();
+            img.dataset.role = `${paintingNums[i]}`;
             const radioBtn = new Component('input', `${CLASS}-radio`).render();
             radioBtn.name = 'answer';
             radioBtn.type = 'radio';
@@ -151,7 +154,7 @@ class Question extends Page {
 
         this.questionContainer.append(
             this.answersList,
-            this.generatePaginationList(currentRound)
+            this.generatePaginationList(currentRound, currentAnswers)
         );
 
         return this.answersList;
@@ -229,6 +232,11 @@ class Question extends Page {
             .querySelector('#root')
             .querySelectorAll('.question__answers-button');
 
+        if (!this.answerButtons.length) {
+            this.answerButtons = document
+                .querySelector('#root')
+                .querySelectorAll('.question__answers-img');
+        }
         this.answerButtons.forEach(btn => {
             btn.addEventListener('click', async event => {
                 const responseInfo = await handler(event);
