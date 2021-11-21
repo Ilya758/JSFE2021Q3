@@ -4,7 +4,7 @@ import ButtonLink from '../core/components/button-link';
 import Component from '../core/templates/component';
 import Text from '../core/components/text';
 import Card from '../core/components/card';
-
+import Button from '../core/components/button';
 class Categories extends Page {
     constructor(id, gameSetup, categoryState) {
         super(id);
@@ -30,10 +30,10 @@ class Categories extends Page {
             'text categories__text text_color_pink',
             'Categories'
         ).render();
-        this.scoreButton = new ButtonLink(
+        this.scoreButton = new Button(
             'text text_color_white categories__button-text categories__button',
-            'score',
-            'Score'
+            'button',
+            'score'
         ).render();
         this.scoreButton.textContent = 'Score';
         this.settingsButton = new ButtonLink(
