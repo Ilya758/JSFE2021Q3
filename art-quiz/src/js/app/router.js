@@ -22,15 +22,22 @@ class Router {
             /**  await Question.bindNewQuestion(Router.handleNewQuestion); */
         } else if (currentHash) {
             const categoryState = await Model.setStateOfQuizCategory();
+            const scoreResults = await Model.getResultsToScore();
             await View.render(
                 View.pageIds[currentHash],
                 currentHash,
                 gameSetup,
-                categoryState
+                categoryState,
+                scoreResults
             );
 
             if (currentHash === 'categories') {
+                const categories = Model.CATEGORIES;
                 View.bindQuestionInfo(Router.handleQuestionGeneration);
+                View.bindRenderScoreModal(
+                    categories,
+                    Router.handleScoreGeneration
+                );
             }
 
             View.bindGameCategory(Router.handleGameCategory);
@@ -104,6 +111,10 @@ class Router {
                 Router.handleNewQuestion
             );
         }
+    }
+
+    static async handleScoreGeneration(event) {
+        return Model.setResultsToScore(event);
     }
 }
 

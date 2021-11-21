@@ -5,6 +5,8 @@ import Settings from '../pages/settings';
 import Question from '../pages/question';
 import Categories from '../pages/categories';
 import Score from '../pages/score';
+import ModalGameOver from '../core/components/modal-gameover';
+import ModalScore from '../core/components/modal-score';
 
 class View {
     static pageIds = {
@@ -141,6 +143,36 @@ class View {
             } else {
                 handler('', nextCategory);
             }
+        });
+    }
+
+    static async bindRenderScoreModal(categories, handler) {
+        const scoreButton = document
+            .querySelector('#root')
+            .querySelector('button[data-role="score"]');
+
+        scoreButton.addEventListener('click', async () => {
+            const modalScore = await new ModalScore(categories).render();
+            modalScore.classList.add('active');
+            document.querySelector('#root').prepend(modalScore);
+
+            const buttons = document
+                .querySelector('#root')
+                .querySelectorAll('.modal-score__text');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', event => {
+                    handler(event);
+                });
+            });
+
+            const exitButton = document
+                .querySelector('#root')
+                .querySelector('.icon_bcg_dark');
+
+            exitButton.addEventListener('click', () => {
+                modalScore.remove();
+            });
         });
     }
 }
