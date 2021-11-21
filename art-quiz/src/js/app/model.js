@@ -21,6 +21,7 @@ class Model {
         this.currentAnswer = false;
         this.questionInfo = null;
         this.currentAnswersArray = null;
+        Model.setData();
     }
 
     static getCategories() {
@@ -352,6 +353,52 @@ class Model {
 
     static getStateOfQuizCategory() {
         return window.localStorage.getItem('categoryState');
+    }
+
+    static async setResultsToScore(event) {
+        const category = event.target.dataset.role;
+        const currentNdxOfArrayCategory = Model.CATEGORIES.indexOf(category);
+        this.commit('currentNdxOfArrayCategory', currentNdxOfArrayCategory);
+    }
+
+    static async getResultsToScore() {
+        const ndx = Model.getCurrentNdxOfArrayCategory();
+        const data = JSON.parse(Model.getData());
+        const overallResults = JSON.parse(Model.getOverallResults());
+        let photoAddNum;
+
+        if (Model.getGameSetup() === 'artist') {
+            photoAddNum = 0;
+        } else {
+            photoAddNum = 120;
+        }
+
+        const COUNT_ROUNDS = 10;
+
+        const firstQuestionNumber = photoAddNum + ndx * COUNT_ROUNDS + 1;
+        return {
+            ndx,
+            data,
+            overallResults,
+            firstQuestionNumber,
+        };
+    }
+
+    static getCurrentNdxOfArrayCategory() {
+        return window.localStorage.getItem('currentNdxOfArrayCategory');
+    }
+
+    static getData() {
+        return window.localStorage.getItem('data');
+    }
+
+    static async setData() {
+        const url =
+            'https://raw.githubusercontent.com/Ilya758/image-data/master/images.json';
+        const response = await fetch(url);
+        const data = await response.json();
+
+        this.commit('data', JSON.stringify(data));
     }
 }
 
