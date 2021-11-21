@@ -186,4 +186,44 @@
             }
         }
     }
+
+    &-score {
+        padding: 220px 0 0;
+
+        &__content {
+            position: relative;
+            flex-direction: column;
+            align-items: flex-end;
+            padding: 30px;
+            background-color: $bcg-color-white;
+            border-radius: 20px;
+        }
+
+        &__heading {
+            margin: 15px 0;
+            font: 500 32px $font-main;
+            line-height: 39px;
+        }
+
+        &__text {
+            display: inline-block;
+            width: 100%;
+            font: 400 22px $font-main;
+            transition: $trans;
+
+            &:hover {
+                color: $font-color-pink;
+            }
+        }
+
+        &__list {
+            width: 100%;
+            margin: 0;
+        }
+
+        &__item {
+            padding: 8px 0;
+            border-bottom: 1.5px solid $border-color-dark;
+        }
+    }
 }
