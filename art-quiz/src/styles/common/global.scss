@@ -145,6 +145,12 @@
         height: 157px;
         background: url("../assets/svg/icon-gameover.svg") 0 0/cover no-repeat;
     }
+
+    &_bcg {
+        &_dark {
+            background-color: $bcg-color-dark;
+        }
+    }
 }
 
 .text {
