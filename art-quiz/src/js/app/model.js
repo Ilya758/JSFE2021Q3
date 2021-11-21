@@ -21,6 +21,9 @@ class Model {
         this.currentAnswer = false;
         this.questionInfo = null;
         this.currentAnswersArray = null;
+        this.soundLevel = 100;
+        this.timeIsEnabled = true;
+        this.timeOut = 30;
         Model.setData();
     }
 
@@ -399,6 +402,84 @@ class Model {
         const data = await response.json();
 
         this.commit('data', JSON.stringify(data));
+    }
+
+    static resetSettings() {
+        this.soundLevel = 100;
+        this.timeIsEnabled = true;
+        this.timeOut = 30;
+
+        this.commit('soundLevel', this.soundLevel);
+        this.commit('timeIsEnabled', this.timeIsEnabled);
+        this.commit('timeOut', this.timeOut);
+    }
+
+    static getSettings() {
+        const soundLevel = +window.localStorage.getItem('soundLevel');
+        const timeIsEnabled = window.localStorage.getItem('timeIsEnabled');
+        const timeOut = +window.localStorage.getItem('timeOut');
+
+        return {
+            soundLevel,
+            timeIsEnabled,
+            timeOut,
+        };
+    }
+
+    static setVolumeValue(event) {
+        this.soundLevel = event.target.value;
+        this.commit('soundLevel', this.soundLevel);
+
+        return event.target.value;
+    }
+
+    static getVolumeValue() {
+        return window.localStorage.getItem('soundLevel');
+    }
+
+    static setStateOfTimeToggler() {
+        const isEnabled = window.localStorage.getItem('timeIsEnabled');
+
+        if (isEnabled === 'true') {
+            this.timeIsEnabled = false;
+        } else {
+            this.timeIsEnabled = true;
+        }
+
+        this.commit('timeIsEnabled', this.timeIsEnabled);
+    }
+
+    static getTimeOut() {
+        return window.localStorage.getItem('timeOut');
+    }
+
+    static setTimeCount(event) {
+        const action = event.target.dataset.role;
+        let currentTimeout = +Model.getTimeOut();
+
+        if (action === 'sub') {
+            if (currentTimeout === 0) {
+                currentTimeout = 0;
+            } else {
+                currentTimeout -= 5;
+            }
+        }
+
+        if (action === 'add') {
+            if (currentTimeout === 30) {
+                currentTimeout = 30;
+            } else {
+                currentTimeout += 5;
+            }
+        }
+
+        if (currentTimeout < 10) {
+            currentTimeout = `0${currentTimeout}`;
+        }
+
+        this.commit('timeOut', currentTimeout);
+
+        return currentTimeout;
     }
 }
 

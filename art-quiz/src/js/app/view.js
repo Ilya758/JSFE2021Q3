@@ -52,7 +52,9 @@ class View {
         id = 'main-page',
         gameSetup,
         questionInfo,
-        categoryState
+        categoryState,
+        scoreResults,
+        settings
     ) {
         this.gameSetup = gameSetup;
         this.categoryState = categoryState;
@@ -67,22 +69,40 @@ class View {
             id,
             gameSetup,
             questionInfo,
-            this.categoryState
+            this.categoryState,
+            scoreResults,
+            settings
         );
         document.querySelector('#root').prepend(newPage.render());
     }
 
-    fillTheVolumeGradient() {
-        const volumeSlider = document.querySelector('.settings-volume__slider');
-        const value = volumeSlider.value;
+    static fillTheVolumeGradient(val) {
+        const volumeSlider = document
+            .querySelector('#root')
+            .querySelector('.settings-volume__slider');
+
+        let value;
+
+        if (val) {
+            value = val;
+        } else {
+            value = volumeSlider.value;
+        }
+
         const BCG_PINK = '#ffbca2';
         const BCG_GRAY = '#a4a4a4';
+        volumeSlider.value = value;
         volumeSlider.style.background = `linear-gradient(to right, ${BCG_PINK} 0%, ${BCG_PINK} ${value}%, ${BCG_GRAY} ${value}%, ${BCG_GRAY} 100%)`;
     }
 
-    initListeners() {
-        const volumeSlider = document.querySelector('.settings-volume__slider');
-        volumeSlider.addEventListener('input', this.fillTheVolumeGradient);
+    static bindVolumeValue(handler) {
+        const volumeSlider = document
+            .querySelector('#root')
+            .querySelector('.settings-volume__slider');
+        volumeSlider.addEventListener('input', event => {
+            const value = handler(event);
+            View.fillTheVolumeGradient(value);
+        });
     }
 
     static bindGameCategory(handler) {
@@ -172,6 +192,70 @@ class View {
 
             exitButton.addEventListener('click', () => {
                 modalScore.remove();
+            });
+        });
+    }
+
+    static bindResetSettings(handler) {
+        const defaultButton = document
+            .querySelector('#root')
+            .querySelector('  .button_bcg_initial');
+
+        defaultButton.addEventListener('click', () => {
+            handler();
+        });
+    }
+
+    static bindToggleTime(handler, settings) {
+        const slider = document
+            .querySelector('#root')
+            .querySelector('.volume-toggler__slider');
+        slider.addEventListener('click', () => {
+            handler();
+            View.thumbToggler(settings);
+        });
+    }
+
+    static thumbToggler(settings) {
+        const slider = document
+            .querySelector('#root')
+            .querySelector('.volume-toggler__slider');
+        const thumb = document
+            .querySelector('#root')
+            .querySelector('.volume-toggler__thumb');
+
+        const actualSettings = settings();
+        const text = document
+            .querySelector('.settings-time__container')
+            .querySelector('span');
+        const sliderRect = slider.getBoundingClientRect();
+        const thumbRect = thumb.getBoundingClientRect();
+
+        const currentX = sliderRect.left - thumbRect.left + thumbRect.width / 2;
+
+        if (actualSettings.timeIsEnabled === 'true') {
+            thumb.style.left = `${currentX + sliderRect.width / 2}px`;
+            slider.style.background = '#ffbca2';
+            text.textContent = 'On';
+        } else {
+            thumb.style.left = '4px';
+            slider.style.background = '#a4a4a4';
+            text.textContent = 'Off';
+        }
+    }
+
+    static bindChangingTimeCount(handler) {
+        const subBtn = document.querySelector('.icon-sub');
+        const addBtn = document.querySelector('.icon-add');
+
+        [subBtn, addBtn].forEach(btn => {
+            btn.addEventListener('click', event => {
+                const timeOut = handler(event);
+
+                const timeOutText = document
+                    .querySelector('.settings-duration__container')
+                    .querySelector('span');
+                timeOutText.textContent = timeOut;
             });
         });
     }

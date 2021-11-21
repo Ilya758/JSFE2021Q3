@@ -23,13 +23,24 @@ class Router {
         } else if (currentHash) {
             const categoryState = await Model.setStateOfQuizCategory();
             const scoreResults = await Model.getResultsToScore();
+            const settings = Model.getSettings();
+            const soundLevel = Model.getVolumeValue();
             await View.render(
                 View.pageIds[currentHash],
                 currentHash,
                 gameSetup,
                 categoryState,
-                scoreResults
+                scoreResults,
+                settings
             );
+
+            if (currentHash === 'settings') {
+                View.fillTheVolumeGradient(soundLevel);
+                View.bindVolumeValue(Router.handleVolumeValue);
+                View.bindResetSettings(Router.handleResetSettings);
+                Router.setSettingsAfterReload();
+                View.bindToggleTime(Router.handleToggleTime, Model.getSettings);
+            }
 
             if (currentHash === 'categories') {
                 const categories = Model.CATEGORIES;
@@ -115,6 +126,27 @@ class Router {
 
     static async handleScoreGeneration(event) {
         return Model.setResultsToScore(event);
+    }
+
+    static handleResetSettings() {
+        return Model.resetSettings();
+    }
+
+    static handleToggleTime() {
+        return Model.setStateOfTimeToggler();
+    }
+
+    static handleChangingTimeCount(event) {
+        return Model.setTimeCount(event);
+    }
+
+    static handleVolumeValue(event) {
+        return Model.setVolumeValue(event);
+    }
+
+    static setSettingsAfterReload() {
+        View.bindChangingTimeCount(Router.handleChangingTimeCount);
+        View.thumbToggler(Model.getSettings);
     }
 }
 

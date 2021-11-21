@@ -8,7 +8,7 @@ import VolumeSlider from '../core/components/volume-slider';
 import VolumeToggler from '../core/components/volume-toggler';
 
 class Settings extends Page {
-    constructor(id) {
+    constructor(id, ...rest) {
         super(id);
         this.wrapper = new ComponentWrapper('main', id).render();
         this.content = this.wrapper.querySelector('.settings__content');
@@ -118,15 +118,16 @@ class Settings extends Page {
         this.timeCounter = new Text(
             'span',
             'text settings__text text_color_white',
-            '00'
+            rest[3].timeOut
         ).render();
         this.timeButtonsContainer = new Component(
             'div',
             `${id}-duration__container`
         ).render();
-        this.defaultButton = new Button(
+        this.defaultButton = new ButtonLink(
             'text text_color_white button button_bcg_initial',
-            'button',
+            'main-page',
+            'Default',
             'default'
         ).render();
         this.defaultButton.textContent = 'Default';
