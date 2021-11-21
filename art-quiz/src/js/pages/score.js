@@ -6,8 +6,11 @@ import Text from '../core/components/text';
 import Card from '../core/components/card';
 
 class Score extends Page {
-    constructor(id) {
+    constructor(id, ...rest) {
         super(id);
+        this.gameSetup = rest[0];
+        this.categoryResults = rest[1];
+        this.addInfo = rest[2];
         this.header = new ComponentWrapper('header', `header-${id}`).render();
         this.headerContent = this.header.querySelector(
             '.header-score__content'
@@ -78,23 +81,50 @@ class Score extends Page {
     gridContainerInit() {
         this.gridContainer = new Component('ul', 'list score__list').render();
 
-        for (let ndx = 1; ndx < 21; ) {
+        const curNdx = this.addInfo.ndx;
+        const data = this.addInfo.data;
+        const overallResults = this.addInfo.overallResults;
+        const firstQuestionNumber = this.addInfo.firstQuestionNumber - 1;
+        const setupNdx = this.gameSetup === 'artist' ? 0 : 1;
+        let currentArrayOfAnswers;
+        if (overallResults) {
+            currentArrayOfAnswers = overallResults[setupNdx][curNdx];
+        } else {
+            currentArrayOfAnswers = [];
+        }
+
+        for (let ndx = 0; ndx < 10; ) {
+            const curQuestionNdx = firstQuestionNumber + ndx + 1;
+            const heading = data[curQuestionNdx].name;
+            const text = `${data[curQuestionNdx].author}, ${data[curQuestionNdx].year}`;
+
             const item = new Component('li', 'score__item').render();
-            const src = './assets/img/pictures-01.jpg';
-            const img = new Card('score__img', src, '1').render();
+            const imgUrl = `https://raw.githubusercontent.com/Ilya758/image-data/master/img/${curQuestionNdx}.jpg`;
+
+            const img = new Card(
+                'score__img',
+                imgUrl,
+                `Picture${ndx}`
+            ).render();
             const descrContainer = new Component(
                 'div',
                 'score__description-container'
             ).render();
+
+            if (currentArrayOfAnswers[ndx]) {
+                img.classList.add('img_state_active');
+                descrContainer.classList.add('container_state_active');
+            }
+
             const descrHeading = new Text(
                 'h3',
                 'text score__description-heading text_color_dark',
-                'Girl with a Pearl Earring'
+                heading
             ).render();
             const addInfo = new Text(
                 'h4',
                 'text score__description-text text_color_dark',
-                'Johannes Vermeer, 1665'
+                text
             ).render();
             descrContainer.append(descrHeading, addInfo);
             item.append(descrContainer, img);
