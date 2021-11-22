@@ -119,6 +119,7 @@
             max-width: 415px;
             max-height: 309px;
             border-radius: 20px;
+            transition: $trans;
         }
 
         &-radio {
@@ -184,6 +185,24 @@
         &_error {
             border: transparent;
             background-color: $bcg-color-red;
+        }
+    }
+}
+
+.img {
+    &_state {
+        &_success {
+            filter:
+                invert(10%) sepia(115%) saturate(1211%) hue-rotate(
+                    433deg
+                ) brightness(82%) contrast(45%);
+        }
+
+        &_error {
+            filter:
+                invert(10%) sepia(115%) saturate(1211%) hue-rotate(
+                    282deg
+                ) brightness(82%) contrast(45%);
         }
     }
 }

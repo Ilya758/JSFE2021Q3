@@ -8,10 +8,12 @@ import Card from '../core/components/card';
 import ModalQuestion from '../core/components/modal-question';
 
 class Question extends Page {
-    constructor(id, gameSetup, questionInfo) {
+    constructor(id, gameSetup, questionInfo, settings, addInfo) {
         super(id);
         this.questionInfo = questionInfo;
         this.gameSetup = gameSetup;
+        this.timeOut = settings.timeOut;
+        this.addInfo = {};
         this.wrapper = new ComponentWrapper('main', id).render();
         this.content = this.wrapper.querySelector('.question__content');
         this.topContainer = new Component(
@@ -27,7 +29,7 @@ class Question extends Page {
         this.timeCounterText = new Text(
             'span',
             'text text_color_white question__heading-text',
-            '0:20'
+            '0:00'
         ).render();
         this.topContainer.append(
             this.exitButton,
@@ -49,12 +51,20 @@ class Question extends Page {
         ).render(); */
         this.generateAnswersList();
         this.content.append(this.topContainer, this.questionContainer);
+
         this.container.append(this.wrapper);
     }
 
     generatePaginationList(round, currentAnswers) {
         const CURRENT_ROUND = round;
-        const answers = JSON.parse(currentAnswers);
+        let answers;
+
+        if (currentAnswers) {
+            answers = JSON.parse(currentAnswers);
+        } else {
+            answers = [];
+        }
+
         let relativeClass = '';
 
         if (this.gameSetup === 'pictures') {
@@ -157,6 +167,9 @@ class Question extends Page {
             this.generatePaginationList(currentRound, currentAnswers)
         );
 
+        setTimeout(() => {
+            document.querySelector('#root').classList.remove('fade');
+        }, 0);
         return this.answersList;
     }
 
@@ -224,18 +237,24 @@ class Question extends Page {
 
         this.questionContainer.append(this.questionPaginationList);
 
+        setTimeout(() => {
+            document.querySelector('#root').classList.remove('fade');
+        }, 0);
         return this.questionPaginationList;
     }
 
     static async bindAnswer(handler, secondHandler) {
+        let state;
         this.answerButtons = document
             .querySelector('#root')
             .querySelectorAll('.question__answers-button');
+        state = 0;
 
         if (!this.answerButtons.length) {
             this.answerButtons = document
                 .querySelector('#root')
                 .querySelectorAll('.question__answers-img');
+            state = 1;
         }
         this.answerButtons.forEach(btn => {
             btn.addEventListener('click', async event => {
@@ -249,21 +268,82 @@ class Question extends Page {
                     addClass = 'error';
                 }
 
-                event.target.classList.add(`item_state_${addClass}`);
+                if (state === 0) {
+                    event.target.classList.add(`item_state_${addClass}`);
+                } else {
+                    event.target.classList.add(`img_state_${addClass}`);
+                }
 
-                const questionModal = new ModalQuestion(responseInfo).render();
-                questionModal.classList.add('active');
-                document.querySelector('#root').prepend(questionModal);
+                setTimeout(() => {
+                    const questionModal = new ModalQuestion(
+                        responseInfo
+                    ).render();
+                    questionModal.classList.add('active');
+                    document.querySelector('#root').prepend(questionModal);
 
-                const nextQuestionButton = document
-                    .querySelector('#root')
-                    .querySelector('.modal-question__button');
+                    const questionModalContent = questionModal.querySelector(
+                        '.modal-question__content'
+                    );
 
-                nextQuestionButton.addEventListener('click', () => {
-                    secondHandler();
-                });
+                    questionModalContent.classList.add('content_state_visible');
+
+                    const nextQuestionButton = document
+                        .querySelector('#root')
+                        .querySelector('.modal-question__button');
+
+                    nextQuestionButton.addEventListener('click', () => {
+                        document.querySelector('#root').classList.add('fade');
+
+                        setTimeout(() => {
+                            secondHandler();
+                        }, 2000);
+                    });
+                }, 1000);
             });
         });
+    }
+
+    static async bindDeadline(
+        handler,
+        secondHandler,
+        settings,
+        addInfo,
+        thirdHandler
+    ) {
+        const setDeadline = handler();
+        const buttons = document.querySelectorAll('.question__answers-button');
+        const timeOutInMs = settings.timeOut * 1000;
+        // console.log(addInfo);
+        /** let interval = setInterval(() => {
+            const timeOut = document.querySelector('.question__heading-text');
+            const remainTime = secondHandler(setDeadline);
+            timeOut.textContent = Question.setTime(remainTime);
+        }, 1000);
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                clearInterval(interval);
+            });
+        }); */
+
+        /** setTimeout(() => {
+            clearInterval(interval);
+            const modalQuestion = new ModalQuestion(addInfo).render();
+            modalQuestion.classList.add('active');
+            document.querySelector('#root').prepend(modalQuestion);
+
+            const nextQuestionButton = document
+                .querySelector('#root')
+                .querySelector('.modal-question__button');
+
+            nextQuestionButton.addEventListener('click', () => {
+                thirdHandler();
+            });
+        }, timeOutInMs); */
+    }
+
+    static setTime(number) {
+        return +number < 10 ? `0:0${number}` : `0:${number}`;
     }
 }
 

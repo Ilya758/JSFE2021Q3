@@ -8,6 +8,7 @@
     height: 100%;
     justify-content: center;
     background: rgba(0, 0, 0, 0.4);
+    overflow-x: hidden;
     transition: 0.25s linear;
 }
 
@@ -61,6 +62,8 @@
             padding: 30px;
             background-color: $bcg-color-white;
             border-radius: 20px;
+            transform: translate(100vw);
+            transition: 1s;
         }
 
         &__picture {
@@ -159,6 +162,8 @@
             padding: 87px 41px 40px;
             background-color: $bcg-color-white;
             border-radius: 20px;
+            opacity: 0;
+            transition: 0.5s;
         }
 
         &__heading {
@@ -197,6 +202,8 @@
             padding: 30px;
             background-color: $bcg-color-white;
             border-radius: 20px;
+            transform: translate(100vw);
+            transition: 1s;
         }
 
         &__heading {
@@ -225,5 +232,24 @@
             padding: 8px 0;
             border-bottom: 1.5px solid $border-color-dark;
         }
+    }
+}
+
+.content {
+    &_state {
+        &_visible {
+            animation: fromRightToCenter 0.5s linear;
+            transform: translate(0);
+        }
+    }
+}
+
+@keyframes fromRightToCenter {
+    0% {
+        transform: translate(100vw);
+    }
+
+    100% {
+        transform: translate(0);
     }
 }

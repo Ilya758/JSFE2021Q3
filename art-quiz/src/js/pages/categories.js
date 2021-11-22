@@ -145,7 +145,37 @@ class Categories extends Page {
             item.append(catText, catScore, imgLink);
             this.gridContainer.append(item);
         });
+
+        document.querySelector('#root').classList.remove('fade');
         return this.gridContainer;
+    }
+
+    static transitionToPages() {
+        const homeButton = document.querySelector('a[href="#main-page"]');
+        const scoreButton = document.querySelector('button[data-role="score"]');
+
+        homeButton.addEventListener('click', () => {
+            document.querySelector('#root').classList.add('fade');
+        });
+
+        scoreButton.addEventListener('click', () => {
+            setTimeout(() => {
+                const modalScoreContent = document.querySelector(
+                    '.modal-score__content'
+                );
+
+                modalScoreContent.classList.add('content_state_visible');
+
+                const modalScoreButtons =
+                    document.querySelectorAll('a[href="#score"]');
+
+                modalScoreButtons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelector('#root').classList.add('fade');
+                    });
+                });
+            }, 0);
+        });
     }
 }
 

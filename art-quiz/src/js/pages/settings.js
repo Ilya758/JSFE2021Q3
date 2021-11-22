@@ -158,7 +158,23 @@ class Settings extends Page {
             this.timeToAnswerContainer,
             this.changeButtonsContainer
         );
+        document.querySelector('#root').classList.remove('fade');
         this.container.append(this.wrapper);
+    }
+
+    static exitToMainPage() {
+        const leftExitButton = document.querySelector('.icon-left-arrow-exit');
+        const rightExitButton = document.querySelector('.icon-cross-exit');
+        const defaultButton = document.querySelector('a[data-role="default"]');
+        const saveButton = document.querySelector('a[data-role="save"]');
+
+        [leftExitButton, rightExitButton, defaultButton, saveButton].forEach(
+            btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelector('#root').classList.add('fade');
+                });
+            }
+        );
     }
 }
 

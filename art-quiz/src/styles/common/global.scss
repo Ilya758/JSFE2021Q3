@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: $bcg-color-dark;
+}
+
 .container {
     max-width: 1920px;
     padding: 0 20px;
@@ -230,12 +234,12 @@
 }
 
 #root {
-    height: 100vh;
 
     @include flex(column, center, space-between);
 
-    //background-color: gray;
+    height: 100vh;
     background: url("../assets/img/main-large.png") 0 0/cover no-repeat;
+    transition: 1s;
 }
 
 .heading {
@@ -253,4 +257,9 @@
 
 .active {
     display: flex !important;
+    opacity: 1 !important;
+}
+
+.fade {
+    opacity: 0;
 }

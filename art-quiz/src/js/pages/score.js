@@ -76,6 +76,7 @@ class Score extends Page {
         this.mainContent = this.main.querySelector('.score__content');
         this.mainContent.append(this.gridContainerInit());
         this.container.append(this.header, this.main);
+        document.querySelector('#root').classList.remove('fade');
     }
 
     gridContainerInit() {

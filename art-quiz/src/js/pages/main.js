@@ -28,7 +28,6 @@ class MainPage extends Page {
             'pictures'
         ).render();
         this.buttonsContainer = new Component('div', `${id}__buttons`).render();
-        // console.log(this.buttonsContainer);
         this.buttonsContainer.append(
             this.artistQuizButton,
             this.picturesQuizButton
@@ -41,6 +40,7 @@ class MainPage extends Page {
         this.preloaderContainer = new Component('div', 'preloader').render();
         this.preloader = new Component('span', 'icon icon-preloader').render();
         this.preloaderContainer.append(this.preloader);
+        document.querySelector('#root').classList.remove('fade');
         this.container.append(this.wrapper, this.preloaderContainer);
     }
 

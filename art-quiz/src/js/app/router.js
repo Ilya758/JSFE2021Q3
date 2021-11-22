@@ -1,6 +1,8 @@
 import ModalRoundComplete from '../core/components/modal-round-complete';
+import Categories from '../pages/categories';
 import MainPage from '../pages/main';
 import Question from '../pages/question';
+import Settings from '../pages/settings';
 import Model from './model';
 import View from './view';
 
@@ -20,40 +22,63 @@ class Router {
         const gameSetup = Model.getGameSetup();
 
         if (currentHash === 'question') {
-            /** await View.bindQuestionInfo(Router.handleQuestionGeneration); */
-            /**  await Question.bindNewQuestion(Router.handleNewQuestion); */
         } else if (currentHash) {
             const categoryState = await Model.setStateOfQuizCategory();
             const scoreResults = await Model.getResultsToScore();
-            const settings = Model.getSettings();
-            const soundLevel = Model.getVolumeValue();
-            await View.render(
-                View.pageIds[currentHash],
-                currentHash,
-                gameSetup,
-                categoryState,
-                scoreResults,
-                settings
-            );
+            const settings = await Model.getSettings();
+            const soundLevel = await Model.getVolumeValue();
+
+            setTimeout(async () => {
+                await View.render(
+                    View.pageIds[currentHash],
+                    currentHash,
+                    gameSetup,
+                    categoryState,
+                    scoreResults,
+                    settings
+                );
+                await View.transitionToSettingsPage();
+            }, 2000);
 
             if (currentHash === 'settings') {
-                View.fillTheVolumeGradient(soundLevel);
-                View.bindVolumeValue(Router.handleVolumeValue);
-                View.bindResetSettings(Router.handleResetSettings);
-                Router.setSettingsAfterReload();
-                View.bindToggleTime(Router.handleToggleTime, Model.getSettings);
+                setTimeout(async () => {
+                    View.fillTheVolumeGradient(soundLevel);
+                    View.bindVolumeValue(Router.handleVolumeValue);
+                    View.bindResetSettings(Router.handleResetSettings);
+                    Router.setSettingsAfterReload();
+                    await View.bindToggleTime(
+                        Router.handleToggleTime,
+                        Model.getSettings
+                    );
+                    Settings.exitToMainPage();
+                }, 2000);
             }
 
             if (currentHash === 'categories') {
                 const categories = Model.CATEGORIES;
-                View.bindQuestionInfo(Router.handleQuestionGeneration);
-                View.bindRenderScoreModal(
-                    categories,
-                    Router.handleScoreGeneration
-                );
+                setTimeout(async () => {
+                    Categories.transitionToPages();
+
+                    await View.bindQuestionInfo(
+                        Router.handleQuestionGeneration
+                    );
+                    await View.bindRenderScoreModal(
+                        categories,
+                        Router.handleScoreGeneration
+                    );
+                }, 3000);
             }
 
-            View.bindGameCategory(Router.handleGameCategory);
+            if (currentHash === 'score') {
+                setTimeout(() => {
+                    console.log('score!!!');
+                    View.bindFadeEffectToPages();
+                }, 2500);
+            }
+
+            setTimeout(() => {
+                View.bindGameCategory(Router.handleGameCategory);
+            }, 2000);
         } else {
             View.render();
         }
@@ -64,6 +89,16 @@ class Router {
             this.handleHash();
         });
         this.handleHash();
+        Model.commit('gameSetup', 'artist');
+        const settings = Model.getSettings();
+
+        if (
+            settings.soundLevel === 0 &&
+            settings.timeIsEnabled === null &&
+            settings.timeOut === 0
+        ) {
+            Model.resetSettings();
+        }
     }
 
     static handleGameCategory(setup) {
@@ -74,14 +109,24 @@ class Router {
         if (Model.getGameState) {
             const questionInfo = await Model.startQuiz(event, nextCategory);
             const currentHash = Router.getHash();
+            const settings = Model.getSettings();
+            const addInfo = await Model.generateNewQuestion();
             await View.render(
                 View.pageIds[currentHash],
                 currentHash,
                 Model.getGameSetup(),
-                questionInfo
+                questionInfo,
+                settings
             );
             await Question.bindAnswer(
                 Router.handleAnswer,
+                Router.handleNewQuestion
+            );
+            await Question.bindDeadline(
+                Router.handleDeadline,
+                Model.getCurrentDateTime,
+                settings,
+                addInfo,
                 Router.handleNewQuestion
             );
         }
@@ -98,13 +143,14 @@ class Router {
 
     static async handleNewQuestion() {
         if (Model.getCurrentRound() === '10') {
+            View.removeFadeClass();
             const results = await Model.getCurrentRoundResults();
             const nextCategory = Model.getNextCategory();
             const categoryCompleteModal = new ModalRoundComplete(
                 results
             ).render();
-
             Model.saveCurrentResultsToOverallArray();
+            View.addFadeClass();
             View.showFinalResults(
                 categoryCompleteModal,
                 Router.handleQuestionGeneration,
@@ -113,15 +159,22 @@ class Router {
         } else {
             const questionInfo = await Model.generateNewQuestion();
             const currentHash = Router.getHash();
+            const settings = Model.getSettings();
             await View.render(
                 View.pageIds[currentHash],
                 currentHash,
                 Model.getGameSetup(),
-                questionInfo
+                questionInfo,
+                settings
             );
             await Question.bindAnswer(
                 Router.handleAnswer,
                 Router.handleNewQuestion
+            );
+            await Question.bindDeadline(
+                Router.handleDeadline,
+                Model.getCurrentDateTime,
+                settings
             );
         }
     }
@@ -134,7 +187,7 @@ class Router {
         return Model.resetSettings();
     }
 
-    static handleToggleTime() {
+    static async handleToggleTime() {
         return Model.setStateOfTimeToggler();
     }
 
@@ -149,6 +202,10 @@ class Router {
     static setSettingsAfterReload() {
         View.bindChangingTimeCount(Router.handleChangingTimeCount);
         View.thumbToggler(Model.getSettings);
+    }
+
+    static handleDeadline() {
+        return Model.setDeadline();
     }
 }
 

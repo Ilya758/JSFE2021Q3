@@ -177,7 +177,7 @@ class Model {
 
     static async startQuiz(event, nextCategory) {
         this.gameIsOver = false;
-        this.currentRound = 1;
+        this.currentRound = 0;
         this.commit('gameIsOver', this.gameIsOver);
 
         if (this.gameSetup === 'artist') {
@@ -202,10 +202,10 @@ class Model {
         return this.gameIsOver;
     }
 
-    static resetGameCategory() {
+    /** static resetGameCategory() {
         this.gameCategory = null;
         this.commit('gameCategory', this.gameCategory);
-    }
+    } */
 
     static shuffle(array) {
         const mutatedArray = array;
@@ -325,6 +325,9 @@ class Model {
         const currentNdxOfArrayCategory = Model.CATEGORIES.indexOf(
             this.getGameCategory()
         );
+
+        console.log(this.getGameCategory());
+
         this.categoryState = JSON.parse(Model.getStateOfQuizCategory());
 
         if (!this.categoryState) {
@@ -414,7 +417,7 @@ class Model {
         this.commit('timeOut', this.timeOut);
     }
 
-    static getSettings() {
+    static async getSettings() {
         const soundLevel = +window.localStorage.getItem('soundLevel');
         const timeIsEnabled = window.localStorage.getItem('timeIsEnabled');
         const timeOut = +window.localStorage.getItem('timeOut');
@@ -433,7 +436,7 @@ class Model {
         return event.target.value;
     }
 
-    static getVolumeValue() {
+    static async getVolumeValue() {
         return window.localStorage.getItem('soundLevel');
     }
 
@@ -480,6 +483,20 @@ class Model {
         this.commit('timeOut', currentTimeout);
 
         return currentTimeout;
+    }
+
+    static setDeadline() {
+        const deadlineSeconds = Model.getTimeOut();
+        const deadline = new Date(
+            Date.parse(new Date()) + deadlineSeconds * 1000
+        );
+
+        return deadline;
+    }
+
+    static getCurrentDateTime(deadline) {
+        const remainTime = deadline.getSeconds() - new Date().getSeconds();
+        return remainTime;
     }
 }
 
