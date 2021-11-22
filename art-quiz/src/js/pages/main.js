@@ -38,11 +38,25 @@ class MainPage extends Page {
             this.logoApp,
             this.buttonsContainer
         );
-        this.container.append(this.wrapper);
+        this.preloaderContainer = new Component('div', 'preloader').render();
+        this.preloader = new Component('span', 'icon icon-preloader').render();
+        this.preloaderContainer.append(this.preloader);
+        this.container.append(this.wrapper, this.preloaderContainer);
     }
 
     render() {
         return this.container;
+    }
+
+    static preloader() {
+        window.onload = () => {
+            document.body.classList.add('loaded_hiding');
+
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+                document.body.classList.remove('loaded_hiding');
+            }, 1000);
+        };
     }
 }
 

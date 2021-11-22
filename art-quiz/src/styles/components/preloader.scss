@@ -1,0 +1,18 @@
+.preloader {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: $bcg-color-dark;
+}
+
+.loaded_hiding .preloader {
+    opacity: 0;
+    transition: 1s all;
+}
+
+.loaded .preloader {
+    display: none;
+}

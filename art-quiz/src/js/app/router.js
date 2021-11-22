@@ -1,4 +1,5 @@
 import ModalRoundComplete from '../core/components/modal-round-complete';
+import MainPage from '../pages/main';
 import Question from '../pages/question';
 import Model from './model';
 import View from './view';
@@ -6,6 +7,7 @@ import View from './view';
 class Router {
     constructor() {
         View.bindResetHash(Router.resetHashAfterReload());
+        MainPage.preloader();
     }
 
     static getHash() {
