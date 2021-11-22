@@ -22,9 +22,6 @@ class Router {
         const gameSetup = Model.getGameSetup();
 
         if (currentHash === 'question') {
-            setTimeout(() => {
-                Question.showModalExit();
-            }, 2000);
         } else if (currentHash) {
             const categoryState = await Model.setStateOfQuizCategory();
             const scoreResults = await Model.getResultsToScore();
