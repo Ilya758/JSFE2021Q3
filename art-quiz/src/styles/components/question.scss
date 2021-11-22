@@ -3,7 +3,14 @@
 
         @include flex(column);
 
-        padding: 50px 306px 0 317px;
+        width: 100%;
+        max-width: 700px;
+        padding-top: 50px;
+        margin: 0 auto;
+
+        @include tablet {
+            padding: 50px 0 0;
+        }
     }
 
     &__container {
@@ -43,6 +50,7 @@
         max-width: 825px;
         max-height: 498px;
         border-radius: 20px;
+        object-fit: cover;
 
         &-container {
 
@@ -92,7 +100,7 @@
 
         &-button {
             width: 100%;
-            padding: 20px 99px;
+            padding: 20px 0;
             border: none;
             border: 1px solid $border-color-white;
             background: initial;
@@ -101,6 +109,11 @@
             line-height: 22px;
             transition: $trans;
             user-select: none;
+
+            @include tablet {
+                font-size: 16px;
+                line-height: 18px;
+            }
 
             &:hover {
                 background-color: $bcg-color-white;

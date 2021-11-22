@@ -38,6 +38,17 @@ body {
 
     &-logo-app {
         margin: 242px 0 165px;
+
+        @include tablet {
+            width: 300px;
+            height: 116px;
+            margin: 328px 0 120px;
+        }
+
+        @include sPhones {
+            width: 153px;
+            height: 60px;
+        }
     }
 
     &-left-arrow-exit {
@@ -165,6 +176,16 @@ body {
         background: url("../assets/svg/icon-preloader.svg") 0 0/cover no-repeat;
         transform: translate(-50%, -50%);
     }
+
+    @each $item in home, score, categories {
+        &-#{$item} {
+            width: 21px;
+            height: 21px;
+            background: url("../assets/svg/icon-#{$item}.svg") 0/cover no-repeat;
+            opacity: 0.75;
+            transition: $trans;
+        }
+    }
 }
 
 .text {
@@ -206,8 +227,13 @@ body {
     border-radius: 60px;
     font: 500 22px $font-main;
     line-height: 22px;
+    text-align: center;
     transition: $trans;
     user-select: none;
+
+    @include tablet {
+        padding: 20px 0;
+    }
 
     &:hover {
         background-color: $bcg-color-white;
@@ -238,8 +264,12 @@ body {
     @include flex(column, center, space-between);
 
     height: 100vh;
-    background: url("../assets/img/main-large.png") 0 0/cover no-repeat;
+    background: url("../assets/img/main-large.png") center/cover no-repeat;
     transition: 1s;
+
+    @include tablet {
+        height: unset;
+    }
 }
 
 .heading {
@@ -262,4 +292,50 @@ body {
 
 .fade {
     opacity: 0;
+}
+
+.nav {
+    &__container {
+        position: fixed;
+        z-index: 999;
+        bottom: 0;
+        display: none;
+        width: 100%;
+
+        @include reviews {
+            display: block;
+        }
+    }
+
+    &__list {
+
+        @include flex(row, space-between);
+
+        padding: 15px 45px;
+        border: 1.5px solid $border-color-white;
+        border-color: $bcg-color-white;
+        border-bottom: transparent;
+        margin: 0;
+        background-color: $bcg-color-dark;
+        border-radius: 20px 20px 0 0;
+    }
+
+    &__link {
+        z-index: 999;
+        row-gap: 5px;
+        text-decoration: none;
+
+        @include flex(column);
+
+        &:hover {
+            .icon {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__text {
+        font: 500 12px $font-main;
+        letter-spacing: -0.5px;
+    }
 }

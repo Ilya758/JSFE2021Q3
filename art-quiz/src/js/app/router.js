@@ -22,6 +22,9 @@ class Router {
         const gameSetup = Model.getGameSetup();
 
         if (currentHash === 'question') {
+            setTimeout(() => {
+                Question.showModalExit();
+            }, 2000);
         } else if (currentHash) {
             const categoryState = await Model.setStateOfQuizCategory();
             const scoreResults = await Model.getResultsToScore();
@@ -55,6 +58,7 @@ class Router {
             }
 
             if (currentHash === 'categories') {
+                View.bindFixedNav();
                 const categories = Model.CATEGORIES;
                 setTimeout(async () => {
                     Categories.transitionToPages();
@@ -71,7 +75,7 @@ class Router {
 
             if (currentHash === 'score') {
                 setTimeout(() => {
-                    console.log('score!!!');
+                    View.bindFixedNav();
                     View.bindFadeEffectToPages();
                 }, 2500);
             }

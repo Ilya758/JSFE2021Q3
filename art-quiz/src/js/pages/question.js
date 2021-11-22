@@ -6,6 +6,7 @@ import Button from '../core/components/button';
 import TimeProgressBar from '../core/components/time-progressbar';
 import Card from '../core/components/card';
 import ModalQuestion from '../core/components/modal-question';
+import ModalExit from '../core/components/modal-exit';
 
 class Question extends Page {
     constructor(id, gameSetup, questionInfo, settings, addInfo) {
@@ -192,7 +193,7 @@ class Question extends Page {
             this.questionInfo.currentAnswers,
         ];
 
-        const imgUrl = `https://raw.githubusercontent.com/Ilya758/image-data/master/full/${questionNum}full.jpg`;
+        const imgUrl = `https://raw.githubusercontent.com/Ilya758/image-data/master/img/${questionNum}.jpg`;
 
         this.questionHeader = new Text(
             'h1',

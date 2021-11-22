@@ -29,6 +29,10 @@
             @include onlyFlex();
 
             column-gap: 20px;
+
+            @include tablet {
+                column-gap: 12px;
+            }
         }
 
         &__button {
@@ -55,6 +59,10 @@
 
     &-question {
         padding: 223px 0 0;
+
+        @include tablet {
+            padding-top: 168px;
+        }
 
         &__content {
             position: relative;
@@ -103,6 +111,10 @@
     &-complete {
         padding: 220px 0 0;
 
+        @include tablet {
+            padding: 105px;
+        }
+
         &__content {
 
             @include flex();
@@ -144,16 +156,28 @@
 
             &:first-child {
                 padding: 20px 75px;
+
+                @include tablet {
+                    padding: 20px 0;
+                }
             }
 
             &:last-child {
                 padding: 20px 54px;
+
+                @include tablet {
+                    padding: 20px 0;
+                }
             }
         }
     }
 
     &-gameover {
         padding: 220px 0 0;
+
+        @include tablet {
+            padding-top: 105px;
+        }
 
         &__content {
             position: relative;
@@ -179,21 +203,34 @@
         }
 
         &__button {
+            width: 100%;
             max-width: 210px;
             border: 1.5px solid $border-color-dark;
 
             &:first-child {
                 padding: 20px 92px;
+
+                @include tablet {
+                    padding: 20px 0;
+                }
             }
 
             &:last-child {
                 padding: 20px 89px;
+
+                @include tablet {
+                    padding: 20px 0;
+                }
             }
         }
     }
 
     &-score {
         padding: 220px 0 0;
+
+        @include tablet {
+            padding-top: 105px;
+        }
 
         &__content {
             position: relative;

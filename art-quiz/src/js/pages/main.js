@@ -2,7 +2,7 @@ import ComponentWrapper from '../core/templates/component-wrapper';
 import Page from '../core/templates/page';
 import ButtonLink from '../core/components/button-link';
 import Component from '../core/templates/component';
-
+import Text from '../core/components/text';
 class MainPage extends Page {
     constructor(id) {
         super(id);

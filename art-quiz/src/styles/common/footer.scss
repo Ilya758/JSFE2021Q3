@@ -6,11 +6,20 @@
         align-items: center;
         padding: 0 20px 18px;
         grid-template-columns: repeat(2, 1fr) 31px;
+
+        @include sPhones {
+            padding: 0;
+        }
     }
 
     &__text {
         font: 500 16px $font-main;
         line-height: 20px;
+
+        @include sPhones {
+            font-size: 14px;
+            line-height: 20px;
+        }
 
         &:nth-child(2) {
             margin-right: 60px;

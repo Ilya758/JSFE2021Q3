@@ -324,6 +324,22 @@ class View {
             });
         });
     }
+
+    static bindFixedNav() {
+        /** const list = document
+            .querySelector('#root')
+            .querySelector('.nav__list');
+        console.log(list);
+        list.addEventListener('click', event => {
+            if (
+                event.target.tagName === 'SPAN' ||
+                event.target.tagName === 'LI' ||
+                event.target.tagName === 'A'
+            ) {
+                document.querySelector('#root').classList.add('fade');
+            }
+        }); */
+    }
 }
 
 export default View;

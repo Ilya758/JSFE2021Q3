@@ -77,6 +77,51 @@ class Score extends Page {
         this.mainContent.append(this.gridContainerInit());
         this.container.append(this.header, this.main);
         document.querySelector('#root').classList.remove('fade');
+
+        this.navContainer = new Component('div', 'nav__container').render();
+        this.navList = Score.generateNavPanel();
+        this.navContainer.append(this.navList);
+        document.querySelector('#root').append(this.navContainer);
+    }
+
+    static generateNavPanel() {
+        const navList = new Component('ul', 'list nav__list').render();
+
+        function setUpperText(text) {
+            return `${text[0].toUpperCase()}${text.slice(1)}`;
+        }
+
+        const textArray = [
+            ['home', 'main-page'],
+            ['categories', 'categories'],
+            ['score', 'score'],
+        ];
+
+        for (let i = 0; i < 3; i += 1) {
+            const item = new Component('li', 'nav__item').render();
+            const link = new ButtonLink(
+                'nav__link',
+                textArray[i][1],
+                '',
+                textArray[i][1]
+            ).render();
+
+            const icon = new Component(
+                'span',
+                `icon icon-${textArray[i][0]}`
+            ).render();
+            const text = new Text(
+                'span',
+                'text text_color_white nav__text',
+                `${setUpperText(textArray[i][0])}`
+            ).render();
+
+            link.append(icon, text);
+            item.append(link);
+            navList.append(item);
+        }
+
+        return navList;
     }
 
     gridContainerInit() {

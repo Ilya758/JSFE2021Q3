@@ -4,6 +4,10 @@
             align-items: center;
             justify-content: space-between;
             padding: 30px 50px 0;
+
+            @include tablet {
+                padding: 30px 0 0;
+            }
         }
 
         &__links {
@@ -13,6 +17,14 @@
 
                 flex: 1;
                 margin-right: 120px;
+
+                @include tablet {
+                    //display: none;
+                }
+
+                @include reviews {
+                    display: none;
+                }
             }
         }
     }
@@ -28,6 +40,17 @@
 
             .settings__text {
                 margin-left: 15px;
+
+                @include tablet {
+                    display: none;
+                }
+            }
+
+            a {
+
+                @include tablet {
+                    display: none;
+                }
             }
         }
     }

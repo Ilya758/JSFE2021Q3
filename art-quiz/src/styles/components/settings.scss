@@ -20,6 +20,13 @@
             .settings__text {
                 margin-left: 23px;
             }
+
+            .icon-cross-exit {
+
+                @include sPhones {
+                    display: none;
+                }
+            }
         }
     }
 

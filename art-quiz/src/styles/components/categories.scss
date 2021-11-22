@@ -1,6 +1,10 @@
 .categories {
     &__content {
         margin-top: 125px;
+
+        @include tablet {
+            margin-top: 30px;
+        }
     }
 
     &__list {
@@ -12,6 +16,15 @@
         grid-template-rows: repeat(2, 1fr);
         justify-items: center;
         row-gap: 48px;
+
+        @include tablet {
+            padding: 0;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include sPhones {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     &__item {
@@ -22,6 +35,19 @@
         &-text {
             font: 500 20px $font-main;
             line-height: 20px;
+
+            @include tablet {
+                font-size: 18px;
+                line-height: 18px;
+            }
+
+            @include reviews {
+                font-size: 16px;
+            }
+
+            @include sPhones {
+                font-size: 14px;
+            }
         }
 
         .categories__item-text {
@@ -77,6 +103,10 @@
 
     &__link {
         margin-left: 120px;
+
+        @include reviews {
+            display: none;
+        }
     }
 
     &__button {

@@ -12,6 +12,17 @@
 
         margin-bottom: 242px;
         column-gap: 40px;
+
+        @include tablet {
+            width: 100%;
+            max-width: 268px;
+            flex-direction: column;
+            row-gap: 20px;
+        }
+
+        @include widjets {
+            margin-bottom: 20px;
+        }
     }
 }
 

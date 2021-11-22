@@ -202,11 +202,6 @@ class Model {
         return this.gameIsOver;
     }
 
-    /** static resetGameCategory() {
-        this.gameCategory = null;
-        this.commit('gameCategory', this.gameCategory);
-    } */
-
     static shuffle(array) {
         const mutatedArray = array;
         for (let i = array.length - 1; i > 0; ) {
