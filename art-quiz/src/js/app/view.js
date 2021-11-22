@@ -329,7 +329,6 @@ class View {
         /** const list = document
             .querySelector('#root')
             .querySelector('.nav__list');
-        console.log(list);
         list.addEventListener('click', event => {
             if (
                 event.target.tagName === 'SPAN' ||

@@ -321,8 +321,6 @@ class Model {
             this.getGameCategory()
         );
 
-        console.log(this.getGameCategory());
-
         this.categoryState = JSON.parse(Model.getStateOfQuizCategory());
 
         if (!this.categoryState) {

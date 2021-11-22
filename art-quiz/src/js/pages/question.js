@@ -314,7 +314,6 @@ class Question extends Page {
         const setDeadline = handler();
         const buttons = document.querySelectorAll('.question__answers-button');
         const timeOutInMs = settings.timeOut * 1000;
-        // console.log(addInfo);
         /** let interval = setInterval(() => {
             const timeOut = document.querySelector('.question__heading-text');
             const remainTime = secondHandler(setDeadline);
