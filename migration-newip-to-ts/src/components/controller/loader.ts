@@ -44,10 +44,7 @@ class Loader {
         response
             .then(this.errorHandler.bind(Loader))
             .then((res: Response) => res.json())
-            .then((data: Partial<INewsJSON>) => {
-                console.log(data);
-                callback(data);
-            })
+            .then((data: Partial<INewsJSON>) => callback(data))
             .catch((err) => console.error(err));
     }
 }
