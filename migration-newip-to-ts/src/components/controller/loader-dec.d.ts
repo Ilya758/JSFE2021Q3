@@ -40,3 +40,19 @@ interface INewsJSON {
 type TGenericForINewsJSON<T> = {
     [prop: T]: T;
 }[];
+
+interface IArticle {
+    author: string;
+    content: string;
+    description: string;
+    publishedAt: string;
+    source: ISource;
+    title: string;
+    url: string;
+    urlToImage: string;
+}
+
+interface ISource {
+    id: string;
+    name: string;
+}
