@@ -27,7 +27,7 @@ type TUrlOptions = {
 
 interface IResp {
     endpoint: TEndpoint;
-    options: Partial<TRespOptions>;
+    options?: Partial<TRespOptions>;
 }
 
 interface INewsJSON {
