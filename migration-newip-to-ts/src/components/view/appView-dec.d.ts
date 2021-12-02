@@ -4,7 +4,7 @@ import Sources from './sources/sources';
 declare class AppView {
     constructor(public news: News, public sources: Sources);
 
-    drawNews(data: INewsJSON): void;
+    drawNews(data: Partial<INewsJSON>): void;
 
-    drawSources(data: INewsJSON): void;
+    drawSources(data: Partial<INewsJSON>): void;
 }
