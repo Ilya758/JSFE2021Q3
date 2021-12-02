@@ -31,9 +31,9 @@ interface IResp {
 }
 
 interface INewsJSON {
-    sources: TGenericForINewsJSON[];
+    sources: TGenericForINewsJSON<string>;
     status: string;
-    articles: TGenericForINewsJSON[];
+    articles: TGenericForINewsJSON<string>;
     totalResults: number;
 }
 
