@@ -1,7 +1,7 @@
 import AppLoader from './appLoader';
 
 declare class AppController extends AppLoader {
-    getSources(callback: () => void): void;
+    getSources(callback: (data: INewsJSON) => void): void;
 
-    getNews(e: Event, callback: () => void): void;
+    getNews(e: Event, callback: (data: INewsJSON) => void): void;
 }

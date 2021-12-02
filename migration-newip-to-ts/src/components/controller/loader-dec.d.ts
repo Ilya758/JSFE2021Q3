@@ -1,7 +1,7 @@
 declare class Loader {
     constructor(public baseLink: string, public options: TUrlOptions);
 
-    getResp({ endpoint, options = {} }: IResp): void;
+    getResp({ endpoint, options = {} }: IResp, callback: (data: INewsJSON) => void): void;
 
     makeUrl(options: Partial<TRespOptions>, endpoint): TEndpoint;
 
