@@ -14,7 +14,6 @@ class Loader {
     }
 
     errorHandler(res: Response): Response | never {
-        console.log(res);
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -29,7 +28,6 @@ class Loader {
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
-            console.log(urlOptions);
             url += `${key}=${urlOptions[key]}&`;
         });
 
@@ -46,7 +44,10 @@ class Loader {
         response
             .then(this.errorHandler.bind(Loader))
             .then((res: Response) => res.json())
-            .then((data: Partial<INewsJSON>) => callback(data))
+            .then((data: Partial<INewsJSON>) => {
+                console.log(data);
+                callback(data);
+            })
             .catch((err) => console.error(err));
     }
 }
