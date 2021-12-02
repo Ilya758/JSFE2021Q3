@@ -1,7 +1,7 @@
 import './news.css';
 
 class News {
-    draw(data: TGenericForINewsJSON<[]>) {
+    draw(data: TGenericForINewsJSON<[]>): void {
         const news = data.length >= 10 ? Object.values(data).filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
