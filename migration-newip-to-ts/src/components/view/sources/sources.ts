@@ -1,15 +1,17 @@
 import './sources.css';
 
 class Sources {
-    draw(data) {
+    draw(data: TGenericForINewsJSON<[]>): void {
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector('#sourceItemTemp');
+        const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
 
-        data.forEach((item) => {
-            const sourceClone = sourceItemTemp.content.cloneNode(true);
+        data.forEach((item: INewsSourcesItem) => {
+            const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
+            const sourceItemName = sourceClone.querySelector('.source__item-name') as HTMLSpanElement;
+            const sourceItem = sourceClone.querySelector('.source__item') as HTMLDivElement;
 
-            sourceClone.querySelector('.source__item-name').textContent = item.name;
-            sourceClone.querySelector('.source__item').setAttribute('data-source-id', item.id);
+            sourceItem.setAttribute('data-source-id', item.id);
+            sourceItemName.textContent = item.name;
 
             fragment.append(sourceClone);
         });
