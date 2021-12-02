@@ -4,6 +4,7 @@ class Sources {
     draw(data: TGenericForINewsJSON<[]>): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
+        const sourcesContainer = document.querySelector('.sources') as HTMLDivElement;
 
         data.forEach((item: INewsSourcesItem) => {
             const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
@@ -16,7 +17,7 @@ class Sources {
             fragment.append(sourceClone);
         });
 
-        document.querySelector('.sources').append(fragment);
+        sourcesContainer.append(fragment);
     }
 }
 
