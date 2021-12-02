@@ -14,7 +14,7 @@ class App {
             this.controller.getNews(e, (data: Partial<INewsJSON>) => this.view.drawNews(data))
         );
 
-        this.controller.getSources((data: INewsJSON) => this.view.drawSources(data));
+        this.controller.getSources((data: Partial<INewsJSON>) => this.view.drawSources(data));
     }
 }
 
