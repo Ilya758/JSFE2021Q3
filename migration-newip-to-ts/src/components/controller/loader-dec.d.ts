@@ -21,10 +21,6 @@ type TRespOptions = {
 
 type TEndpoint = string;
 
-type TSources<T> = {
-    [prop: string]: T;
-};
-
 type TUrlOptions = {
     [prop: string]: string;
 };
@@ -35,6 +31,12 @@ interface IResp {
 }
 
 interface INewsJSON {
-    sources: Partial<TSources>;
+    sources: TGenericForINewsJSON[];
     status: string;
+    articles: TGenericForINewsJSON[];
+    totalResults: number;
 }
+
+type TGenericForINewsJSON<T> = {
+    [prop: T]: T;
+}[];
