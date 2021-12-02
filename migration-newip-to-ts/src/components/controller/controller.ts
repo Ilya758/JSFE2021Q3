@@ -11,11 +11,10 @@ class AppController extends AppLoader {
     }
 
     getNews(e: Event, callback: (data: INewsJSON) => void) {
-        const target = e.target as HTMLElement;
+        let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLDivElement;
-        let parentNode: ParentNode | null = null;
 
-        while (parentNode || target !== newsContainer) {
+        while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
                 const sourceId = target.getAttribute('data-source-id') || '';
 
@@ -34,7 +33,7 @@ class AppController extends AppLoader {
                 return;
             }
 
-            parentNode = target.parentNode;
+            target = target.parentElement ? target.parentElement : newsContainer;
         }
     }
 }
