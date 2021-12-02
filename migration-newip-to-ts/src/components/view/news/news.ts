@@ -24,12 +24,12 @@ class News {
             const itemAddInfo = newsClone.querySelector('.news__read-more a') as HTMLParagraphElement;
 
             itemPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
-            itemAuthor.textContent = item.author || item?.source?.name;
-            itemDate.textContent = item?.publishedAt?.slice(0, 10).split('-').reverse().join('-');
-            itemTitle.textContent = item.title;
-            itemSource.textContent = item.source?.name;
-            itemContent.textContent = item.description;
-            itemAddInfo.setAttribute('href', item.url);
+            itemAuthor.textContent = item.author || item?.source?.name || '';
+            itemDate.textContent = item?.publishedAt?.slice(0, 10).split('-').reverse().join('-') || '';
+            itemTitle.textContent = item.title || '';
+            itemSource.textContent = item.source?.name || '';
+            itemContent.textContent = item.description || '';
+            itemAddInfo.setAttribute('href', item.url || '');
 
             fragment.append(newsClone);
         });
