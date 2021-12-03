@@ -1,5 +1,5 @@
 declare class Loader {
-    constructor(public baseLink: string, public options: TUrlOptions);
+    constructor(public readonly baseLink: string, public readonly options: TUrlOptions);
 
     getResp({ endpoint, options = {} }: IResp, callback: (data: INewsJSON) => void): void;
 

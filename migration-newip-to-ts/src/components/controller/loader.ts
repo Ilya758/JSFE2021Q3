@@ -1,5 +1,5 @@
 class Loader {
-    constructor(public baseLink: string, public options: TUrlOptions) {
+    constructor(public readonly baseLink: string, public readonly options: TUrlOptions) {
         this.baseLink = baseLink;
         this.options = options;
     }
