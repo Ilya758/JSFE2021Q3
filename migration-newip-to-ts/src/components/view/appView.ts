@@ -13,7 +13,6 @@ export class AppView {
     }
 
     drawSources(data: Pick<INewsJSON, 'status' | 'sources'>): void {
-        console.log(data);
         const values = data?.sources ? data?.sources : [];
         this.sources?.draw(values);
     }
