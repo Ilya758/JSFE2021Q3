@@ -15,10 +15,12 @@ class App {
         const sources = document.querySelector('.sources') as HTMLElement;
 
         sources.addEventListener('click', (e) =>
-            this.controller.getNews(e, (data: Partial<INewsJSON>) => this.view.drawNews(data))
+            this.controller.getNews(e, (data: Pick<INewsJSON, 'articles' | 'status' | 'totalResults'>) =>
+                this.view.drawNews(data)
+            )
         );
 
-        this.controller.getSources((data: Partial<INewsJSON>) => this.view.drawSources(data));
+        this.controller.getSources((data: Pick<INewsJSON, 'status' | 'sources'>) => this.view.drawSources(data));
     }
 }
 
