@@ -16,7 +16,7 @@ declare class Loader {
 }
 
 type TRespOptions = {
-    sources: TSources;
+    sources: string;
 };
 
 type TEndpoint = string;
