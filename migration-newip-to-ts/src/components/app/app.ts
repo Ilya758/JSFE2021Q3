@@ -21,6 +21,8 @@ class App {
         );
 
         this.controller.getSources((data: Pick<INewsJSON, 'status' | 'sources'>) => this.view.drawSources(data));
+
+        this.view.initPreloader();
     }
 }
 

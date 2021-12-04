@@ -2,6 +2,8 @@ body {
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
+    overflow-x: hidden;
+    transition: 0.35s;
 }
 
 header {
@@ -32,4 +34,39 @@ footer .copyright a:hover {
 }
 footer .copyright:before {
     content: '©';
+}
+
+.no-scroll {
+    overflow-y: hidden;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1001;
+    background: black;
+}
+
+.preloader__img {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: url('./assets/images/svg/preloader.svg') 0 0 / cover;
+    transform: translate(-50%, -50%);
+}
+
+.page_state_loading > .preloader {
+    transition: 1s all;
+    opacity: 0;
+}
+
+.page_state_loaded > .preloader {
+    display: none;
 }

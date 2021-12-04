@@ -7,4 +7,6 @@ declare class AppView {
     drawNews(data: Pick<INewsJSON, 'articles' | 'status' | 'totalResults'>): void;
 
     drawSources(data: Pick<INewsJSON, 'status' | 'sources'>): void;
+
+    initPreloader(): void;
 }
