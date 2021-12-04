@@ -53,7 +53,6 @@ class News {
         }, 500);
 
         newsWrapper.addEventListener('click', (event: Event) => {
-            console.log(event.target);
             if (
                 event.target === newsWrapper ||
                 event.target === closeButton ||
