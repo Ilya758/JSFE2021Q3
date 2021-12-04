@@ -2,6 +2,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
@@ -17,6 +18,13 @@ const baseConfig = {
                 exclude: /node_modules/,
                 loader: 'ts-loader',
             },
+            {
+                test: /.(png|gif|jpe?g|ico|webp|svg|ttf|woff|woff2|otf|eot)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: './[path][name][ext]',
+                },
+            },
         ],
     },
     resolve: {
@@ -25,6 +33,7 @@ const baseConfig = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
+        assetModuleFilename: '[file][ext]',
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -32,6 +41,14 @@ const baseConfig = {
             filename: 'index.html',
         }),
         new CleanWebpackPlugin(),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: `${path.join(__dirname, './src/assets')}/`,
+                    to: `${path.join(__dirname, './dist')}/assets/`,
+                },
+            ],
+        }),
     ],
 };
 
