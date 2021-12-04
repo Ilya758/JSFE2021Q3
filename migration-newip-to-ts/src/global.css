@@ -36,6 +36,62 @@ footer .copyright:before {
     content: '©';
 }
 
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
+}
+
+.footer__logo {
+    display: inline-block;
+    background: url('./assets/images/svg/logo-school.svg') no-repeat;
+    width: 84px;
+    height: 40px;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.footer__logo:hover {
+    opacity: 1;
+    transform: skewX(-10deg) scale(1.2) rotate(10deg);
+}
+
+.footer__text {
+    text-shadow: 0 2px 11px #70d6ff;
+    font-size: 20px;
+    color: #70d6ff;
+    transition: 0.25s;
+    text-decoration: none;
+}
+
+.footer__github {
+    cursor: pointer;
+}
+
+.footer__github:hover {
+    color: #fff;
+    text-shadow: 0 2px 11px #fff;
+    animation: selfRotate 5s infinite;
+    transition: 1s all;
+}
+
+@keyframes selfRotate {
+    0% {
+        transform: skewX(-10deg) scale(1.2) rotate(0);
+    }
+
+    50% {
+        transform: skewX(-10deg) scale(1.2) rotate(180deg);
+    }
+
+    100% {
+        transform: skewX(-10deg) scale(1.2) rotate(360deg);
+    }
+}
+
 .no-scroll {
     overflow-y: hidden;
 }
