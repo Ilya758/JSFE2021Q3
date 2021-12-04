@@ -1,3 +1,25 @@
+.news-wrapper {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 1);
+    transform: translate(-50%, 0);
+    transition: 1s linear;
+    opacity: 0;
+}
+
+.news {
+    width: fit-content;
+    justify-content: center;
+    margin: 0 auto;
+    transition: 1.5s;
+    transform: translate(0, -1000px);
+    opacity: 0;
+}
+
 .news__item {
     display: flex;
     flex-direction: column;
@@ -9,6 +31,14 @@
     font-family: Arial, sans-serif;
     border-radius: 5px;
     overflow: hidden;
+    transition: 0.5s;
+    opacity: 0.8;
+}
+
+.news__item:hover {
+    border-radius: 5px;
+    box-shadow: 0 0 20px 15px #70d6ff;
+    opacity: 1;
 }
 
 .news__item:hover .news__meta-photo {
@@ -121,10 +151,17 @@
     left: 0%;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
     .news__item {
         flex-direction: row;
         max-width: 700px;
+    }
+}
+
+@media (min-width: 640px) {
+    .news__item {
+        flex-direction: row;
+        max-width: 440px;
     }
 
     .news__item .news__meta {
@@ -163,4 +200,86 @@
     .news__item.alt .news__meta-details {
         padding-left: 25px;
     }
+}
+
+@media (min-width: 320px) {
+    .news__item {
+        flex-direction: row;
+        max-width: 700px;
+    }
+
+    .news__item:first-child {
+        margin-top: 100px;
+    }
+
+    .news {
+        padding: 0 20px;
+    }
+}
+
+.icon-exit {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    opacity: 0;
+    transition: 1s;
+    z-index: 1002;
+}
+
+.icon-exit:hover .line {
+    background-color: #70d6ff;
+}
+
+.icon-exit:active .line {
+    background-color: #e73c7e;
+}
+
+.line {
+    display: inline-block;
+    position: absolute;
+    top: 21px;
+    right: 0;
+    width: 45px;
+    height: 3px;
+    background-color: #fff;
+    transition: 0.35s;
+}
+
+.left-line {
+    transform: rotate(45deg);
+}
+
+.right-line {
+    transform: rotate(135deg);
+}
+
+.active {
+    display: flex;
+    z-index: 999;
+}
+
+.wrapper_state_appear {
+    opacity: 1;
+}
+
+.wrapper_state_downloaded {
+    overflow-y: scroll;
+    opacity: 1;
+}
+
+.wrapper_state_fade {
+    overflow: hidden;
+    opacity: 0;
+}
+
+.news_state_appear {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+.icon_state_visible {
+    opacity: 1;
 }

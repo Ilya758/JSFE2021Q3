@@ -34,7 +34,43 @@ class News {
             fragment.append(newsClone);
         });
 
+        const newsWrapper = document.querySelector('.news-wrapper') as HTMLDivElement;
         const newsContainer = document.querySelector('.news') as HTMLDivElement;
+        const closeButton = document.querySelector('.icon-exit') as HTMLDivElement;
+
+        newsWrapper.classList.add('active');
+        setTimeout(() => {
+            newsWrapper.classList.add('wrapper_state_appear');
+            setTimeout(() => {
+                newsWrapper.classList.remove('wrapper_state_appear');
+                newsWrapper.classList.add('wrapper_state_downloaded');
+                document.body.classList.add('no-scroll');
+                newsContainer.classList.add('news_state_appear');
+                setTimeout(() => {
+                    closeButton.classList.add('icon_state_visible');
+                });
+            }, 1500);
+        }, 500);
+
+        newsWrapper.addEventListener('click', (event: Event) => {
+            console.log(event.target);
+            if (
+                event.target === newsWrapper ||
+                event.target === closeButton ||
+                (event.target as HTMLSpanElement).classList.contains('line')
+            ) {
+                closeButton.classList.remove('icon_state_visible');
+                document.body.classList.remove('no-scroll');
+                newsWrapper.classList.add('wrapper_state_fade');
+                newsWrapper.classList.remove('wrapper_state_downloaded');
+                setTimeout(() => {
+                    newsWrapper.classList.remove('wrapper_state_fade');
+                    newsContainer.classList.remove('news_state_appear');
+                    newsContainer.innerHTML = '';
+                    newsWrapper.classList.remove('active');
+                }, 1000);
+            }
+        });
 
         newsContainer.innerHTML = '';
         newsContainer.appendChild(fragment);

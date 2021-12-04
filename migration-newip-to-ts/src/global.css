@@ -1,3 +1,14 @@
+@keyframes appearFromTop {
+    0% {
+        transform: translate(0, -2000px) scale(0.1);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0, 0) scale(1) rotate(1800deg);
+        opacity: 1;
+    }
+}
+
 body {
     color: #fff;
     background: #17181c;
