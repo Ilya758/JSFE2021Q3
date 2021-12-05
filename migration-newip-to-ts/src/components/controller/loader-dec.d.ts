@@ -38,7 +38,7 @@ interface INewsJSON {
 }
 
 type TGenericForINewsJSON<T> = {
-    [prop: T]: T;
+    [prop: string]: T;
 }[];
 
 interface IArticle {
