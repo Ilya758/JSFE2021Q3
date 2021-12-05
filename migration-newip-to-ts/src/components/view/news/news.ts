@@ -1,13 +1,13 @@
 import './news.css';
 
 class News {
-    draw(data: TGenericForINewsJSON<[]>): void {
+    draw(data: IArticle[]): void {
         const news = data.length >= 10 ? Object.values(data).filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
         const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
 
-        news.forEach((item: Partial<IArticle>, idx: number) => {
+        news.forEach((item, idx: number) => {
             const newsClone = newsItemTemp.content.cloneNode(true) as HTMLElement;
             const newsItem = newsClone.querySelector('.news__item') as HTMLDivElement;
 

@@ -31,15 +31,11 @@ interface IResp {
 }
 
 interface INewsJSON {
-    sources: TGenericForINewsJSON<string>;
+    sources: TSources[];
     status: string;
-    articles: TGenericForINewsJSON<string>;
+    articles: IArticle[];
     totalResults: number;
 }
-
-type TGenericForINewsJSON<T> = {
-    [prop: string]: T;
-}[];
 
 interface IArticle {
     author: string;
@@ -50,6 +46,16 @@ interface IArticle {
     title: string;
     url: string;
     urlToImage: string;
+}
+
+interface TSources {
+    category: string;
+    country: string;
+    description: string;
+    id: string;
+    language: string;
+    name: string;
+    url: string;
 }
 
 interface ISource {
