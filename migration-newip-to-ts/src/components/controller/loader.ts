@@ -14,10 +14,18 @@ class Loader {
     }
 
     errorHandler(res: Response): Response | never {
+        enum ErrorTypes {
+            UnauthorizedError = 401,
+            NotFound = 404,
+            UpgradeRequired = 426,
+            TooManyRequests = 429,
+        }
+
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
-                console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
-            throw Error(res.statusText);
+            Object.values(ErrorTypes).forEach((type) => {
+                if (res.status === type) console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
+                throw Error(res.statusText);
+            });
         }
 
         return res;
