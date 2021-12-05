@@ -6,7 +6,7 @@ class Loader {
 
     getResp(
         { endpoint, options = {} }: IResp,
-        callback: (data: INewsJSON) => void = () => {
+        callback: (data: INewsJSON<ISources, IArticle>) => void = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -42,12 +42,17 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: (data: INewsJSON) => void, options: Partial<TRespOptions> = {}) {
+    load(
+        method: string,
+        endpoint: string,
+        callback: (data: INewsJSON<ISources, IArticle>) => void,
+        options: Partial<TRespOptions> = {}
+    ) {
         const response = fetch(this.makeUrl(options, endpoint), { method });
         response
             .then(this.errorHandler.bind(Loader))
             .then((res: Response) => res.json())
-            .then((data: INewsJSON) => callback(data))
+            .then((data: INewsJSON<ISources, IArticle>) => callback(data))
             .catch((err: Error) => console.error(err));
     }
 }

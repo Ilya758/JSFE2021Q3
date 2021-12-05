@@ -30,10 +30,10 @@ interface IResp {
     options?: Partial<TRespOptions>;
 }
 
-interface INewsJSON {
-    sources: TSources[];
+interface INewsJSON<T, K> {
+    sources: T[];
     status: string;
-    articles: IArticle[];
+    articles: K[];
     totalResults: number;
 }
 
@@ -48,7 +48,7 @@ interface IArticle {
     urlToImage: string;
 }
 
-interface TSources {
+interface ISources {
     category: string;
     country: string;
     description: string;

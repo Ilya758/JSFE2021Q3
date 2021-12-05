@@ -7,12 +7,12 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews(data: Pick<INewsJSON, 'articles' | 'status' | 'totalResults'>): void {
+    drawNews(data: Pick<INewsJSON<ISources, IArticle>, 'articles' | 'status' | 'totalResults'>): void {
         const values = data?.articles ? data?.articles : [];
         this.news?.draw(values);
     }
 
-    drawSources(data: Pick<INewsJSON, 'status' | 'sources'>): void {
+    drawSources(data: Pick<INewsJSON<ISources, IArticle>, 'status' | 'sources'>): void {
         const values = data?.sources ? data?.sources : [];
         this.sources?.draw(values);
     }
