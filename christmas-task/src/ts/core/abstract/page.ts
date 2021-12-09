@@ -1,11 +1,9 @@
 abstract class Page {
-  protected abstract container: HTMLDivElement;
-
   constructor(readonly id: string) {
     this.id = id;
   }
 
-  abstract render(): HTMLDivElement;
+  abstract render(): void;
 }
 
 export default Page;
