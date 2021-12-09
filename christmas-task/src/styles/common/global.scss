@@ -1,3 +1,38 @@
 * {
   box-sizing: border-box;
 }
+
+#root {
+  height: 100vh;
+
+  @include flex(column, center, normal);
+
+  background: url("../assets/img/bg.jpg") 0 0/cover no-repeat;
+}
+
+.content {
+
+  @include flex(row, center,center);
+}
+
+.container {
+  max-width: 1920px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.heading {
+  margin: 0;
+  color: #ffffff;
+  font: 400 25px $font-heading;
+}
+
+.text {
+  color: #ffffff;
+  font: 24px $font-text;
+  text-decoration: none;
+}
+
+.icon {
+  display: inline-block;
+}

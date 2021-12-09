@@ -1,3 +1,20 @@
 .footer {
   display: block;
+  background-color: $bcg-dark-green;
+
+  &__content {
+    justify-content: space-between;
+    padding: 0 64px;
+  }
+
+  &__author {
+    text-transform: capitalize;
+  }
+
+  &__logo {
+    width: 242px;
+    height: 90px;
+    background-color: $bcg-white;
+    mask: url("../assets/svg/rss.svg") 0 0/cover no-repeat;
+  }
 }
