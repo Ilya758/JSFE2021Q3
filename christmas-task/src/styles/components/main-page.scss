@@ -5,11 +5,39 @@
 
         @include flex(column, center, center);
 
+        position: relative;
         width: 100%;
         padding-top: 387px;
+
+        &::before, 
+        &::after {
+            position: absolute;
+            display: block;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            content: "";
+        }
+
+        &::before {
+            top: 130px;
+            left: 24%;
+            width: 418px;
+            height: 768px;
+            background-image: url("../assets/img/ball/1.png");
+        }
+
+        &::after {
+            top: 130px;
+            right: 28%;
+            width: 246px;
+            height: 446px;
+            background-image: url("../assets/img/ball/2.png");
+        }
     }
 
     &__heading {
+        z-index: 1;
         max-width: 593px;
         padding: 67px 85px;
         border: 2px solid $border-blue;
