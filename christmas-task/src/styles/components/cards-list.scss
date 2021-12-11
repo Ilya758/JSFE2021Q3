@@ -1,0 +1,60 @@
+/* stylelint-disable color-function-notation */
+.cards {
+    &__list {
+        max-height: 875px;
+        flex-wrap: wrap;
+        padding-right: 16px;
+        gap: 36px;
+        overflow-y: scroll;
+        
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+          
+        &::-webkit-scrollbar-thumb {
+            background-color: $bcg-blue;
+            border-radius: 10px;
+        }
+          
+        &::-webkit-scrollbar-track {
+            background-color: $bcg-white;
+            border-radius: 10px;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 25.3%);
+            outline: none;
+        }
+        
+        @include flex(row, space-between, flex-start);
+    }
+
+    &__item {
+
+        @include flex(column, center, flex-start);
+
+        width: calc(100% / 6);
+        width: 100%;
+        max-width: 222px;
+        height: 100%;
+        max-height: 342px;
+        padding: 18px 16px 19px;
+        backdrop-filter: blur(4px);
+        background-color: $bcg-pale-blue;
+        border-radius: 10px;
+    }
+
+    &__img {
+        width: 100%;
+        height: 80px;
+        object-fit: contain;
+    }
+
+    &__heading {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    &__text {
+        margin: 10px 0;
+        font-size: 12px;
+    }
+
+}

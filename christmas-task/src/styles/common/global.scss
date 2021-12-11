@@ -1,3 +1,4 @@
+/* stylelint-disable color-named */
 * {
   box-sizing: border-box;
 }
@@ -13,6 +14,16 @@
 .content {
 
   @include flex(row, center,center);
+}
+
+.list {
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+
+  @include only-flex;
 }
 
 .container {
@@ -35,4 +46,39 @@
 
 .icon {
   display: inline-block;
+}
+
+.button {
+  border: none;
+  outline: none;
+}
+
+$icons: sound audio, snow snow;
+ 
+@each $item, $pic in $icons {
+  .icon-#{$item} {
+    width: 36px;
+    height: 36px;
+    background-color: $bcg-white;
+    mask: url("../assets/svg/#{$pic}.svg") 0 0/cover no-repeat;
+  }
+}
+
+.icon-snow {
+  margin: 0 42px;
+}
+
+@each $item in bell, ball, pine, star, snowflake, bird-toy {
+  .icon-#{$item} {
+    width: 42px;
+    height: 42px;
+    background-color: $bcg-white;
+    mask: url("../assets/svg/#{$item}.svg") center/contain no-repeat;
+  }
+}
+
+.checkbox {
+  position: absolute;
+  z-index: -999;
+  opacity: 0;
 }
