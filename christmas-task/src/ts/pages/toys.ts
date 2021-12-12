@@ -1,4 +1,4 @@
-import noUiSlider from 'nouislider/dist/nouislider.mjs';
+import noUiSlider from 'nouislider/dist/nouislider.js';
 import Page from '../core/abstract/page';
 import Button from '../core/components/button';
 import ButtonLink from '../core/components/button-link';
@@ -449,12 +449,14 @@ class ToysPage extends Page {
   }
 
   createSlider(): void {
-    const topSlider = this.root.querySelector(`.${this.id}__top-slider`);
-    const bottomSlider = this.root.querySelector(`.${this.id}__bottom-slider`);
+    const topSlider = this.root.querySelector(
+      `.${this.id}__top-slider`
+    ) as HTMLDivElement;
+    const bottomSlider = this.root.querySelector(
+      `.${this.id}__bottom-slider`
+    ) as HTMLDivElement;
 
-    let firstSlider: noUiSlider = noUiSlider;
-
-    firstSlider.create(topSlider, {
+    noUiSlider.create(topSlider, {
       start: [0, 100],
       connect: true,
       range: {
@@ -468,7 +470,7 @@ class ToysPage extends Page {
       connect: true,
       range: {
         min: 0,
-        max: 100,
+        max: 71,
       },
     });
   }
