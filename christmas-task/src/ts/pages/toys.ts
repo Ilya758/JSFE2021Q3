@@ -14,13 +14,10 @@ class ToysPage extends Page {
 
   protected settingsContainer;
 
-  protected cardsContainer;
-
   constructor(readonly id: string) {
     super(id);
     this.root = document.querySelector('#root') as HTMLDivElement;
     this.settingsContainer = this.createSettingsContainer();
-    this.cardsContainer = this.createCardsContainer.bind(this);
   }
 
   render(initToysArray: ICard[]): void {
@@ -30,10 +27,22 @@ class ToysPage extends Page {
       `.${this.id}__content`
     ) as HTMLDivElement;
 
-    mainContent.append(
-      this.settingsContainer,
-      this.cardsContainer(initToysArray)
-    );
+    const cardsContainer = new Component(
+      'section',
+      `${this.id}-cards`
+    ).render() as HTMLDivElement;
+
+    const cardsHeading = new Text(
+      'h1',
+      `heading ${this.id}__heading toys-heading`,
+      'игрушки'
+    ).render();
+
+    const cardsList = ToysPage.cardsGenerator(initToysArray);
+
+    cardsContainer.append(cardsHeading, cardsList);
+
+    mainContent.append(this.settingsContainer, cardsContainer);
 
     const footerWrapper = new BEMWrapper('footer', 'footer').render();
     const footerContent = footerWrapper.querySelector(
@@ -460,26 +469,7 @@ class ToysPage extends Page {
     });
   }
 
-  createCardsContainer(initToysArray: ICard[]): HTMLDivElement {
-    const container = new Component(
-      'section',
-      `${this.id}-cards`
-    ).render() as HTMLDivElement;
-
-    const heading = new Text(
-      'h1',
-      `heading ${this.id}__heading toys-heading`,
-      'игрушки'
-    ).render();
-
-    const list = this.cardsGenerator(initToysArray);
-
-    container.append(heading, list);
-
-    return container;
-  }
-
-  cardsGenerator(initToysArray: ICard[]) {
+  protected static cardsGenerator(initToysArray: ICard[]) {
     const list = new Component('ul', 'list cards__list').render();
     const toysCount = initToysArray.length;
 
