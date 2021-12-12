@@ -529,6 +529,25 @@ class ToysPage extends Page {
 
     return list;
   }
+
+  bindSorting(handler: (sortOpt: string, method: string) => ICard[]) {
+    const sortContainer = this.root.querySelector('.toys-page__select');
+    sortContainer?.addEventListener('change', event => {
+      const option = event.target as HTMLOptionElement;
+      const method = 'sorting';
+      const sortOpt = option.value;
+      const arrayOfToys = handler(sortOpt, method);
+      const cardsSection = document.querySelector(
+        '.toys-page-cards'
+      ) as HTMLElement;
+      const cardsList = document.querySelector(
+        '.cards__list'
+      ) as HTMLUListElement;
+      cardsList.remove();
+
+      cardsSection.append(ToysPage.cardsGenerator(arrayOfToys));
+    });
+  }
 }
 
 export default ToysPage;
