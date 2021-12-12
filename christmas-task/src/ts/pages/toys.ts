@@ -126,22 +126,26 @@ class ToysPage extends Page {
     const sortingList = new Component(
       'select',
       `text ${this.id}__select`
-    ).render();
+    ).render() as HTMLSelectElement;
+    sortingList.name = 'sorting';
     let sortingItem;
     const sortingOptions = [
-      'По возрастанию от А до Я',
-      'По убыванию от Я до А',
-      'По количеству по убыванию',
-      'По количеству по возрастанию',
+      ['По возрастанию от А до Я', 'ascendingAlp'],
+      ['По убыванию от Я до А', 'descendingAlp'],
+      ['По количеству по возрастанию', 'ascendingCount'],
+      ['По количеству по убыванию', 'descendingCount'],
     ];
 
     for (let i = 0; i < 4; i += 1) {
+      const text = sortingOptions[i][0];
+      const sortOpt = sortingOptions[i][1];
+
       sortingItem = new Component(
         'option',
         `text ${this.id}__option`
       ).render() as HTMLOptionElement;
-      sortingItem.value = String(i);
-      sortingItem.textContent = sortingOptions[i];
+      sortingItem.value = sortOpt;
+      sortingItem.textContent = text;
       sortingList.append(sortingItem);
     }
 
