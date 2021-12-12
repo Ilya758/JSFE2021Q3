@@ -489,7 +489,7 @@ class ToysPage extends Page {
         'img',
         'cards__img'
       ).render() as HTMLImageElement;
-      img.src = `./assets/img/toys/${i + 1}.png`;
+      img.src = `./assets/img/toys/${initToysArray[i].num}.png`;
       img.alt = `${initToysArray[i].name}`;
 
       const count = new Text(
