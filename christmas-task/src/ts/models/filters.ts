@@ -3,22 +3,19 @@ export interface IFilters {
   shapes: TShape;
   color: TColor;
   size: TSize;
-  allCategories: boolean;
-  favorite: boolean;
-  value: {
-    count: TValue;
-    year: TValue;
-  };
+  allCategories: TAllCategories;
+  favorite: TFavorite;
+  value: TValue;
 }
 
-type TSorting = {
+export type TSorting = {
   ascendingAlp: boolean;
   descendingAlp: boolean;
   ascendingCount: boolean;
   descendingCount: boolean;
 };
 
-type TShape = {
+export type TShape = {
   bell: boolean;
   ball: boolean;
   pine: boolean;
@@ -27,7 +24,7 @@ type TShape = {
   'bird-toy': boolean;
 };
 
-type TColor = {
+export type TColor = {
   white: boolean;
   yellow: boolean;
   red: boolean;
@@ -35,13 +32,35 @@ type TColor = {
   blue: boolean;
 };
 
-type TSize = {
+export type TSize = {
   large: boolean;
   medium: boolean;
   small: boolean;
 };
 
-type TValue = {
+export type TAllCategories = boolean;
+
+export type TFavorite = boolean;
+
+export type TValue = {
+  count: TValues;
+  year: TValues;
+};
+
+export type TValues = {
   low: number;
   high: number;
 };
+
+export type TUnionFilters =
+  | TSorting
+  | TShape
+  | TColor
+  | TSize
+  | TValue
+  | TAllCategories
+  | TFavorite;
+
+export type TCurrentOption = [string, Partial<TUnionFilters>];
+
+export type TOpt = [string, boolean];
