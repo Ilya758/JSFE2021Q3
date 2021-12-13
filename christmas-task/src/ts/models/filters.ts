@@ -1,6 +1,6 @@
 export interface IFilters {
   sorting: TSorting;
-  shapes: TShape;
+  shape: TShape;
   color: TColor;
   size: TSize;
   allCategories: TAllCategories;
@@ -15,14 +15,18 @@ export type TSorting = {
   descendingCount: boolean;
 };
 
-export type TShape = {
-  bell: boolean;
-  ball: boolean;
-  pine: boolean;
-  star: boolean;
-  snowflake: boolean;
-  'bird-toy': boolean;
-};
+export type TShape =
+  | {
+      bell: boolean;
+      ball: boolean;
+      pine: boolean;
+      star: boolean;
+      snowflake: boolean;
+      'bird-toy': boolean;
+    }
+  | {
+      [prop: string]: string;
+    };
 
 export type TColor = {
   white: boolean;
