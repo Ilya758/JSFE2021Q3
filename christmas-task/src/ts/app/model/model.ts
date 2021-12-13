@@ -265,6 +265,10 @@ class Model {
 
     return options;
   }
+
+  getFilteredArrayLength() {
+    return this.filteredArray.length;
+  }
 }
 
 export default Model;
