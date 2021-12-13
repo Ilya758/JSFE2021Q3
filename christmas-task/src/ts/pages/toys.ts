@@ -236,7 +236,7 @@ class ToysPage extends Page {
       const shapePic = new Button(
         `button icon icon-${shapes[i].pic} ${this.id}__shape-button`,
         'button',
-        shapes[i].name
+        shapes[i].pic
       ).render();
 
       shapeItem.append(shapePic, shapeText);
