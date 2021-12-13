@@ -40,11 +40,15 @@ export type TColor =
       [prop: string]: string;
     };
 
-export type TSize = {
-  large: boolean;
-  medium: boolean;
-  small: boolean;
-};
+export type TSize =
+  | {
+      large: boolean;
+      medium: boolean;
+      small: boolean;
+    }
+  | {
+      [prop: string]: string;
+    };
 
 export type TAllCategories = boolean;
 
