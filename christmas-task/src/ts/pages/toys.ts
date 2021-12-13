@@ -554,8 +554,29 @@ class ToysPage extends Page {
     cardsSection.append(ToysPage.cardsGenerator(arrayOfToys));
   }
 
+  bindShapeFiltrate(handler: (sortOpt: string, method: string) => ICard[]) {
+    const shapeList = this.root.querySelector('.toys-page__shape-list');
 
-      cardsSection.append(ToysPage.cardsGenerator(arrayOfToys));
+    shapeList?.addEventListener('click', event => {
+      const method = 'shape';
+      const figure = event.target as HTMLElement;
+      let value = '';
+
+      if (figure.tagName === 'LI') {
+        value = (figure.children[0] as HTMLButtonElement).dataset.role || '';
+      }
+
+      if (figure.tagName === 'SPAN') {
+        value =
+          (figure.previousElementSibling as HTMLElement).dataset.role || '';
+      }
+
+      if (figure.tagName === 'BUTTON') {
+        value = (figure as HTMLButtonElement).dataset.role || '';
+      }
+
+      const arrayOfToys = handler(value, method);
+      ToysPage.reRenderCardsList(arrayOfToys);
     });
   }
 }
