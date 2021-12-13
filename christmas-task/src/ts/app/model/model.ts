@@ -311,6 +311,14 @@ class Model {
       filter => filter[0] === method
     ) as unknown as [string, TSorting];
 
+    let ops: [[string, boolean]];
+
+    if (typeof sortOptArray[1] === 'boolean') {
+      const value = sortOptArray[1] as boolean;
+      ops = [[method, value]];
+      return ops;
+    }
+
     const options = Object.entries(sortOptArray[1]) as unknown as [
       string,
       boolean
