@@ -82,6 +82,7 @@ class Model {
 
     this.filterShapes(objFromFilters);
     this.filterColors(objFromFilters);
+    this.filterSizes(objFromFilters);
     this.sortingToys(objFromFilters);
 
     this.filters = objFromFilters;
@@ -172,7 +173,7 @@ class Model {
     this.filteredArray = tmp;
   }
 
-  filterShapes(filters: TCurrentOption[] | IFilters): void {
+  filterShapes(filters: TCurrentOption[] | IFilters) {
     const shapes: TShape = {
       bell: 'колокольчик',
       ball: 'шар',
@@ -181,25 +182,31 @@ class Model {
       snowflake: 'снежинка',
       'bird-toy': 'фигурка',
     };
-    let tmp = this.getInitArrayOfToys();
+    let count = 0;
+    let tmp = this.getTemporaryArray();
     const options = Model.getCurrentOption(filters, 'shape');
 
     options.forEach(opt => {
       if (opt[1]) {
         const name = opt[0];
-        tmp.forEach(card => {
-          if (shapes[name] === card.shape) {
-            this.filteredArray.push(card);
-          }
-        });
+        if (!count) {
+          this.filteredArray = tmp.filter(card => shapes[name] === card.shape);
+          count += 1;
+        } else {
+          tmp.forEach(card => {
+            if (shapes[name] === card.shape) {
+              this.filteredArray.push(card);
+            }
+          });
+        }
       }
     });
   }
 
   filterColors(filters: TCurrentOption[] | IFilters): void {
-    let tmp = this.getInitArrayOfToys();
+    let tmp = this.getTemporaryArray();
     const options = Model.getCurrentOption(filters, 'color');
-
+    let count = 0;
     const colors: TColor = {
       white: 'белый',
       yellow: 'желтый',
@@ -211,11 +218,19 @@ class Model {
     options.forEach(opt => {
       if (opt[1]) {
         const name = opt[0];
-        tmp.forEach(card => {
-          if (colors[name] === card.color) {
-            this.filteredArray.push(card);
-          }
-        });
+        if (!count) {
+          this.filteredArray = tmp.filter(card => colors[name] === card.color);
+          count += 1;
+        } else {
+          tmp.forEach(card => {
+            if (colors[name] === card.color) {
+              this.filteredArray.push(card);
+            }
+          });
+        }
+      }
+    });
+  }
 
   filterSizes(filters: TCurrentOption[] | IFilters): void {
     let tmp = this.getTemporaryArray();
