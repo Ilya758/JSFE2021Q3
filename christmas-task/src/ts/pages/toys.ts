@@ -539,6 +539,10 @@ class ToysPage extends Page {
       const method = 'sorting';
       const sortOpt = option.value;
       const arrayOfToys = handler(sortOpt, method);
+      ToysPage.reRenderCardsList(arrayOfToys);
+    });
+  }
+
   static reRenderCardsList(arrayOfToys: ICard[]) {
     const cardsSection = document.querySelector(
       '.toys-page-cards'
