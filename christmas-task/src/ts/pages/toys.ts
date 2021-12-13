@@ -622,6 +622,27 @@ class ToysPage extends Page {
       }
     });
   }
+
+  bindFavoriteFiltrate(handler: (sortOpt: string, method: string) => ICard[]) {
+    const favoriteContainer = this.root.querySelector(
+      '.toys-page__favorite-container'
+    );
+
+    favoriteContainer?.addEventListener('click', event => {
+      const method = 'favorite';
+      const elem = event.target as HTMLElement;
+      let value = '';
+      if (elem.tagName === 'LABEL' || elem.tagName === 'SPAN') {
+        value =
+          elem.tagName === 'LABEL'
+            ? (elem.firstChild as HTMLInputElement).dataset.role || ''
+            : (elem.previousElementSibling as HTMLInputElement).dataset.role ||
+              '';
+        const arrayOfToys = handler(value, method);
+        ToysPage.reRenderCardsList(arrayOfToys);
+      }
+    });
+  }
 }
 
 export default ToysPage;
