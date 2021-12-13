@@ -17,10 +17,13 @@ class Model {
 
   protected filteredArray: ICard[];
 
+  protected filterWasModified: boolean;
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getInitFilters();
     this.filteredArray = [];
+    this.filterWasModified = false;
   }
 
   static getInitFilters(): IFilters {
@@ -87,6 +90,7 @@ class Model {
     this.sortingToys(objFromFilters);
 
     this.filters = objFromFilters;
+    this.filterWasModified = false;
 
     return this.filteredArray;
   }
@@ -141,7 +145,7 @@ class Model {
   }
 
   sortingToys(filters: TCurrentOption[] | IFilters): void {
-    let tmp = this.getTemporaryArray();
+    let tmp: ICard[];
 
     const ascendingAlp = (): void => {
       tmp = tmp.sort((a, b) => (a.name < b.name ? -1 : 1));
@@ -159,23 +163,26 @@ class Model {
       tmp = tmp.sort((a, b) => (+a.count > +b.count ? -1 : 1));
     };
 
-    const options = Model.getCurrentOption(filters, 'sorting');
+    if (!this.filterWasModified || this.getFilteredArrayLength()) {
+      tmp = this.getTemporaryArray();
+      const options = Model.getCurrentOption(filters, 'sorting');
 
-    options.forEach(opt => {
-      if (opt[1]) {
-        if (opt[0] === 'ascendingAlp') {
-          ascendingAlp();
-        } else if (opt[0] === 'descendingAlp') {
-          descendingAlp();
-        } else if (opt[0] === 'ascendingCount') {
-          ascendingCount();
-        } else {
-          descendingCount();
+      options.forEach(opt => {
+        if (opt[1]) {
+          if (opt[0] === 'ascendingAlp') {
+            ascendingAlp();
+          } else if (opt[0] === 'descendingAlp') {
+            descendingAlp();
+          } else if (opt[0] === 'ascendingCount') {
+            ascendingCount();
+          } else {
+            descendingCount();
+          }
         }
-      }
-    });
+      });
 
-    this.filteredArray = tmp;
+      this.filteredArray = tmp;
+    }
   }
 
   filterShapes(filters: TCurrentOption[] | IFilters) {
@@ -193,6 +200,7 @@ class Model {
 
     options.forEach(opt => {
       if (opt[1]) {
+        this.filterWasModified = true;
         const name = opt[0];
         if (!count) {
           this.filteredArray = tmp.filter(card => shapes[name] === card.shape);
@@ -222,6 +230,7 @@ class Model {
 
     options.forEach(opt => {
       if (opt[1]) {
+        this.filterWasModified = true;
         const name = opt[0];
         if (!count) {
           this.filteredArray = tmp.filter(card => colors[name] === card.color);
@@ -249,6 +258,7 @@ class Model {
 
     options.forEach(opt => {
       if (opt[1]) {
+        this.filterWasModified = true;
         const name = opt[0];
         if (!count) {
           this.filteredArray = tmp.filter(card => sizes[name] === card.size);
