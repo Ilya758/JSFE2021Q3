@@ -155,21 +155,26 @@ class Model {
       return arr.sort((a, b) => (+a.count < +b.count ? -1 : 1));
     }
 
-    function descendingCount(arr: ICard[]) {
-      return arr.sort((a, b) => (+a.count > +b.count ? -1 : 1));
-    }
+  getTemporaryArray() {
+    return this.filteredArray.length
+      ? this.filteredArray
+      : this.getInitArrayOfToys();
+  }
 
-    if (setting === 'ascendingAlp') {
-      cloneArray = ascendingAlp(cloneArray);
-    } else if (setting === 'descendingAlp') {
-      cloneArray = descendingAlp(cloneArray);
-    } else if (setting === 'ascendingCount') {
-      cloneArray = ascendingCount(cloneArray);
-    } else {
-      cloneArray = descendingCount(cloneArray);
-    }
+  static getCurrentOption(
+    filters: TCurrentOption[] | IFilters,
+    method: string
+  ) {
+    const sortOptArray = (Object.entries(filters) as TCurrentOption[]).find(
+      filter => filter[0] === method
+    ) as unknown as [string, TSorting];
 
-    return cloneArray;
+    const options = Object.entries(sortOptArray[1]) as unknown as [
+      string,
+      boolean
+    ][];
+
+    return options;
   }
 }
 
