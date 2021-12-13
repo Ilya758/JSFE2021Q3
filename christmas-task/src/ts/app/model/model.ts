@@ -1,6 +1,7 @@
 import { ICard } from '../../models/card';
 import {
   IFilters,
+  TColor,
   TCurrentOption,
   TOpt,
   TShape,
@@ -80,6 +81,7 @@ class Model {
     // cascade which starts filtrating functions
 
     this.filterShapes(objFromFilters);
+    this.filterColors(objFromFilters);
     this.sortingToys(objFromFilters);
 
     this.filters = objFromFilters;
@@ -115,7 +117,7 @@ class Model {
       }
 
       if (option === setting) {
-        if (receivedMethod === 'shape') {
+        if (receivedMethod === 'shape' || receivedMethod === 'color') {
           value = !value; // click to option starts boolean assertion
         } else {
           value = true;
@@ -187,6 +189,30 @@ class Model {
         const name = opt[0];
         tmp.forEach(card => {
           if (shapes[name] === card.shape) {
+            this.filteredArray.push(card);
+          }
+        });
+      }
+    });
+  }
+
+  filterColors(filters: TCurrentOption[] | IFilters): void {
+    let tmp = this.getInitArrayOfToys();
+    const options = Model.getCurrentOption(filters, 'color');
+
+    const colors: TColor = {
+      white: 'белый',
+      yellow: 'желтый',
+      red: 'красный',
+      blue: 'синий',
+      green: 'зелёный',
+    };
+
+    options.forEach(opt => {
+      if (opt[1]) {
+        const name = opt[0];
+        tmp.forEach(card => {
+          if (colors[name] === card.color) {
             this.filteredArray.push(card);
           }
         });
