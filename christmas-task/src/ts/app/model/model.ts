@@ -87,7 +87,7 @@ class Model {
     return this.filteredArray;
   }
 
-  static setSortingOfFilters(
+  static setFilter(
     objFromFilters: TCurrentOption[] | IFilters,
     receivedMethod: string,
     setting: string
@@ -109,10 +109,17 @@ class Model {
     sortOptions = sortOptions.map(opt => {
       const option = opt[0];
       let value = opt[1];
-      value = false;
+
+      if (receivedMethod === 'sorting') {
+        value = false; // reset inappropriate values
+      }
 
       if (option === setting) {
-        value = true;
+        if (receivedMethod === 'shape') {
+          value = !value; // click to option starts boolean assertion
+        } else {
+          value = true;
+        }
       }
 
       return [opt[0], value];
@@ -122,6 +129,8 @@ class Model {
       receivedMethod,
       Object.fromEntries(sortOptions),
     ];
+    return Object.fromEntries(filterArray) as unknown as IFilters;
+  }
 
     let result: IFilters;
 
