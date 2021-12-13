@@ -26,7 +26,7 @@ class Model {
         blue: false,
       },
       favorite: false,
-      shapes: {
+      shape: {
         bell: false,
         ball: false,
         pine: false,
