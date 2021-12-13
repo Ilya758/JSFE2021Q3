@@ -1,5 +1,11 @@
 import { ICard } from '../../models/card';
-import { IFilters, TCurrentOption, TOpt } from '../../models/filters';
+import {
+  IFilters,
+  TCurrentOption,
+  TOpt,
+  TShape,
+  TSorting,
+} from '../../models/filters';
 import data from '../../toys-data/toys';
 
 class Model {
@@ -12,7 +18,7 @@ class Model {
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getInitFilters();
-    this.filteredArray = this.initArrayOfToys;
+    this.filteredArray = [];
   }
 
   static getInitFilters(): IFilters {
