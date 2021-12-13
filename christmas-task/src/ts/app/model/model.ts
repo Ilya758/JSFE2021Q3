@@ -75,20 +75,14 @@ class Model {
 
     this.filteredArray = [];
 
-    if (receivedMethod === 'sorting') {
-      objFromFilters = Model.setFilter(objFromFilters, receivedMethod, setting);
-    }
-
-    if (receivedMethod === 'shape') {
-      objFromFilters = Model.setFilter(objFromFilters, receivedMethod, setting);
-    }
+    objFromFilters = Model.setFilter(objFromFilters, receivedMethod, setting);
 
     // cascade which starts filtrating functions
 
     this.filterShapes(objFromFilters);
     this.sortingToys(objFromFilters);
 
-    this.filters = objFromFilters as IFilters;
+    this.filters = objFromFilters;
 
     return this.filteredArray;
   }
