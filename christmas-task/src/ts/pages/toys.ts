@@ -539,13 +539,17 @@ class ToysPage extends Page {
       const method = 'sorting';
       const sortOpt = option.value;
       const arrayOfToys = handler(sortOpt, method);
-      const cardsSection = document.querySelector(
-        '.toys-page-cards'
-      ) as HTMLElement;
-      const cardsList = document.querySelector(
-        '.cards__list'
-      ) as HTMLUListElement;
-      cardsList.remove();
+  static reRenderCardsList(arrayOfToys: ICard[]) {
+    const cardsSection = document.querySelector(
+      '.toys-page-cards'
+    ) as HTMLElement;
+    const cardsList = document.querySelector(
+      '.cards__list'
+    ) as HTMLUListElement;
+    cardsList.remove();
+    cardsSection.append(ToysPage.cardsGenerator(arrayOfToys));
+  }
+
 
       cardsSection.append(ToysPage.cardsGenerator(arrayOfToys));
     });
