@@ -67,15 +67,20 @@ class Model {
       | TCurrentOption[]
       | IFilters;
 
-    if (receivedMethod === 'sorting') {
-      objFromFilters = Model.setSortingOfFilters(
-        objFromFilters,
-        receivedMethod,
-        setting
-      );
+    this.filteredArray = [];
 
-      this.filteredArray = Model.sortingToys(this.initArrayOfToys, setting);
+    if (receivedMethod === 'sorting') {
+      objFromFilters = Model.setFilter(objFromFilters, receivedMethod, setting);
     }
+
+    if (receivedMethod === 'shape') {
+      objFromFilters = Model.setFilter(objFromFilters, receivedMethod, setting);
+    }
+
+    // cascade which starts filtrating functions
+
+    this.filterShapes(objFromFilters);
+    this.sortingToys(objFromFilters);
 
     this.filters = objFromFilters as IFilters;
 
