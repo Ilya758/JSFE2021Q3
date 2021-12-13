@@ -170,9 +170,29 @@ class Model {
     this.filteredArray = tmp;
   }
 
-    function ascendingCount(arr: ICard[]) {
-      return arr.sort((a, b) => (+a.count < +b.count ? -1 : 1));
-    }
+  filterShapes(filters: TCurrentOption[] | IFilters): void {
+    const shapes: TShape = {
+      bell: 'колокольчик',
+      ball: 'шар',
+      pine: 'шишка',
+      star: 'звезда',
+      snowflake: 'снежинка',
+      'bird-toy': 'фигурка',
+    };
+    let tmp = this.getInitArrayOfToys();
+    const options = Model.getCurrentOption(filters, 'shape');
+
+    options.forEach(opt => {
+      if (opt[1]) {
+        const name = opt[0];
+        tmp.forEach(card => {
+          if (shapes[name] === card.shape) {
+            this.filteredArray.push(card);
+          }
+        });
+      }
+    });
+  }
 
   getTemporaryArray() {
     return this.filteredArray.length
