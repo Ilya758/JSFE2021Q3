@@ -132,8 +132,7 @@ class Model {
           if (
             receivedMethod === 'shape' ||
             receivedMethod === 'color' ||
-            receivedMethod === 'size' ||
-            receivedMethod === 'favorite'
+            receivedMethod === 'size'
           ) {
             value = !value; // click to option starts boolean assertion
           } else {
@@ -289,18 +288,20 @@ class Model {
     let count = 0;
 
     options.forEach(opt => {
-      this.filterWasModified = true;
-      const name = opt[0];
-      if (name) {
-        if (!count) {
-          this.filteredArray = tmp.filter(card => card.favorite === opt[1]);
-          count += 1;
-        } else {
-          tmp.forEach(card => {
-            if (card.favorite === opt[1]) {
-              this.filteredArray.push(card);
-            }
-          });
+      if (opt[1]) {
+        this.filterWasModified = true;
+        const name = opt[0];
+        if (name) {
+          if (!count) {
+            this.filteredArray = tmp.filter(card => card.favorite === opt[1]);
+            count += 1;
+          } else {
+            tmp.forEach(card => {
+              if (card.favorite === opt[1]) {
+                this.filteredArray.push(card);
+              }
+            });
+          }
         }
       }
     });
