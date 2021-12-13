@@ -5,6 +5,7 @@ import {
   TCurrentOption,
   TOpt,
   TShape,
+  TSize,
   TSorting,
 } from '../../models/filters';
 import data from '../../toys-data/toys';
@@ -118,7 +119,11 @@ class Model {
       }
 
       if (option === setting) {
-        if (receivedMethod === 'shape' || receivedMethod === 'color') {
+        if (
+          receivedMethod === 'shape' ||
+          receivedMethod === 'color' ||
+          receivedMethod === 'size'
+        ) {
           value = !value; // click to option starts boolean assertion
         } else {
           value = true;
