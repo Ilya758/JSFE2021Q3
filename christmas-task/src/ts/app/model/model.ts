@@ -216,6 +216,30 @@ class Model {
             this.filteredArray.push(card);
           }
         });
+
+  filterSizes(filters: TCurrentOption[] | IFilters): void {
+    let tmp = this.getTemporaryArray();
+    const options = Model.getCurrentOption(filters, 'size');
+    let count = 0;
+    const sizes: TSize = {
+      large: 'большой',
+      medium: 'средний',
+      small: 'малый',
+    };
+
+    options.forEach(opt => {
+      if (opt[1]) {
+        const name = opt[0];
+        if (!count) {
+          this.filteredArray = tmp.filter(card => sizes[name] === card.size);
+          count += 1;
+        } else {
+          tmp.forEach(card => {
+            if (sizes[name] === card.size) {
+              this.filteredArray.push(card);
+            }
+          });
+        }
       }
     });
   }
