@@ -28,13 +28,17 @@ export type TShape =
       [prop: string]: string;
     };
 
-export type TColor = {
-  white: boolean;
-  yellow: boolean;
-  red: boolean;
-  green: boolean;
-  blue: boolean;
-};
+export type TColor =
+  | {
+      white: boolean;
+      yellow: boolean;
+      red: boolean;
+      green: boolean;
+      blue: boolean;
+    }
+  | {
+      [prop: string]: string;
+    };
 
 export type TSize = {
   large: boolean;
