@@ -87,6 +87,7 @@ class Model {
     this.filterShapes(objFromFilters);
     this.filterColors(objFromFilters);
     this.filterSizes(objFromFilters);
+    this.filterFavorite(objFromFilters);
     this.sortingToys(objFromFilters);
 
     this.filters = objFromFilters;
