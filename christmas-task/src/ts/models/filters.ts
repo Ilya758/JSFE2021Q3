@@ -52,7 +52,7 @@ export type TSize =
 
 export type TAllCategories = boolean;
 
-export type TFavorite = boolean;
+export type TFavorite = boolean | string;
 
 export type TValue = {
   count: TValues;
