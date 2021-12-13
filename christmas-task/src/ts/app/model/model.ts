@@ -132,24 +132,43 @@ class Model {
     return Object.fromEntries(filterArray) as unknown as IFilters;
   }
 
-    let result: IFilters;
+  sortingToys(filters: TCurrentOption[] | IFilters): void {
+    let tmp = this.getTemporaryArray();
 
-    result = Object.fromEntries(filterArray) as unknown as IFilters;
+    const ascendingAlp = (): void => {
+      tmp = tmp.sort((a, b) => (a.name < b.name ? -1 : 1));
+    };
 
-    return result;
-    // return filterArray;
+    const descendingAlp = (): void => {
+      tmp = tmp.sort((a, b) => (a.name > b.name ? -1 : 1));
+    };
+
+    const ascendingCount = (): void => {
+      tmp = tmp.sort((a, b) => (+a.count < +b.count ? -1 : 1));
+    };
+
+    const descendingCount = (): void => {
+      tmp = tmp.sort((a, b) => (+a.count > +b.count ? -1 : 1));
+    };
+
+    const options = Model.getCurrentOption(filters, 'sorting');
+
+    options.forEach(opt => {
+      if (opt[1]) {
+        if (opt[0] === 'ascendingAlp') {
+          ascendingAlp();
+        } else if (opt[0] === 'descendingAlp') {
+          descendingAlp();
+        } else if (opt[0] === 'ascendingCount') {
+          ascendingCount();
+        } else {
+          descendingCount();
+        }
+      }
+    });
+
+    this.filteredArray = tmp;
   }
-
-  static sortingToys(array: ICard[], setting: string): ICard[] {
-    let cloneArray = JSON.parse(JSON.stringify(array)) as ICard[];
-
-    function ascendingAlp(arr: ICard[]) {
-      return arr.sort((a, b) => (a.name < b.name ? -1 : 1));
-    }
-
-    function descendingAlp(arr: ICard[]) {
-      return arr.sort((a, b) => (a.name > b.name ? -1 : 1));
-    }
 
     function ascendingCount(arr: ICard[]) {
       return arr.sort((a, b) => (+a.count < +b.count ? -1 : 1));
