@@ -406,7 +406,7 @@ class ToysPage extends Page {
     const favoriteCheckbox = new Checkbox(
       `checkbox ${this.id}__sizes-checkbox`,
       'checkbox',
-      'да'
+      'favorite'
     ).render();
     const favoriteSpan = new Text(
       'span',
