@@ -579,6 +579,26 @@ class ToysPage extends Page {
       ToysPage.reRenderCardsList(arrayOfToys);
     });
   }
+
+  bindColorFiltrate(handler: (sortOpt: string, method: string) => ICard[]) {
+    const colorList = this.root.querySelector('.toys-page__color-list');
+
+    colorList?.addEventListener('click', event => {
+      const method = 'color';
+      const color = event.target as HTMLElement;
+      let value = '';
+
+      if (color.tagName === 'LABEL' || color.tagName === 'SPAN') {
+        value =
+          color.tagName === 'LABEL'
+            ? (color.firstChild as HTMLInputElement).dataset.role || ''
+            : (color.previousElementSibling as HTMLInputElement).dataset.role ||
+              '';
+        const arrayOfToys = handler(value, method);
+        ToysPage.reRenderCardsList(arrayOfToys);
+      }
+    });
+  }
 }
 
 export default ToysPage;
