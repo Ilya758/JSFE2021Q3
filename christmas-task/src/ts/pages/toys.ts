@@ -363,7 +363,11 @@ class ToysPage extends Page {
       `text ${this.id}__text size-heading`,
       'размер'
     ).render();
-    const sizes = ['большой', 'средний', 'маленький'];
+    const sizes = [
+      ['large', 'большой'],
+      ['medium', 'средний'],
+      ['small', 'маленький'],
+    ];
     const sizesList = new Component(
       'ul',
       `list ${this.id}__sizes-list`
@@ -375,12 +379,12 @@ class ToysPage extends Page {
       const checkbox = new Checkbox(
         `checkbox ${this.id}__sizes-checkbox`,
         'checkbox',
-        sizes[i]
+        sizes[i][0]
       ).render();
       const span = new Text(
         'span',
         `text ${this.id}__text label-text sizes-label`,
-        sizes[i]
+        sizes[i][1]
       ).render();
 
       label.append(checkbox, span);
