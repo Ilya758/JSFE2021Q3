@@ -603,6 +603,25 @@ class ToysPage extends Page {
       }
     });
   }
+
+  bindSizeFiltrate(handler: (sortOpt: string, method: string) => ICard[]) {
+    const sizesList = this.root.querySelector('.toys-page__sizes-list');
+
+    sizesList?.addEventListener('click', event => {
+      const method = 'size';
+      const size = event.target as HTMLElement;
+      let value = '';
+      if (size.tagName === 'LABEL' || size.tagName === 'SPAN') {
+        value =
+          size.tagName === 'LABEL'
+            ? (size.firstChild as HTMLInputElement).dataset.role || ''
+            : (size.previousElementSibling as HTMLInputElement).dataset.role ||
+              '';
+        const arrayOfToys = handler(value, method);
+        ToysPage.reRenderCardsList(arrayOfToys);
+      }
+    });
+  }
 }
 
 export default ToysPage;
