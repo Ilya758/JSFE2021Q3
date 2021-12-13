@@ -114,34 +114,42 @@ class Model {
     );
     // entries from current method options
     let sortOptions = Object.entries(sortingArray[1]) as TOpt[];
-    // mapping setting
-    sortOptions = sortOptions.map(opt => {
-      const option = opt[0];
-      let value = opt[1];
 
-      if (receivedMethod === 'sorting') {
-        value = false; // reset inappropriate values
-      }
+    if (typeof sortingArray[1] === 'boolean') {
+      let value = sortingArray[1] as unknown as boolean;
+      // reassignment value of current method
+      filterArray[currentIndexOfFilter] = [receivedMethod, !value];
+    } else {
+      sortOptions = sortOptions.map(opt => {
+        const option = opt[0];
+        let value = opt[1];
 
-      if (option === setting) {
-        if (
-          receivedMethod === 'shape' ||
-          receivedMethod === 'color' ||
-          receivedMethod === 'size'
-        ) {
-          value = !value; // click to option starts boolean assertion
-        } else {
-          value = true;
+        if (receivedMethod === 'sorting') {
+          value = false; // reset inappropriate values
         }
-      }
 
-      return [opt[0], value];
-    });
-    // reassignment value of current method
-    filterArray[currentIndexOfFilter] = [
-      receivedMethod,
-      Object.fromEntries(sortOptions),
-    ];
+        if (option === setting) {
+          if (
+            receivedMethod === 'shape' ||
+            receivedMethod === 'color' ||
+            receivedMethod === 'size' ||
+            receivedMethod === 'favorite'
+          ) {
+            value = !value; // click to option starts boolean assertion
+          } else {
+            value = true;
+          }
+        }
+
+        return [opt[0], value];
+      });
+      // reassignment value of current method
+      filterArray[currentIndexOfFilter] = [
+        receivedMethod,
+        Object.fromEntries(sortOptions),
+      ];
+    }
+
     return Object.fromEntries(filterArray) as unknown as IFilters;
   }
 
