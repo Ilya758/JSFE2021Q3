@@ -274,6 +274,29 @@ class Model {
     });
   }
 
+  filterFavorite(filters: TCurrentOption[] | IFilters): void {
+    let tmp = this.getTemporaryArray();
+    const options = Model.getCurrentOption(filters, 'favorite');
+    let count = 0;
+
+    options.forEach(opt => {
+      this.filterWasModified = true;
+      const name = opt[0];
+      if (name) {
+        if (!count) {
+          this.filteredArray = tmp.filter(card => card.favorite === opt[1]);
+          count += 1;
+        } else {
+          tmp.forEach(card => {
+            if (card.favorite === opt[1]) {
+              this.filteredArray.push(card);
+            }
+          });
+        }
+      }
+    });
+  }
+
   getTemporaryArray() {
     return this.filteredArray.length
       ? this.filteredArray
