@@ -89,6 +89,7 @@ class Model {
     this.filterSizes(objFromFilters);
     this.filterFavorite(objFromFilters);
     this.sortingToys(objFromFilters);
+    this.filterAllCategories(objFromFilters);
 
     this.filters = objFromFilters;
     this.filterWasModified = false;
@@ -303,6 +304,14 @@ class Model {
             });
           }
         }
+
+  filterAllCategories(filters: TCurrentOption[] | IFilters): void {
+    const options = Model.getCurrentOption(filters, 'allCategories');
+
+    options.forEach(opt => {
+      if (opt[1]) {
+        this.filterWasModified = true;
+        this.filteredArray = this.getInitArrayOfToys();
       }
     });
   }

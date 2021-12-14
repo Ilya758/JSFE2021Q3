@@ -643,6 +643,29 @@ class ToysPage extends Page {
       }
     });
   }
+
+  bindAllCategoriesFiltrate(
+    handler: (sortOpt: string, method: string) => ICard[]
+  ) {
+    const allCategoriesContainer = this.root.querySelector(
+      '.toys-page__categories-container'
+    );
+
+    allCategoriesContainer?.addEventListener('click', event => {
+      const method = 'allCategories';
+      const elem = event.target as HTMLElement;
+      let value = '';
+      if (elem.tagName === 'LABEL' || elem.tagName === 'SPAN') {
+        value =
+          elem.tagName === 'LABEL'
+            ? (elem.firstChild as HTMLInputElement).dataset.role || ''
+            : (elem.previousElementSibling as HTMLInputElement).dataset.role ||
+              '';
+        const arrayOfToys = handler(value, method);
+        ToysPage.reRenderCardsList(arrayOfToys);
+      }
+    });
+  }
 }
 
 export default ToysPage;
