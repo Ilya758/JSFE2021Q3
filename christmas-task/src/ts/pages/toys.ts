@@ -264,12 +264,12 @@ class ToysPage extends Page {
     const lowTopText = new Text(
       'span',
       `text ${this.id}__text low-range-text`,
-      '1940'
+      '1'
     ).render();
     const highTopText = new Text(
       'span',
       `text ${this.id}__text high-range-text`,
-      '2021'
+      '12'
     ).render();
 
     topRangeContainer.append(
