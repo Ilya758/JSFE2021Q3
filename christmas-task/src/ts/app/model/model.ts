@@ -203,7 +203,7 @@ class Model {
       'bird-toy': 'фигурка',
     };
     let count = 0;
-    let tmp = this.getTemporaryArray();
+    let tmp = this.getInitArrayOfToys();
     const options = Model.getCurrentOption(filters, 'shape');
 
     options.forEach(opt => {
@@ -225,7 +225,7 @@ class Model {
   }
 
   filterColors(filters: TCurrentOption[] | IFilters): void {
-    let tmp = this.getTemporaryArray();
+    let tmp = this.filteredArray;
     const options = Model.getCurrentOption(filters, 'color');
     let count = 0;
     const colors: TColor = {
@@ -255,7 +255,7 @@ class Model {
   }
 
   filterSizes(filters: TCurrentOption[] | IFilters): void {
-    let tmp = this.getTemporaryArray();
+    let tmp = this.filteredArray;
     const options = Model.getCurrentOption(filters, 'size');
     let count = 0;
     const sizes: TSize = {
@@ -283,7 +283,7 @@ class Model {
   }
 
   filterFavorite(filters: TCurrentOption[] | IFilters): void {
-    let tmp = this.getTemporaryArray();
+    let tmp = this.filteredArray;
     const options = Model.getCurrentOption(filters, 'favorite');
     let count = 0;
 
