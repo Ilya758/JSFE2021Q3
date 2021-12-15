@@ -330,7 +330,7 @@ class Model {
     });
   }
 
-  filterRanges(filters: TCurrentOption[] | IFilters): void {
+  filterCount(filters: TCurrentOption[] | IFilters): void {
     if (!this.filterWasModified || this.getFilteredArrayLength()) {
       let tmp = this.getTemporaryArray();
 
