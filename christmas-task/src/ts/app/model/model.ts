@@ -112,10 +112,23 @@ class Model {
     receivedMethod: string,
     setting: string | string[]
   ): IFilters {
-    const filterArray = JSON.parse(
+    let filterArray = JSON.parse(
       JSON.stringify(objFromFilters)
     ) as TCurrentOption[];
     // find current method
+
+    if (receivedMethod === 'reset') {
+      // change all boolean settings except sorting to false
+
+      const sortingOption = filterArray.find(
+        filters => filters[0] === 'sorting'
+      ) as TCurrentOption;
+      const options = sortingOption[1];
+      const resettedArray = this.getInitFilters(true, options);
+
+      return resettedArray;
+    }
+
     const sortingArray = filterArray.find(
       filters => filters[0] === receivedMethod
     ) as TCurrentOption;
