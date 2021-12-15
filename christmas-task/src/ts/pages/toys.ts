@@ -210,10 +210,6 @@ class ToysPage extends Page {
         pic: 'pine',
       },
       {
-        name: 'звезда',
-        pic: 'star',
-      },
-      {
         name: 'снежинка',
         pic: 'snowflake',
       },
@@ -223,7 +219,7 @@ class ToysPage extends Page {
       },
     ];
 
-    for (let i = 0; i < 6; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
       const shapeItem = new Component(
         'li',
         `item ${this.id}__shape-item`
