@@ -83,10 +83,11 @@ class Model {
     // cascade which starts filtrating functions
 
     this.filterShapes(objFromFilters);
-    this.filterRanges(objFromFilters);
     this.filterColors(objFromFilters);
     this.filterSizes(objFromFilters);
     this.filterFavorite(objFromFilters);
+    this.filterCount(objFromFilters);
+    this.filterYear(objFromFilters);
     this.sortingToys(objFromFilters);
     this.filterAllCategories(objFromFilters);
 
