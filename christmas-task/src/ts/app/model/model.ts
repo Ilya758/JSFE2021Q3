@@ -119,12 +119,16 @@ class Model {
       // reassignment value of current method
       filterArray[currentIndexOfFilter] = [receivedMethod, !value];
     } else {
-      sortOptions = sortOptions.map(opt => {
+      sortOptions = sortOptions.map((opt, ndx) => {
         const option = opt[0];
         let value = opt[1];
 
         if (receivedMethod === 'sorting') {
           value = false; // reset inappropriate values
+        }
+
+        if (receivedMethod === 'count' || receivedMethod === 'year') {
+          return [opt[0], setting[ndx]];
         }
 
         if (option === setting) {
