@@ -452,7 +452,9 @@ class ToysPage extends Page {
     return container;
   }
 
-  createSlider(): void {
+  bindCreateSlider(
+    handler: (sortOpt: string | string[], method: string) => ICard[]
+  ) {
     const topSlider = this.root.querySelector(
       `.${this.id}__top-slider`
     ) as HTMLDivElement;
