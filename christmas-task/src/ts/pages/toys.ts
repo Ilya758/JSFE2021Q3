@@ -501,6 +501,19 @@ class ToysPage extends Page {
       ToysPage.reRenderCardsList(arrayOfToys);
     });
 
+    bottomSlider.noUiSlider.on('end', (event: string[]) => {
+      const method = 'year';
+      const values = [`${+event[0]}`, `${+event[1]}`];
+      const bottomContainer = this.root.querySelector(
+        '.toys-page__sliders-bottom'
+      ) as HTMLDivElement;
+
+      ['low', 'high'].forEach((txt, ndx) => {
+        const text = bottomContainer.querySelector(
+          `.${txt}-range-text`
+        ) as HTMLSpanElement;
+        text.textContent = values[ndx];
+      });
       const arrayOfToys = handler(values, method);
       ToysPage.reRenderCardsList(arrayOfToys);
     });
