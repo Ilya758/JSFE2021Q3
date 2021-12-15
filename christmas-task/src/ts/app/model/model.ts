@@ -7,6 +7,7 @@ import {
   TShape,
   TSize,
   TSorting,
+  TUnionFilters,
 } from '../../models/filters';
 import data from '../../toys-data/toys';
 
@@ -26,7 +27,21 @@ class Model {
     this.filterWasModified = false;
   }
 
-  static getInitFilters(): IFilters {
+  static getInitFilters(
+    reset = false,
+    options?: Partial<TUnionFilters>
+  ): IFilters {
+    let sortOptions = {
+      ascendingAlp: false,
+      descendingAlp: false,
+      ascendingCount: false,
+      descendingCount: false,
+    };
+
+    if (reset) {
+      sortOptions = options as TSorting;
+    }
+
     return {
       allCategories: false,
       color: {
@@ -50,12 +65,7 @@ class Model {
         medium: false,
         small: false,
       },
-      sorting: {
-        ascendingAlp: false,
-        descendingAlp: false,
-        ascendingCount: false,
-        descendingCount: false,
-      },
+      sorting: sortOptions,
       count: {
         low: 0,
         high: 12,
