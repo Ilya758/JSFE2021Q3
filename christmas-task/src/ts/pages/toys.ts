@@ -300,7 +300,7 @@ class ToysPage extends Page {
     const highBottomText = new Text(
       'span',
       `text ${this.id}__text high-range-text`,
-      '2021'
+      '2020'
     ).render();
 
     topRangeContainer.append(
