@@ -229,84 +229,95 @@ class Model {
   }
 
   filterColors(filters: TCurrentOption[] | IFilters): void {
-    let tmp = this.filteredArray;
-    const options = Model.getCurrentOption(filters, 'color');
-    let count = 0;
-    const colors: TColor = {
-      white: 'белый',
-      yellow: 'желтый',
-      red: 'красный',
-      blue: 'синий',
-      green: 'зелёный',
-    };
+    if (!this.filterWasModified || this.getFilteredArrayLength()) {
+      let tmp = this.getTemporaryArray();
+      const options = Model.getCurrentOption(filters, 'color');
+      let count = 0;
+      const colors: TColor = {
+        white: 'белый',
+        yellow: 'желтый',
+        red: 'красный',
+        blue: 'синий',
+        green: 'зелёный',
+      };
 
-    options.forEach(opt => {
-      if (opt[1]) {
-        this.filterWasModified = true;
-        const name = opt[0];
-        if (!count) {
-          this.filteredArray = tmp.filter(card => colors[name] === card.color);
-          count += 1;
-        } else {
-          tmp.forEach(card => {
-            if (colors[name] === card.color) {
-              this.filteredArray.push(card);
-            }
-          });
-        }
-      }
-    });
-  }
-
-  filterSizes(filters: TCurrentOption[] | IFilters): void {
-    let tmp = this.filteredArray;
-    const options = Model.getCurrentOption(filters, 'size');
-    let count = 0;
-    const sizes: TSize = {
-      large: 'большой',
-      medium: 'средний',
-      small: 'малый',
-    };
-
-    options.forEach(opt => {
-      if (opt[1]) {
-        this.filterWasModified = true;
-        const name = opt[0];
-        if (!count) {
-          this.filteredArray = tmp.filter(card => sizes[name] === card.size);
-          count += 1;
-        } else {
-          tmp.forEach(card => {
-            if (sizes[name] === card.size) {
-              this.filteredArray.push(card);
-            }
-          });
-        }
-      }
-    });
-  }
-
-  filterFavorite(filters: TCurrentOption[] | IFilters): void {
-    let tmp = this.filteredArray;
-    const options = Model.getCurrentOption(filters, 'favorite');
-    let count = 0;
-
-    options.forEach(opt => {
-      if (opt[1]) {
-        this.filterWasModified = true;
-        const name = opt[0];
-        if (name) {
+      options.forEach(opt => {
+        if (opt[1]) {
+          this.filterWasModified = true;
+          const name = opt[0];
           if (!count) {
-            this.filteredArray = tmp.filter(card => card.favorite === opt[1]);
+            this.filteredArray = tmp.filter(
+              card => colors[name] === card.color
+            );
             count += 1;
           } else {
             tmp.forEach(card => {
-              if (card.favorite === opt[1]) {
+              if (colors[name] === card.color) {
                 this.filteredArray.push(card);
               }
             });
           }
         }
+      });
+    }
+  }
+
+  filterSizes(filters: TCurrentOption[] | IFilters): void {
+    if (!this.filterWasModified || this.getFilteredArrayLength()) {
+      let tmp = this.getTemporaryArray();
+      const options = Model.getCurrentOption(filters, 'size');
+      let count = 0;
+      const sizes: TSize = {
+        large: 'большой',
+        medium: 'средний',
+        small: 'малый',
+      };
+
+      options.forEach(opt => {
+        if (opt[1]) {
+          this.filterWasModified = true;
+          const name = opt[0];
+          if (!count) {
+            this.filteredArray = tmp.filter(card => sizes[name] === card.size);
+            count += 1;
+          } else {
+            tmp.forEach(card => {
+              if (sizes[name] === card.size) {
+                this.filteredArray.push(card);
+              }
+            });
+          }
+        }
+      });
+    }
+  }
+
+  filterFavorite(filters: TCurrentOption[] | IFilters): void {
+    if (!this.filterWasModified || this.getFilteredArrayLength()) {
+      let tmp = this.getTemporaryArray();
+      const options = Model.getCurrentOption(filters, 'favorite');
+      let count = 0;
+
+      options.forEach(opt => {
+        if (opt[1]) {
+          this.filterWasModified = true;
+          const name = opt[0];
+          if (name) {
+            if (!count) {
+              this.filteredArray = tmp.filter(card => card.favorite === opt[1]);
+              count += 1;
+            } else {
+              tmp.forEach(card => {
+                if (card.favorite === opt[1]) {
+                  this.filteredArray.push(card);
+                }
+              });
+            }
+          }
+        }
+      });
+    }
+  }
 
   filterAllCategories(filters: TCurrentOption[] | IFilters): void {
     const options = Model.getCurrentOption(filters, 'allCategories');
