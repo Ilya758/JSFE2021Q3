@@ -475,14 +475,14 @@ class ToysPage extends Page {
     });
 
     noUiSlider.create(bottomSlider, {
-      start: [0, 71],
+      start: [1940, 2020],
       connect: true,
       animate: true,
       animationDuration: 1000,
-      step: 1,
+      step: 10,
       range: {
-        min: 0,
-        max: 71,
+        min: 1940,
+        max: 2020,
       },
     });
 
