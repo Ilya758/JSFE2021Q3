@@ -88,8 +88,8 @@ class Model {
     this.filterFavorite(objFromFilters);
     this.filterCount(objFromFilters);
     this.filterYear(objFromFilters);
-    this.sortingToys(objFromFilters);
     this.filterAllCategories(objFromFilters);
+    this.sortingToys(objFromFilters);
 
     this.filters = objFromFilters;
     this.filterWasModified = false;
