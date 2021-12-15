@@ -340,6 +340,10 @@ class Model {
         const lowValue = options[0][1];
         const highValue = options[1][1];
 
+        if (+lowValue !== 1 || +highValue !== 12) {
+          this.filterWasModified = true;
+        }
+
         return +lowValue <= +card.count && +highValue >= +card.count;
       });
     }
