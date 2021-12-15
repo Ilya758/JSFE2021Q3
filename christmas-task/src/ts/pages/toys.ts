@@ -461,17 +461,23 @@ class ToysPage extends Page {
     ) as HTMLDivElement;
 
     noUiSlider.create(topSlider, {
-      start: [0, 100],
+      start: [1, 12],
       connect: true,
+      animate: true,
+      animationDuration: 1000,
+      step: 1,
       range: {
-        min: 0,
-        max: 100,
+        min: 1,
+        max: 12,
       },
     });
 
     noUiSlider.create(bottomSlider, {
-      start: [0, 100],
+      start: [0, 71],
       connect: true,
+      animate: true,
+      animationDuration: 1000,
+      step: 1,
       range: {
         min: 0,
         max: 71,
