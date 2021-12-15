@@ -64,7 +64,7 @@ class ToysPage extends Page {
       'icon footer__logo',
       true,
       'https://rs.school',
-      '1'
+      ''
     ).render();
 
     footerContent.append(author, copyright, logoSchool);
