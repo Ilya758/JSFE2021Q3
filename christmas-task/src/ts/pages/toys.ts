@@ -485,6 +485,21 @@ class ToysPage extends Page {
         max: 71,
       },
     });
+
+    topSlider.noUiSlider.on('end', (event: string[]) => {
+      const method = 'count';
+      const values = [`${+event[0]}`, `${+event[1]}`];
+
+      ['low', 'high'].forEach((txt, ndx) => {
+        const text = this.root.querySelector(
+          `.${txt}-range-text`
+        ) as HTMLSpanElement;
+        text.textContent = values[ndx];
+      });
+
+      const arrayOfToys = handler(values, method);
+      ToysPage.reRenderCardsList(arrayOfToys);
+    });
   }
 
   protected static cardsGenerator(initToysArray: ICard[]) {
