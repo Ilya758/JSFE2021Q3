@@ -83,6 +83,7 @@ class Model {
     // cascade which starts filtrating functions
 
     this.filterShapes(objFromFilters);
+    this.filterRanges(objFromFilters);
     this.filterColors(objFromFilters);
     this.filterSizes(objFromFilters);
     this.filterFavorite(objFromFilters);
@@ -316,6 +317,21 @@ class Model {
         this.filteredArray = this.getInitArrayOfToys();
       }
     });
+  }
+
+  filterRanges(filters: TCurrentOption[] | IFilters): void {
+    if (!this.filterWasModified || this.getFilteredArrayLength()) {
+      let tmp = this.getTemporaryArray();
+
+      const options = Model.getCurrentOption(filters, 'count');
+
+      this.filteredArray = tmp.filter(card => {
+        const lowValue = options[0][1];
+        const highValue = options[1][1];
+
+        return +lowValue <= +card.count && +highValue >= +card.count;
+      });
+    }
   }
 
   getTemporaryArray() {
