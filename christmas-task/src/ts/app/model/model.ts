@@ -338,7 +338,7 @@ class Model {
 
     const options = Object.entries(sortOptArray[1]) as unknown as [
       string,
-      boolean
+      string | boolean
     ][];
 
     return options;
