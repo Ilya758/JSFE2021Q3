@@ -71,7 +71,7 @@ class Model {
     return this.initArrayOfToys;
   }
 
-  filtrate(setting: string, receivedMethod: string): ICard[] {
+  filtrate(setting: string | string[], receivedMethod: string): ICard[] {
     let objFromFilters = Object.entries(this.filters) as
       | TCurrentOption[]
       | IFilters;
@@ -98,7 +98,7 @@ class Model {
   static setFilter(
     objFromFilters: TCurrentOption[] | IFilters,
     receivedMethod: string,
-    setting: string
+    setting: string | string[]
   ): IFilters {
     const filterArray = JSON.parse(
       JSON.stringify(objFromFilters)
