@@ -349,6 +349,24 @@ class Model {
     }
   }
 
+  filterYear(filters: TCurrentOption[] | IFilters): void {
+    if (!this.filterWasModified || this.getFilteredArrayLength()) {
+      let tmp = this.getTemporaryArray();
+      const options = Model.getCurrentOption(filters, 'year');
+
+      this.filteredArray = tmp.filter(card => {
+        const lowValue = options[0][1];
+        const highValue = options[1][1];
+
+        if (+lowValue !== 1940 || +highValue !== 2021) {
+          this.filterWasModified = true;
+        }
+
+        return +lowValue <= +card.year && +highValue >= +card.year;
+      });
+    }
+  }
+
   getTemporaryArray() {
     return this.filteredArray.length
       ? this.filteredArray
