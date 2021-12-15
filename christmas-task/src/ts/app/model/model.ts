@@ -56,15 +56,13 @@ class Model {
         ascendingCount: false,
         descendingCount: false,
       },
-      value: {
-        count: {
-          low: 1940,
-          high: 2021,
-        },
-        year: {
-          low: 1940,
-          high: 2021,
-        },
+      count: {
+        low: 0,
+        high: 12,
+      },
+      year: {
+        low: 1940,
+        high: 2021,
       },
     };
   }
