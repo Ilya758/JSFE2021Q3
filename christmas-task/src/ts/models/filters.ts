@@ -5,7 +5,8 @@ export interface IFilters {
   size: TSize;
   allCategories: TAllCategories;
   favorite: TFavorite;
-  value: TValue;
+  count: TValues;
+  year: TValues;
 }
 
 export type TSorting = {
@@ -54,11 +55,6 @@ export type TAllCategories = boolean;
 
 export type TFavorite = boolean | string;
 
-export type TValue = {
-  count: TValues;
-  year: TValues;
-};
-
 export type TValues = {
   low: number;
   high: number;
@@ -69,10 +65,9 @@ export type TUnionFilters =
   | TShape
   | TColor
   | TSize
-  | TValue
   | TAllCategories
   | TFavorite;
 
 export type TCurrentOption = [string, Partial<TUnionFilters>];
 
-export type TOpt = [string, boolean];
+export type TOpt = [string, boolean | string];
