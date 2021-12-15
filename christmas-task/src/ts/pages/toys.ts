@@ -500,6 +500,10 @@ class ToysPage extends Page {
       const arrayOfToys = handler(values, method);
       ToysPage.reRenderCardsList(arrayOfToys);
     });
+
+      const arrayOfToys = handler(values, method);
+      ToysPage.reRenderCardsList(arrayOfToys);
+    });
   }
 
   protected static cardsGenerator(initToysArray: ICard[]) {
