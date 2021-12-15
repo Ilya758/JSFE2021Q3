@@ -695,6 +695,16 @@ class ToysPage extends Page {
       }
     });
   }
+
+  bindResetFilters(handler: (sortOpt: string, method: string) => ICard[]) {
+    const resetButton = this.root.querySelector('.toys-page__reset-button');
+
+    resetButton?.addEventListener('click', () => {
+      const method = 'reset';
+      const arrayOfToys = handler('', method);
+      ToysPage.reRenderCardsList(arrayOfToys);
+    });
+  }
 }
 
 export default ToysPage;
