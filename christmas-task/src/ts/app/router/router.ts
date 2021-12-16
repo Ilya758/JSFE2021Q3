@@ -1,5 +1,5 @@
 class Router {
-  readonly hash: string;
+  protected hash: string;
 
   constructor() {
     this.hash = '';
