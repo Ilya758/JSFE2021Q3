@@ -38,9 +38,16 @@ class ToysPage extends Page {
       'игрушки'
     ).render();
 
+    const mainPageLink = new ButtonLink(
+      `heading ${this.id}__heading`,
+      false,
+      '',
+      'Возврат на главную страницу'
+    ).render();
+
     const cardsList = ToysPage.cardsGenerator(initToysArray);
 
-    cardsContainer.append(cardsHeading, cardsList);
+    cardsContainer.append(cardsHeading, mainPageLink, cardsList);
 
     mainContent.append(this.settingsContainer, cardsContainer);
     this.root.prepend(mainWrapper);
