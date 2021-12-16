@@ -20,11 +20,14 @@ class Model {
 
   protected filterWasModified: boolean;
 
+  protected inputValue: string;
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getInitFilters();
     this.filteredArray = [];
     this.filterWasModified = false;
+    this.inputValue = '';
   }
 
   static getInitFilters(
@@ -401,6 +404,17 @@ class Model {
         return +lowValue <= +card.year && +highValue >= +card.year;
       });
     }
+  }
+
+  filterInput(setting: string | string[]): void {
+    let tmp = this.getInitArrayOfToys();
+
+    const value = setting as string;
+    this.inputValue = value;
+    this.filterWasModified = true;
+    this.filteredArray = tmp.filter(card =>
+      card.name.toLowerCase().includes(value)
+    );
   }
 
   getTemporaryArray() {
