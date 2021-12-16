@@ -4,6 +4,10 @@
   flex: 1;
   background-color: $bcg-dark-green;
 
+  &-cards {
+    display: grid;
+  }
+
   &__content {
 
     @include flex(row, center, flex-start);
@@ -292,6 +296,10 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
   .label-#{$color} {
     background-color: $var;
   }
+}
+
+.toys-heading {
+  grid-area: 1 / 1 / 1 / 2;
 }
 
 .toys-page__color-checkbox:checked + .empty-text::after,

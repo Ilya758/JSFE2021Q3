@@ -5,6 +5,7 @@
         flex-wrap: wrap;
         padding-right: 16px;
         gap: 36px;
+        grid-area: 2 / 1 / 2 / span 2;
         overflow-y: scroll;
         
         &::-webkit-scrollbar {
