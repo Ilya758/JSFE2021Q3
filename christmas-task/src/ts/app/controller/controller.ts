@@ -26,6 +26,13 @@ class Controller {
     });
     this.handleHash();
   }
+
+  handleFiltrate(sortOpt: string | string[], method: string) {
+    return this.model.filtrate(sortOpt, method);
+  }
+
+  handleReset() {
+    return this.model.filtrate('', 'reset');
   }
 }
 
