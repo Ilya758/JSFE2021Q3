@@ -230,34 +230,38 @@ class Model {
   }
 
   filterShapes(filters: TCurrentOption[] | IFilters) {
-    const shapes: TShape = {
-      bell: 'колокольчик',
-      ball: 'шар',
-      pine: 'шишка',
-      star: 'звезда',
-      snowflake: 'снежинка',
-      'bird-toy': 'фигурка',
-    };
-    let count = 0;
-    let tmp = this.getInitArrayOfToys();
-    const options = Model.getCurrentOption(filters, 'shape');
+    if (!this.filterWasModified || this.getFilteredArrayLength()) {
+      const shapes: TShape = {
+        bell: 'колокольчик',
+        ball: 'шар',
+        pine: 'шишка',
+        star: 'звезда',
+        snowflake: 'снежинка',
+        'bird-toy': 'фигурка',
+      };
+      let count = 0;
+      let tmp = this.getTemporaryArray();
+      const options = Model.getCurrentOption(filters, 'shape');
 
-    options.forEach(opt => {
-      if (opt[1]) {
-        this.filterWasModified = true;
-        const name = opt[0];
-        if (!count) {
-          this.filteredArray = tmp.filter(card => shapes[name] === card.shape);
-          count += 1;
-        } else {
-          tmp.forEach(card => {
-            if (shapes[name] === card.shape) {
-              this.filteredArray.push(card);
-            }
-          });
+      options.forEach(opt => {
+        if (opt[1]) {
+          this.filterWasModified = true;
+          const name = opt[0];
+          if (!count) {
+            this.filteredArray = tmp.filter(
+              card => shapes[name] === card.shape
+            );
+            count += 1;
+          } else {
+            tmp.forEach(card => {
+              if (shapes[name] === card.shape) {
+                this.filteredArray.push(card);
+              }
+            });
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   filterColors(filters: TCurrentOption[] | IFilters): void {
