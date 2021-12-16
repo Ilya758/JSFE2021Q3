@@ -11,7 +11,10 @@ class ButtonLink extends Component {
     this.element = this.element as HTMLAnchorElement;
 
     (this.element as HTMLAnchorElement).href = this.external ? id : `#${id}`;
-    (this.element as HTMLAnchorElement).target = '_blank';
+
+    if (external) {
+      (this.element as HTMLAnchorElement).target = '_blank';
+    }
     this.element.textContent = text;
   }
 }
