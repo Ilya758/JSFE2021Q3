@@ -19,6 +19,13 @@ class Controller {
     Router.resetHashAfterReload();
     this.bindHashChange();
   }
+
+  bindHashChange(): void {
+    window.addEventListener('hashchange', () => {
+      this.handleHash();
+    });
+    this.handleHash();
+  }
   }
 }
 
