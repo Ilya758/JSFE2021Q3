@@ -16,7 +16,9 @@ class Controller {
   }
 
   start(): void {
-    View.render();
+    Router.resetHashAfterReload();
+    this.bindHashChange();
+  }
   }
 }
 
