@@ -82,27 +82,22 @@ class Model {
   }
 
   filtrate(setting: string | string[], receivedMethod: string): ICard[] {
-    let objFromFilters = Object.entries(this.filters) as
-      | TCurrentOption[]
-      | IFilters;
+    if (receivedMethod === 'input') {
+      this.filterInput(setting);
+      this.cascadeCallingOfFiltratingFunctions(this.filters);
+    } else {
+      let objFromFilters = Object.entries(this.filters) as
+        | TCurrentOption[]
+        | IFilters;
 
-    this.filteredArray = [];
+      this.filteredArray = [];
 
-    objFromFilters = Model.setFilter(objFromFilters, receivedMethod, setting);
-
-    // cascade which starts filtrating functions
-
-    this.filterShapes(objFromFilters);
-    this.filterColors(objFromFilters);
-    this.filterSizes(objFromFilters);
-    this.filterFavorite(objFromFilters);
-    this.filterCount(objFromFilters);
-    this.filterYear(objFromFilters);
-    this.filterAllCategories(objFromFilters);
-    this.sortingToys(objFromFilters);
-
-    this.filters = objFromFilters;
-    this.filterWasModified = false;
+      objFromFilters = Model.setFilter(objFromFilters, receivedMethod, setting);
+      this.filterInput(this.inputValue);
+      this.cascadeCallingOfFiltratingFunctions(objFromFilters);
+      this.filters = objFromFilters;
+      this.filterWasModified = false;
+    }
 
     return this.filteredArray;
   }
@@ -178,6 +173,19 @@ class Model {
     }
 
     return Object.fromEntries(filterArray) as unknown as IFilters;
+  }
+
+  cascadeCallingOfFiltratingFunctions(
+    objFromFilters: TCurrentOption[] | IFilters
+  ): void {
+    this.filterShapes(objFromFilters);
+    this.filterColors(objFromFilters);
+    this.filterSizes(objFromFilters);
+    this.filterFavorite(objFromFilters);
+    this.filterCount(objFromFilters);
+    this.filterYear(objFromFilters);
+    this.filterAllCategories(objFromFilters);
+    this.sortingToys(objFromFilters);
   }
 
   sortingToys(filters: TCurrentOption[] | IFilters): void {
