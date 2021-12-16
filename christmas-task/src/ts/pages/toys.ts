@@ -702,7 +702,20 @@ class ToysPage extends Page {
     resetButton?.addEventListener('click', () => {
       const method = 'reset';
       const arrayOfToys = handler('', method);
-      ToysPage.reRenderCardsList(arrayOfToys);
+
+  bindInputValue(handler: (sortOpt: string, method: string) => ICard[]) {
+    const input = this.root.querySelector(
+      '.toys-page__searching-field'
+    ) as HTMLInputElement;
+
+    input?.addEventListener('input', event => {
+      const { value } = event.target as HTMLInputElement;
+      const method = 'input';
+
+      if (value.length >= 3 || value === '') {
+        const arrayOfToys = handler(value, method);
+        ToysPage.reRenderCardsList(arrayOfToys);
+      }
     });
   }
 }
