@@ -4,8 +4,14 @@
   flex: 1;
   background-color: $bcg-dark-green;
 
+  &_settings {
+    width: 100%;
+    max-width: 400px;
+  }
+
   &-cards {
     display: grid;
+    flex: 1
   }
 
   &__content {
@@ -28,39 +34,60 @@
 
   &__button {
     background-color: $bcg-white;
+    
   }
 
   &__searching-field {
     position: relative;
-    width: 100%;
+    width: 25%;
     padding: 5px 14px 0;
     border: 1px solid $border-blue;
     backdrop-filter: blur(15px);
     background: $bcg-dark-green-input;
     border-radius: 30px;
+    color: transparent;
+    cursor: pointer;
     font-size: 20px;
     outline: none;
+    text-overflow: ellipsis;
+    transition: 0.35s;
         
+    &::placeholder {
+      color: transparent;
+      transition: 0.35s;
+      
+    }
+
+    &:focus {
+      width: 100%;
+      border-color: $border-green;
+      animation: blinking 5s linear infinite;
+      color: $font-green;
+
+      &::placeholder {
+        color: $font-white;
+      }
+    }
+
     &-container {
       position: relative;
-      width: 100%;
+      width: 67%;
       max-width: 254px;
+
+      @include flex(row, flex-end);
 
       &::after {
         position: absolute;
         top: 50%;
-        right: 14px;
+        right: 4px;
         display: inline-block;
         width: 16px;
         height: 16px;
         background: url("../assets/svg/search.svg") 0 0/cover no-repeat;
         content: "";
+        cursor: pointer;
         transform: translate(0, -50%);
       }
-    }
-
-    &::placeholder {
-      color: $font-white;
     }
   }
 
@@ -95,13 +122,15 @@
 
   &__select {
     position: relative;
-    padding: 8px 16px;
+    padding: 8px 22px;
     border: 1px solid $border-blue;
     appearance: none;
     backdrop-filter: blur(15px);
     background: $bcg-dark-green-input;
     border-radius: 30px;
+    cursor: pointer;
     font-size: 12px;
+    transition: 0.35s;
 
     &:focus-visible {
       outline: none;
@@ -163,16 +192,41 @@
     &-item {
 
       @include flex(column);
+      
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.35s;
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     &-button {
+      position: relative;
       color: $font-white;
+      cursor: pointer;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: $bcg-green;
+        content: "";
+        transition: 0.35s;
+      }
     }
 
     &-text {
+      position: relative;
       margin-top: 16px;
+      cursor: pointer;
       font-size: 12px;
       text-transform: capitalize;
+      transition: 0.35s;
     }
   }
 
@@ -207,6 +261,13 @@
       width: 24px;
       height: 24px;
       border-radius: 5px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.35s;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 
@@ -241,20 +302,28 @@
       backdrop-filter: blur(15px);
       background: $bcg-dark-blue;
       border-radius: 30px;
+      cursor: pointer;
       font-size: 12px;
-    }
+      opacity: 0.8;
+      transition: 0.35s;
 
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 }
 
 .label-text {
   position: absolute;
   border-radius: 2px;
+  cursor: pointer;
   font-size: 16px;
+  opacity: 0.6;
+  transition: 0.35s;
+  user-select: none;
 
   @include flex(row);
-
-  user-select: none;
 
   &::before {
     position: relative;
@@ -265,6 +334,11 @@
     background: $bcg-blue;
     border-radius: 2px;
     content: "";
+    transition: 0.35s;
+  }
+
+  &:hover {
+    opacity: 1;
   }
 }
 
@@ -327,6 +401,59 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
 }
 
 .favorite-label {
+  width: fit-content;
   justify-content: flex-start;
   text-transform: initial;
+}
+
+@each $item in item, label, select, button {
+  .#{$item}{
+    &_state {
+      &_active {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@each $item in button, select {
+  .#{$item}{
+    &_state {
+      &_active {
+        background-color: $bcg-green;
+      }
+    }
+  }
+}
+
+.icon {
+  &_state {
+    &_active {
+      &::before {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.text {
+  &_state {
+    &_active {
+      &.label-text {
+        opacity: 1;
+      }
+
+      color: $font-green;
+    }
+  }
+}
+
+@keyframes blinking {
+  0% {
+    box-shadow: 0 0 0 0;
+  }
+
+  50% {
+    box-shadow: 0 0 10px 5px $font-green;
+  }
 }
