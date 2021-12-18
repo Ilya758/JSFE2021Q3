@@ -83,8 +83,13 @@ class ToysPage extends Page {
       'text',
       'searching-field'
     ).render();
+    const quitButton = new Button(
+      'button icon icon-quit',
+      'button',
+      ''
+    ).render();
 
-    searchingFieldContainer.append(searchingField);
+    searchingFieldContainer.append(quitButton, searchingField);
 
     topButtonsContainer.append(
       soundButton,
@@ -842,6 +847,18 @@ class ToysPage extends Page {
         const arrayOfToys = handler(value, method);
         ToysPage.reRenderCardsList(arrayOfToys);
       }
+    });
+
+    const quitButton = this.root.querySelector('.icon-quit');
+
+    quitButton?.addEventListener('click', () => {
+      input.value = '';
+      quitButton.classList.toggle('button_state_rotate');
+      setTimeout(() => {
+        quitButton.classList.toggle('button_state_rotate');
+      }, 1000);
+      const arrayOfToys = handler('', 'input');
+      ToysPage.reRenderCardsList(arrayOfToys);
     });
   }
 }

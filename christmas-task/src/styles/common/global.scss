@@ -1,4 +1,22 @@
 /* stylelint-disable color-named */
+
+@keyframes rotate-appear {
+  0% {
+    opacity: 1;
+    transform: rotate(0);
+  }
+
+  50% {
+    opacity: 0;
+    transform: rotate(360deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(0);
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -52,6 +70,12 @@
 .button {
   border: none;
   outline: none;
+
+  &_state {
+    &_rotate {
+      animation: rotate-appear 1s;
+    }
+  }
 }
 
 $icons: sound audio, snow snow;
@@ -67,6 +91,24 @@ $icons: sound audio, snow snow;
 
 .icon-snow {
   margin: 0 42px;
+}
+
+.icon-quit {
+  position: absolute;
+  z-index: 999;
+  right: 30px;
+  width: 15px;
+  height: 15px;
+  background-color: $bcg-white;
+  cursor: pointer;
+  mask: url("../assets/svg/quit.svg") center/contain no-repeat;
+  opacity: 0.6;
+  transition: 0.35s;
+
+  &:hover {
+    background-color: $bcg-green;
+    opacity: 1;
+  }
 }
 
 @each $item in bell, ball, pine, star, snowflake, bird-toy {
