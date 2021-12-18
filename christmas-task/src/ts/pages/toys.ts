@@ -554,6 +554,10 @@ class ToysPage extends Page {
       const method = 'sorting';
       const sortOpt = option.value;
       const arrayOfToys = handler(sortOpt, method);
+      sortContainer.classList.toggle('select_state_active');
+      setTimeout(() => {
+        sortContainer.classList.toggle('select_state_active');
+      }, 200);
       ToysPage.reRenderCardsList(arrayOfToys);
     });
   }
@@ -590,6 +594,21 @@ class ToysPage extends Page {
         value = (figure as HTMLButtonElement).dataset.role || '';
       }
 
+      const item = figure.closest('li') as HTMLLIElement;
+
+      if (item?.tagName === 'LI') {
+        const [icon, text] = item.children;
+        [
+          [item, 'item'],
+          [icon, 'icon'],
+          [text, 'text'],
+        ].forEach(elem => {
+          const el = elem[0];
+          const selector = elem[1] as string;
+          (el as HTMLElement).classList.toggle(`${selector}_state_active`);
+        });
+      }
+
       const arrayOfToys = handler(value, method);
       ToysPage.reRenderCardsList(arrayOfToys);
     });
@@ -610,6 +629,9 @@ class ToysPage extends Page {
             : (color.previousElementSibling as HTMLInputElement).dataset.role ||
               '';
         const arrayOfToys = handler(value, method);
+        const label = color.closest('label') as HTMLLabelElement;
+        label.classList.toggle('label_state_active');
+
         ToysPage.reRenderCardsList(arrayOfToys);
       }
     });
@@ -629,6 +651,20 @@ class ToysPage extends Page {
             : (size.previousElementSibling as HTMLInputElement).dataset.role ||
               '';
         const arrayOfToys = handler(value, method);
+        const label = size.closest('label') as HTMLLabelElement;
+
+        if (label?.tagName === 'LABEL') {
+          const [icon, text] = label.children;
+          [
+            [label, 'item'],
+            [icon, 'button'],
+            [text, 'text'],
+          ].forEach(ele => {
+            const el = ele[0];
+            const selector = ele[1] as string;
+            (el as HTMLElement).classList.toggle(`${selector}_state_active`);
+          });
+        }
         ToysPage.reRenderCardsList(arrayOfToys);
       }
     });
@@ -650,6 +686,20 @@ class ToysPage extends Page {
             : (elem.previousElementSibling as HTMLInputElement).dataset.role ||
               '';
         const arrayOfToys = handler(value, method);
+        const label = elem.closest('label') as HTMLLabelElement;
+
+        if (label?.tagName === 'LABEL') {
+          const [icon, text] = label.children;
+          [
+            [label, 'label'],
+            [icon, 'button'],
+            [text, 'text'],
+          ].forEach(ele => {
+            const el = ele[0];
+            const selector = ele[1] as string;
+            (el as HTMLElement).classList.toggle(`${selector}_state_active`);
+          });
+        }
         ToysPage.reRenderCardsList(arrayOfToys);
       }
     });
@@ -672,6 +722,8 @@ class ToysPage extends Page {
             ? (elem.firstChild as HTMLInputElement).dataset.role || ''
             : (elem.previousElementSibling as HTMLInputElement).dataset.role ||
               '';
+        const text = elem.closest('label').children[1] as HTMLLabelElement;
+        text.classList.toggle('text_state_active');
         const arrayOfToys = handler(value, method);
         ToysPage.reRenderCardsList(arrayOfToys);
       }
@@ -679,11 +731,87 @@ class ToysPage extends Page {
   }
 
   bindResetFilters(handler: (sortOpt: string, method: string) => ICard[]) {
-    const resetButton = this.root.querySelector('.toys-page__reset-button');
+    const resetButton = this.root.querySelector(
+      '.toys-page__reset-button'
+    ) as HTMLButtonElement;
+
+    const topSlider = this.root.querySelector(
+      `.${this.id}__top-slider`
+    ) as HTMLDivElement;
+
+    const bottomSlider = this.root.querySelector(
+      `.${this.id}__bottom-slider`
+    ) as HTMLDivElement;
 
     resetButton?.addEventListener('click', () => {
       const method = 'reset';
       const arrayOfToys = handler('', method);
+      resetButton.classList.toggle('button_state_active');
+      setTimeout(() => {
+        resetButton.classList.toggle('button_state_active');
+      }, 200);
+
+      // reset values
+      const labelText = this.root.querySelectorAll('.label-text');
+      const labels = this.root.querySelectorAll('.toys-page__color-label');
+      const checkboxes = this.root.querySelectorAll('input[type="checkbox"]');
+      const shapeItem = this.root.querySelectorAll('.toys-page__shape-item');
+      const shapes = this.root.querySelectorAll('.toys-page__shape-button');
+      const shapesText = this.root.querySelectorAll('.toys-page__shape-text');
+      const lowValues = this.root.querySelectorAll('.low-range-text');
+      const highValues = this.root.querySelectorAll('.high-range-text');
+
+      const classState = '_state_active';
+
+      labelText.forEach(el => {
+        el.classList.remove(`text${classState}`);
+      });
+
+      shapeItem.forEach(el => {
+        el.classList.remove(`item${classState}`);
+      });
+
+      shapes.forEach(el => {
+        el.classList.remove(`icon${classState}`);
+      });
+
+      shapesText.forEach(el => {
+        el.classList.remove(`text${classState}`);
+      });
+
+      labels.forEach(el => {
+        el.classList.remove(`label${classState}`);
+      });
+
+      checkboxes.forEach(checkbox => {
+        const check = checkbox as HTMLInputElement;
+        check.checked = false;
+      });
+
+      topSlider.noUiSlider.set([1, 12]);
+      bottomSlider.noUiSlider.set([1940, 2020]);
+
+      lowValues.forEach((v, ndx) => {
+        const value = v as HTMLSpanElement;
+        if (ndx === 0) {
+          value.textContent = '1'; // lowest value of count
+        } else {
+          value.textContent = '1940'; // lowest value of year
+        }
+      });
+
+      highValues.forEach((v, ndx) => {
+        const value = v as HTMLSpanElement;
+        if (ndx === 0) {
+          value.textContent = '12'; // highest value of count
+        } else {
+          value.textContent = '2020'; // highest value of year
+        }
+      });
+
+      ToysPage.reRenderCardsList(arrayOfToys);
+    });
+  }
 
   bindInputValue(handler: (sortOpt: string, method: string) => ICard[]) {
     const input = this.root.querySelector(
