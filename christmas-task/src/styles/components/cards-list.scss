@@ -3,6 +3,7 @@
     &__list {
         max-height: 875px;
         flex-wrap: wrap;
+        justify-content: center;
         padding-right: 16px;
         gap: 36px;
         grid-area: 2 / 1 / 2 / span 2;
@@ -71,6 +72,26 @@
     }
 }
 
+.list {
+    &_scroll {
+        &_disabled {
+            position: relative;
+            top: 50%;
+            overflow: hidden;
+            justify-content: center;
+        }
+    }
+}
+
+.text {
+    &_state {
+        &_blinking {
+            animation: blink 2s linear infinite;
+            color: $font-red;
+        }
+    }
+}
+
 @keyframes appear {
     0% {
         transform: translate(0, 200px);
@@ -79,5 +100,19 @@
     100% {
         opacity: 1;
         transform: translate(0);
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
     }
 }

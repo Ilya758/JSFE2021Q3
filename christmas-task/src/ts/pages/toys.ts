@@ -545,6 +545,17 @@ class ToysPage extends Page {
       list.append(item);
     }
 
+    if (!toysCount) {
+      const text = new Text(
+        'h3',
+        'heading toys-page__heading',
+        'Извините, совпадений не обнаружено'
+      ).render();
+      list.append(text);
+      text.classList.add('text_state_blinking');
+      list.classList.add('list_scroll_disabled');
+    }
+
     list.classList.add(`${clsState}_appear`);
     setTimeout(() => {
       list.classList.add(`${clsState}_active`);
