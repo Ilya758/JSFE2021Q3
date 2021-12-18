@@ -445,7 +445,8 @@ class ToysPage extends Page {
   }
 
   bindCreateSlider(
-    handler: (sortOpt: string | string[], method: string) => ICard[]
+    handler: (sortOpt: string | string[], method: string) => ICard[],
+    restore: (page?: ToysPage) => void
   ) {
     const topSlider = this.root.querySelector(
       `.${this.id}__top-slider`
@@ -491,6 +492,7 @@ class ToysPage extends Page {
 
       const arrayOfToys = handler(values, method);
       ToysPage.reRenderCardsList(arrayOfToys);
+      restore();
     });
 
     (bottomSlider as noUiSlider.target).noUiSlider?.on('end', event => {
@@ -508,6 +510,7 @@ class ToysPage extends Page {
       });
       const arrayOfToys = handler(values, method);
       ToysPage.reRenderCardsList(arrayOfToys);
+      restore();
     });
   }
 
@@ -561,6 +564,7 @@ class ToysPage extends Page {
         'text cards__text',
         `Любимая: ${initToysArray[i].favorite ? 'да' : 'нет'}`
       ).render();
+      item.id = initToysArray[i].num;
 
       item.append(heading, img, count, year, shape, color, size, favorite);
       list.append(item);
@@ -584,7 +588,10 @@ class ToysPage extends Page {
     return list;
   }
 
-  bindSorting(handler: (sortOpt: string, method: string) => ICard[]) {
+  bindSorting(
+    handler: (sortOpt: string, method: string) => ICard[],
+    restore: (page?: ToysPage) => void
+  ) {
     const sortContainer = this.root.querySelector('.toys-page__select');
     sortContainer?.addEventListener('change', event => {
       const option = event.target as HTMLOptionElement;
@@ -596,6 +603,7 @@ class ToysPage extends Page {
         sortContainer.classList.toggle('select_state_active');
       }, 200);
       ToysPage.reRenderCardsList(arrayOfToys);
+      restore();
     });
   }
 
@@ -608,9 +616,14 @@ class ToysPage extends Page {
     ) as HTMLUListElement;
     cardsList.remove();
     cardsSection.append(ToysPage.cardsGenerator(arrayOfToys));
+
+    return document.querySelector('.cards__list');
   }
 
-  bindShapeFiltrate(handler: (sortOpt: string, method: string) => ICard[]) {
+  bindShapeFiltrate(
+    handler: (sortOpt: string, method: string) => ICard[],
+    restore: (page?: ToysPage) => void
+  ) {
     const shapeList = this.root.querySelector('.toys-page__shape-list');
 
     shapeList?.addEventListener('click', event => {
@@ -648,10 +661,14 @@ class ToysPage extends Page {
 
       const arrayOfToys = handler(value, method);
       ToysPage.reRenderCardsList(arrayOfToys);
+      restore();
     });
   }
 
-  bindColorFiltrate(handler: (sortOpt: string, method: string) => ICard[]) {
+  bindColorFiltrate(
+    handler: (sortOpt: string, method: string) => ICard[],
+    restore: (page?: ToysPage) => void
+  ) {
     const colorList = this.root.querySelector('.toys-page__color-list');
 
     colorList?.addEventListener('click', event => {
@@ -670,11 +687,15 @@ class ToysPage extends Page {
         label.classList.toggle('label_state_active');
 
         ToysPage.reRenderCardsList(arrayOfToys);
+        restore();
       }
     });
   }
 
-  bindSizeFiltrate(handler: (sortOpt: string, method: string) => ICard[]) {
+  bindSizeFiltrate(
+    handler: (sortOpt: string, method: string) => ICard[],
+    restore: (page?: ToysPage) => void
+  ) {
     const sizesList = this.root.querySelector('.toys-page__sizes-list');
 
     sizesList?.addEventListener('click', event => {
@@ -703,11 +724,15 @@ class ToysPage extends Page {
           });
         }
         ToysPage.reRenderCardsList(arrayOfToys);
+        restore();
       }
     });
   }
 
-  bindFavoriteFiltrate(handler: (sortOpt: string, method: string) => ICard[]) {
+  bindFavoriteFiltrate(
+    handler: (sortOpt: string, method: string) => ICard[],
+    restore: (page?: ToysPage) => void
+  ) {
     const favoriteContainer = this.root.querySelector(
       '.toys-page__favorite-container'
     );
@@ -738,12 +763,14 @@ class ToysPage extends Page {
           });
         }
         ToysPage.reRenderCardsList(arrayOfToys);
+        restore();
       }
     });
   }
 
   bindAllCategoriesFiltrate(
-    handler: (sortOpt: string, method: string) => ICard[]
+    handler: (sortOpt: string, method: string) => ICard[],
+    restore: (page?: ToysPage) => void
   ) {
     const allCategoriesContainer = this.root.querySelector(
       '.toys-page__categories-container'
@@ -759,15 +786,20 @@ class ToysPage extends Page {
             ? (elem.firstChild as HTMLInputElement).dataset.role || ''
             : (elem.previousElementSibling as HTMLInputElement).dataset.role ||
               '';
-        const text = elem.closest('label').children[1] as HTMLLabelElement;
+        const text = (elem.closest('label') as HTMLLabelElement)
+          .children[1] as HTMLSpanElement;
         text.classList.toggle('text_state_active');
         const arrayOfToys = handler(value, method);
         ToysPage.reRenderCardsList(arrayOfToys);
+        restore();
       }
     });
   }
 
-  bindResetFilters(handler: (sortOpt: string, method: string) => ICard[]) {
+  bindResetFilters(
+    handler: (sortOpt: string, method: string) => ICard[],
+    restore: (page?: ToysPage) => void
+  ) {
     const resetButton = this.root.querySelector(
       '.toys-page__reset-button'
     ) as HTMLButtonElement;
@@ -847,10 +879,14 @@ class ToysPage extends Page {
       });
 
       ToysPage.reRenderCardsList(arrayOfToys);
+      restore();
     });
   }
 
-  bindInputValue(handler: (sortOpt: string, method: string) => ICard[]) {
+  bindInputValue(
+    handler: (sortOpt: string, method: string) => ICard[],
+    restore: (page?: ToysPage) => void
+  ) {
     const input = this.root.querySelector(
       '.toys-page__searching-field'
     ) as HTMLInputElement;
@@ -862,20 +898,49 @@ class ToysPage extends Page {
       if (value.length >= 3 || value === '') {
         const arrayOfToys = handler(value, method);
         ToysPage.reRenderCardsList(arrayOfToys);
+        restore();
       }
     });
 
     const quitButton = this.root.querySelector('.icon-quit');
 
     quitButton?.addEventListener('click', () => {
-      input.value = '';
-      quitButton.classList.toggle('button_state_rotate');
-      setTimeout(() => {
+      if (input.value !== '') {
+        input.value = '';
         quitButton.classList.toggle('button_state_rotate');
-      }, 1000);
-      const arrayOfToys = handler('', 'input');
-      ToysPage.reRenderCardsList(arrayOfToys);
+        setTimeout(() => {
+          quitButton.classList.toggle('button_state_rotate');
+        }, 1000);
+        const arrayOfToys = handler('', 'input');
+        ToysPage.reRenderCardsList(arrayOfToys);
+        restore();
+      }
     });
+  }
+
+  bindAddChosens(handler: (id: string) => ICard[]) {
+    const list = this.root.querySelector('.cards__list');
+
+    list?.addEventListener('click', event => {
+      this.handleCardsList(event, handler);
+    });
+  }
+
+  handleCardsList(event: Event, handler: (id: string) => ICard[]) {
+    const text = this.root.querySelector('.favorite-container')
+      ?.firstChild as HTMLSpanElement;
+    let length = 0;
+    const target = event.target as HTMLElement;
+    if (target.tagName === 'LI') {
+      length = handler(target.id).length;
+      text.textContent = `${length}`;
+    }
+
+    if (target.tagName === 'H2' || target.tagName === 'IMG') {
+      const parent = target.parentElement as HTMLLIElement;
+      length = handler(parent.id).length;
+      text.textContent = `${length}`;
+    }
   }
 }
 
