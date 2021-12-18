@@ -1,4 +1,4 @@
-import noUiSlider from 'nouislider/dist/nouislider.js';
+import * as noUiSlider from 'nouislider';
 import Page from '../core/abstract/page';
 import Button from '../core/components/button';
 import ButtonLink from '../core/components/button-link';
@@ -462,7 +462,7 @@ class ToysPage extends Page {
       },
     });
 
-    topSlider.noUiSlider.on('end', (event: string[]) => {
+    (topSlider as noUiSlider.target).noUiSlider?.on('end', event => {
       const method = 'count';
       const values = [`${+event[0]}`, `${+event[1]}`];
 
@@ -477,7 +477,7 @@ class ToysPage extends Page {
       ToysPage.reRenderCardsList(arrayOfToys);
     });
 
-    bottomSlider.noUiSlider.on('end', (event: string[]) => {
+    (bottomSlider as noUiSlider.target).noUiSlider?.on('end', event => {
       const method = 'year';
       const values = [`${+event[0]}`, `${+event[1]}`];
       const bottomContainer = this.root.querySelector(
@@ -809,8 +809,8 @@ class ToysPage extends Page {
         check.checked = false;
       });
 
-      topSlider.noUiSlider.set([1, 12]);
-      bottomSlider.noUiSlider.set([1940, 2020]);
+      (topSlider as noUiSlider.target).noUiSlider?.set([1, 12]);
+      (bottomSlider as noUiSlider.target).noUiSlider?.set([1940, 2020]);
 
       lowValues.forEach((v, ndx) => {
         const value = v as HTMLSpanElement;
