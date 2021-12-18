@@ -28,15 +28,43 @@ class Controller {
       const initToys = this.model.getInitArrayOfToys();
       const toysPage = this.view.render(currentHash, initToys) as ToysPage;
 
-      toysPage.bindShapeFiltrate(this.handleFiltrate.bind(this));
-      toysPage.bindColorFiltrate(this.handleFiltrate.bind(this));
-      toysPage.bindSizeFiltrate(this.handleFiltrate.bind(this));
-      toysPage.bindSorting(this.handleFiltrate.bind(this));
-      toysPage.bindFavoriteFiltrate(this.handleFiltrate.bind(this));
-      toysPage.bindAllCategoriesFiltrate(this.handleFiltrate.bind(this));
-      toysPage.bindCreateSlider(this.handleFiltrate.bind(this));
-      toysPage.bindResetFilters(this.handleReset.bind(this));
-      toysPage.bindInputValue(this.handleFiltrate.bind(this));
+      toysPage.bindShapeFiltrate(
+        this.handleFiltrate.bind(this),
+        this.restoreCardsList.bind(this, toysPage)
+      );
+      toysPage.bindColorFiltrate(
+        this.handleFiltrate.bind(this),
+        this.restoreCardsList.bind(this, toysPage)
+      );
+      toysPage.bindSizeFiltrate(
+        this.handleFiltrate.bind(this),
+        this.restoreCardsList.bind(this, toysPage)
+      );
+      toysPage.bindSorting(
+        this.handleFiltrate.bind(this),
+        this.restoreCardsList.bind(this, toysPage)
+      );
+      toysPage.bindFavoriteFiltrate(
+        this.handleFiltrate.bind(this),
+        this.restoreCardsList.bind(this, toysPage)
+      );
+      toysPage.bindAllCategoriesFiltrate(
+        this.handleFiltrate.bind(this),
+        this.restoreCardsList.bind(this, toysPage)
+      );
+      toysPage.bindCreateSlider(
+        this.handleFiltrate.bind(this),
+        this.restoreCardsList.bind(this, toysPage)
+      );
+      toysPage.bindResetFilters(
+        this.handleReset.bind(this),
+        this.restoreCardsList.bind(this, toysPage)
+      );
+      toysPage.bindInputValue(
+        this.handleFiltrate.bind(this),
+        this.restoreCardsList.bind(this, toysPage)
+      );
+      toysPage.bindAddChosens(this.handleAddChosens.bind(this));
     } else {
       this.view.render();
     }
@@ -55,6 +83,14 @@ class Controller {
 
   handleReset() {
     return this.model.filtrate('', 'reset');
+  }
+
+  handleAddChosens(id: string) {
+    return this.model.filtrateChosenToys(id);
+  }
+
+  restoreCardsList(page: ToysPage) {
+    page.bindAddChosens(this.handleAddChosens.bind(this));
   }
 }
 
