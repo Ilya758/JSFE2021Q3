@@ -493,6 +493,7 @@ class ToysPage extends Page {
   protected static cardsGenerator(initToysArray: ICard[]) {
     const list = new Component('ul', 'list cards__list').render();
     const toysCount = initToysArray.length;
+    const clsState = 'cards_state';
 
     for (let i = 0; i < toysCount; i += 1) {
       const item = new Component('li', 'item cards__item').render();
@@ -544,6 +545,10 @@ class ToysPage extends Page {
       list.append(item);
     }
 
+    list.classList.add(`${clsState}_appear`);
+    setTimeout(() => {
+      list.classList.add(`${clsState}_active`);
+    }, 1000);
     return list;
   }
 

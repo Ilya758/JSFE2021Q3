@@ -6,7 +6,9 @@
         padding-right: 16px;
         gap: 36px;
         grid-area: 2 / 1 / 2 / span 2;
+        opacity: 0;
         overflow-y: scroll;
+        transition: 1s;
         
         &::-webkit-scrollbar {
             width: 10px;
@@ -58,4 +60,24 @@
         font-size: 12px;
     }
 
+    &_state {
+        &_appear {
+            animation: appear 1s linear;
+        }
+
+        &_active {
+            opacity: 1;
+        }
+    }
+}
+
+@keyframes appear {
+    0% {
+        transform: translate(0, 200px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
 }
