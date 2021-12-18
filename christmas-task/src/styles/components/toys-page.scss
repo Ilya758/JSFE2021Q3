@@ -12,7 +12,7 @@
   &-cards {
     display: grid;
     flex: 1;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   &__content {
@@ -411,10 +411,35 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
   }
 }
 
-.favorite-label {
-  width: fit-content;
-  justify-content: flex-start;
-  text-transform: initial;
+.favorite {
+  &-label {
+    width: fit-content;
+    justify-content: flex-start;
+    text-transform: initial;
+  }
+
+  &-container {
+    position: relative;
+    width: 30px;
+    height: 50px;
+    background: url("../assets/svg/ball-2.svg") 0 0/contain no-repeat;
+    grid-area: 1 / 3 / 1 / 4;
+    justify-self: flex-end;
+
+    .heading {
+      position: absolute;
+      top: 52%;
+      left: 49%;
+      display: inline-block;
+      width: 100%;
+      margin: 0;
+      background-color: $bcg-blue;
+      border-radius: 50%;
+      font-size: 24px;
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+  }
 }
 
 @each $item in item, label, select, button {
