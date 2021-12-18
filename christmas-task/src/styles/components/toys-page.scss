@@ -11,7 +11,8 @@
 
   &-cards {
     display: grid;
-    flex: 1
+    flex: 1;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   &__content {
@@ -373,7 +374,17 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
 }
 
 .toys-heading {
-  grid-area: 1 / 1 / 1 / 2;
+  &:nth-child(1) {
+    grid-area: 1 / 1 / 1 / 2;
+  }
+
+  &:nth-child(2) {
+    transition: 0.35s;
+
+    &:hover {
+      color: $font-green;
+    }
+  }
 }
 
 .toys-page__color-checkbox:checked + .empty-text::after,

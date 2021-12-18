@@ -39,7 +39,7 @@ class ToysPage extends Page {
     ).render();
 
     const mainPageLink = new ButtonLink(
-      `heading ${this.id}__heading`,
+      `heading ${this.id}__heading toys-heading`,
       false,
       '',
       'Возврат на главную страницу'
