@@ -75,3 +75,12 @@
     transform-style: flat;
     will-change: transform;
 }
+
+.toys-page{
+    &__top-slider.noUi-state-tap .noUi-connect,
+    &__top-slider.noUi-state-tap .noUi-origin,
+    &__bottom-slider.noUi-state-tap .noUi-connect,
+    &__bottom-slider.noUi-state-tap .noUi-origin {
+        transition: transform 0.3s;
+    }
+}
