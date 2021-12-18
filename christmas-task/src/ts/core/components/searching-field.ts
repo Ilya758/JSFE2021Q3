@@ -10,6 +10,8 @@ class SearchingField extends Component {
     (this.element as HTMLInputElement).type = type;
     this.element.dataset.role = role;
     (this.element as HTMLInputElement).placeholder = 'Поиск';
+    this.element.autofocus = true;
+    (this.element as HTMLInputElement).autocomplete = 'false';
   }
 }
 
