@@ -22,12 +22,15 @@ class Model {
 
   protected inputValue: string;
 
+  protected chosenToys: ICard[];
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getInitFilters();
     this.filteredArray = [];
     this.filterWasModified = false;
     this.inputValue = '';
+    this.chosenToys = [];
   }
 
   static getInitFilters(
@@ -449,6 +452,32 @@ class Model {
 
   getFilteredArrayLength() {
     return this.filteredArray.length;
+  }
+
+  filtrateChosenToys(id: string) {
+    let tmp = this.getInitArrayOfToys();
+
+    if (!this.chosenToys.length) {
+      tmp.forEach(card => {
+        if (+card.num === +id) {
+          this.chosenToys.push(card);
+        }
+      });
+    } else {
+      // filtrate current array of chosen toys
+      tmp = this.chosenToys.filter(card => +card.num !== +id);
+
+      if (tmp.length === this.chosenToys.length) {
+        this.initArrayOfToys.forEach(card => {
+          if (+card.num === +id) {
+            this.chosenToys.push(card);
+          }
+        });
+      } else {
+        this.chosenToys = tmp;
+      }
+    }
+    return this.chosenToys;
   }
 }
 
