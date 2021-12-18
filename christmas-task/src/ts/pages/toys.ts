@@ -44,10 +44,26 @@ class ToysPage extends Page {
       '',
       'Возврат на главную страницу'
     ).render();
+    const favoriteCountContainer = new Component(
+      'div',
+      'favorite-container'
+    ).render();
+    const favoriteCount = new Text(
+      'span',
+      'heading toys-page__heading',
+      '0'
+    ).render();
+
+    favoriteCountContainer.append(favoriteCount);
 
     const cardsList = ToysPage.cardsGenerator(initToysArray);
 
-    cardsContainer.append(cardsHeading, mainPageLink, cardsList);
+    cardsContainer.append(
+      cardsHeading,
+      mainPageLink,
+      favoriteCountContainer,
+      cardsList
+    );
 
     mainContent.append(this.settingsContainer, cardsContainer);
     this.root.prepend(mainWrapper);
