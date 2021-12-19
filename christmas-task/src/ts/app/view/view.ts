@@ -42,7 +42,7 @@ class View {
     return footerWrapper;
   }
 
-  render(id = 'main-page', toysArray?: ICard[] | null) {
+  render(id = 'main-page', toysArray?: ICard[] | null, chosenToys?: ICard[]) {
     Array.from(this.root.children).forEach(child => {
       if (child.tagName.toLowerCase() !== 'footer') {
         child.remove();
@@ -51,7 +51,7 @@ class View {
 
     if (id === 'toys-page') {
       let toysPage = new ToysPage(id);
-      toysPage.render(toysArray as ICard[]);
+      toysPage.render(toysArray as ICard[], chosenToys);
       return toysPage;
     }
     let mainPage = new MainPage(id);
