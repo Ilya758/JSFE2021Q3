@@ -8,6 +8,7 @@ import Text from '../core/components/text';
 import BEMWrapper from '../core/templates/bem-wrapper';
 import Component from '../core/templates/component';
 import { ICard } from '../models/card';
+import { IFilters } from '../models/filters';
 
 class ToysPage extends Page {
   protected root;
@@ -941,6 +942,129 @@ class ToysPage extends Page {
       length = handler(parent.id).length;
       text.textContent = `${length}`;
     }
+  }
+
+  setActiveFiltersAfterReload(filters: IFilters) {
+    const {
+      shape,
+      color,
+      size,
+      favorite,
+      allCategories,
+      count,
+      year,
+      sorting,
+    } = filters;
+
+    const classState = '_state_active';
+
+    [shape, color, size, favorite, allCategories, count, year, sorting].forEach(
+      method => {
+        if (method === shape) {
+          const item = this.root.querySelectorAll('.toys-page__shape-item');
+          const buttons = this.root.querySelectorAll(
+            '.toys-page__shape-button'
+          );
+          const text = this.root.querySelectorAll('.toys-page__shape-text');
+          Object.values(shape).forEach((value, ndx) => {
+            if (value) {
+              item[ndx].classList.toggle(`item${classState}`);
+              buttons[ndx].classList.toggle(`icon${classState}`);
+              text[ndx].classList.toggle(`text${classState}`);
+            }
+          });
+        }
+        if (method === color) {
+          const labels = this.root.querySelectorAll('.toys-page__color-label');
+          const checkboxes = this.root.querySelectorAll(
+            '.toys-page__color-checkbox'
+          );
+          Object.values(color).forEach((value, ndx) => {
+            if (value) {
+              labels[ndx].classList.toggle(`label${classState}`);
+              (checkboxes[ndx] as HTMLInputElement).checked = true;
+            }
+          });
+        }
+        if (method === size) {
+          const labels = this.root.querySelectorAll('.toys-page__sizes-label');
+          const checkboxes = this.root.querySelectorAll(
+            '.toys-page__sizes-checkbox'
+          );
+          const text = this.root.querySelectorAll('.sizes-label');
+          Object.values(size).forEach((value, ndx) => {
+            if (value) {
+              labels[ndx].classList.toggle(`label${classState}`);
+              text[ndx].classList.toggle(`text${classState}`);
+              (checkboxes[ndx] as HTMLInputElement).checked = true;
+            }
+          });
+        }
+        if (method === favorite) {
+          const text = this.root.querySelector('.favorite-label');
+          const label = this.root.querySelector(
+            '.toys-page__sizes-label'
+          ) as HTMLLabelElement;
+          const checkbox = this.root.querySelector(
+            '.toys-page__favorite-checkbox'
+          );
+          if (favorite) {
+            label.classList.toggle(`label${classState}`);
+            (checkbox as HTMLInputElement).checked = true;
+            (text as HTMLSpanElement).classList.toggle(`text${classState}`);
+          }
+        }
+        if (method === allCategories) {
+          const label = this.root.querySelector(
+            '.categories-label'
+          ) as HTMLLabelElement;
+          const checkbox = label.querySelector(
+            '.toys-page__checkbox'
+          ) as HTMLInputElement;
+          const text = label.querySelector('.label-text') as HTMLSpanElement;
+
+          if (allCategories) {
+            label.classList.toggle(`label${classState}`);
+            checkbox.checked = true;
+            text.classList.toggle(`text${classState}`);
+          }
+        }
+        if (method === count || method === year) {
+          const lowText = this.root.querySelectorAll('.low-range-text');
+          const highText = this.root.querySelectorAll('.high-range-text');
+          const { low } = method;
+          const { high } = method;
+
+          let sliderElem = '';
+
+          if (method === count) {
+            lowText[0].textContent = `${low}`;
+            highText[0].textContent = `${high}`;
+            sliderElem = 'top';
+          } else {
+            lowText[1].textContent = `${low}`;
+            highText[1].textContent = `${high}`;
+            sliderElem = 'bottom';
+          }
+
+          const slider = this.root.querySelector(
+            `.toys-page__${sliderElem}-slider`
+          ) as HTMLDivElement;
+
+          (slider as noUiSlider.target).noUiSlider?.set([low, high]);
+        } else {
+          const options = (
+            this.root.querySelector('.toys-page__select') as HTMLSelectElement
+          ).children;
+
+          Object.values(sorting).forEach((opt, ndx) => {
+            if (opt) {
+              (options[ndx] as HTMLOptionElement).selected = true;
+            }
+          });
+        }
+      }
+    );
   }
 }
 
