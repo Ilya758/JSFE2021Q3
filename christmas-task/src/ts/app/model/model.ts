@@ -65,7 +65,6 @@ class Model {
         bell: false,
         ball: false,
         pine: false,
-        star: false,
         snowflake: false,
         'bird-toy': false,
       },
@@ -76,12 +75,12 @@ class Model {
       },
       sorting: sortOptions,
       count: {
-        low: 0,
+        low: 1,
         high: 12,
       },
       year: {
         low: 1940,
-        high: 2021,
+        high: 2020,
       },
     };
   }
