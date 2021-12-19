@@ -10,6 +10,11 @@ import Component from '../core/templates/component';
 import { ICard } from '../models/card';
 import { IFilters } from '../models/filters';
 
+interface IChosenToys {
+  full: boolean;
+  toys: ICard[];
+}
+
 class ToysPage extends Page {
   protected root;
 
@@ -21,7 +26,7 @@ class ToysPage extends Page {
     this.settingsContainer = this.createSettingsContainer();
   }
 
-  render(initToysArray: ICard[]): void {
+  render(initToysArray: ICard[], chosenToys?: ICard[]): void {
     // creating main
     const mainWrapper = new BEMWrapper('main', this.id).render();
     const mainContent = mainWrapper.querySelector(
@@ -46,6 +51,11 @@ class ToysPage extends Page {
       'Возврат на главную страницу'
     ).render();
     const textForFullArray = new Text(
+      'h3',
+      'heading toys-page__heading toys-heading blinking-text',
+      'Извините, все слоты заполнены'
+    ).render();
+
     const favoriteCountContainer = new Component(
       'div',
       'favorite-container'
@@ -58,7 +68,10 @@ class ToysPage extends Page {
 
     favoriteCountContainer.append(favoriteCount);
 
-    const cardsList = ToysPage.cardsGenerator(initToysArray);
+    const cardsList = ToysPage.cardsGenerator(
+      initToysArray,
+      chosenToys as ICard[]
+    );
 
     cardsContainer.append(
       cardsHeading,
@@ -449,7 +462,8 @@ class ToysPage extends Page {
 
   bindCreateSlider(
     handler: (sortOpt: string | string[], method: string) => ICard[],
-    restore: (page?: ToysPage) => void
+    restore: (page?: ToysPage) => void,
+    chosenToys: ICard[]
   ) {
     const topSlider = this.root.querySelector(
       `.${this.id}__top-slider`
@@ -494,7 +508,7 @@ class ToysPage extends Page {
       });
 
       const arrayOfToys = handler(values, method);
-      ToysPage.reRenderCardsList(arrayOfToys);
+      ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
       restore();
     });
 
@@ -512,18 +526,20 @@ class ToysPage extends Page {
         text.textContent = values[ndx];
       });
       const arrayOfToys = handler(values, method);
-      ToysPage.reRenderCardsList(arrayOfToys);
+      ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
       restore();
     });
   }
 
-  protected static cardsGenerator(initToysArray: ICard[]) {
+  protected static cardsGenerator(initToysArray: ICard[], chosenToys: ICard[]) {
     const list = new Component('ul', 'list cards__list').render();
     const toysCount = initToysArray.length;
     const clsState = 'cards_state';
+    const chosenIndices = Object.values(chosenToys).map(card => card.num);
 
     for (let i = 0; i < toysCount; i += 1) {
       const item = new Component('li', 'item cards__item').render();
+
       const heading = new Text(
         'h2',
         'heading cards__heading',
@@ -569,6 +585,10 @@ class ToysPage extends Page {
       ).render();
       item.id = initToysArray[i].num;
 
+      if (chosenIndices.find(ndx => ndx === item.id)) {
+        item.classList.toggle('card_state_active');
+      }
+
       item.append(heading, img, count, year, shape, color, size, favorite);
       list.append(item);
     }
@@ -593,7 +613,8 @@ class ToysPage extends Page {
 
   bindSorting(
     handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void
+    restore: (page?: ToysPage) => void,
+    chosenToys: ICard[]
   ) {
     const sortContainer = this.root.querySelector('.toys-page__select');
     sortContainer?.addEventListener('change', event => {
@@ -605,12 +626,12 @@ class ToysPage extends Page {
       setTimeout(() => {
         sortContainer.classList.toggle('select_state_active');
       }, 200);
-      ToysPage.reRenderCardsList(arrayOfToys);
+      ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
       restore();
     });
   }
 
-  static reRenderCardsList(arrayOfToys: ICard[]) {
+  static reRenderCardsList(arrayOfToys: ICard[], chosenToys: ICard[]) {
     const cardsSection = document.querySelector(
       '.toys-page-cards'
     ) as HTMLElement;
@@ -618,14 +639,15 @@ class ToysPage extends Page {
       '.cards__list'
     ) as HTMLUListElement;
     cardsList.remove();
-    cardsSection.append(ToysPage.cardsGenerator(arrayOfToys));
+    cardsSection.append(ToysPage.cardsGenerator(arrayOfToys, chosenToys));
 
     return document.querySelector('.cards__list');
   }
 
   bindShapeFiltrate(
     handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void
+    restore: (page?: ToysPage) => void,
+    chosenToys: ICard[]
   ) {
     const shapeList = this.root.querySelector('.toys-page__shape-list');
 
@@ -663,14 +685,15 @@ class ToysPage extends Page {
       }
 
       const arrayOfToys = handler(value, method);
-      ToysPage.reRenderCardsList(arrayOfToys);
+      ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
       restore();
     });
   }
 
   bindColorFiltrate(
     handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void
+    restore: (page?: ToysPage) => void,
+    chosenToys: ICard[]
   ) {
     const colorList = this.root.querySelector('.toys-page__color-list');
 
@@ -689,7 +712,7 @@ class ToysPage extends Page {
         const label = color.closest('label') as HTMLLabelElement;
         label.classList.toggle('label_state_active');
 
-        ToysPage.reRenderCardsList(arrayOfToys);
+        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
         restore();
       }
     });
@@ -697,7 +720,8 @@ class ToysPage extends Page {
 
   bindSizeFiltrate(
     handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void
+    restore: (page?: ToysPage) => void,
+    chosenToys: ICard[]
   ) {
     const sizesList = this.root.querySelector('.toys-page__sizes-list');
 
@@ -726,7 +750,7 @@ class ToysPage extends Page {
             (el as HTMLElement).classList.toggle(`${selector}_state_active`);
           });
         }
-        ToysPage.reRenderCardsList(arrayOfToys);
+        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
         restore();
       }
     });
@@ -734,7 +758,8 @@ class ToysPage extends Page {
 
   bindFavoriteFiltrate(
     handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void
+    restore: (page?: ToysPage) => void,
+    chosenToys: ICard[]
   ) {
     const favoriteContainer = this.root.querySelector(
       '.toys-page__favorite-container'
@@ -765,7 +790,7 @@ class ToysPage extends Page {
             (el as HTMLElement).classList.toggle(`${selector}_state_active`);
           });
         }
-        ToysPage.reRenderCardsList(arrayOfToys);
+        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
         restore();
       }
     });
@@ -773,7 +798,8 @@ class ToysPage extends Page {
 
   bindAllCategoriesFiltrate(
     handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void
+    restore: (page?: ToysPage) => void,
+    chosenToys: ICard[]
   ) {
     const allCategoriesContainer = this.root.querySelector(
       '.toys-page__categories-container'
@@ -793,7 +819,7 @@ class ToysPage extends Page {
           .children[1] as HTMLSpanElement;
         text.classList.toggle('text_state_active');
         const arrayOfToys = handler(value, method);
-        ToysPage.reRenderCardsList(arrayOfToys);
+        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
         restore();
       }
     });
@@ -801,7 +827,8 @@ class ToysPage extends Page {
 
   bindResetFilters(
     handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void
+    restore: (page?: ToysPage) => void,
+    chosenToys: ICard[]
   ) {
     const resetButton = this.root.querySelector(
       '.toys-page__reset-button'
@@ -881,14 +908,15 @@ class ToysPage extends Page {
         }
       });
 
-      ToysPage.reRenderCardsList(arrayOfToys);
+      ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
       restore();
     });
   }
 
   bindInputValue(
     handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void
+    restore: (page?: ToysPage) => void,
+    chosenToys: ICard[]
   ) {
     const input = this.root.querySelector(
       '.toys-page__searching-field'
@@ -900,7 +928,7 @@ class ToysPage extends Page {
 
       if (value.length >= 3 || value === '') {
         const arrayOfToys = handler(value, method);
-        ToysPage.reRenderCardsList(arrayOfToys);
+        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
         restore();
       }
     });
@@ -915,13 +943,13 @@ class ToysPage extends Page {
           quitButton.classList.toggle('button_state_rotate');
         }, 1000);
         const arrayOfToys = handler('', 'input');
-        ToysPage.reRenderCardsList(arrayOfToys);
+        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
         restore();
       }
     });
   }
 
-  bindAddChosens(handler: (id: string) => ICard[]) {
+  bindAddChosens(handler: (id: string) => IChosenToys) {
     const list = this.root.querySelector('.cards__list');
 
     list?.addEventListener('click', event => {
@@ -929,20 +957,32 @@ class ToysPage extends Page {
     });
   }
 
-  handleCardsList(event: Event, handler: (id: string) => ICard[]) {
-    const text = this.root.querySelector('.favorite-container')
-      ?.firstChild as HTMLSpanElement;
-    let length = 0;
+  handleCardsList(event: Event, handler: (id: string) => IChosenToys) {
+    const handleEvent = (target: HTMLElement) => {
+      const text = this.root.querySelector('.favorite-container')
+        ?.firstChild as HTMLSpanElement;
+      const blinkingText = this.root.querySelector(
+        '.blinking-text'
+      ) as HTMLHeadingElement;
+      let chosenToysObj: IChosenToys = handler(target.id);
+
+      if (chosenToysObj.full) {
+        text.textContent = '20';
+        blinkingText.classList.add('text_state_blinking');
+      } else {
+        text.textContent = `${chosenToysObj.toys.length}`;
+        target.classList.toggle('card_state_active');
+        blinkingText.classList.remove('text_state_blinking');
+      }
+    };
     const target = event.target as HTMLElement;
+
     if (target.tagName === 'LI') {
-      length = handler(target.id).length;
-      text.textContent = `${length}`;
+      handleEvent(target);
     }
 
     if (target.tagName === 'H2' || target.tagName === 'IMG') {
-      const parent = target.parentElement as HTMLLIElement;
-      length = handler(parent.id).length;
-      text.textContent = `${length}`;
+      handleEvent(target.parentElement as HTMLLIElement);
     }
   }
 
