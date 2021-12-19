@@ -448,7 +448,14 @@ class ToysPage extends Page {
       'Сбросить фильтры'
     ).render();
 
-    resetContainer.append(resetFilters);
+    const resetSettings = new Button(
+      `button text ${this.id}__reset-button reset-settings`,
+      'button',
+      'reset-settings',
+      'Сбросить настройки'
+    ).render();
+
+    resetContainer.append(resetFilters, resetSettings);
 
     container.append(
       topButtonsContainer,
