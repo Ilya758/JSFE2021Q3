@@ -33,7 +33,7 @@ class Controller {
         initToys = this.model.getInitArrayOfToys();
       }
 
-      const chosenToys = this.model.getChosenToys();
+      const chosenToys = Model.getChosenToys();
       const filters = Model.getCurrentFilter();
       const toysPage = this.view.render(
         currentHash,
@@ -76,7 +76,7 @@ class Controller {
       toysPage.bindCreateSlider(
         this.handleFiltrate.bind(this),
         this.restoreCardsList.bind(this, toysPage),
-        this.model.getChosenToys()
+        Model.getChosenToys()
       );
       toysPage.bindResetFilters(
         this.handleReset.bind(this),
