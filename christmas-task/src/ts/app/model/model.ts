@@ -6,6 +6,7 @@ import {
   TSorting,
   TUnionFilters,
 } from '../../models/filters';
+import { IToysObj } from '../../pages/toys';
 import data from '../../toys-data/toys';
 
 class Model {
@@ -86,7 +87,7 @@ class Model {
     return this.initArrayOfToys;
   }
 
-  filtrate(setting: string | string[], receivedMethod: string): ICard[] {
+  filtrate(setting: string | string[], receivedMethod: string): IToysObj {
     if (receivedMethod === 'input') {
       this.filterInput(setting);
       this.cascadeCallingOfFiltratingFunctions(this.filters);
@@ -108,7 +109,10 @@ class Model {
       Model.commit<boolean>('storageHasValues', this.storageHasValues);
     }
 
-    return this.filteredArray;
+    return {
+      toys: this.filteredArray,
+      chosen: Model.pull<ICard[]>('chosenToys'),
+    };
   }
 
   static setFilter(
