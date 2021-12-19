@@ -28,7 +28,7 @@ class Model {
 
   constructor() {
     this.initArrayOfToys = data;
-    this.filters = Model.getInitFilters();
+    this.filters = Model.getCurrentFilter();
     this.filteredArray = [];
     this.filterWasModified = false;
     this.inputValue = '';
