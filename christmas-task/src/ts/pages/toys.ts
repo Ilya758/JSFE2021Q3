@@ -473,9 +473,8 @@ class ToysPage extends Page {
   }
 
   bindCreateSlider(
-    handler: (sortOpt: string | string[], method: string) => ICard[],
-    restore: (page?: ToysPage) => void,
-    chosenToys: ICard[]
+    handler: (sortOpt: string | string[], method: string) => IToysObj,
+    restore: (page?: ToysPage) => void
   ) {
     const topSlider = this.root.querySelector(
       `.${this.id}__top-slider`
@@ -519,8 +518,8 @@ class ToysPage extends Page {
         text.textContent = values[ndx];
       });
 
-      const arrayOfToys = handler(values, method);
-      ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
+      const { toys, chosen } = handler(values, method);
+      ToysPage.reRenderCardsList(toys, chosen);
       restore();
     });
 
@@ -537,8 +536,8 @@ class ToysPage extends Page {
         ) as HTMLSpanElement;
         text.textContent = values[ndx];
       });
-      const arrayOfToys = handler(values, method);
-      ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
+      const { toys, chosen } = handler(values, method);
+      ToysPage.reRenderCardsList(toys, chosen);
       restore();
     });
   }
@@ -548,6 +547,8 @@ class ToysPage extends Page {
     const toysCount = initToysArray.length;
     const clsState = 'cards_state';
     const chosenIndices = Object.values(chosenToys).map(card => card.num);
+
+    console.log(chosenIndices);
 
     for (let i = 0; i < toysCount; i += 1) {
       const item = new Component('li', 'item cards__item').render();
@@ -624,21 +625,21 @@ class ToysPage extends Page {
   }
 
   bindSorting(
-    handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void,
-    chosenToys: ICard[]
+    handler: (sortOpt: string, method: string) => IToysObj,
+    restore: (page?: ToysPage) => void
   ) {
     const sortContainer = this.root.querySelector('.toys-page__select');
     sortContainer?.addEventListener('change', event => {
       const option = event.target as HTMLOptionElement;
       const method = 'sorting';
       const sortOpt = option.value;
-      const arrayOfToys = handler(sortOpt, method);
+      const { toys, chosen } = handler(sortOpt, method);
+      ToysPage.reRenderCardsList(toys, chosen);
       sortContainer.classList.toggle('select_state_active');
       setTimeout(() => {
         sortContainer.classList.toggle('select_state_active');
       }, 200);
-      ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
+      ToysPage.reRenderCardsList(toys, chosen);
       restore();
     });
   }
@@ -657,9 +658,8 @@ class ToysPage extends Page {
   }
 
   bindShapeFiltrate(
-    handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void,
-    chosenToys: ICard[]
+    handler: (sortOpt: string, method: string) => IToysObj,
+    restore: (page?: ToysPage) => void
   ) {
     const shapeList = this.root.querySelector('.toys-page__shape-list');
 
@@ -696,16 +696,15 @@ class ToysPage extends Page {
         });
       }
 
-      const arrayOfToys = handler(value, method);
-      ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
+      const { toys, chosen } = handler(value, method);
+      ToysPage.reRenderCardsList(toys, chosen);
       restore();
     });
   }
 
   bindColorFiltrate(
-    handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void,
-    chosenToys: ICard[]
+    handler: (sortOpt: string, method: string) => IToysObj,
+    restore: (page?: ToysPage) => void
   ) {
     const colorList = this.root.querySelector('.toys-page__color-list');
 
@@ -720,20 +719,19 @@ class ToysPage extends Page {
             ? (color.firstChild as HTMLInputElement).dataset.role || ''
             : (color.previousElementSibling as HTMLInputElement).dataset.role ||
               '';
-        const arrayOfToys = handler(value, method);
+
+        const { toys, chosen } = handler(value, method);
         const label = color.closest('label') as HTMLLabelElement;
         label.classList.toggle('label_state_active');
-
-        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
+        ToysPage.reRenderCardsList(toys, chosen);
         restore();
       }
     });
   }
 
   bindSizeFiltrate(
-    handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void,
-    chosenToys: ICard[]
+    handler: (sortOpt: string, method: string) => IToysObj,
+    restore: (page?: ToysPage) => void
   ) {
     const sizesList = this.root.querySelector('.toys-page__sizes-list');
 
@@ -747,7 +745,9 @@ class ToysPage extends Page {
             ? (size.firstChild as HTMLInputElement).dataset.role || ''
             : (size.previousElementSibling as HTMLInputElement).dataset.role ||
               '';
-        const arrayOfToys = handler(value, method);
+
+        const { toys, chosen } = handler(value, method);
+        ToysPage.reRenderCardsList(toys, chosen);
         const label = size.closest('label') as HTMLLabelElement;
 
         if (label?.tagName === 'LABEL') {
@@ -762,16 +762,15 @@ class ToysPage extends Page {
             (el as HTMLElement).classList.toggle(`${selector}_state_active`);
           });
         }
-        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
+        ToysPage.reRenderCardsList(toys, chosen);
         restore();
       }
     });
   }
 
   bindFavoriteFiltrate(
-    handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void,
-    chosenToys: ICard[]
+    handler: (sortOpt: string, method: string) => IToysObj,
+    restore: (page?: ToysPage) => void
   ) {
     const favoriteContainer = this.root.querySelector(
       '.toys-page__favorite-container'
@@ -787,7 +786,8 @@ class ToysPage extends Page {
             ? (elem.firstChild as HTMLInputElement).dataset.role || ''
             : (elem.previousElementSibling as HTMLInputElement).dataset.role ||
               '';
-        const arrayOfToys = handler(value, method);
+
+        const { toys, chosen } = handler(value, method);
         const label = elem.closest('label') as HTMLLabelElement;
 
         if (label?.tagName === 'LABEL') {
@@ -802,16 +802,16 @@ class ToysPage extends Page {
             (el as HTMLElement).classList.toggle(`${selector}_state_active`);
           });
         }
-        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
+
+        ToysPage.reRenderCardsList(toys, chosen);
         restore();
       }
     });
   }
 
   bindAllCategoriesFiltrate(
-    handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void,
-    chosenToys: ICard[]
+    handler: (sortOpt: string, method: string) => IToysObj,
+    restore: (page?: ToysPage) => void
   ) {
     const allCategoriesContainer = this.root.querySelector(
       '.toys-page__categories-container'
@@ -830,17 +830,16 @@ class ToysPage extends Page {
         const text = (elem.closest('label') as HTMLLabelElement)
           .children[1] as HTMLSpanElement;
         text.classList.toggle('text_state_active');
-        const arrayOfToys = handler(value, method);
-        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
+        const { toys, chosen } = handler(value, method);
+        ToysPage.reRenderCardsList(toys, chosen);
         restore();
       }
     });
   }
 
   bindResetFilters(
-    handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void,
-    chosenToys: ICard[]
+    handler: (sortOpt: string, method: string) => IToysObj,
+    restore: (page?: ToysPage) => void
   ) {
     const resetButton = this.root.querySelector(
       '.toys-page__reset-button'
@@ -856,7 +855,7 @@ class ToysPage extends Page {
 
     resetButton?.addEventListener('click', () => {
       const method = 'reset';
-      const arrayOfToys = handler('', method);
+      const { toys, chosen } = handler('', method);
       resetButton.classList.toggle('button_state_active');
       setTimeout(() => {
         resetButton.classList.toggle('button_state_active');
@@ -920,15 +919,14 @@ class ToysPage extends Page {
         }
       });
 
-      ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
+      ToysPage.reRenderCardsList(toys, chosen);
       restore();
     });
   }
 
   bindInputValue(
-    handler: (sortOpt: string, method: string) => ICard[],
-    restore: (page?: ToysPage) => void,
-    chosenToys: ICard[]
+    handler: (sortOpt: string, method: string) => IToysObj,
+    restore: (page?: ToysPage) => void
   ) {
     const input = this.root.querySelector(
       '.toys-page__searching-field'
@@ -939,8 +937,8 @@ class ToysPage extends Page {
       const method = 'input';
 
       if (value.length >= 3 || value === '') {
-        const arrayOfToys = handler(value, method);
-        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
+        const { toys, chosen } = handler(value, method);
+        ToysPage.reRenderCardsList(toys, chosen);
         restore();
       }
     });
@@ -954,8 +952,8 @@ class ToysPage extends Page {
         setTimeout(() => {
           quitButton.classList.toggle('button_state_rotate');
         }, 1000);
-        const arrayOfToys = handler('', 'input');
-        ToysPage.reRenderCardsList(arrayOfToys, chosenToys);
+        const { toys, chosen } = handler('', 'input');
+        ToysPage.reRenderCardsList(toys, chosen);
         restore();
       }
     });
