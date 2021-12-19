@@ -24,6 +24,8 @@ class Model {
 
   protected chosenToys: ICard[];
 
+  protected storageHasValues: boolean;
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getInitFilters();
@@ -31,6 +33,7 @@ class Model {
     this.filterWasModified = false;
     this.inputValue = '';
     this.chosenToys = [];
+    this.storageHasValues = false;
   }
 
   static getInitFilters(
@@ -103,6 +106,10 @@ class Model {
       this.cascadeCallingOfFiltratingFunctions(objFromFilters);
       this.filters = objFromFilters;
       this.filterWasModified = false;
+      this.storageHasValues = true;
+      Model.commit<IFilters>('filters', this.filters);
+      Model.commit<ICard[]>('filteredArray', this.filteredArray);
+      Model.commit<boolean>('storageHasValues', this.storageHasValues);
     }
 
     return this.filteredArray;
@@ -478,6 +485,30 @@ class Model {
       }
     }
     return this.chosenToys;
+  }
+
+  static getCurrentFilter() {
+    let currentFilter = Model.pull<IFilters>('filters');
+
+    if (!Array.isArray(currentFilter)) {
+      return currentFilter;
+    }
+
+    return this.getInitFilters();
+  }
+
+  static commit<T>(key: string, obj: T): void {
+    window.localStorage.setItem(key, JSON.stringify(obj));
+  }
+
+  static pull<T>(key: string): T {
+    const item = window.localStorage.getItem(key) || '[]';
+    return JSON.parse(item) as T;
+  }
+
+  static getStorageHasValuesProp() {
+    const value = Model.pull<boolean>('storageHasValues');
+    return Array.isArray(value) ? '' : value;
   }
 }
 
