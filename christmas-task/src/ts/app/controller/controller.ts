@@ -1,3 +1,4 @@
+import { ICard } from '../../models/card';
 import ToysPage from '../../pages/toys';
 import Model from '../model/model';
 import Router from '../router/router';
@@ -25,7 +26,14 @@ class Controller {
     const currentHash = this.router.getHash();
 
     if (currentHash === 'toys-page') {
-      const initToys = this.model.getInitArrayOfToys();
+      let initToys = Model.pull<ICard[]>('filteredArray');
+      // checking emptiness of initToys and existence of localStorage props
+
+      if (!initToys.length && !Model.getStorageHasValuesProp()) {
+        initToys = this.model.getInitArrayOfToys();
+      }
+
+      const filters = Model.getCurrentFilter();
       const toysPage = this.view.render(currentHash, initToys) as ToysPage;
 
       toysPage.bindShapeFiltrate(
