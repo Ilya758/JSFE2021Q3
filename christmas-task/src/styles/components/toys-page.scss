@@ -388,7 +388,8 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
 }
 
 .toys-page__color-checkbox:checked + .empty-text::after,
-.toys-page__sizes-checkbox:checked + .label-text::after {
+.toys-page__sizes-checkbox:checked + .label-text::after,
+.toys-page__favorite-checkbox:checked + .label-text::after  {
   position: absolute;
   top: 6px;
   left: 6px;
