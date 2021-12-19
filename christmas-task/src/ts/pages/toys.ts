@@ -63,7 +63,7 @@ class ToysPage extends Page {
     const favoriteCount = new Text(
       'span',
       'heading toys-page__heading',
-      '0'
+      `${(chosenToys as ICard[])?.length}`
     ).render();
 
     favoriteCountContainer.append(favoriteCount);
