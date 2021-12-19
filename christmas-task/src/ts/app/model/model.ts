@@ -391,16 +391,19 @@ class Model {
 
   filtrateChosenToys(id: string) {
     let tmp = this.getInitArrayOfToys();
+    const tmpToys = Model.getChosenToys();
 
-    if (!this.chosenToys.length) {
+    if (!tmpToys.length) {
       tmp.forEach(card => {
         if (+card.num === +id) {
           this.chosenToys.push(card);
         }
       });
+      Model.commit<ICard[]>('chosenToys', this.chosenToys);
     } else {
       // filtrate current array of chosen toys
-      tmp = this.chosenToys.filter(card => +card.num !== +id);
+      tmp = tmpToys.filter(card => +card.num !== +id);
+      this.chosenToys = tmp;
 
       if (tmp.length === 20) {
         return {
@@ -409,7 +412,7 @@ class Model {
         };
       }
 
-      if (tmp.length === this.chosenToys.length) {
+      if (tmp.length === tmpToys.length) {
         this.initArrayOfToys.forEach(card => {
           if (+card.num === +id) {
             this.chosenToys.push(card);
@@ -418,6 +421,8 @@ class Model {
       } else {
         this.chosenToys = tmp;
       }
+
+      Model.commit<ICard[]>('chosenToys', this.chosenToys);
     }
 
     return {
@@ -426,8 +431,8 @@ class Model {
     };
   }
 
-  getChosenToys() {
-    return this.chosenToys;
+  static getChosenToys() {
+    return Model.pull<ICard[]>('chosenToys');
   }
 
   static getCurrentFilter() {
