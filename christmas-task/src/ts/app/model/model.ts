@@ -402,6 +402,13 @@ class Model {
       // filtrate current array of chosen toys
       tmp = this.chosenToys.filter(card => +card.num !== +id);
 
+      if (tmp.length === 20) {
+        return {
+          full: true,
+          toys: this.chosenToys,
+        };
+      }
+
       if (tmp.length === this.chosenToys.length) {
         this.initArrayOfToys.forEach(card => {
           if (+card.num === +id) {
@@ -412,6 +419,14 @@ class Model {
         this.chosenToys = tmp;
       }
     }
+
+    return {
+      full: false,
+      toys: this.chosenToys,
+    };
+  }
+
+  getChosenToys() {
     return this.chosenToys;
   }
 
