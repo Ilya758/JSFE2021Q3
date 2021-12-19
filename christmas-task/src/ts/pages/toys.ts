@@ -15,6 +15,11 @@ interface IChosenToys {
   toys: ICard[];
 }
 
+export interface IToysObj {
+  toys: ICard[];
+  chosen: ICard[];
+}
+
 class ToysPage extends Page {
   protected root;
 
