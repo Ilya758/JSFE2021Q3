@@ -458,6 +458,10 @@ class Model {
     const value = Model.pull<boolean>('storageHasValues');
     return Array.isArray(value) ? '' : value;
   }
+
+  static clearLocalStorage() {
+    window.localStorage.clear();
+  }
 }
 
 export default Model;

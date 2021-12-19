@@ -43,6 +43,9 @@ class Controller {
 
       toysPage.bindAddChosens(this.handleAddChosens.bind(this));
 
+      toysPage.bindClearLocalStorage(
+        Controller.handleClearLocalStorage.bind(Controller)
+      );
       toysPage.bindShapeFiltrate(
         this.handleFiltrate.bind(this),
         this.restoreCardsList.bind(this, toysPage),
@@ -115,6 +118,10 @@ class Controller {
 
   restoreCardsList(page: ToysPage) {
     page.bindAddChosens(this.handleAddChosens.bind(this));
+  }
+
+  static handleClearLocalStorage() {
+    Model.clearLocalStorage();
   }
 }
 

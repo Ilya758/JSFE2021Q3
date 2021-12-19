@@ -1118,6 +1118,20 @@ class ToysPage extends Page {
       }
     );
   }
+
+  bindClearLocalStorage(handler: () => void) {
+    const resetButton = this.root.querySelectorAll(
+      '.toys-page__reset-button'
+    )[1] as HTMLButtonElement;
+
+    resetButton.addEventListener('click', () => {
+      handler();
+      resetButton.classList.toggle('button_state_active');
+      setTimeout(() => {
+        resetButton.classList.toggle('button_state_active');
+      }, 200);
+    });
+  }
 }
 
 export default ToysPage;
