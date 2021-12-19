@@ -167,7 +167,7 @@ class ToysPage extends Page {
 
     const categoriesLabel = new Component(
       'label',
-      `${this.id}__label`
+      `${this.id}__label categories-label`
     ).render();
 
     const categoriesCheckbox = new Checkbox(
@@ -331,7 +331,7 @@ class ToysPage extends Page {
       'ul',
       `list ${this.id}__color-list`
     ).render();
-    const colors = ['white', 'yellow', 'red', 'blue', 'green'];
+    const colors = ['white', 'yellow', 'red', 'green', 'blue'];
 
     for (let i = 0; i <= 4; i += 1) {
       const item = new Component('li', `item ${this.id}__color-item`).render();
@@ -403,7 +403,7 @@ class ToysPage extends Page {
       `${this.id}__sizes-label`
     ).render();
     const favoriteCheckbox = new Checkbox(
-      `checkbox ${this.id}__sizes-checkbox`,
+      `checkbox ${this.id}__favorite-checkbox`,
       'checkbox',
       'favorite'
     ).render();
@@ -857,8 +857,8 @@ class ToysPage extends Page {
         check.checked = false;
       });
 
-      (topSlider as noUiSlider.target).noUiSlider?.set([1, 12]);
-      (bottomSlider as noUiSlider.target).noUiSlider?.set([1940, 2020]);
+      (topSlider as noUiSlider.target).noUiSlider?.reset();
+      (bottomSlider as noUiSlider.target).noUiSlider?.reset();
 
       lowValues.forEach((v, ndx) => {
         const value = v as HTMLSpanElement;
