@@ -45,6 +45,7 @@ class ToysPage extends Page {
       '',
       'Возврат на главную страницу'
     ).render();
+    const textForFullArray = new Text(
     const favoriteCountContainer = new Component(
       'div',
       'favorite-container'
@@ -62,6 +63,7 @@ class ToysPage extends Page {
     cardsContainer.append(
       cardsHeading,
       mainPageLink,
+      textForFullArray,
       favoriteCountContainer,
       cardsList
     );

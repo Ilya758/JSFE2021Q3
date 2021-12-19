@@ -387,6 +387,14 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
   }
 }
 
+.blinking-text {
+  margin-right: 0;
+  grid-area: 2 / 3 / 2 / 4;
+  justify-self: flex-end;
+  transition: 0.35s;
+  visibility: hidden;
+}
+
 .toys-page__color-checkbox:checked + .empty-text::after,
 .toys-page__sizes-checkbox:checked + .label-text::after,
 .toys-page__favorite-checkbox:checked + .label-text::after  {
