@@ -21,7 +21,6 @@ export type TShape =
       bell: boolean;
       ball: boolean;
       pine: boolean;
-      star: boolean;
       snowflake: boolean;
       'bird-toy': boolean;
     }
