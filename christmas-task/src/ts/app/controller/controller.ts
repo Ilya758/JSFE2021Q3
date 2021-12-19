@@ -43,55 +43,47 @@ class Controller {
 
       toysPage.bindAddChosens(this.handleAddChosens.bind(this));
 
+      toysPage.bindResetFilters(
+        this.handleReset.bind(this),
+        this.restoreCardsList.bind(this, toysPage)
+      );
       toysPage.bindClearLocalStorage(
         Controller.handleClearLocalStorage.bind(Controller)
       );
+      toysPage.bindCreateSlider(
+        this.handleFiltrate.bind(this),
+        this.restoreCardsList.bind(this, toysPage)
+      );
+      toysPage.setActiveFiltersAfterReload(filters);
+
       toysPage.bindShapeFiltrate(
         this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage),
-        chosenToys
+        this.restoreCardsList.bind(this, toysPage)
       );
       toysPage.bindColorFiltrate(
         this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage),
-        chosenToys
+        this.restoreCardsList.bind(this, toysPage)
       );
       toysPage.bindSizeFiltrate(
         this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage),
-        chosenToys
+        this.restoreCardsList.bind(this, toysPage)
       );
       toysPage.bindSorting(
         this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage),
-        chosenToys
+        this.restoreCardsList.bind(this, toysPage)
       );
       toysPage.bindFavoriteFiltrate(
         this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage),
-        chosenToys
+        this.restoreCardsList.bind(this, toysPage)
       );
       toysPage.bindAllCategoriesFiltrate(
         this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage),
-        chosenToys
-      );
-      toysPage.bindCreateSlider(
-        this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage),
-        Model.getChosenToys()
-      );
-      toysPage.bindResetFilters(
-        this.handleReset.bind(this),
-        this.restoreCardsList.bind(this, toysPage),
-        chosenToys
+        this.restoreCardsList.bind(this, toysPage)
       );
       toysPage.bindInputValue(
         this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage),
-        chosenToys
+        this.restoreCardsList.bind(this, toysPage)
       );
-      toysPage.setActiveFiltersAfterReload(filters);
     } else {
       this.view.render();
     }
