@@ -65,6 +65,7 @@ class Controller {
         this.restoreCardsList.bind(this, toysPage)
       );
       toysPage.bindAddChosens(this.handleAddChosens.bind(this));
+      toysPage.setActiveFiltersAfterReload(filters);
     } else {
       this.view.render();
     }
