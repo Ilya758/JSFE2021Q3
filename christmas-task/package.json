@@ -36,7 +36,6 @@
     "eslint": "^8.0.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
-    "eslint-config-jquery": "^3.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.2",
@@ -82,7 +81,6 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "jquery": "^3.6.0",
     "normalize.css": "^8.0.1",
     "nouislider": "^15.5.0"
   }
