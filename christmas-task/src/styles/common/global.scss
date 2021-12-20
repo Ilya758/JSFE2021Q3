@@ -21,12 +21,17 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: $bcg-dark-green;
+  transition: 1s;
+}
+
 #root {
-  height: 100vh;
 
   @include flex(column, center, normal);
 
   background: url("../assets/img/bg.jpg") 0 0/cover no-repeat;
+  transition: 1s;
 }
 
 .content {
@@ -124,4 +129,12 @@ $icons: sound audio, snow snow;
   position: absolute;
   z-index: -999;
   opacity: 0;
+}
+
+.body {
+  &_state {
+    &_active {
+      opacity: 1;
+    }
+  }
 }

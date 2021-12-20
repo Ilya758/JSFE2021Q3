@@ -9,6 +9,11 @@
 
   &__author {
     text-transform: capitalize;
+    transition: 0.35s;
+
+    &:hover {
+      color: $font-gold;
+    }
   }
 
   &__logo {
@@ -16,5 +21,10 @@
     height: 90px;
     background-color: $bcg-white;
     mask: url("../assets/svg/rss.svg") 0 0/cover no-repeat;
+    transition: 0.35s;
+
+    &:hover {
+      background-color: $bcg-gold;
+    }
   }
 }
