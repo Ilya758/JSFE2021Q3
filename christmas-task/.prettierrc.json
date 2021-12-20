@@ -1,8 +1,10 @@
 {
   "overrides": [
     {
-      "files": ".prettierrc",
-      "options": { "parser": "json" }
+      "files": ["**/*.scss", "**/*.html"],
+      "options": {
+        "singleQuote": false
+      }
     }
   ],
   "trailingComma": "es5",

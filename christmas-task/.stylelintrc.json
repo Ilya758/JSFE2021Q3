@@ -6,7 +6,7 @@
     "stylelint-config-prettier"
   ],
   "rules": {
-    "at-rule-empty-line-before": "always",
+    "at-rule-empty-line-before": "never",
     "at-rule-no-vendor-prefix": true,
     "at-rule-name-case": "lower",
     "at-rule-name-space-after": "always",
@@ -25,6 +25,7 @@
     "string-quotes": "double",
     "scss/at-import-partial-extension": "never",
     "selector-max-class": 3,
+    "selector-class-pattern": null,
     "scss/selector-no-redundant-nesting-selector": true,
     "unit-allowed-list": [
       "em",
