@@ -32,6 +32,10 @@ body {
 
   background: url("../assets/img/bg.jpg") 0 0/cover no-repeat;
   transition: 1s;
+
+  @include medium-desktops {
+    height: initial !important;
+  }
 }
 
 .content {

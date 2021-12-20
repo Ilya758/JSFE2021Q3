@@ -11,8 +11,19 @@
     text-transform: capitalize;
     transition: 0.35s;
 
+    @include medium-desktops {
+      font-size: 20px;
+    }
+
     &:hover {
       color: $font-gold;
+    }
+  }
+
+  &__text {
+
+    @include medium-desktops {
+      font-size: 20px;
     }
   }
 
@@ -20,11 +31,15 @@
     width: 242px;
     height: 90px;
     background-color: $bcg-white;
-    mask: url("../assets/svg/rss.svg") 0 0/cover no-repeat;
+    mask: url("../assets/svg/rss.svg") 0 0/contain no-repeat;
     transition: 0.35s;
 
     &:hover {
       background-color: $bcg-gold;
+    }
+
+    @include medium-desktops {
+      width: 160px;
     }
   }
 }

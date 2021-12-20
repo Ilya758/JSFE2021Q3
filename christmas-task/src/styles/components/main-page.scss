@@ -34,6 +34,38 @@
             height: 446px;
             background-image: url("../assets/img/ball/2.png");
         }
+
+        @include media-custom(1600px) {
+            &::before {
+                top: 210px;
+                left: 17%;
+                width: 250px;
+                height: 400px;
+              
+            }
+
+            &::after {
+                right: 19%;
+                width: 190px;
+              
+            }
+        }
+
+        @include medium-desktops {
+            &::before {
+                top: 210px;
+                left: 2%;
+                width: 210px;
+                height: 400px;
+              
+            }
+
+            &::after {
+                right: 2%;
+                width: 150px;
+              
+            }
+        }
     }
 
     &__heading {
@@ -47,11 +79,18 @@
         line-height: 58px;
         text-align: center;      
         text-transform: uppercase;
+
+        @include media-custom(1600px) {
+            font-size: 36px;
+        }
+
+        @include medium-desktops {
+            padding: 37px 85px;
+        }
     }
 
     &__link {
         position: relative;
-        z-index: 999;
         z-index: 999;
         overflow: hidden;
         padding: 13px 119px 12px;
