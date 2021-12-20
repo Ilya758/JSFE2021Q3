@@ -1,142 +1,131 @@
 .main-page {
-    flex: 1;
+  flex: 1;
 
-    &__content {
+  &__content {
+    @include flex(column, center, center);
 
-        @include flex(column, center, center);
+    position: relative;
+    width: 100%;
+    padding-top: 387px;
 
-        position: relative;
-        width: 100%;
-        padding-top: 387px;
-
-        &::before, 
-        &::after {
-            position: absolute;
-            display: block;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-            content: "";
-        }
-
-        &::before {
-            top: 130px;
-            left: 24%;
-            width: 418px;
-            height: 768px;
-            background-image: url("../assets/img/ball/1.png");
-        }
-
-        &::after {
-            top: 130px;
-            right: 28%;
-            width: 246px;
-            height: 446px;
-            background-image: url("../assets/img/ball/2.png");
-        }
-
-        @include media-custom(1600px) {
-            &::before {
-                top: 210px;
-                left: 17%;
-                width: 250px;
-                height: 400px;
-              
-            }
-
-            &::after {
-                right: 19%;
-                width: 190px;
-              
-            }
-        }
-
-        @include medium-desktops {
-            &::before {
-                top: 210px;
-                left: 2%;
-                width: 210px;
-                height: 400px;
-              
-            }
-
-            &::after {
-                right: 2%;
-                width: 150px;
-              
-            }
-        }
+    &::before,
+    &::after {
+      position: absolute;
+      display: block;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      content: "";
     }
 
-    &__heading {
-        z-index: 1;
-        max-width: 593px;
-        padding: 67px 85px;
-        border: 2px solid $border-blue;
-        backdrop-filter: blur(15px);
-        border-radius: 30px;
-        font-size: 53px;
-        line-height: 58px;
-        text-align: center;      
-        text-transform: uppercase;
-
-        @include media-custom(1600px) {
-            font-size: 36px;
-        }
-
-        @include medium-desktops {
-            padding: 37px 85px;
-        }
+    &::before {
+      top: 130px;
+      left: 24%;
+      width: 418px;
+      height: 768px;
+      background-image: url("../assets/img/ball/1.png");
     }
 
-    &__link {
-        position: relative;
-        z-index: 999;
-        overflow: hidden;
-        padding: 13px 119px 12px;
-        border: 2px solid $border-blue;
-        margin-top: 126px;
-        backdrop-filter: blur(15px);
-        border-radius: 30px;
-        text-transform: capitalize;
-        transition: 0.35s all, 1s border;
-
-        &::before,
-        &::after {
-            position: absolute;
-            z-index: -999;
-            top: 0;
-            bottom: 0;
-            width: 0;
-            height: 100%;
-            background-color: $bcg-green;
-            content: "";
-            opacity: 0.5;
-            transition: 2s;
-        }
-
-        &::before {
-            left: 50%;
-        }
-
-        &::after {
-            right: 50%;
-        }
+    &::after {
+      top: 130px;
+      right: 28%;
+      width: 246px;
+      height: 446px;
+      background-image: url("../assets/img/ball/2.png");
     }
+    @include media-custom(1600px) {
+      &::before {
+        top: 210px;
+        left: 17%;
+        width: 250px;
+        height: 400px;
+      }
+
+      &::after {
+        right: 19%;
+        width: 190px;
+      }
+    }
+    @include medium-desktops {
+      &::before {
+        top: 210px;
+        left: 2%;
+        width: 210px;
+        height: 400px;
+      }
+
+      &::after {
+        right: 2%;
+        width: 150px;
+      }
+    }
+  }
+
+  &__heading {
+    z-index: 1;
+    max-width: 593px;
+    padding: 67px 85px;
+    border: 2px solid $border-blue;
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    font-size: 53px;
+    line-height: 58px;
+    text-align: center;
+    text-transform: uppercase;
+    @include media-custom(1600px) {
+      font-size: 36px;
+    }
+    @include medium-desktops {
+      padding: 37px 85px;
+    }
+  }
+
+  &__link {
+    position: relative;
+    z-index: 999;
+    overflow: hidden;
+    padding: 13px 119px 12px;
+    border: 2px solid $border-blue;
+    margin-top: 126px;
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    text-transform: capitalize;
+    transition: 0.35s all, 1s border;
+
+    &::before,
+    &::after {
+      position: absolute;
+      z-index: -999;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      height: 100%;
+      background-color: $bcg-green;
+      content: "";
+      opacity: 0.5;
+      transition: 2s;
+    }
+
+    &::before {
+      left: 50%;
+    }
+
+    &::after {
+      right: 50%;
+    }
+  }
 }
 
 .link {
-    &_state {
-        &_clicked {
-            border-color: $border-green;
-            border-color: transparent;
+  &_state {
+    &_clicked {
+      border-color: $border-green;
+      border-color: transparent;
 
-            &::before,
-            &::after {
-                width: 100%;
-            }
-        }
-
+      &::before,
+      &::after {
+        width: 100%;
+      }
     }
-
+  }
 }

@@ -7,7 +7,6 @@
   &-settings {
     width: 100%;
     max-width: 400px;
-
     @include large-desktops {
       max-width: 300px;
     }
@@ -20,13 +19,11 @@
   }
 
   &__content {
-
     @include flex(row, center, flex-start);
 
     position: relative;
     padding: 50px 80px 0 84px;
     column-gap: 20px;
-
     @include large-desktops {
       padding: 20px 0;
     }
@@ -34,16 +31,12 @@
 
   &__top {
     &-container {
-
       @include flex(row, flex-start);
-
     }
-
   }
 
   &__button {
     background-color: $bcg-white;
-    
   }
 
   &__searching-field {
@@ -60,11 +53,10 @@
     outline: none;
     text-overflow: ellipsis;
     transition: 0.35s;
-        
+
     &::placeholder {
       color: transparent;
       transition: 0.35s;
-      
     }
 
     &:focus {
@@ -82,7 +74,6 @@
       position: relative;
       width: 67%;
       max-width: 254px;
-
       @include flex(row, flex-end);
 
       &::after {
@@ -92,7 +83,7 @@
         display: inline-block;
         width: 16px;
         height: 16px;
-        background: url("../assets/svg/search.svg") 0 0/cover no-repeat;
+        background: url("../assets/svg/search.svg") 0 0 / cover no-repeat;
         content: "";
         cursor: pointer;
         transform: translate(0, -50%);
@@ -103,9 +94,7 @@
   &__sorting {
     &-container {
       margin: 61px 0 43px;
-
       @include flex(row, flex-start);
-
       @include large-desktops {
         flex-direction: column;
         align-items: flex-start;
@@ -120,12 +109,12 @@
       position: relative;
 
       &::after {
-        position:absolute;
+        position: absolute;
         top: 50%;
         right: 9px;
         width: 16px;
         height: 17px;
-        background: url("../assets/svg/arrow-down.svg") 0 0/cover no-repeat;
+        background: url("../assets/svg/arrow-down.svg") 0 0 / cover no-repeat;
         content: "";
         transform: translate(0, -50%);
       }
@@ -164,7 +153,6 @@
       max-width: 86px;
       row-gap: 19px;
     }
-
   }
 
   &__label {
@@ -185,7 +173,7 @@
       left: 6px;
       width: 14px;
       height: 12px;
-      background: url("../assets/svg/checked.svg") 0 0/cover no-repeat;
+      background: url("../assets/svg/checked.svg") 0 0 / cover no-repeat;
       content: "";
     }
   }
@@ -201,22 +189,19 @@
     }
 
     &-list {
-
       @include flex(row, space-between);
 
       column-gap: 34px;
-
       @include large-desktops {
         flex-wrap: wrap;
         justify-content: flex-start;
         gap: 15px 40px;
       }
     }
-        
-    &-item {
 
+    &-item {
       @include flex(column);
-      
+
       cursor: pointer;
       opacity: 0.6;
       transition: 0.35s;
@@ -271,7 +256,6 @@
     }
 
     &-list {
-
       @include only-flex;
 
       column-gap: 24px;
@@ -297,20 +281,17 @@
 
   &__sizes {
     &-list {
-
       @include only-flex;
 
       column-gap: 24px;
-
       @include large-desktops {
         flex-wrap: wrap;
         row-gap: 15px;
       }
     }
-
   }
 
-  &__favorite{
+  &__favorite {
     &-container {
       margin: 42px 0 29px;
     }
@@ -318,11 +299,9 @@
 
   &__reset {
     &-container {
-
       @include only-flex;
 
       column-gap: 15px;
-
       @include large-desktops {
         flex-wrap: wrap;
         row-gap: 15px;
@@ -351,14 +330,14 @@
 
 .label-text {
   position: absolute;
+  @include flex(row);
+
   border-radius: 2px;
   cursor: pointer;
   font-size: 16px;
   opacity: 0.6;
   transition: 0.35s;
   user-select: none;
-
-  @include flex(row);
 
   &::before {
     position: relative;
@@ -399,8 +378,8 @@
   text-align: right;
 }
 
-$colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, green $bcg-green;
-
+$colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue,
+  green $bcg-green;
 @each $color, $var in $colors {
   .label-#{$color} {
     background-color: $var;
@@ -414,11 +393,9 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
 
   &:nth-child(2) {
     transition: 0.35s;
-
     @include large-desktops {
       grid-area: 2;
     }
-
     @include medium-desktops {
       grid-area: 2 / 1 / 2 / 4;
     }
@@ -435,7 +412,6 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
   justify-self: flex-end;
   transition: 0.35s;
   visibility: hidden;
-
   @include medium-desktops {
     margin: 10px 0;
     grid-area: 3 / 1 / 3 / 4;
@@ -445,13 +421,13 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
 
 .toys-page__color-checkbox:checked + .empty-text::after,
 .toys-page__sizes-checkbox:checked + .label-text::after,
-.toys-page__favorite-checkbox:checked + .label-text::after  {
+.toys-page__favorite-checkbox:checked + .label-text::after {
   position: absolute;
   top: 6px;
   left: 6px;
   width: 14px;
   height: 12px;
-  background: url("../assets/svg/checked-black.svg") 0 0/cover no-repeat;
+  background: url("../assets/svg/checked-black.svg") 0 0 / cover no-repeat;
   content: "";
 }
 
@@ -479,7 +455,7 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
     position: relative;
     width: 30px;
     height: 50px;
-    background: url("../assets/svg/ball-2.svg") 0 0/contain no-repeat;
+    background: url("../assets/svg/ball-2.svg") 0 0 / contain no-repeat;
     grid-area: 1 / 3 / 1 / 4;
     justify-self: flex-end;
 
@@ -498,9 +474,8 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
     }
   }
 }
-
 @each $item in item, label, select, button {
-  .#{$item}{
+  .#{$item} {
     &_state {
       &_active {
         opacity: 1;
@@ -508,9 +483,8 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
     }
   }
 }
-
 @each $item in button, select {
-  .#{$item}{
+  .#{$item} {
     &_state {
       &_active {
         background-color: $bcg-green;
@@ -540,7 +514,6 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue, gre
     }
   }
 }
-
 @keyframes blinking {
   0% {
     box-shadow: 0 0 0 0;

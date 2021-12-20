@@ -1,14 +1,9 @@
-@mixin flex(
-  $dir: row,
-  $just: center,
-  $al: center
-) {
+@mixin flex($dir: row, $just: center, $al: center) {
   display: flex;
   flex-direction: $dir;
   align-items: $al;
   justify-content: $just;
 }
-
 @mixin only-flex() {
   display: flex;
 }

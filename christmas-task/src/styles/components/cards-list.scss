@@ -1,157 +1,154 @@
 /* stylelint-disable color-function-notation */
 .cards {
-    &__list {
-        max-height: 875px;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding-right: 16px;
-        gap: 36px;
-        grid-area: 3 / 1 / 3 / span 4;
-        opacity: 0;
-        overflow-y: scroll;
-        transition: 1s;
-
-        @include medium-desktops {
-            grid-area: 4 / 1 / 4 / span 3;
-        }
-        
-        &::-webkit-scrollbar {
-            width: 10px;
-        }
-          
-        &::-webkit-scrollbar-thumb {
-            background-color: $bcg-blue;
-            border-radius: 10px;
-        }
-          
-        &::-webkit-scrollbar-track {
-            background-color: $bcg-white;
-            border-radius: 10px;
-            box-shadow: inset 0 0 6px rgba(0, 0, 0, 25.3%);
-            outline: none;
-        }
-        
-        @include flex(row, space-between, flex-start);
+  &__list {
+    @include flex(row, space-between, flex-start);
+    @include medium-desktops {
+      grid-area: 4 / 1 / 4 / span 3;
     }
 
-    &__item {
-        position: relative;
-        overflow: hidden;
-        width: calc(100% / 6);
-        width: 100%;
-        max-width: 222px;
-        height: 100%;
-        max-height: 342px;
-        padding: 18px 16px 19px;
-        background-color: $bcg-pale-blue;
-        border-radius: 10px;
-        cursor: pointer;
-        opacity: 0.8;
-        transition: 0.35s;
-        user-select: none;
+    max-height: 875px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: 16px;
+    gap: 36px;
+    grid-area: 3 / 1 / 3 / span 4;
+    opacity: 0;
+    overflow-y: scroll;
+    transition: 1s;
 
-        &:hover {
-            opacity: 1
-        }
-
-        @include flex(column, center, flex-start);
-
-        &::before {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background-color: $bcg-gold;
-            border-radius: 50%;
-            content: "";
-            opacity: 0;
-            transform: translate(-50%, -50%); 
-            transition: 1s;
-        }
+    &::-webkit-scrollbar {
+      width: 10px;
     }
 
-    &__img {
-        width: 100%;
-        height: 80px;
-        object-fit: contain;
+    &::-webkit-scrollbar-thumb {
+      background-color: $bcg-blue;
+      border-radius: 10px;
     }
 
-    &__heading {
-        margin-bottom: 10px;
-        font-size: 18px;
+    &::-webkit-scrollbar-track {
+      background-color: $bcg-white;
+      border-radius: 10px;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 25.3%);
+      outline: none;
+    }
+  }
+
+  &__item {
+    @include flex(column, center, flex-start);
+
+    position: relative;
+    overflow: hidden;
+    width: calc(100% / 6);
+    width: 100%;
+    max-width: 222px;
+    height: 100%;
+    max-height: 342px;
+    padding: 18px 16px 19px;
+    background-color: $bcg-pale-blue;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.35s;
+    user-select: none;
+
+    &:hover {
+      opacity: 1;
     }
 
-    &__text {
-        margin: 10px 0;
-        font-size: 12px;
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background-color: $bcg-gold;
+      border-radius: 50%;
+      content: "";
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: 1s;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+  }
+
+  &__heading {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  &__text {
+    margin: 10px 0;
+    font-size: 12px;
+  }
+
+  &_state {
+    &_appear {
+      animation: appear 1s linear;
     }
 
-    &_state {
-        &_appear {
-            animation: appear 1s linear;
-        }
-
-        &_active {
-            opacity: 1;
-        }
+    &_active {
+      opacity: 1;
     }
+  }
 }
 
 .list {
-    &_scroll {
-        &_disabled {
-            position: relative;
-            top: 50%;
-            overflow: hidden;
-            justify-content: center;
-        }
+  &_scroll {
+    &_disabled {
+      position: relative;
+      top: 50%;
+      overflow: hidden;
+      justify-content: center;
     }
+  }
 }
 
 .text {
-    &_state {
-        &_blinking {
-            animation: blink 2s linear infinite;
-            color: $font-red;
-            visibility: visible;
-        }
+  &_state {
+    &_blinking {
+      animation: blink 2s linear infinite;
+      color: $font-red;
+      visibility: visible;
     }
+  }
 }
 
 .card {
-    &_state {
-        &_active {
-            &::before {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(8);
-            }
-        }
+  &_state {
+    &_active {
+      &::before {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(8);
+      }
     }
+  }
 }
-
 @keyframes appear {
-    0% {
-        transform: translate(0, 200px);
-    }
+  0% {
+    transform: translate(0, 200px);
+  }
 
-    100% {
-        opacity: 1;
-        transform: translate(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
 }
-
 @keyframes blink {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    50% {
-        opacity: 1;
-    }
+  50% {
+    opacity: 1;
+  }
 
-    100% {
-        opacity: 0;
-    }
+  100% {
+    opacity: 0;
+  }
 }

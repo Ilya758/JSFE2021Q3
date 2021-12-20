@@ -1,5 +1,4 @@
 /* stylelint-disable color-named */
-
 @keyframes rotate-appear {
   0% {
     opacity: 1;
@@ -27,20 +26,17 @@ body {
 }
 
 #root {
-
   @include flex(column, center, normal);
 
-  background: url("../assets/img/bg.jpg") 0 0/cover no-repeat;
+  background: url("../assets/img/bg.jpg") 0 0 / cover no-repeat;
   transition: 1s;
-
   @include medium-desktops {
     height: initial !important;
   }
 }
 
 .content {
-
-  @include flex(row, center,center);
+  @include flex(row, center, center);
 }
 
 .list {
@@ -49,7 +45,6 @@ body {
 }
 
 .item {
-
   @include only-flex;
 }
 
@@ -88,13 +83,12 @@ body {
 }
 
 $icons: sound audio, snow snow;
- 
 @each $item, $pic in $icons {
   .icon-#{$item} {
     width: 36px;
     height: 36px;
     background-color: $bcg-white;
-    mask: url("../assets/svg/#{$pic}.svg") 0 0/cover no-repeat;
+    mask: url("../assets/svg/#{$pic}.svg") 0 0 / cover no-repeat;
   }
 }
 
@@ -119,7 +113,6 @@ $icons: sound audio, snow snow;
     opacity: 1;
   }
 }
-
 @each $item in bell, ball, pine, star, snowflake, bird-toy {
   .icon-#{$item} {
     width: 42px;
