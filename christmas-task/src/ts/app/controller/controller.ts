@@ -35,57 +35,62 @@ class Controller {
 
       const chosenToys = Model.getChosenToys();
       const filters = Model.getCurrentFilter();
-      const toysPage = this.view.render(
-        currentHash,
-        initToys,
-        chosenToys
-      ) as ToysPage;
 
-      toysPage.bindAddChosens(this.handleAddChosens.bind(this));
+      setTimeout(() => {
+        const toysPage = this.view.render(
+          currentHash,
+          initToys,
+          chosenToys
+        ) as ToysPage;
 
-      toysPage.bindResetFilters(
-        this.handleReset.bind(this),
-        this.restoreCardsList.bind(this, toysPage)
-      );
-      toysPage.bindClearLocalStorage(
-        Controller.handleClearLocalStorage.bind(Controller)
-      );
-      toysPage.bindCreateSlider(
-        this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage)
-      );
-      toysPage.setActiveFiltersAfterReload(filters);
+        toysPage.bindAddChosens(this.handleAddChosens.bind(this));
 
-      toysPage.bindShapeFiltrate(
-        this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage)
-      );
-      toysPage.bindColorFiltrate(
-        this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage)
-      );
-      toysPage.bindSizeFiltrate(
-        this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage)
-      );
-      toysPage.bindSorting(
-        this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage)
-      );
-      toysPage.bindFavoriteFiltrate(
-        this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage)
-      );
-      toysPage.bindAllCategoriesFiltrate(
-        this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage)
-      );
-      toysPage.bindInputValue(
-        this.handleFiltrate.bind(this),
-        this.restoreCardsList.bind(this, toysPage)
-      );
+        toysPage.bindResetFilters(
+          this.handleReset.bind(this),
+          this.restoreCardsList.bind(this, toysPage)
+        );
+        toysPage.bindClearLocalStorage(
+          Controller.handleClearLocalStorage.bind(Controller)
+        );
+        toysPage.bindCreateSlider(
+          this.handleFiltrate.bind(this),
+          this.restoreCardsList.bind(this, toysPage)
+        );
+        toysPage.setActiveFiltersAfterReload(filters);
+
+        toysPage.bindShapeFiltrate(
+          this.handleFiltrate.bind(this),
+          this.restoreCardsList.bind(this, toysPage)
+        );
+        toysPage.bindColorFiltrate(
+          this.handleFiltrate.bind(this),
+          this.restoreCardsList.bind(this, toysPage)
+        );
+        toysPage.bindSizeFiltrate(
+          this.handleFiltrate.bind(this),
+          this.restoreCardsList.bind(this, toysPage)
+        );
+        toysPage.bindSorting(
+          this.handleFiltrate.bind(this),
+          this.restoreCardsList.bind(this, toysPage)
+        );
+        toysPage.bindFavoriteFiltrate(
+          this.handleFiltrate.bind(this),
+          this.restoreCardsList.bind(this, toysPage)
+        );
+        toysPage.bindAllCategoriesFiltrate(
+          this.handleFiltrate.bind(this),
+          this.restoreCardsList.bind(this, toysPage)
+        );
+        toysPage.bindInputValue(
+          this.handleFiltrate.bind(this),
+          this.restoreCardsList.bind(this, toysPage)
+        );
+      }, 2000);
     } else {
-      this.view.render();
+      setTimeout(() => {
+        this.view.render();
+      }, 2000);
     }
   }
 

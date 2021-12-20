@@ -50,12 +50,24 @@ class View {
     });
 
     if (id === 'toys-page') {
+      this.root.style.height = 'initial';
+      document.body.style.opacity = '0';
       let toysPage = new ToysPage(id);
       toysPage.render(toysArray as ICard[], chosenToys);
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 1000);
       return toysPage;
     }
+
+    this.root.style.height = '100vh';
+
     let mainPage = new MainPage(id);
     mainPage.render();
+
+    setTimeout(() => {
+      document.body.style.opacity = '1';
+    }, 1000);
 
     return mainPage;
   }

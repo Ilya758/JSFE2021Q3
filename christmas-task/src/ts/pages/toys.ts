@@ -88,6 +88,7 @@ class ToysPage extends Page {
 
     mainContent.append(this.settingsContainer, cardsContainer);
     this.root.prepend(mainWrapper);
+    this.animateMainLinkButton();
   }
 
   createSettingsContainer(): HTMLDivElement {
@@ -1130,6 +1131,16 @@ class ToysPage extends Page {
       setTimeout(() => {
         resetButton.classList.toggle('button_state_active');
       }, 200);
+    });
+  }
+
+  animateMainLinkButton() {
+    const mainButtonLink = this.root.querySelector('a[href="#"]');
+    mainButtonLink?.addEventListener('click', () => {
+      mainButtonLink?.classList.add('link_state_clicked');
+      setTimeout(() => {
+        document.body.style.opacity = '0';
+      }, 500);
     });
   }
 }

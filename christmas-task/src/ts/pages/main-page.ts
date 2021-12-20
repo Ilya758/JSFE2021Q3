@@ -31,6 +31,17 @@ class MainPage extends Page {
 
     mainContent.append(mainHeading, mainButton);
     this.root.prepend(mainWrapper);
+    this.animateToysButton();
+  }
+
+  animateToysButton() {
+    const toysLink = this.root.querySelector('a[href="#toys-page"]');
+    toysLink?.addEventListener('click', () => {
+      toysLink?.classList.add('link_state_clicked');
+      setTimeout(() => {
+        document.body.style.opacity = '0';
+      }, 500);
+    });
   }
 }
 
