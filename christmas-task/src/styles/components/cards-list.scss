@@ -10,6 +10,10 @@
         opacity: 0;
         overflow-y: scroll;
         transition: 1s;
+
+        @include medium-desktops {
+            grid-area: 4 / 1 / 4 / span 3;
+        }
         
         &::-webkit-scrollbar {
             width: 10px;
