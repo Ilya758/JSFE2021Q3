@@ -549,8 +549,6 @@ class ToysPage extends Page {
     const clsState = 'cards_state';
     const chosenIndices = Object.values(chosenToys).map(card => card.num);
 
-    console.log(chosenIndices);
-
     for (let i = 0; i < toysCount; i += 1) {
       const item = new Component('li', 'item cards__item').render();
 
