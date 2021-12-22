@@ -1,0 +1,30 @@
+.harland-toggle {
+  &__track {
+    @include flex(row, flex-start);
+
+    position: relative;
+    right: 5px;
+    width: 80px;
+    height: 30px;
+    align-self: center;
+    background-color: $bcg-pale-blue;
+    border-radius: 25px;
+    cursor: pointer;
+    grid-area: 2 / 2 / 2 / 3;
+    justify-self: flex-end;
+    transition: 0.35s;
+
+    &:hover {
+      box-shadow: 0 0 3px 5px $bcg-red;
+    }
+  }
+
+  &__thumb {
+    position: relative;
+    left: 4px;
+    width: 20px;
+    height: 20px;
+    background-color: $bcg-white;
+    border-radius: 50%;
+  }
+}
