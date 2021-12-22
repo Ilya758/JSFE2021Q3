@@ -199,7 +199,84 @@ class DecoratePage extends Page {
 
   createToysSection() {
     const wrapper = new BEMWrapper('section', `${this.id}-toys`).render();
+    const wrapperContent = wrapper.querySelector(
+      `.${this.id}-toys__content`
+    ) as HTMLDivElement;
+    // create toysContainer
+    const toysContainer = new Component(
+      'div',
+      `${this.id}-toys__container`
+    ).render();
+    const toysHeading = new Text(
+      'h2',
+      `heading ${this.id}__heading`,
+      'игрушки'
+    ).render();
 
+    const createToysList = () => {
+      const list = new Component('ul', `list ${this.id}-toys__list`).render();
+
+      for (let i = 1; i < 21; i += 1) {
+        const item = new Component('li', `${this.id}-toys__item`).render();
+        const img = new Component(
+          'img',
+          `${this.id}-toys__img`
+        ).render() as HTMLImageElement;
+        img.src = `./assets/img/toys/${i}.png`;
+        img.alt = `Tree ${i}`;
+        const txt = new Text(
+          'span',
+          `text ${this.id}-toys__text`,
+          '1'
+        ).render();
+        item.append(img, txt);
+        list.append(item);
+      }
+
+      return list;
+    };
+
+    const toysList = createToysList();
+    toysContainer.append(toysHeading, toysList);
+    // create decoratedTreesContainer
+    const decoratedTreesContainer = new Component(
+      'div',
+      `${this.id}-toys__decorated-container`
+    ).render();
+    const decoratedHeading = new Text(
+      'h2',
+      `heading ${this.id}__heading`,
+      'вы нарядили'
+    ).render();
+
+    const createDecoratedList = () => {
+      const list = new Component(
+        'ul',
+        `list ${this.id}-toys__decorated-list`
+      ).render();
+
+      for (let i = 1; i < 5; i += 1) {
+        const item = new Component(
+          'li',
+          `${this.id}-toys__decorated-item`
+        ).render();
+        const img = new Component(
+          'img',
+          `${this.id}-toys__decorated-img`
+        ).render() as HTMLImageElement;
+        img.src = `./assets/img/tree/${i}.png`;
+        img.alt = `Tree ${i}`;
+        item.append(img);
+        list.append(item);
+      }
+
+      return list;
+    };
+
+    const decoratedList = createDecoratedList();
+
+    decoratedTreesContainer.append(decoratedHeading, decoratedList);
+    wrapperContent.append(toysContainer, decoratedTreesContainer);
     return wrapper;
   }
 }
