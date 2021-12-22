@@ -183,7 +183,17 @@ class DecoratePage extends Page {
 
   createTreeSection() {
     const wrapper = new BEMWrapper('section', `${this.id}-tree`).render();
+    const wrapperContent = wrapper.querySelector(
+      `.${this.id}-tree__content`
+    ) as HTMLDivElement;
+    const tree = new Component(
+      'img',
+      `${this.id}-tree__img`
+    ).render() as HTMLImageElement;
+    tree.src = './assets/img/tree/1.png';
+    tree.alt = 'Tree';
 
+    wrapperContent.append(tree);
     return wrapper;
   }
 
