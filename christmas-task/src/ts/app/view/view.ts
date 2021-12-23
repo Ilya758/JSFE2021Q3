@@ -2,6 +2,7 @@ import ButtonLink from '../../core/components/button-link';
 import Text from '../../core/components/text';
 import BEMWrapper from '../../core/templates/bem-wrapper';
 import { ICard } from '../../models/card';
+import DecoratePage from '../../pages/decorate';
 import MainPage from '../../pages/main-page';
 import ToysPage from '../../pages/toys';
 
@@ -58,6 +59,13 @@ class View {
         document.body.style.opacity = '1';
       }, 1000);
       return toysPage;
+    }
+
+    if (id === 'decorate-page') {
+      let decoratePage = new DecoratePage(id);
+      decoratePage.render();
+
+      return decoratePage;
     }
 
     this.root.style.height = '100vh';

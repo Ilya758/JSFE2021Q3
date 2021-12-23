@@ -1,0 +1,14 @@
+.decorate-page {
+  &-tree {
+    &__content {
+      width: 1050px;
+      height: 940px;
+      background: url("../assets/img/bg/1.jpg") 0 0 / cover no-repeat;
+    }
+
+    &__img {
+      width: 500px;
+      height: 715px;
+    }
+  }
+}

@@ -1,0 +1,174 @@
+/* stylelint-disable color-named */
+@keyframes change-color {
+  0% {
+    background-color: red;
+    box-shadow: 0 0 7px 5px red;
+  }
+
+  25% {
+    background-color: blue;
+    box-shadow: 0 0 7px 5px blue;
+  }
+
+  50% {
+    background-color: yellow;
+    box-shadow: 0 0 7px 5px yellow;
+  }
+
+  75% {
+    background-color: green;
+    box-shadow: 0 0 7px 5px green;
+  }
+
+  100% {
+    background-color: red;
+    box-shadow: 0 0 7px 5px red;
+  }
+}
+
+.decorate-page {
+  &-settings {
+    &__content {
+      max-width: 400px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 50px 0 0 30px;
+    }
+  }
+
+  &__trees {
+    &-container {
+      margin: 54px 0 36px;
+    }
+
+    &-list {
+      width: 100%;
+      max-width: 284px;
+      height: 100%;
+      max-height: 284px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      gap: 16px;
+      @include flex(row, flex-start);
+    }
+
+    &-item {
+      width: calc(100% / 2 - 8px);
+      height: 134px;
+      background-color: $bcg-pale-blue;
+      border-radius: 10px;
+      @include flex(row, center, center);
+    }
+
+    &-img {
+      width: 90px;
+      height: 120px;
+    }
+  }
+
+  &__bcgs {
+    &-list {
+      width: 100%;
+      max-width: 284px;
+      height: 100%;
+      max-height: 144px;
+      flex-wrap: wrap;
+      margin: 24px 0 0;
+      gap: 8px 4px;
+      @include flex(row, space-between);
+    }
+
+    &-item {
+      overflow: hidden;
+      width: calc(100% / 4 - 4px);
+      height: 68px;
+      background-color: $bcg-pale-blue;
+      border-radius: 10px;
+    }
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__harlands {
+    &-container {
+      display: grid;
+      width: 100%;
+      margin-top: 36px;
+    }
+
+    &-list {
+      @include flex;
+
+      justify-content: space-between;
+      grid-area: 2 / 1 / 2 / 2;
+    }
+
+    $list: red, blue, yellow, green;
+    @each $color in $list {
+      &-#{$color} {
+        background-color: $color;
+        border-radius: 50%;
+        box-shadow: 0 0 7px 2px $color;
+      }
+    }
+
+    &-mix {
+      animation: change-color 5s linear infinite;
+    }
+  }
+
+  &__heading {
+    text-transform: uppercase;
+  }
+
+  &__bottom {
+    &-container {
+      width: 100%;
+      @include only-flex;
+
+      column-gap: 15px;
+      @include large-desktops {
+        flex-wrap: wrap;
+        row-gap: 15px;
+      }
+    }
+
+    &-button {
+      position: relative;
+      width: 100%;
+      padding: 7px 26px;
+      border: 1px solid $border-dark-blue;
+      backdrop-filter: blur(15px);
+      background: $bcg-dark-blue;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 12px;
+      opacity: 0.8;
+      transition: 0.35s;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.harlands {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.decorate-link {
+  margin-bottom: 15px;
+  transition: 0.35s;
+
+  &:hover {
+    color: $font-green;
+  }
+}

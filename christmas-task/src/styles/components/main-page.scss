@@ -84,13 +84,19 @@
     position: relative;
     z-index: 999;
     overflow: hidden;
-    padding: 13px 119px 12px;
+    width: 100%;
+    max-width: 400px;
+    padding: 13px 0;
     border: 2px solid $border-blue;
     margin-top: 126px;
     backdrop-filter: blur(15px);
     border-radius: 30px;
-    text-transform: capitalize;
+    text-align: center;
     transition: 0.35s all, 1s border;
+
+    &:nth-child(3) {
+      margin-top: 15px;
+    }
 
     &::before,
     &::after {
