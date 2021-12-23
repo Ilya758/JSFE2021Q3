@@ -32,6 +32,25 @@ class DecoratePage extends Page {
       `.${this.id}-settings__content`
     ) as HTMLDivElement;
 
+    const createAudio = () => {
+      const container = new Component(
+        'div',
+        `${this.id}-settings__audio-container`
+      ).render();
+
+      const audio = new Component(
+        'audio',
+        `${this.id}-settings__audio`
+      ).render() as HTMLAudioElement;
+      audio.src = './assets/audio/audio.mp3';
+
+      container.append(audio);
+
+      return container;
+    };
+
+    const audioContainer = createAudio();
+
     const mainPageLink = new ButtonLink(
       `heading ${this.id}__heading decorate-link`,
       false,
@@ -181,6 +200,7 @@ class DecoratePage extends Page {
 
     wrapperContent.append(
       mainPageLink,
+      audioContainer,
       topButtonsContainer,
       treesContainer,
       bcgListContainer,
@@ -316,6 +336,39 @@ class DecoratePage extends Page {
       ) as HTMLDivElement;
       handler();
       snowflakesContainer.classList.toggle('snowflakes_state_falling');
+    });
+  }
+
+  bindAudioContext(handler: () => boolean) {
+    const audio = this.root.querySelector(
+      `.${this.id}-settings__audio`
+    ) as HTMLAudioElement;
+    const audioButton = this.root.querySelector(
+      '.icon-sound'
+    ) as HTMLButtonElement;
+
+    const startSong = () => {
+      audio.play().catch(() => console.log('Something went wrong.'));
+    };
+
+    const songHandler = (audioIsPlaying: boolean) => {
+      if (!audioIsPlaying) {
+        audio.pause();
+        // }
+      } else {
+        startSong();
+      }
+    };
+
+    audioButton.addEventListener('click', () => {
+      const audioIsPlaying = handler();
+      songHandler(audioIsPlaying);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (audio.ended) {
+        startSong();
+      }
     });
   }
 }

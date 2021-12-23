@@ -90,6 +90,7 @@ class Controller {
     } else if (currentHash === 'decorate-page') {
       const decoratePage = this.view.render(currentHash) as DecoratePage;
       decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
+      decoratePage.bindAudioContext(this.handleAudioContext.bind(this));
     } else {
       setTimeout(() => {
         this.view.render();
@@ -126,6 +127,10 @@ class Controller {
 
   handleSnowFalling(): void {
     this.model.setSnowFallingState();
+  }
+
+  handleAudioContext() {
+    return this.model.setStateOfAudioTrack();
   }
 }
 

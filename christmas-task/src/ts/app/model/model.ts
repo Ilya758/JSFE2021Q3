@@ -26,6 +26,8 @@ class Model {
 
   protected snowIsFalling: boolean;
 
+  protected audioIsPlaying: boolean;
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getCurrentFilter();
@@ -34,7 +36,8 @@ class Model {
     this.inputValue = '';
     this.chosenToys = [];
     this.storageHasValues = false;
-    this.snowIsFalling = Model.getSnowFallingState() as boolean;
+    this.snowIsFalling = Model.getSnowFallingState();
+    this.audioIsPlaying = Model.getStateOfAudioTrack();
   }
 
   static getInitFilters(
@@ -472,12 +475,24 @@ class Model {
 
   static getSnowFallingState() {
     const state = Model.pull<boolean>('snowIsFalling');
-    return typeof state !== 'boolean' ? false : data;
+    return typeof state !== 'boolean' ? false : state;
   }
 
   setSnowFallingState() {
     this.snowIsFalling = !this.snowIsFalling;
     Model.commit('snowIsFalling', this.snowIsFalling);
+  }
+
+  static getStateOfAudioTrack() {
+    const state = Model.pull<boolean>('audioIsPlaying');
+    return typeof state !== 'boolean' ? false : state;
+  }
+
+  setStateOfAudioTrack(): boolean {
+    this.audioIsPlaying = !this.audioIsPlaying;
+    Model.commit('audioIsPlaying', this.audioIsPlaying);
+
+    return this.audioIsPlaying;
   }
 }
 
