@@ -28,6 +28,8 @@ class Model {
 
   protected audioIsPlaying: boolean;
 
+  protected activeTree: string;
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getCurrentFilter();
@@ -38,6 +40,7 @@ class Model {
     this.storageHasValues = false;
     this.snowIsFalling = Model.getSnowFallingState();
     this.audioIsPlaying = Model.getStateOfAudioTrack();
+    this.activeTree = Model.getActiveTree();
   }
 
   static getInitFilters(
@@ -493,6 +496,18 @@ class Model {
     Model.commit('audioIsPlaying', this.audioIsPlaying);
 
     return this.audioIsPlaying;
+  }
+
+  static getActiveTree() {
+    const bcgNum = Model.pull<boolean>('activeTree');
+    return typeof bcgNum !== 'number' ? '1' : bcgNum;
+  }
+
+  setActiveBackground(bcgNum: string): string {
+    this.activeTree = bcgNum;
+    Model.commit('activeTree', this.activeTree);
+
+    return this.activeTree;
   }
 }
 

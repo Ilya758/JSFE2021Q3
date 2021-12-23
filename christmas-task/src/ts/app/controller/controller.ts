@@ -91,6 +91,7 @@ class Controller {
       const decoratePage = this.view.render(currentHash) as DecoratePage;
       decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
       decoratePage.bindAudioContext(this.handleAudioContext.bind(this));
+      decoratePage.bindChangeTree(this.handleChangeTree.bind(this));
     } else {
       setTimeout(() => {
         this.view.render();
@@ -131,6 +132,10 @@ class Controller {
 
   handleAudioContext() {
     return this.model.setStateOfAudioTrack();
+  }
+
+  handleChangeTree(bcgNum: string) {
+    return this.model.setActiveBackground(bcgNum);
   }
 }
 

@@ -91,13 +91,20 @@ class DecoratePage extends Page {
 
       for (let i = 1; i < 5; i += 1) {
         const item = new Component('li', `${this.id}__trees-item`).render();
+        const button = new Button(
+          `button ${this.id}__trees-button`,
+          'button',
+          `${i}`,
+          ''
+        ).render();
         const img = new Component(
           'img',
           `${this.id}__trees-img`
         ).render() as HTMLImageElement;
         img.src = `./assets/img/tree/${i}.png`;
         img.alt = `Tree ${i}`;
-        item.append(img);
+        button.append(img);
+        item.append(button);
         list.append(item);
       }
 
@@ -368,6 +375,28 @@ class DecoratePage extends Page {
     audio.addEventListener('timeupdate', () => {
       if (audio.ended) {
         startSong();
+      }
+    });
+  }
+
+  bindChangeTree(handler: (bcgNum: string) => string) {
+    const list = this.root.querySelector(
+      `.${this.id}__trees-list`
+    ) as HTMLUListElement;
+
+    list.addEventListener('click', event => {
+      let target = event.target as HTMLElement;
+
+      if (target.tagName === 'IMG') {
+        target = target.parentElement as HTMLButtonElement;
+        const id = target.dataset.role as string;
+
+        const activeBcgNum = handler(id);
+
+        const treeImg = this.root.querySelector(
+          `.${this.id}-tree__img`
+        ) as HTMLImageElement;
+        treeImg.src = `./assets/img/tree/${activeBcgNum}.png`;
       }
     });
   }
