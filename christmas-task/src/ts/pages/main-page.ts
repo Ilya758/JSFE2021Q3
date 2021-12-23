@@ -26,21 +26,29 @@ class MainPage extends Page {
       `text ${this.id}__link`,
       false,
       'toys-page',
-      'начать'
+      'Начать'
+    ).render();
+    const treeButton = new ButtonLink(
+      `text ${this.id}__link`,
+      false,
+      'decorate-page',
+      'Нарядить ёлку'
     ).render();
 
-    mainContent.append(mainHeading, mainButton);
+    mainContent.append(mainHeading, mainButton, treeButton);
     this.root.prepend(mainWrapper);
     this.animateToysButton();
   }
 
   animateToysButton() {
-    const toysLink = this.root.querySelector('a[href="#toys-page"]');
-    toysLink?.addEventListener('click', () => {
-      toysLink?.classList.add('link_state_clicked');
-      setTimeout(() => {
-        document.body.style.opacity = '0';
-      }, 500);
+    const toysLink = this.root.querySelectorAll('a[href="#toys-page"]');
+    toysLink.forEach(link => {
+      link?.addEventListener('click', () => {
+        link?.classList.add('link_state_clicked');
+        setTimeout(() => {
+          document.body.style.opacity = '0';
+        }, 500);
+      });
     });
   }
 }

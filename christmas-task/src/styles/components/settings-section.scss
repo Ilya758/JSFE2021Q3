@@ -163,3 +163,12 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.decorate-link {
+  margin-bottom: 15px;
+  transition: 0.35s;
+
+  &:hover {
+    color: $font-green;
+  }
+}

@@ -387,18 +387,29 @@ $colors: white $bcg-white, yellow $bcg-yellow, red $bcg-red, blue $bcg-blue,
 }
 
 .toys-heading {
+  transition: 0.35s;
+
   &:nth-child(1) {
     grid-area: 1 / 1 / 1 / 2;
   }
 
   &:nth-child(2) {
-    transition: 0.35s;
+    width: fit-content;
     @include large-desktops {
       grid-area: 2;
     }
     @include medium-desktops {
       grid-area: 2 / 1 / 2 / 4;
     }
+
+    &:hover {
+      color: $font-green;
+    }
+  }
+
+  &:nth-child(3) {
+    width: fit-content;
+    grid-area: 1 / 3 / 1 / 4;
 
     &:hover {
       color: $font-green;

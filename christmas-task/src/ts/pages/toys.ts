@@ -55,6 +55,14 @@ class ToysPage extends Page {
       '',
       'Возврат на главную страницу'
     ).render();
+
+    const decoratePageLink = new ButtonLink(
+      `heading ${this.id}__heading toys-heading`,
+      false,
+      'decorate-page',
+      'Нарядить ёлку'
+    ).render();
+
     const textForFullArray = new Text(
       'h3',
       'heading toys-page__heading toys-heading blinking-text',
@@ -81,6 +89,7 @@ class ToysPage extends Page {
     cardsContainer.append(
       cardsHeading,
       mainPageLink,
+      decoratePageLink,
       textForFullArray,
       favoriteCountContainer,
       cardsList

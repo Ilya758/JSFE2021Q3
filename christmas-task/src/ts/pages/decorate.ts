@@ -1,5 +1,6 @@
 import Page from '../core/abstract/page';
 import Button from '../core/components/button';
+import ButtonLink from '../core/components/button-link';
 import HarlandToggle from '../core/components/harland-toggle';
 import Text from '../core/components/text';
 import BEMWrapper from '../core/templates/bem-wrapper';
@@ -30,6 +31,14 @@ class DecoratePage extends Page {
     const wrapperContent = wrapper.querySelector(
       `.${this.id}-settings__content`
     ) as HTMLDivElement;
+
+    const mainPageLink = new ButtonLink(
+      `heading ${this.id}__heading decorate-link`,
+      false,
+      '',
+      'Возврат на главную страницу'
+    ).render();
+
     // create topButtonsContainer
     const topButtonsContainer = new Component(
       'div',
@@ -171,6 +180,7 @@ class DecoratePage extends Page {
     bottomButtonsContainer.append(saveButton, resetSettings);
 
     wrapperContent.append(
+      mainPageLink,
       topButtonsContainer,
       treesContainer,
       bcgListContainer,
@@ -202,6 +212,13 @@ class DecoratePage extends Page {
     const wrapperContent = wrapper.querySelector(
       `.${this.id}-toys__content`
     ) as HTMLDivElement;
+
+    const decoratePageLink = new ButtonLink(
+      `heading ${this.id}__heading decorate-link`,
+      false,
+      'toys-page',
+      'Выбрать украшения'
+    ).render();
     // create toysContainer
     const toysContainer = new Component(
       'div',
@@ -276,7 +293,11 @@ class DecoratePage extends Page {
     const decoratedList = createDecoratedList();
 
     decoratedTreesContainer.append(decoratedHeading, decoratedList);
-    wrapperContent.append(toysContainer, decoratedTreesContainer);
+    wrapperContent.append(
+      decoratePageLink,
+      toysContainer,
+      decoratedTreesContainer
+    );
     return wrapper;
   }
 }
