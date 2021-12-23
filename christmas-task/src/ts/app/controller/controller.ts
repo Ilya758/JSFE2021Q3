@@ -1,4 +1,5 @@
 import { ICard } from '../../models/card';
+import DecoratePage from '../../pages/decorate';
 import ToysPage from '../../pages/toys';
 import Model from '../model/model';
 import Router from '../router/router';
@@ -86,7 +87,9 @@ class Controller {
           this.handleFiltrate.bind(this),
           this.restoreCardsList.bind(this, toysPage)
         );
-      }, 2000);
+    } else if (currentHash === 'decorate-page') {
+      const decoratePage = this.view.render(currentHash) as DecoratePage;
+      decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
     } else {
       setTimeout(() => {
         this.view.render();
@@ -119,6 +122,10 @@ class Controller {
 
   static handleClearLocalStorage() {
     Model.clearLocalStorage();
+  }
+
+  handleSnowFalling(): void {
+    this.model.setSnowFallingState();
   }
 }
 

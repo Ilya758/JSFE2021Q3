@@ -196,6 +196,10 @@ class DecoratePage extends Page {
     const wrapperContent = wrapper.querySelector(
       `.${this.id}-tree__content`
     ) as HTMLDivElement;
+    const snowflakeContainer = new Component(
+      'div',
+      `${this.id}-tree__snowflake-container`
+    ).render();
     const tree = new Component(
       'img',
       `${this.id}-tree__img`
@@ -203,7 +207,7 @@ class DecoratePage extends Page {
     tree.src = './assets/img/tree/1.png';
     tree.alt = 'Tree';
 
-    wrapperContent.append(tree);
+    wrapperContent.append(snowflakeContainer, tree);
     return wrapper;
   }
 
@@ -299,6 +303,20 @@ class DecoratePage extends Page {
       decoratedTreesContainer
     );
     return wrapper;
+  }
+
+  bindSnowFalling(handler: () => void) {
+    const snowButton = this.root.querySelectorAll(
+      `.${this.id}__button`
+    )[1] as HTMLButtonElement;
+
+    snowButton.addEventListener('click', () => {
+      const snowflakesContainer = this.root.querySelector(
+        `.${this.id}-tree__snowflake-container`
+      ) as HTMLDivElement;
+      handler();
+      snowflakesContainer.classList.toggle('snowflakes_state_falling');
+    });
   }
 }
 

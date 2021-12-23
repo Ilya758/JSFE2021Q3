@@ -24,6 +24,8 @@ class Model {
 
   protected storageHasValues: boolean;
 
+  protected snowIsFalling: boolean;
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getCurrentFilter();
@@ -32,6 +34,7 @@ class Model {
     this.inputValue = '';
     this.chosenToys = [];
     this.storageHasValues = false;
+    this.snowIsFalling = Model.getSnowFallingState() as boolean;
   }
 
   static getInitFilters(
@@ -465,6 +468,16 @@ class Model {
 
   static clearLocalStorage() {
     window.localStorage.clear();
+  }
+
+  static getSnowFallingState() {
+    const state = Model.pull<boolean>('snowIsFalling');
+    return typeof state !== 'boolean' ? false : data;
+  }
+
+  setSnowFallingState() {
+    this.snowIsFalling = !this.snowIsFalling;
+    Model.commit('snowIsFalling', this.snowIsFalling);
   }
 }
 
