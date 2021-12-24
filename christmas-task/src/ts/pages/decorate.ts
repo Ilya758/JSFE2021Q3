@@ -1,4 +1,4 @@
-import Page from '../core/abstract/page';
+import Page, { TRenderMethod } from '../core/abstract/page';
 import Button from '../core/components/button';
 import ButtonLink from '../core/components/button-link';
 import HarlandToggle from '../core/components/harland-toggle';

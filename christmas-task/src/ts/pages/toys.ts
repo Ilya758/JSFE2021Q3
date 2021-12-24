@@ -1,5 +1,5 @@
 import * as noUiSlider from 'nouislider';
-import Page from '../core/abstract/page';
+import Page, { TRenderMethod } from '../core/abstract/page';
 import Button from '../core/components/button';
 import ButtonLink from '../core/components/button-link';
 import Checkbox from '../core/components/checkbox';
@@ -31,7 +31,10 @@ class ToysPage extends Page {
     this.settingsContainer = this.createSettingsContainer();
   }
 
-  render(initToysArray: ICard[], chosenToys?: ICard[]): void {
+  render({
+    initToysArray,
+    chosenToys,
+  }: Pick<TRenderMethod, 'initToysArray' | 'chosenToys'>): void {
     // creating main
     const mainWrapper = new BEMWrapper('main', this.id).render();
     const mainContent = mainWrapper.querySelector(
@@ -76,15 +79,12 @@ class ToysPage extends Page {
     const favoriteCount = new Text(
       'span',
       'heading toys-page__heading',
-      `${(chosenToys as ICard[])?.length}`
+      `${chosenToys.length}`
     ).render();
 
     favoriteCountContainer.append(favoriteCount);
 
-    const cardsList = ToysPage.cardsGenerator(
-      initToysArray,
-      chosenToys as ICard[]
-    );
+    const cardsList = ToysPage.cardsGenerator(initToysArray, chosenToys);
 
     cardsContainer.append(
       cardsHeading,

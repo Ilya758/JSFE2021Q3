@@ -24,14 +24,14 @@ class Controller {
   }
 
   handleHash() {
-    const currentHash = this.router.getHash();
+    const id = this.router.getHash();
 
-    if (currentHash === 'toys-page') {
-      let initToys = Model.pull<ICard[]>('filteredArray');
+    if (id === 'toys-page') {
+      let initToysArray = Model.pull<ICard[]>('filteredArray');
       // checking emptiness of initToys and existence of localStorage props
 
-      if (!initToys.length && !Model.getStorageHasValuesProp()) {
-        initToys = this.model.getInitArrayOfToys();
+      if (!initToysArray.length && !Model.getStorageHasValuesProp()) {
+        initToysArray = this.model.getInitArrayOfToys();
       }
 
       const chosenToys = Model.getChosenToys();
@@ -87,16 +87,13 @@ class Controller {
           this.handleFiltrate.bind(this),
           this.restoreCardsList.bind(this, toysPage)
         );
-    } else if (currentHash === 'decorate-page') {
-      const decoratePage = this.view.render(currentHash) as DecoratePage;
+    } else if (id === 'decorate-page') {
       decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
       decoratePage.bindAudioContext(this.handleAudioContext.bind(this));
       decoratePage.bindChangeTree(this.handleChangeTree.bind(this));
       decoratePage.bindChangeBackground(this.handleActiveBackground.bind(this));
     } else {
-      setTimeout(() => {
-        this.view.render();
-      }, 2000);
+      this.view.render({ id: 'main-page' });
     }
   }
 

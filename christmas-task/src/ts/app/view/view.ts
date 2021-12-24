@@ -1,7 +1,7 @@
+import { TRenderMethod } from '../../core/abstract/page';
 import ButtonLink from '../../core/components/button-link';
 import Text from '../../core/components/text';
 import BEMWrapper from '../../core/templates/bem-wrapper';
-import { ICard } from '../../models/card';
 import DecoratePage from '../../pages/decorate';
 import MainPage from '../../pages/main-page';
 import ToysPage from '../../pages/toys';
@@ -43,7 +43,12 @@ class View {
     return footerWrapper;
   }
 
-  render(id = 'main-page', toysArray?: ICard[] | null, chosenToys?: ICard[]) {
+  render({
+    initToysArray,
+    chosenToys,
+    snowIsFalling,
+    id = 'main-page',
+  }: Partial<TRenderMethod>) {
     Array.from(this.root.children).forEach(child => {
       if (child.tagName.toLowerCase() !== 'footer') {
         child.remove();
@@ -54,7 +59,10 @@ class View {
       this.root.style.height = 'initial';
       document.body.style.opacity = '0';
       let toysPage = new ToysPage(id);
-      toysPage.render(toysArray as ICard[], chosenToys);
+      toysPage.render({ initToysArray, chosenToys } as Pick<
+        TRenderMethod,
+        'initToysArray' | 'chosenToys'
+      >);
       setTimeout(() => {
         document.body.style.opacity = '1';
       }, 1000);
