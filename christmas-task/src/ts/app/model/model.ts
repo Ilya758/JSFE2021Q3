@@ -41,7 +41,7 @@ class Model {
     this.chosenToys = [];
     this.storageHasValues = false;
     this.snowIsFalling = Model.getSnowFallingState();
-    this.audioIsPlaying = Model.getStateOfAudioTrack();
+    this.audioIsPlaying = false;
     this.activeTree = Model.getActiveTree();
     this.activeBackground = Model.getActiveBackground();
   }
@@ -489,10 +489,10 @@ class Model {
     Model.commit('snowIsFalling', this.snowIsFalling);
   }
 
-  static getStateOfAudioTrack() {
-    const state = Model.pull<boolean>('audioIsPlaying');
-    return typeof state !== 'boolean' ? false : state;
-  }
+  // static getStateOfAudioTrack() {
+  //   const state = Model.pull<boolean>('audioIsPlaying');
+  //   return typeof state !== 'boolean' ? false : state;
+  // }
 
   setStateOfAudioTrack(): boolean {
     this.audioIsPlaying = !this.audioIsPlaying;

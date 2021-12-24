@@ -88,10 +88,13 @@ class Controller {
         );
     } else if (id === 'decorate-page') {
       const snowIsFalling = Model.getSnowFallingState();
-
+      const activeTree = Model.getActiveTree();
+      const activeBackground = Model.getActiveBackground();
       const decoratePage = this.view.render({
         snowIsFalling,
         id,
+        activeTree,
+        activeBackground,
       }) as DecoratePage;
       decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
       decoratePage.bindAudioContext(this.handleAudioContext.bind(this));

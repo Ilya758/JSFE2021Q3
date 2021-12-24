@@ -47,6 +47,8 @@ class View {
     initToysArray,
     chosenToys,
     snowIsFalling,
+    activeTree,
+    activeBackground,
     id = 'main-page',
   }: Partial<TRenderMethod>) {
     Array.from(this.root.children).forEach(child => {
@@ -71,9 +73,13 @@ class View {
 
     if (id === 'decorate-page') {
       let decoratePage = new DecoratePage(id);
-      decoratePage.render({ snowIsFalling } as Pick<
+      decoratePage.render({
+        snowIsFalling,
+        activeTree,
+        activeBackground,
+      } as Pick<
         TRenderMethod,
-        'snowIsFalling'
+        'snowIsFalling' | 'activeTree' | 'activeBackground'
       >);
 
       return decoratePage;

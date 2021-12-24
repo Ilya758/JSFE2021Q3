@@ -14,11 +14,22 @@ class DecoratePage extends Page {
     this.root = document.querySelector('#root') as HTMLDivElement;
   }
 
-  render({ snowIsFalling }: Pick<TRenderMethod, 'snowIsFalling'>): void {
+  render({
+    snowIsFalling,
+    activeTree,
+    activeBackground,
+  }: Pick<
+    TRenderMethod,
+    'snowIsFalling' | 'activeTree' | 'activeBackground'
+  >): void {
     // creating main
     const mainWrapper = new Component('main', this.id).render();
     const settingsSection = this.createSettingsSection();
-    const treeSection = this.createTreeSection(snowIsFalling);
+    const treeSection = this.createTreeSection(
+      snowIsFalling,
+      activeTree,
+      activeBackground
+    );
     const toysSection = this.createToysSection();
 
     mainWrapper.append(settingsSection, treeSection, toysSection);
@@ -223,11 +234,16 @@ class DecoratePage extends Page {
     return wrapper;
   }
 
-  createTreeSection(snowIsFalling: boolean) {
+  createTreeSection(
+    snowIsFalling: boolean,
+    activeTree: string,
+    activeBackground: string
+  ) {
     const wrapper = new BEMWrapper('section', `${this.id}-tree`).render();
     const wrapperContent = wrapper.querySelector(
       `.${this.id}-tree__content`
     ) as HTMLDivElement;
+    wrapperContent.style.background = `url(./assets/img/bg/${activeBackground}.jpg) 0 0/cover no-repeat`;
     const snowflakeContainer = new Component(
       'div',
       `${this.id}-tree__snowflake-container`
@@ -236,7 +252,7 @@ class DecoratePage extends Page {
       'img',
       `${this.id}-tree__img`
     ).render() as HTMLImageElement;
-    tree.src = './assets/img/tree/1.png';
+    tree.src = `./assets/img/tree/${activeTree}.png`;
     tree.alt = 'Tree';
 
     if (snowIsFalling) {
@@ -427,7 +443,6 @@ class DecoratePage extends Page {
         const bcg = this.root.querySelector(
           `.${this.id}-tree__content`
         ) as HTMLDivElement;
-        console.log(bcg);
         bcg.style.background = `url(./assets/img/bg/${activeBcgNum}.jpg) 0 0/cover no-repeat`;
       }
     });
