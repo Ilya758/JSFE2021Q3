@@ -71,7 +71,10 @@ class View {
 
     if (id === 'decorate-page') {
       let decoratePage = new DecoratePage(id);
-      decoratePage.render();
+      decoratePage.render({ snowIsFalling } as Pick<
+        TRenderMethod,
+        'snowIsFalling'
+      >);
 
       return decoratePage;
     }

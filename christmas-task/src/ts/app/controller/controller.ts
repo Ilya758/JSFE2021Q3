@@ -88,6 +88,12 @@ class Controller {
           this.restoreCardsList.bind(this, toysPage)
         );
     } else if (id === 'decorate-page') {
+      const snowIsFalling = Model.getSnowFallingState();
+
+      const decoratePage = this.view.render({
+        snowIsFalling,
+        id,
+      }) as DecoratePage;
       decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
       decoratePage.bindAudioContext(this.handleAudioContext.bind(this));
       decoratePage.bindChangeTree(this.handleChangeTree.bind(this));

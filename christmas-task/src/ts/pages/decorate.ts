@@ -14,12 +14,11 @@ class DecoratePage extends Page {
     this.root = document.querySelector('#root') as HTMLDivElement;
   }
 
-  render(): void {
+  render({ snowIsFalling }: Pick<TRenderMethod, 'snowIsFalling'>): void {
     // creating main
-    // const mainWrapper = new BEMWrapper('main', this.id).render();
     const mainWrapper = new Component('main', this.id).render();
     const settingsSection = this.createSettingsSection();
-    const treeSection = this.createTreeSection();
+    const treeSection = this.createTreeSection(snowIsFalling);
     const toysSection = this.createToysSection();
 
     mainWrapper.append(settingsSection, treeSection, toysSection);
@@ -224,7 +223,7 @@ class DecoratePage extends Page {
     return wrapper;
   }
 
-  createTreeSection() {
+  createTreeSection(snowIsFalling: boolean) {
     const wrapper = new BEMWrapper('section', `${this.id}-tree`).render();
     const wrapperContent = wrapper.querySelector(
       `.${this.id}-tree__content`
@@ -232,13 +231,17 @@ class DecoratePage extends Page {
     const snowflakeContainer = new Component(
       'div',
       `${this.id}-tree__snowflake-container`
-    ).render();
+    ).render() as HTMLDivElement;
     const tree = new Component(
       'img',
       `${this.id}-tree__img`
     ).render() as HTMLImageElement;
     tree.src = './assets/img/tree/1.png';
     tree.alt = 'Tree';
+
+    if (snowIsFalling) {
+      snowflakeContainer.classList.add('snowflakes_state_falling');
+    }
 
     wrapperContent.append(snowflakeContainer, tree);
     return wrapper;
