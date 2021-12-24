@@ -1,4 +1,5 @@
 import { ICard } from '../../models/card';
+import DecoratePage from '../../pages/decorate';
 import ToysPage from '../../pages/toys';
 import Model from '../model/model';
 import Router from '../router/router';
@@ -23,25 +24,24 @@ class Controller {
   }
 
   handleHash() {
-    const currentHash = this.router.getHash();
+    const id = this.router.getHash();
 
-    if (currentHash === 'toys-page') {
-      let initToys = Model.pull<ICard[]>('filteredArray');
+    if (id === 'toys-page') {
+      let initToysArray = Model.pull<ICard[]>('filteredArray');
       // checking emptiness of initToys and existence of localStorage props
 
-      if (!initToys.length && !Model.getStorageHasValuesProp()) {
-        initToys = this.model.getInitArrayOfToys();
+      if (!initToysArray.length && !Model.getStorageHasValuesProp()) {
+        initToysArray = this.model.getInitArrayOfToys();
       }
 
       const chosenToys = Model.getChosenToys();
       const filters = Model.getCurrentFilter();
 
-      setTimeout(() => {
-        const toysPage = this.view.render(
-          currentHash,
-          initToys,
-          chosenToys
-        ) as ToysPage;
+      const toysPage = this.view.render({
+        initToysArray,
+        chosenToys,
+        id,
+      }) as ToysPage;
 
         toysPage.bindAddChosens(this.handleAddChosens.bind(this));
 
@@ -86,11 +86,25 @@ class Controller {
           this.handleFiltrate.bind(this),
           this.restoreCardsList.bind(this, toysPage)
         );
-      }, 2000);
+    } else if (id === 'decorate-page') {
+      const snowIsFalling = Model.getSnowFallingState();
+      const activeTree = Model.getActiveTree();
+      const activeBackground = Model.getActiveBackground();
+      const decoratePage = this.view.render({
+        snowIsFalling,
+        id,
+        activeTree,
+        activeBackground,
+      }) as DecoratePage;
+      decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
+      decoratePage.bindAudioContext(this.handleAudioContext.bind(this));
+      decoratePage.bindChangeTree(this.handleChangeTree.bind(this));
+      decoratePage.bindChangeBackground(this.handleActiveBackground.bind(this));
+      decoratePage.bindClearLocalStorage(
+        Controller.handleClearLocalStorage.bind(this)
+      );
     } else {
-      setTimeout(() => {
-        this.view.render();
-      }, 2000);
+      this.view.render({ id: 'main-page' });
     }
   }
 
@@ -119,6 +133,22 @@ class Controller {
 
   static handleClearLocalStorage() {
     Model.clearLocalStorage();
+  }
+
+  handleSnowFalling(): void {
+    this.model.setSnowFallingState();
+  }
+
+  handleAudioContext() {
+    return this.model.setStateOfAudioTrack();
+  }
+
+  handleChangeTree(treeNum: string) {
+    return this.model.setActiveTree(treeNum);
+  }
+
+  handleActiveBackground(bcgNum: string) {
+    return this.model.setActiveBackground(bcgNum);
   }
 }
 

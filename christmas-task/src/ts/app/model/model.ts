@@ -24,6 +24,14 @@ class Model {
 
   protected storageHasValues: boolean;
 
+  protected snowIsFalling: boolean;
+
+  protected audioIsPlaying: boolean;
+
+  protected activeTree: string;
+
+  protected activeBackground: string;
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getCurrentFilter();
@@ -32,6 +40,10 @@ class Model {
     this.inputValue = '';
     this.chosenToys = [];
     this.storageHasValues = false;
+    this.snowIsFalling = Model.getSnowFallingState();
+    this.audioIsPlaying = false;
+    this.activeTree = Model.getActiveTree();
+    this.activeBackground = Model.getActiveBackground();
   }
 
   static getInitFilters(
@@ -465,6 +477,52 @@ class Model {
 
   static clearLocalStorage() {
     window.localStorage.clear();
+  }
+
+  static getSnowFallingState() {
+    const state = Model.pull<boolean>('snowIsFalling');
+    return typeof state !== 'boolean' ? false : state;
+  }
+
+  setSnowFallingState() {
+    this.snowIsFalling = !this.snowIsFalling;
+    Model.commit('snowIsFalling', this.snowIsFalling);
+  }
+
+  // static getStateOfAudioTrack() {
+  //   const state = Model.pull<boolean>('audioIsPlaying');
+  //   return typeof state !== 'boolean' ? false : state;
+  // }
+
+  setStateOfAudioTrack(): boolean {
+    this.audioIsPlaying = !this.audioIsPlaying;
+    Model.commit('audioIsPlaying', this.audioIsPlaying);
+
+    return this.audioIsPlaying;
+  }
+
+  static getActiveTree() {
+    const treeNum = Model.pull<string>('activeTree');
+    return typeof treeNum !== 'string' ? '1' : treeNum;
+  }
+
+  setActiveTree(treeNum: string): string {
+    this.activeTree = treeNum;
+    Model.commit('activeTree', this.activeTree);
+
+    return this.activeTree;
+  }
+
+  static getActiveBackground() {
+    const bcgNum = Model.pull<string>('activeBackground');
+    return typeof bcgNum !== 'string' ? '1' : bcgNum;
+  }
+
+  setActiveBackground(bcgNum: string): string {
+    this.activeBackground = bcgNum;
+    Model.commit('activeBackground', this.activeBackground);
+
+    return this.activeBackground;
   }
 }
 

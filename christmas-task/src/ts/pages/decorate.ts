@@ -1,4 +1,4 @@
-import Page from '../core/abstract/page';
+import Page, { TRenderMethod } from '../core/abstract/page';
 import Button from '../core/components/button';
 import ButtonLink from '../core/components/button-link';
 import HarlandToggle from '../core/components/harland-toggle';
@@ -14,12 +14,22 @@ class DecoratePage extends Page {
     this.root = document.querySelector('#root') as HTMLDivElement;
   }
 
-  render(): void {
+  render({
+    snowIsFalling,
+    activeTree,
+    activeBackground,
+  }: Pick<
+    TRenderMethod,
+    'snowIsFalling' | 'activeTree' | 'activeBackground'
+  >): void {
     // creating main
-    // const mainWrapper = new BEMWrapper('main', this.id).render();
     const mainWrapper = new Component('main', this.id).render();
     const settingsSection = this.createSettingsSection();
-    const treeSection = this.createTreeSection();
+    const treeSection = this.createTreeSection(
+      snowIsFalling,
+      activeTree,
+      activeBackground
+    );
     const toysSection = this.createToysSection();
 
     mainWrapper.append(settingsSection, treeSection, toysSection);
@@ -31,6 +41,25 @@ class DecoratePage extends Page {
     const wrapperContent = wrapper.querySelector(
       `.${this.id}-settings__content`
     ) as HTMLDivElement;
+
+    const createAudio = () => {
+      const container = new Component(
+        'div',
+        `${this.id}-settings__audio-container`
+      ).render();
+
+      const audio = new Component(
+        'audio',
+        `${this.id}-settings__audio`
+      ).render() as HTMLAudioElement;
+      audio.src = './assets/audio/audio.mp3';
+
+      container.append(audio);
+
+      return container;
+    };
+
+    const audioContainer = createAudio();
 
     const mainPageLink = new ButtonLink(
       `heading ${this.id}__heading decorate-link`,
@@ -72,13 +101,20 @@ class DecoratePage extends Page {
 
       for (let i = 1; i < 5; i += 1) {
         const item = new Component('li', `${this.id}__trees-item`).render();
+        const button = new Button(
+          `button ${this.id}__trees-button`,
+          'button',
+          `${i}`,
+          ''
+        ).render();
         const img = new Component(
           'img',
           `${this.id}__trees-img`
         ).render() as HTMLImageElement;
         img.src = `./assets/img/tree/${i}.png`;
         img.alt = `Tree ${i}`;
-        item.append(img);
+        button.append(img);
+        item.append(button);
         list.append(item);
       }
 
@@ -104,13 +140,19 @@ class DecoratePage extends Page {
 
       for (let i = 1; i < 9; i += 1) {
         const item = new Component('li', `${this.id}__bcgs-item`).render();
+        const button = new Button(
+          `button ${this.id}__bcgs-button`,
+          'button',
+          `${i}`
+        ).render();
         const img = new Component(
           'img',
           `${this.id}__bcgs-img`
         ).render() as HTMLImageElement;
         img.src = `./assets/img/bg/${i}.jpg`;
         img.alt = `Background ${i}`;
-        item.append(img);
+        button.append(img);
+        item.append(button);
         list.append(item);
       }
 
@@ -181,6 +223,7 @@ class DecoratePage extends Page {
 
     wrapperContent.append(
       mainPageLink,
+      audioContainer,
       topButtonsContainer,
       treesContainer,
       bcgListContainer,
@@ -191,19 +234,32 @@ class DecoratePage extends Page {
     return wrapper;
   }
 
-  createTreeSection() {
+  createTreeSection(
+    snowIsFalling: boolean,
+    activeTree: string,
+    activeBackground: string
+  ) {
     const wrapper = new BEMWrapper('section', `${this.id}-tree`).render();
     const wrapperContent = wrapper.querySelector(
       `.${this.id}-tree__content`
     ) as HTMLDivElement;
+    wrapperContent.style.background = `url(./assets/img/bg/${activeBackground}.jpg) 0 0/cover no-repeat`;
+    const snowflakeContainer = new Component(
+      'div',
+      `${this.id}-tree__snowflake-container`
+    ).render() as HTMLDivElement;
     const tree = new Component(
       'img',
       `${this.id}-tree__img`
     ).render() as HTMLImageElement;
-    tree.src = './assets/img/tree/1.png';
+    tree.src = `./assets/img/tree/${activeTree}.png`;
     tree.alt = 'Tree';
 
-    wrapperContent.append(tree);
+    if (snowIsFalling) {
+      snowflakeContainer.classList.add('snowflakes_state_falling');
+    }
+
+    wrapperContent.append(snowflakeContainer, tree);
     return wrapper;
   }
 
@@ -299,6 +355,111 @@ class DecoratePage extends Page {
       decoratedTreesContainer
     );
     return wrapper;
+  }
+
+  bindSnowFalling(handler: () => void) {
+    const snowButton = this.root.querySelectorAll(
+      `.${this.id}__button`
+    )[1] as HTMLButtonElement;
+
+    snowButton.addEventListener('click', () => {
+      const snowflakesContainer = this.root.querySelector(
+        `.${this.id}-tree__snowflake-container`
+      ) as HTMLDivElement;
+      handler();
+      snowflakesContainer.classList.toggle('snowflakes_state_falling');
+    });
+  }
+
+  bindAudioContext(handler: () => boolean) {
+    const audio = this.root.querySelector(
+      `.${this.id}-settings__audio`
+    ) as HTMLAudioElement;
+    const audioButton = this.root.querySelector(
+      '.icon-sound'
+    ) as HTMLButtonElement;
+
+    const startSong = () => {
+      audio.play().catch(() => console.log('Something went wrong.'));
+    };
+
+    const songHandler = (audioIsPlaying: boolean) => {
+      if (!audioIsPlaying) {
+        audio.pause();
+        // }
+      } else {
+        startSong();
+      }
+    };
+
+    audioButton.addEventListener('click', () => {
+      const audioIsPlaying = handler();
+      songHandler(audioIsPlaying);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (audio.ended) {
+        startSong();
+      }
+    });
+  }
+
+  bindChangeTree(handler: (treeNum: string) => string) {
+    const list = this.root.querySelector(
+      `.${this.id}__trees-list`
+    ) as HTMLUListElement;
+
+    list.addEventListener('click', event => {
+      let target = event.target as HTMLElement;
+
+      if (target.tagName === 'IMG') {
+        target = target.parentElement as HTMLButtonElement;
+        const id = target.dataset.role as string;
+
+        const activeBcgNum = handler(id);
+
+        const treeImg = this.root.querySelector(
+          `.${this.id}-tree__img`
+        ) as HTMLImageElement;
+        treeImg.src = `./assets/img/tree/${activeBcgNum}.png`;
+      }
+    });
+  }
+
+  bindChangeBackground(handler: (bcgNum: string) => string) {
+    const list = this.root.querySelector(
+      `.${this.id}__bcgs-list`
+    ) as HTMLUListElement;
+
+    list.addEventListener('click', event => {
+      let target = event.target as HTMLElement;
+
+      if (target.tagName === 'IMG') {
+        target = target.parentElement as HTMLButtonElement;
+        const id = target.dataset.role as string;
+
+        const activeBcgNum = handler(id);
+
+        const bcg = this.root.querySelector(
+          `.${this.id}-tree__content`
+        ) as HTMLDivElement;
+        bcg.style.background = `url(./assets/img/bg/${activeBcgNum}.jpg) 0 0/cover no-repeat`;
+      }
+    });
+  }
+
+  bindClearLocalStorage(handler: () => void) {
+    const resetButton = this.root.querySelectorAll(
+      `.${this.id}__bottom-button`
+    )[1] as HTMLButtonElement;
+
+    resetButton.addEventListener('click', () => {
+      handler();
+      resetButton.classList.toggle('button_state_active');
+      setTimeout(() => {
+        resetButton.classList.toggle('button_state_active');
+      }, 200);
+    });
   }
 }
 
