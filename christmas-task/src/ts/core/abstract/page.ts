@@ -5,6 +5,8 @@ export type TRenderMethod = {
   chosenToys: ICard[];
   snowIsFalling: boolean;
   id: string;
+  activeTree: string;
+  activeBackground: string;
 };
 
 abstract class Page {
