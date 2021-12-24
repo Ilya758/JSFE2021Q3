@@ -92,6 +92,7 @@ class Controller {
       decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
       decoratePage.bindAudioContext(this.handleAudioContext.bind(this));
       decoratePage.bindChangeTree(this.handleChangeTree.bind(this));
+      decoratePage.bindChangeBackground(this.handleActiveBackground.bind(this));
     } else {
       setTimeout(() => {
         this.view.render();
@@ -137,6 +138,8 @@ class Controller {
   handleChangeTree(treeNum: string) {
     return this.model.setActiveTree(treeNum);
   }
+
+  handleActiveBackground(bcgNum: string) {
     return this.model.setActiveBackground(bcgNum);
   }
 }

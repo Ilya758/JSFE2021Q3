@@ -30,6 +30,8 @@ class Model {
 
   protected activeTree: string;
 
+  protected activeBackground: string;
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getCurrentFilter();
@@ -41,6 +43,7 @@ class Model {
     this.snowIsFalling = Model.getSnowFallingState();
     this.audioIsPlaying = Model.getStateOfAudioTrack();
     this.activeTree = Model.getActiveTree();
+    this.activeBackground = Model.getActiveBackground();
   }
 
   static getInitFilters(
@@ -508,6 +511,18 @@ class Model {
     Model.commit('activeTree', this.activeTree);
 
     return this.activeTree;
+  }
+
+  static getActiveBackground() {
+    const bcgNum = Model.pull<string>('activeBackground');
+    return typeof bcgNum !== 'string' ? '1' : bcgNum;
+  }
+
+  setActiveBackground(bcgNum: string): string {
+    this.activeBackground = bcgNum;
+    Model.commit('activeBackground', this.activeBackground);
+
+    return this.activeBackground;
   }
 }
 

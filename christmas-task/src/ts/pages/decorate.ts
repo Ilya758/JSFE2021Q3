@@ -130,13 +130,19 @@ class DecoratePage extends Page {
 
       for (let i = 1; i < 9; i += 1) {
         const item = new Component('li', `${this.id}__bcgs-item`).render();
+        const button = new Button(
+          `button ${this.id}__bcgs-button`,
+          'button',
+          `${i}`
+        ).render();
         const img = new Component(
           'img',
           `${this.id}__bcgs-img`
         ).render() as HTMLImageElement;
         img.src = `./assets/img/bg/${i}.jpg`;
         img.alt = `Background ${i}`;
-        item.append(img);
+        button.append(img);
+        item.append(button);
         list.append(item);
       }
 
@@ -397,6 +403,29 @@ class DecoratePage extends Page {
           `.${this.id}-tree__img`
         ) as HTMLImageElement;
         treeImg.src = `./assets/img/tree/${activeBcgNum}.png`;
+      }
+    });
+  }
+
+  bindChangeBackground(handler: (bcgNum: string) => string) {
+    const list = this.root.querySelector(
+      `.${this.id}__bcgs-list`
+    ) as HTMLUListElement;
+
+    list.addEventListener('click', event => {
+      let target = event.target as HTMLElement;
+
+      if (target.tagName === 'IMG') {
+        target = target.parentElement as HTMLButtonElement;
+        const id = target.dataset.role as string;
+
+        const activeBcgNum = handler(id);
+
+        const bcg = this.root.querySelector(
+          `.${this.id}-tree__content`
+        ) as HTMLDivElement;
+        console.log(bcg);
+        bcg.style.background = `url(./assets/img/bg/${activeBcgNum}.jpg) 0 0/cover no-repeat`;
       }
     });
   }
