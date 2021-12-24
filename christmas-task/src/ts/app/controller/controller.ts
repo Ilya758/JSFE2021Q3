@@ -37,12 +37,11 @@ class Controller {
       const chosenToys = Model.getChosenToys();
       const filters = Model.getCurrentFilter();
 
-      setTimeout(() => {
-        const toysPage = this.view.render(
-          currentHash,
-          initToys,
-          chosenToys
-        ) as ToysPage;
+      const toysPage = this.view.render({
+        initToysArray,
+        chosenToys,
+        id,
+      }) as ToysPage;
 
         toysPage.bindAddChosens(this.handleAddChosens.bind(this));
 
