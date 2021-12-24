@@ -447,6 +447,20 @@ class DecoratePage extends Page {
       }
     });
   }
+
+  bindClearLocalStorage(handler: () => void) {
+    const resetButton = this.root.querySelectorAll(
+      `.${this.id}__bottom-button`
+    )[1] as HTMLButtonElement;
+
+    resetButton.addEventListener('click', () => {
+      handler();
+      resetButton.classList.toggle('button_state_active');
+      setTimeout(() => {
+        resetButton.classList.toggle('button_state_active');
+      }, 200);
+    });
+  }
 }
 
 export default DecoratePage;

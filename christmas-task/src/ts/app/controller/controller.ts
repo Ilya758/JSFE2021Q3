@@ -100,6 +100,9 @@ class Controller {
       decoratePage.bindAudioContext(this.handleAudioContext.bind(this));
       decoratePage.bindChangeTree(this.handleChangeTree.bind(this));
       decoratePage.bindChangeBackground(this.handleActiveBackground.bind(this));
+      decoratePage.bindClearLocalStorage(
+        Controller.handleClearLocalStorage.bind(this)
+      );
     } else {
       this.view.render({ id: 'main-page' });
     }
