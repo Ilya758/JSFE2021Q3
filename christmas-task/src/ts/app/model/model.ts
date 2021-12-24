@@ -499,12 +499,12 @@ class Model {
   }
 
   static getActiveTree() {
-    const bcgNum = Model.pull<boolean>('activeTree');
-    return typeof bcgNum !== 'number' ? '1' : bcgNum;
+    const treeNum = Model.pull<string>('activeTree');
+    return typeof treeNum !== 'string' ? '1' : treeNum;
   }
 
-  setActiveBackground(bcgNum: string): string {
-    this.activeTree = bcgNum;
+  setActiveTree(treeNum: string): string {
+    this.activeTree = treeNum;
     Model.commit('activeTree', this.activeTree);
 
     return this.activeTree;

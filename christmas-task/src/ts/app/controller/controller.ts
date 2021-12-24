@@ -134,7 +134,9 @@ class Controller {
     return this.model.setStateOfAudioTrack();
   }
 
-  handleChangeTree(bcgNum: string) {
+  handleChangeTree(treeNum: string) {
+    return this.model.setActiveTree(treeNum);
+  }
     return this.model.setActiveBackground(bcgNum);
   }
 }

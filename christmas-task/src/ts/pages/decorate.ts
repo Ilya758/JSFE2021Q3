@@ -379,7 +379,7 @@ class DecoratePage extends Page {
     });
   }
 
-  bindChangeTree(handler: (bcgNum: string) => string) {
+  bindChangeTree(handler: (treeNum: string) => string) {
     const list = this.root.querySelector(
       `.${this.id}__trees-list`
     ) as HTMLUListElement;
