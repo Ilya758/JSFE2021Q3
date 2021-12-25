@@ -90,11 +90,15 @@ class Controller {
       const snowIsFalling = Model.getSnowFallingState();
       const activeTree = Model.getActiveTree();
       const activeBackground = Model.getActiveBackground();
+      const garlandColor = Model.getGarlandColor();
+      const garlandIsEnabled = Model.getGarlandToggler();
       const decoratePage = this.view.render({
         snowIsFalling,
         id,
         activeTree,
         activeBackground,
+        garlandColor,
+        garlandIsEnabled,
       }) as DecoratePage;
       decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
       decoratePage.bindAudioContext(this.handleAudioContext.bind(this));
@@ -102,6 +106,13 @@ class Controller {
       decoratePage.bindChangeBackground(this.handleActiveBackground.bind(this));
       decoratePage.bindClearLocalStorage(
         Controller.handleClearLocalStorage.bind(this)
+      );
+      decoratePage.bindChangeGarlandColor(
+        this.handleChangeGarlandColor.bind(this)
+      );
+      decoratePage.bindGarlandStateToggle(
+        this.handleGarlandStateToggle.bind(this),
+        garlandIsEnabled
       );
     } else {
       this.view.render({ id: 'main-page' });
@@ -149,6 +160,14 @@ class Controller {
 
   handleActiveBackground(bcgNum: string) {
     return this.model.setActiveBackground(bcgNum);
+  }
+
+  handleChangeGarlandColor(color: string) {
+    return this.model.setGarlandColor(color);
+  }
+
+  handleGarlandStateToggle() {
+    return this.model.setGarlandToggler();
   }
 }
 

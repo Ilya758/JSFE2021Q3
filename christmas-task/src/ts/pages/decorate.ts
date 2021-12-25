@@ -18,9 +18,15 @@ class DecoratePage extends Page {
     snowIsFalling,
     activeTree,
     activeBackground,
+    garlandColor,
+    garlandIsEnabled,
   }: Pick<
     TRenderMethod,
-    'snowIsFalling' | 'activeTree' | 'activeBackground'
+    | 'snowIsFalling'
+    | 'activeTree'
+    | 'activeBackground'
+    | 'garlandColor'
+    | 'garlandIsEnabled'
   >): void {
     // creating main
     const mainWrapper = new Component('main', this.id).render();
@@ -28,7 +34,9 @@ class DecoratePage extends Page {
     const treeSection = this.createTreeSection(
       snowIsFalling,
       activeTree,
-      activeBackground
+      activeBackground,
+      garlandColor,
+      garlandIsEnabled
     );
     const toysSection = this.createToysSection();
 
@@ -237,7 +245,9 @@ class DecoratePage extends Page {
   createTreeSection(
     snowIsFalling: boolean,
     activeTree: string,
-    activeBackground: string
+    activeBackground: string,
+    garlandColor: string,
+    garlandIsEnabled: boolean
   ) {
     const wrapper = new BEMWrapper('section', `${this.id}-tree`).render();
     const wrapperContent = wrapper.querySelector(
@@ -507,6 +517,72 @@ class DecoratePage extends Page {
       setTimeout(() => {
         resetButton.classList.toggle('button_state_active');
       }, 200);
+    });
+  }
+
+  bindChangeGarlandColor(handler: (color: string) => string) {
+    const garlandBtnList = this.root.querySelector(
+      `.${this.id}__harlands-list`
+    ) as HTMLUListElement;
+
+    const garlandItems = this.root.querySelectorAll('.garland-item');
+
+    const garlandHandler = (target: HTMLElement) => {
+      const color = target.dataset.role as string;
+
+      handler(color);
+
+      garlandItems.forEach(item => {
+        const elem = item;
+        elem.className = `item garland-item item_color_${color}`;
+      });
+    };
+
+    garlandBtnList.addEventListener('click', event => {
+      let target = event.target as HTMLElement;
+
+      if (target.tagName === 'BUTTON') {
+        garlandHandler(target);
+      }
+      if (target.tagName === 'LI') {
+        target = target.firstElementChild as HTMLButtonElement;
+        garlandHandler(target);
+      }
+    });
+  }
+
+  bindGarlandStateToggle(handler: () => boolean, garlandIsEnabled: boolean) {
+    const cls = 'harland-toggle';
+    const track = this.root.querySelector(`.${cls}__track`) as HTMLDivElement;
+    const thumb = this.root.querySelector(`.${cls}__thumb`) as HTMLDivElement;
+    const garlandContainer = this.root.querySelector(
+      '.garland-container'
+    ) as HTMLDivElement;
+
+    const handleToggleClasses = () => {
+      (
+        [
+          [track, 'track'],
+          [thumb, 'thumb'],
+        ] as [HTMLElement, string][]
+      ).forEach(elem => {
+        elem[0].classList.toggle(`${elem[1]}_state_active`);
+      });
+    };
+
+    if (garlandIsEnabled) {
+      handleToggleClasses();
+    }
+
+    track.addEventListener('click', () => {
+      handleToggleClasses();
+      const isEnabled = handler();
+
+      if (isEnabled) {
+        garlandContainer.classList.add('active');
+      } else {
+        garlandContainer.classList.remove('active');
+      }
     });
   }
 }

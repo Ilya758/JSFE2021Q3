@@ -32,6 +32,10 @@ class Model {
 
   protected activeBackground: string;
 
+  protected garlandColor: string;
+
+  protected garlandIsEnabled: boolean;
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getCurrentFilter();
@@ -44,6 +48,8 @@ class Model {
     this.audioIsPlaying = false;
     this.activeTree = Model.getActiveTree();
     this.activeBackground = Model.getActiveBackground();
+    this.garlandColor = Model.getGarlandColor();
+    this.garlandIsEnabled = Model.getGarlandToggler();
   }
 
   static getInitFilters(
@@ -523,6 +529,30 @@ class Model {
     Model.commit('activeBackground', this.activeBackground);
 
     return this.activeBackground;
+  }
+
+  static getGarlandColor() {
+    const color = Model.pull<string>('garlandColor');
+    return typeof color !== 'string' ? 'red' : color;
+  }
+
+  setGarlandColor(color: string): string {
+    this.garlandColor = color;
+    Model.commit('garlandColor', this.garlandColor);
+
+    return this.garlandColor;
+  }
+
+  static getGarlandToggler() {
+    const isEnabled = Model.pull<boolean>('garlandIsEnabled');
+    return typeof isEnabled !== 'boolean' ? false : isEnabled;
+  }
+
+  setGarlandToggler(): boolean {
+    this.garlandIsEnabled = !this.garlandIsEnabled;
+    Model.commit('garlandIsEnabled', this.garlandIsEnabled);
+
+    return this.garlandIsEnabled;
   }
 }
 
