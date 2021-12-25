@@ -259,7 +259,55 @@ class DecoratePage extends Page {
       snowflakeContainer.classList.add('snowflakes_state_falling');
     }
 
-    wrapperContent.append(snowflakeContainer, tree);
+    const createGarland = () => {
+      const container = new Component('div', 'garland-container').render();
+
+      const CHARS = [
+        [62, 60, 14],
+        [60, 85, 10],
+        [58, 115, 8],
+        [54, 150, 7],
+        [55, 180, 6],
+        [50, 220, 5.5],
+        [50, 255, 5],
+        [50, 305, 4.5],
+      ];
+
+      const GARLAND_COUNT_ITEMS = 8; // amount of garland lightropes
+      let endCount = 5; // initial amount of lightrope items
+
+      for (let i = 0; i < GARLAND_COUNT_ITEMS; i += 1) {
+        const list = new Component('ul', 'list garland-list').render();
+        let rotateDeg = CHARS[i][0];
+        const TRANSLATE_PX = CHARS[i][1];
+        const CURRENT_ADD_COUNT = CHARS[i][2];
+
+        for (let j = 0; j < endCount; j += 1) {
+          const item = new Component('li', 'item garland-item').render();
+
+          if (j) {
+            rotateDeg += CURRENT_ADD_COUNT;
+          }
+
+          list.append(item);
+          item.classList.add(`item_color_${garlandColor}`);
+          item.style.transform = `rotate(${rotateDeg}deg) translate(${TRANSLATE_PX}px) rotate(-${rotateDeg}deg)`;
+        }
+
+        endCount += 2; // additional coefficient for lightrope items
+        container.append(list);
+      }
+
+      if (garlandIsEnabled) {
+        container.classList.add('active');
+      }
+
+      return container;
+    };
+
+    const garlandContainer = createGarland();
+
+    wrapperContent.append(snowflakeContainer, tree, garlandContainer);
     return wrapper;
   }
 
