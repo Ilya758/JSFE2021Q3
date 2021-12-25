@@ -7,6 +7,8 @@ export type TRenderMethod = {
   id: string;
   activeTree: string;
   activeBackground: string;
+  garlandColor: string;
+  garlandIsEnabled: boolean;
 };
 
 abstract class Page {

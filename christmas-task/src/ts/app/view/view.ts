@@ -49,6 +49,8 @@ class View {
     snowIsFalling,
     activeTree,
     activeBackground,
+    garlandColor,
+    garlandIsEnabled,
     id = 'main-page',
   }: Partial<TRenderMethod>) {
     Array.from(this.root.children).forEach(child => {
@@ -77,10 +79,9 @@ class View {
         snowIsFalling,
         activeTree,
         activeBackground,
-      } as Pick<
-        TRenderMethod,
-        'snowIsFalling' | 'activeTree' | 'activeBackground'
-      >);
+        garlandColor,
+        garlandIsEnabled,
+      } as Pick<TRenderMethod, 'snowIsFalling' | 'activeTree' | 'activeBackground' | 'garlandColor' | 'garlandIsEnabled'>);
 
       return decoratePage;
     }

@@ -1,0 +1,62 @@
+/* stylelint-disable color-named */
+.garland {
+  &-container {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition: 0.35s;
+  }
+
+  $list: 120px 1, 170px 2, 240px 3, 300px 4, 370px 5, 460px 6, 560px 7, 660px 8;
+
+  &-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    margin: -5px;
+    background-color: $bcg-red;
+    border-radius: 50%;
+    box-shadow: 0 0 7px 1px $bcg-red;
+  }
+
+  &-list {
+    @include flex;
+    @each $size, $ndx in $list {
+      &:nth-child(#{$ndx}) {
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        width: $size;
+        height: $size;
+        margin: 50px auto 0;
+        transform: translate(-50%, 0);
+      }
+    }
+  }
+}
+
+.item {
+  &_color {
+    $list: red, blue, yellow, green;
+    @each $color in $list {
+      &_#{$color} {
+        animation: blink 1.5s infinite alternate-reverse;
+        background-color: $color;
+        box-shadow: 0 0 3px 1px $color;
+      }
+    }
+
+    &_mix {
+      animation: change-color 5s linear infinite;
+    }
+  }
+}
+
+.active {
+  opacity: 1;
+}
