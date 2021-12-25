@@ -26,5 +26,23 @@
     height: 20px;
     background-color: $bcg-white;
     border-radius: 50%;
+    transition: 0.35s;
+  }
+}
+
+.track {
+  &_state {
+    &_active {
+      background-color: $bcg-glass;
+    }
+  }
+}
+
+.thumb {
+  &_state {
+    &_active {
+      left: 56px;
+      animation: change-color 5s linear infinite;
+    }
   }
 }
