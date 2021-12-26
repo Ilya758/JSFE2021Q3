@@ -92,6 +92,7 @@ class Controller {
       const activeBackground = Model.getActiveBackground();
       const garlandColor = Model.getGarlandColor();
       const garlandIsEnabled = Model.getGarlandToggler();
+      const chosenToys = this.model.getDraggableToys();
       const decoratePage = this.view.render({
         snowIsFalling,
         id,
@@ -99,6 +100,7 @@ class Controller {
         activeBackground,
         garlandColor,
         garlandIsEnabled,
+        chosenToys,
       }) as DecoratePage;
       decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
       decoratePage.bindAudioContext(this.handleAudioContext.bind(this));

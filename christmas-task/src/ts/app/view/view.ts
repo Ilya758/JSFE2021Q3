@@ -81,7 +81,8 @@ class View {
         activeBackground,
         garlandColor,
         garlandIsEnabled,
-      } as Pick<TRenderMethod, 'snowIsFalling' | 'activeTree' | 'activeBackground' | 'garlandColor' | 'garlandIsEnabled'>);
+        chosenToys,
+      } as Omit<TRenderMethod, 'id' | 'initToysArray'>);
 
       return decoratePage;
     }

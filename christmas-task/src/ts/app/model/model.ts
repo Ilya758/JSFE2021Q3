@@ -36,6 +36,8 @@ class Model {
 
   protected garlandIsEnabled: boolean;
 
+  protected draggableToys: ICard[];
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getCurrentFilter();
@@ -50,6 +52,7 @@ class Model {
     this.activeBackground = Model.getActiveBackground();
     this.garlandColor = Model.getGarlandColor();
     this.garlandIsEnabled = Model.getGarlandToggler();
+    this.draggableToys = this.getDraggableToys();
   }
 
   static getInitFilters(
@@ -553,6 +556,24 @@ class Model {
     Model.commit('garlandIsEnabled', this.garlandIsEnabled);
 
     return this.garlandIsEnabled;
+  }
+
+  getDraggableToys() {
+    const chosenToys = Model.getChosenToys();
+
+    if (!chosenToys.length) {
+      let initialChosenToys = this.getInitArrayOfToys().filter((card, ndx) => {
+        if (ndx < 20) {
+          return card;
+        }
+
+        return false;
+      });
+
+      return initialChosenToys;
+    }
+
+    return chosenToys;
   }
 }
 

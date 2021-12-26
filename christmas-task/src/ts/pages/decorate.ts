@@ -5,6 +5,7 @@ import HarlandToggle from '../core/components/harland-toggle';
 import Text from '../core/components/text';
 import BEMWrapper from '../core/templates/bem-wrapper';
 import Component from '../core/templates/component';
+import { ICard } from '../models/card';
 
 class DecoratePage extends Page {
   protected root;
@@ -20,14 +21,8 @@ class DecoratePage extends Page {
     activeBackground,
     garlandColor,
     garlandIsEnabled,
-  }: Pick<
-    TRenderMethod,
-    | 'snowIsFalling'
-    | 'activeTree'
-    | 'activeBackground'
-    | 'garlandColor'
-    | 'garlandIsEnabled'
-  >): void {
+    chosenToys,
+  }: Omit<TRenderMethod, 'id' | 'initToysArray'>): void {
     // creating main
     const mainWrapper = new Component('main', this.id).render();
     const settingsSection = this.createSettingsSection();
@@ -38,7 +33,7 @@ class DecoratePage extends Page {
       garlandColor,
       garlandIsEnabled
     );
-    const toysSection = this.createToysSection();
+    const toysSection = this.createToysSection(chosenToys);
 
     mainWrapper.append(settingsSection, treeSection, toysSection);
     this.root.prepend(mainWrapper);
@@ -321,7 +316,7 @@ class DecoratePage extends Page {
     return wrapper;
   }
 
-  createToysSection() {
+  createToysSection(chosenToys: ICard[]) {
     const wrapper = new BEMWrapper('section', `${this.id}-toys`).render();
     const wrapperContent = wrapper.querySelector(
       `.${this.id}-toys__content`
@@ -345,20 +340,21 @@ class DecoratePage extends Page {
     ).render();
 
     const createToysList = () => {
+      const itemsCount = chosenToys.length;
       const list = new Component('ul', `list ${this.id}-toys__list`).render();
 
-      for (let i = 1; i < 21; i += 1) {
+      for (let i = 0; i < itemsCount; i += 1) {
         const item = new Component('li', `${this.id}-toys__item`).render();
         const img = new Component(
           'img',
           `${this.id}-toys__img`
         ).render() as HTMLImageElement;
-        img.src = `./assets/img/toys/${i}.png`;
-        img.alt = `Tree ${i}`;
+        img.src = `./assets/img/toys/${chosenToys[i].num}.png`;
+        img.alt = `Toy ${i + 1}`;
         const txt = new Text(
           'span',
           `text ${this.id}-toys__text`,
-          '1'
+          `${chosenToys[i].count}`
         ).render();
         item.append(img, txt);
         list.append(item);
