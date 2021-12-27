@@ -1,6 +1,6 @@
 import Component from '../templates/component';
 
-class HarlandToggle extends Component {
+class GarlandToggle extends Component {
   constructor(protected className: string, protected id: string) {
     super('div', className);
     this.element = this.create();
@@ -20,4 +20,4 @@ class HarlandToggle extends Component {
   }
 }
 
-export default HarlandToggle;
+export default GarlandToggle;

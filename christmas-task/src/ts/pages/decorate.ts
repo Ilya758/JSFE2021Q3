@@ -1,7 +1,7 @@
 import Page, { IToysReceived, TRenderMethod } from '../core/abstract/page';
 import Button from '../core/components/button';
 import ButtonLink from '../core/components/button-link';
-import HarlandToggle from '../core/components/harland-toggle';
+import GarlandToggle from '../core/components/garland-toggle';
 import Text from '../core/components/text';
 import BEMWrapper from '../core/templates/bem-wrapper';
 import Component from '../core/templates/component';
@@ -171,27 +171,27 @@ class DecoratePage extends Page {
     const backgrounds = generateBcgs();
 
     bcgListContainer.append(bcgText, backgrounds);
-    // create harlandContainer
-    const harlandContainer = new Component(
+    // create garlandContainer
+    const garlandContainer = new Component(
       'div',
-      `${this.id}__harlands-container`
+      `${this.id}__garlands-container`
     ).render();
-    const harlandText = new Text(
+    const garlandText = new Text(
       'h2',
       `heading ${this.id}__heading`,
       'гирлянда'
     ).render();
 
-    const createHarlandList = () => {
+    const creategarlandList = () => {
       const list = new Component(
         'ul',
-        `list ${this.id}__harlands-list`
+        `list ${this.id}__garlands-list`
       ).render();
 
       ['mix', 'red', 'blue', 'yellow', 'green'].forEach(color => {
-        const item = new Component('li', `${this.id}__harlands-item`).render();
+        const item = new Component('li', `${this.id}__garlands-item`).render();
         const btn = new Button(
-          `button harlands ${this.id}__harlands-${color}`,
+          `button garlands ${this.id}__garlands-${color}`,
           'button',
           color,
           ''
@@ -203,11 +203,11 @@ class DecoratePage extends Page {
       return list;
     };
 
-    const harlandList = createHarlandList();
-    // const toggleHarlandButtonContainer
-    const toggleButton = new HarlandToggle('harland-toggle', 'toggle').render();
+    const garlandList = creategarlandList();
+    // const togglegarlandButtonContainer
+    const toggleButton = new GarlandToggle('garland-toggle', 'toggle').render();
 
-    harlandContainer.append(harlandText, harlandList, toggleButton);
+    garlandContainer.append(garlandText, garlandList, toggleButton);
     // create bottomButtons
     const bottomButtonsContainer = new Component(
       'div',
@@ -236,7 +236,7 @@ class DecoratePage extends Page {
       topButtonsContainer,
       treesContainer,
       bcgListContainer,
-      harlandContainer,
+      garlandContainer,
       bottomButtonsContainer
     );
 
@@ -586,7 +586,7 @@ class DecoratePage extends Page {
 
   bindChangeGarlandColor(handler: (color: string) => string) {
     const garlandBtnList = this.root.querySelector(
-      `.${this.id}__harlands-list`
+      `.${this.id}__garlands-list`
     ) as HTMLUListElement;
 
     const garlandItems = this.root.querySelectorAll('.garland-item');
@@ -616,7 +616,7 @@ class DecoratePage extends Page {
   }
 
   bindGarlandStateToggle(handler: () => boolean, garlandIsEnabled: boolean) {
-    const cls = 'harland-toggle';
+    const cls = 'garland-toggle';
     const track = this.root.querySelector(`.${cls}__track`) as HTMLDivElement;
     const thumb = this.root.querySelector(`.${cls}__thumb`) as HTMLDivElement;
     const garlandContainer = this.root.querySelector(
@@ -767,9 +767,6 @@ class DecoratePage extends Page {
     relCoords: { relX: number; relY: number }
   ) {
     const METHOD = 'increment';
-
-    console.log(draggableToys);
-
     img.addEventListener('dragstart', event => {
       event.dataTransfer?.setData(
         'application/drag',
