@@ -253,13 +253,29 @@ class DecoratePage extends Page {
       'div',
       `${this.id}-tree__snowflake-container`
     ).render() as HTMLDivElement;
-    const tree = new Component(
-      'img',
-      `${this.id}-tree__img`
-    ).render() as HTMLImageElement;
-    tree.src = `./assets/img/tree/${activeTree}.png`;
-    tree.alt = 'Tree';
+      const map = new Component('map', '').render() as HTMLMapElement;
+      map.name = 'tree-map';
+      const area = new Component('area', '').render() as HTMLAreaElement;
+      area.coords =
+        '8,622,3,659,33,691,119,677,149,710,169,684,226,695,239,687,248,676,261,671,266,668,275,671,269,676,271,686,278,688,289,681,295,695,300,689,305,696,315,700,319,688,331,678,352,675,364,665,371,663,377,662,381,655,389,655,402,664,411,664,422,664,432,663,444,662,471,639,469,625,461,618,454,614,453,605,461,598,479,597,478,582,467,573,445,568,463,564,471,565,463,544,465,522,459,507,446,497,445,486,458,482,446,459,444,448,425,443,414,427,429,425,421,409,440,407,423,396,413,391,413,377,404,363,414,353,400,344,392,341,381,329,381,318,392,307,374,299,366,295,370,262,373,248,373,241,355,233,349,223,339,215,341,199,339,186,329,174,328,160,325,141,319,128,314,119,311,112,297,105,296,83,291,73,280,56,267,40,259,35,251,28,242,22,238,10,237,1,223,2,215,31,208,49,202,58,202,66,207,73,198,85,188,101,186,108,175,122,188,120,190,131,187,139,182,145,166,141,156,168,148,197,153,215,161,222,172,227,150,230,142,230,149,251,144,258,132,250,125,249,137,265,129,274,125,284,132,292,121,293,115,298,106,303,121,310,118,318,113,332,101,338,101,353,121,359,116,364,106,366,97,367,85,368,91,379,96,393,102,401,89,402,80,403,90,411,78,417,74,427,82,434,72,445,68,454,61,467,72,472,47,490,58,500,62,513,45,524,37,535,52,543,46,553,42,566,30,568,19,566,25,577,39,581,57,583,35,589,23,595,19,603,3,607';
+      area.shape = 'poly';
+      area.style.position = 'relative';
+      map.append(area);
 
+      const tree = new Component(
+        'img',
+        `${this.id}-tree__img`
+      ).render() as HTMLImageElement;
+      tree.src = `./assets/img/tree/${activeTree}.png`;
+      tree.alt = 'Tree';
+      tree.useMap = '#tree-map';
+
+      container.append(imgContainer, map, tree);
+
+      return container;
+    };
+
+    const mapContainer = createMap();
     if (snowIsFalling) {
       snowflakeContainer.classList.add('snowflakes_state_falling');
     }
@@ -312,7 +328,7 @@ class DecoratePage extends Page {
 
     const garlandContainer = createGarland();
 
-    wrapperContent.append(snowflakeContainer, tree, garlandContainer);
+    wrapperContent.append(snowflakeContainer, mapContainer, garlandContainer);
     return wrapper;
   }
 
