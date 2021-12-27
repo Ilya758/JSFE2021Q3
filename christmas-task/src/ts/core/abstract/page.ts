@@ -1,4 +1,5 @@
 import { ICard } from '../../models/card';
+import { IToyOnTree } from '../../models/toyOnTree';
 
 export type TRenderMethod = {
   initToysArray: ICard[] | [];
@@ -9,7 +10,18 @@ export type TRenderMethod = {
   activeBackground: string;
   garlandColor: string;
   garlandIsEnabled: boolean;
+  toysOnTreeChars: IToyOnTree[];
+  addHandler: (
+    method: string,
+    count: string,
+    relCoords: { relX: number; relY: number }
+  ) => IToysReceived;
 };
+
+export interface IToysReceived {
+  count: string;
+  emptySlot: boolean;
+}
 
 abstract class Page {
   constructor(readonly id: string) {
