@@ -35,6 +35,7 @@
           url("../assets/img/snowflakes/2.png"),
           url("../assets/img/snowflakes/3.png");
         opacity: 0;
+        pointer-events: none;
         transition: 0.35s;
       }
     }
@@ -47,4 +48,8 @@
       opacity: 1;
     }
   }
+}
+
+.map-container {
+  position: relative;
 }
