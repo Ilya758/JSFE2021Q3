@@ -1,4 +1,4 @@
-import Page, { TRenderMethod } from '../core/abstract/page';
+import Page, { IToysReceived, TRenderMethod } from '../core/abstract/page';
 import Button from '../core/components/button';
 import ButtonLink from '../core/components/button-link';
 import HarlandToggle from '../core/components/harland-toggle';
@@ -6,6 +6,7 @@ import Text from '../core/components/text';
 import BEMWrapper from '../core/templates/bem-wrapper';
 import Component from '../core/templates/component';
 import { ICard } from '../models/card';
+import { IToyOnTree, IToyChars } from '../models/toyOnTree';
 
 class DecoratePage extends Page {
   protected root;
@@ -22,6 +23,8 @@ class DecoratePage extends Page {
     garlandColor,
     garlandIsEnabled,
     chosenToys,
+    toysOnTreeChars,
+    addHandler,
   }: Omit<TRenderMethod, 'id' | 'initToysArray'>): void {
     // creating main
     const mainWrapper = new Component('main', this.id).render();
@@ -31,7 +34,9 @@ class DecoratePage extends Page {
       activeTree,
       activeBackground,
       garlandColor,
-      garlandIsEnabled
+      garlandIsEnabled,
+      toysOnTreeChars,
+      addHandler
     );
     const toysSection = this.createToysSection(chosenToys);
 
@@ -242,7 +247,13 @@ class DecoratePage extends Page {
     activeTree: string,
     activeBackground: string,
     garlandColor: string,
-    garlandIsEnabled: boolean
+    garlandIsEnabled: boolean,
+    toysOnTreeChars: IToyOnTree[],
+    addHandler: (
+      method: string,
+      count: string,
+      relCoords: { relX: number; relY: number }
+    ) => IToysReceived
   ) {
     const wrapper = new BEMWrapper('section', `${this.id}-tree`).render();
     const wrapperContent = wrapper.querySelector(
@@ -253,6 +264,44 @@ class DecoratePage extends Page {
       'div',
       `${this.id}-tree__snowflake-container`
     ).render() as HTMLDivElement;
+
+    const createMap = () => {
+      const container = new Component('div', 'map-container').render();
+      const imgContainer = new Component('div', 'img-container').render();
+      const draggableToys = this.root.querySelectorAll('.list-img');
+
+      if (toysOnTreeChars.length) {
+        for (let i = 0; i < toysOnTreeChars.length; i += 1) {
+          const img = new Component(
+            'img',
+            'area-img'
+          ).render() as HTMLImageElement;
+
+          const { relY } = toysOnTreeChars[i];
+          const { relX } = toysOnTreeChars[i];
+          const { num } = toysOnTreeChars[i];
+
+          img.dataset.num = num;
+          img.src = `./assets/img/toys/${num}.png`;
+          img.draggable = true;
+          img.style.cssText = `position: absolute; width: 50px; height: 60px; top: ${relY}px; left: ${relX}px; `;
+
+          imgContainer.append(img);
+          const toyChars = {
+            toy: img.src,
+            num,
+          };
+
+          this.dragToysInTree(
+            draggableToys,
+            img,
+            toyChars as IToyChars,
+            addHandler,
+            { relX, relY }
+          );
+        }
+      }
+
       const map = new Component('map', '').render() as HTMLMapElement;
       map.name = 'tree-map';
       const area = new Component('area', '').render() as HTMLAreaElement;
@@ -363,10 +412,12 @@ class DecoratePage extends Page {
         const item = new Component('li', `${this.id}-toys__item`).render();
         const img = new Component(
           'img',
-          `${this.id}-toys__img`
+          `${this.id}-toys__img list-img`
         ).render() as HTMLImageElement;
         img.src = `./assets/img/toys/${chosenToys[i].num}.png`;
         img.alt = `Toy ${i + 1}`;
+        img.draggable = true;
+        img.dataset.num = `${chosenToys[i].num}`;
         const txt = new Text(
           'span',
           `text ${this.id}-toys__text`,
@@ -596,6 +647,183 @@ class DecoratePage extends Page {
         garlandContainer.classList.remove('active');
       }
     });
+  }
+
+  bindDragToys(
+    handler: (
+      method: string,
+      count: string,
+      relCoords: { relX: number; relY: number }
+    ) => IToysReceived,
+    getAmountOfCurrentToy: (toyChars: IToyChars) => string
+  ) {
+    const METHOD = 'decrement';
+    const draggableToys = this.root.querySelectorAll('.list-img');
+    const area = this.root.querySelector('area') as HTMLAreaElement;
+
+    area.addEventListener('dragover', e => {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+    });
+
+    area.addEventListener(
+      'drop',
+      e => {
+        const mapContainer = this.root.querySelector(
+          '.map-container'
+        ) as HTMLDivElement;
+
+        const X = e.pageX;
+        const Y = e.pageY;
+        const mapRect = mapContainer.getBoundingClientRect();
+        const relX = X - mapRect.left - window.scrollX - 25;
+        const relY = Y - mapRect.top - window.scrollY - 30;
+
+        const relCoords = {
+          relX,
+          relY,
+        };
+
+        let toyChars = (e.dataTransfer as DataTransfer).getData(
+          'application/drag'
+        ) as string | IToyChars;
+        const img = new Component(
+          'img',
+          'area-img'
+        ).render() as HTMLImageElement;
+
+        if (!(toyChars as string).length) {
+          toyChars = JSON.parse(
+            (e.dataTransfer as DataTransfer).getData('application/Toy')
+          ) as IToyChars;
+
+          img.src = toyChars.toy;
+          img.draggable = true;
+          img.style.cssText = `position: absolute; width: 50px; height: 60px; top: ${relY}px; left: ${relX}px; `;
+
+          (this.root.querySelector('.map-container') as HTMLDivElement).append(
+            img
+          );
+
+          const data = handler(METHOD, toyChars.num, relCoords);
+          const { num } = toyChars;
+
+          DecoratePage.modifyAmountOfCurrentToy(draggableToys, num, data);
+        } else {
+          toyChars = JSON.parse(
+            (e.dataTransfer as DataTransfer).getData('application/drag')
+          ) as IToyChars;
+          img.src = toyChars.toy;
+          img.draggable = true;
+          img.style.cssText = `position: absolute; width: 50px; height: 60px; top: ${relY}px; left: ${relX}px; `;
+
+          (this.root.querySelector('.map-container') as HTMLDivElement).append(
+            img
+          );
+        }
+
+        this.dragToysInTree(
+          draggableToys,
+          img,
+          toyChars as unknown as IToyChars,
+          handler,
+          relCoords
+        );
+      },
+      { capture: false }
+    );
+
+    draggableToys.forEach(toy => {
+      toy.addEventListener('dragstart', event => {
+        const toyChars = {
+          toy: (toy as HTMLImageElement).src,
+          num: (toy as HTMLImageElement).dataset.num as string,
+        };
+
+        const amountOfCurrentToys = getAmountOfCurrentToy(toyChars);
+
+        if (+amountOfCurrentToys) {
+          (event as DragEvent).dataTransfer?.setData(
+            'application/Toy',
+            `${JSON.stringify(toyChars)}`
+          );
+        } else {
+          event.preventDefault();
+        }
+      });
+    });
+  }
+
+  dragToysInTree(
+    draggableToys: NodeListOf<Element>,
+    img: HTMLImageElement,
+    toyChars: IToyChars,
+    handler: (
+      method: string,
+      count: string,
+      relCoords: { relX: number; relY: number }
+    ) => IToysReceived,
+    relCoords: { relX: number; relY: number }
+  ) {
+    const METHOD = 'increment';
+
+    console.log(draggableToys);
+
+    img.addEventListener('dragstart', event => {
+      event.dataTransfer?.setData(
+        'application/drag',
+        `${JSON.stringify(toyChars)}`
+      );
+
+      const mainWrapper = this.root.querySelector('main') as HTMLElement;
+
+      const dragOver = (e: DragEvent) => {
+        e.preventDefault();
+        (e.dataTransfer as DataTransfer).dropEffect = 'move';
+      };
+
+      mainWrapper.addEventListener('dragover', dragOver);
+
+      mainWrapper.addEventListener(
+        'drop',
+        e => {
+          e.dataTransfer?.getData('application/Toy');
+          const target = e.target as HTMLElement;
+          const addSelectorOfToys = this.root.querySelectorAll('.list-img');
+          if (target.tagName === 'AREA') {
+            // if drop container isn't a MAIN
+            return;
+          }
+
+          // remove dragOverListener
+          mainWrapper.removeEventListener('dragover', dragOver);
+
+          const data = handler(METHOD, toyChars.num, relCoords);
+          DecoratePage.modifyAmountOfCurrentToy(
+            addSelectorOfToys,
+            toyChars.num,
+            data
+          );
+        },
+        { once: true }
+      );
+    });
+
+    img.addEventListener('drag', () => {
+      img.remove();
+    });
+  }
+
+  static modifyAmountOfCurrentToy(
+    draggableToys: NodeListOf<Element>,
+    num: string,
+    data: IToysReceived
+  ) {
+    const curToy = Array.from(draggableToys).find(
+      toy => (toy as HTMLElement).dataset.num === num
+    ) as HTMLImageElement;
+    const counter = curToy.nextElementSibling as HTMLSpanElement;
+    counter.textContent = data.count;
   }
 }
 
