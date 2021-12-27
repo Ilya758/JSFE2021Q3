@@ -52,6 +52,8 @@ class View {
     garlandColor,
     garlandIsEnabled,
     id = 'main-page',
+    toysOnTreeChars,
+    addHandler,
   }: Partial<TRenderMethod>) {
     Array.from(this.root.children).forEach(child => {
       if (child.tagName.toLowerCase() !== 'footer') {
@@ -82,6 +84,8 @@ class View {
         garlandColor,
         garlandIsEnabled,
         chosenToys,
+        toysOnTreeChars,
+        addHandler,
       } as Omit<TRenderMethod, 'id' | 'initToysArray'>);
 
       return decoratePage;
