@@ -76,6 +76,8 @@ class View {
     }
 
     if (id === 'decorate-page') {
+      this.root.style.height = 'initial';
+      document.body.style.opacity = '0';
       let decoratePage = new DecoratePage(id);
       decoratePage.render({
         snowIsFalling,
@@ -87,7 +89,9 @@ class View {
         toysOnTreeChars,
         addHandler,
       } as Omit<TRenderMethod, 'id' | 'initToysArray'>);
-
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 1000);
       return decoratePage;
     }
 

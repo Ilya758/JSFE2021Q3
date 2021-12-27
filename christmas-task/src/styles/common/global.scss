@@ -88,7 +88,13 @@ $icons: sound audio, snow snow;
     width: 36px;
     height: 36px;
     background-color: $bcg-white;
+    cursor: pointer;
     mask: url("../assets/svg/#{$pic}.svg") 0 0 / cover no-repeat;
+    transition: 0.35s;
+
+    &:hover {
+      background-color: $bcg-blue;
+    }
   }
 }
 
@@ -134,4 +140,8 @@ $icons: sound audio, snow snow;
       opacity: 1;
     }
   }
+}
+
+.decorate-page {
+  @include flex(row, space-between, flex-start);
 }
