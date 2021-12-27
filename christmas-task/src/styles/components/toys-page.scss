@@ -163,11 +163,6 @@
   }
 
   &__checkbox {
-    /* position: absolute;
-    z-index: -999;
-    display: inline-flex;
-    opacity: 0; */
-
     &:checked + .label-text::after {
       position: absolute;
       top: 6px;

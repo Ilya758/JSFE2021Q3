@@ -503,11 +503,6 @@ class Model {
     Model.commit('snowIsFalling', this.snowIsFalling);
   }
 
-  // static getStateOfAudioTrack() {
-  //   const state = Model.pull<boolean>('audioIsPlaying');
-  //   return typeof state !== 'boolean' ? false : state;
-  // }
-
   setStateOfAudioTrack(): boolean {
     this.audioIsPlaying = !this.audioIsPlaying;
     Model.commit('audioIsPlaying', this.audioIsPlaying);
