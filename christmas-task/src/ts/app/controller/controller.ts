@@ -38,11 +38,12 @@ class Controller {
       const chosenToys = Model.getChosenToys();
       const filters = Model.getCurrentFilter();
 
-      const toysPage = this.view.render({
-        initToysArray,
-        chosenToys,
-        id,
-      }) as ToysPage;
+      setTimeout(() => {
+        const toysPage = this.view.render({
+          initToysArray,
+          chosenToys,
+          id,
+        }) as ToysPage;
 
         toysPage.bindAddChosens(this.handleAddChosens.bind(this));
 
@@ -87,46 +88,53 @@ class Controller {
           this.handleFiltrate.bind(this),
           this.restoreCardsList.bind(this, toysPage)
         );
+      }, 2000);
     } else if (id === 'decorate-page') {
-      const snowIsFalling = Model.getSnowFallingState();
-      const activeTree = Model.getActiveTree();
-      const activeBackground = Model.getActiveBackground();
-      const garlandColor = Model.getGarlandColor();
-      const garlandIsEnabled = Model.getGarlandToggler();
-      const chosenToys = this.model.getDraggableToys();
-      const toysOnTreeChars = Model.getToysOnTreeChars();
-      const addHandler = this.handleDecrementCountOfCurrentToy.bind(this);
-      const decoratePage = this.view.render({
-        snowIsFalling,
-        id,
-        activeTree,
-        activeBackground,
-        garlandColor,
-        garlandIsEnabled,
-        chosenToys,
-        toysOnTreeChars,
-        addHandler,
-      }) as DecoratePage;
-      decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
-      decoratePage.bindAudioContext(this.handleAudioContext.bind(this));
-      decoratePage.bindChangeTree(this.handleChangeTree.bind(this));
-      decoratePage.bindChangeBackground(this.handleActiveBackground.bind(this));
-      decoratePage.bindClearLocalStorage(
-        Controller.handleClearLocalStorage.bind(this)
-      );
-      decoratePage.bindChangeGarlandColor(
-        this.handleChangeGarlandColor.bind(this)
-      );
-      decoratePage.bindGarlandStateToggle(
-        this.handleGarlandStateToggle.bind(this),
-        garlandIsEnabled
-      );
-      decoratePage.bindDragToys(
-        this.handleDecrementCountOfCurrentToy.bind(this),
-        this.handleAmountOfCurrentToy.bind(this)
-      );
+      setTimeout(() => {
+        const snowIsFalling = Model.getSnowFallingState();
+        const activeTree = Model.getActiveTree();
+        const activeBackground = Model.getActiveBackground();
+        const garlandColor = Model.getGarlandColor();
+        const garlandIsEnabled = Model.getGarlandToggler();
+        const chosenToys = this.model.getDraggableToys();
+        const toysOnTreeChars = Model.getToysOnTreeChars();
+        const addHandler = this.handleDecrementCountOfCurrentToy.bind(this);
+        const decoratePage = this.view.render({
+          snowIsFalling,
+          id,
+          activeTree,
+          activeBackground,
+          garlandColor,
+          garlandIsEnabled,
+          chosenToys,
+          toysOnTreeChars,
+          addHandler,
+        }) as DecoratePage;
+        decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
+        decoratePage.bindAudioContext(this.handleAudioContext.bind(this));
+        decoratePage.bindChangeTree(this.handleChangeTree.bind(this));
+        decoratePage.bindChangeBackground(
+          this.handleActiveBackground.bind(this)
+        );
+        decoratePage.bindClearLocalStorage(
+          Controller.handleClearLocalStorage.bind(this)
+        );
+        decoratePage.bindChangeGarlandColor(
+          this.handleChangeGarlandColor.bind(this)
+        );
+        decoratePage.bindGarlandStateToggle(
+          this.handleGarlandStateToggle.bind(this),
+          garlandIsEnabled
+        );
+        decoratePage.bindDragToys(
+          this.handleDecrementCountOfCurrentToy.bind(this),
+          this.handleAmountOfCurrentToy.bind(this)
+        );
+      }, 2000);
     } else {
-      this.view.render({ id: 'main-page' });
+      setTimeout(() => {
+        this.view.render({ id: 'main-page' });
+      }, 2000);
     }
   }
 

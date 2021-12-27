@@ -41,7 +41,9 @@ class MainPage extends Page {
   }
 
   animateToysButton() {
-    const toysLink = this.root.querySelectorAll('a[href="#toys-page"]');
+    const toysLink = Array.from(
+      this.root.querySelectorAll('.text.main-page__link')
+    ).slice(0, 2);
     toysLink.forEach(link => {
       link?.addEventListener('click', () => {
         link?.classList.add('link_state_clicked');

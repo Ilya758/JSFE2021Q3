@@ -42,6 +42,7 @@ class DecoratePage extends Page {
 
     mainWrapper.append(settingsSection, treeSection, toysSection);
     this.root.prepend(mainWrapper);
+    this.animateTransition();
   }
 
   createSettingsSection() {
@@ -824,6 +825,18 @@ class DecoratePage extends Page {
     ) as HTMLImageElement;
     const counter = curToy.nextElementSibling as HTMLSpanElement;
     counter.textContent = data.count;
+  }
+
+  animateTransition() {
+    const links = this.root.querySelectorAll('a.decorate-link');
+    links.forEach(link => {
+      link?.addEventListener('click', () => {
+        link?.classList.add('link_state_clicked');
+        setTimeout(() => {
+          document.body.style.opacity = '0';
+        }, 500);
+      });
+    });
   }
 }
 

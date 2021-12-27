@@ -97,7 +97,7 @@ class ToysPage extends Page {
 
     mainContent.append(this.settingsContainer, cardsContainer);
     this.root.prepend(mainWrapper);
-    this.animateMainLinkButton();
+    this.animateTransition();
   }
 
   createSettingsContainer(): HTMLDivElement {
@@ -1141,13 +1141,15 @@ class ToysPage extends Page {
     });
   }
 
-  animateMainLinkButton() {
-    const mainButtonLink = this.root.querySelector('a[href="#"]');
-    mainButtonLink?.addEventListener('click', () => {
-      mainButtonLink?.classList.add('link_state_clicked');
-      setTimeout(() => {
-        document.body.style.opacity = '0';
-      }, 500);
+  animateTransition() {
+    const links = this.root.querySelectorAll('a.toys-heading');
+    links.forEach(link => {
+      link?.addEventListener('click', () => {
+        link?.classList.add('link_state_clicked');
+        setTimeout(() => {
+          document.body.style.opacity = '0';
+        }, 500);
+      });
     });
   }
 }
