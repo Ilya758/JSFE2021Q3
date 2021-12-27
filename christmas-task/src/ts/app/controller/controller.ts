@@ -1,4 +1,5 @@
 import { ICard } from '../../models/card';
+import { IToyChars } from '../../models/toyOnTree';
 import DecoratePage from '../../pages/decorate';
 import ToysPage from '../../pages/toys';
 import Model from '../model/model';
@@ -92,6 +93,9 @@ class Controller {
       const activeBackground = Model.getActiveBackground();
       const garlandColor = Model.getGarlandColor();
       const garlandIsEnabled = Model.getGarlandToggler();
+      const chosenToys = this.model.getDraggableToys();
+      const toysOnTreeChars = Model.getToysOnTreeChars();
+      const addHandler = this.handleDecrementCountOfCurrentToy.bind(this);
       const decoratePage = this.view.render({
         snowIsFalling,
         id,
@@ -99,6 +103,9 @@ class Controller {
         activeBackground,
         garlandColor,
         garlandIsEnabled,
+        chosenToys,
+        toysOnTreeChars,
+        addHandler,
       }) as DecoratePage;
       decoratePage.bindSnowFalling(this.handleSnowFalling.bind(this));
       decoratePage.bindAudioContext(this.handleAudioContext.bind(this));
@@ -113,6 +120,10 @@ class Controller {
       decoratePage.bindGarlandStateToggle(
         this.handleGarlandStateToggle.bind(this),
         garlandIsEnabled
+      );
+      decoratePage.bindDragToys(
+        this.handleDecrementCountOfCurrentToy.bind(this),
+        this.handleAmountOfCurrentToy.bind(this)
       );
     } else {
       this.view.render({ id: 'main-page' });
@@ -168,6 +179,18 @@ class Controller {
 
   handleGarlandStateToggle() {
     return this.model.setGarlandToggler();
+  }
+
+  handleDecrementCountOfCurrentToy(
+    method: string,
+    count: string,
+    relCoords: { relX: number; relY: number }
+  ) {
+    return this.model.modifyCountOfCurrentToy(method, count, relCoords);
+  }
+
+  handleAmountOfCurrentToy(toyChars: IToyChars) {
+    return this.model.getAmountOfCurrentToy(toyChars);
   }
 }
 

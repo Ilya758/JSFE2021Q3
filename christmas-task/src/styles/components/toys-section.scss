@@ -24,7 +24,7 @@
       position: relative;
       @include flex;
 
-      width: calc(100% / 4 - 8px);
+      width: 78px;
       height: 80px;
       background-color: $bcg-pale-blue;
       border-radius: 10px;

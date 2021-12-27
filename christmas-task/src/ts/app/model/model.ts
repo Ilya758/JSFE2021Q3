@@ -6,6 +6,8 @@ import {
   TSorting,
   TUnionFilters,
 } from '../../models/filters';
+import { IToyOnTree, IToyChars } from '../../models/toyOnTree';
+import { IToysReceived } from '../../core/abstract/page';
 import { IToysObj } from '../../pages/toys';
 import data from '../../toys-data/toys';
 
@@ -36,6 +38,10 @@ class Model {
 
   protected garlandIsEnabled: boolean;
 
+  protected draggableToys: ICard[];
+
+  protected toysOnTreeChars: IToyOnTree[];
+
   constructor() {
     this.initArrayOfToys = data;
     this.filters = Model.getCurrentFilter();
@@ -50,6 +56,8 @@ class Model {
     this.activeBackground = Model.getActiveBackground();
     this.garlandColor = Model.getGarlandColor();
     this.garlandIsEnabled = Model.getGarlandToggler();
+    this.draggableToys = this.getDraggableToys();
+    this.toysOnTreeChars = Model.getToysOnTreeChars();
   }
 
   static getInitFilters(
@@ -553,6 +561,99 @@ class Model {
     Model.commit('garlandIsEnabled', this.garlandIsEnabled);
 
     return this.garlandIsEnabled;
+  }
+
+  getDraggableToys() {
+    const chosenToys = Model.getChosenToys();
+
+    if (!chosenToys.length) {
+      let initialChosenToys = this.getInitArrayOfToys().filter((card, ndx) => {
+        if (ndx < 20) {
+          return card;
+        }
+
+        return false;
+      });
+
+      return initialChosenToys;
+    }
+
+    return chosenToys;
+  }
+
+  modifyCountOfCurrentToy(
+    method: string,
+    num: string,
+    relCoords: { relX: number; relY: number }
+  ) {
+    let emptySlot = false;
+    let curToy = {} as IToysReceived;
+    let toyOnTreeChar: IToyOnTree;
+
+    const modifiedChosenToys = this.getDraggableToys().map(toy => {
+      const currentToy = toy;
+      const { count } = toy;
+
+      if (toy.num === num) {
+        if (method === 'decrement') {
+          if (!+count) {
+            emptySlot = true;
+          } else {
+            currentToy.count = `${+count - 1}`;
+            curToy = {
+              count: currentToy.count,
+              emptySlot,
+            };
+
+            toyOnTreeChar = {
+              num,
+              ...relCoords,
+            };
+            this.toysOnTreeChars.push(toyOnTreeChar);
+            Model.commit('toysOnTreeChars', this.toysOnTreeChars);
+          }
+        }
+
+        if (method === 'increment') {
+          currentToy.count = `${+count + 1}`;
+          curToy = {
+            count: currentToy.count,
+            emptySlot,
+          };
+          toyOnTreeChar = {
+            num,
+            ...relCoords,
+          };
+
+          let toysOnTreeChars = Model.pull<IToyOnTree[]>('toysOnTreeChars');
+          toysOnTreeChars = toysOnTreeChars.filter(
+            treeToy => treeToy.relX !== toyOnTreeChar.relX
+          );
+
+          this.toysOnTreeChars = toysOnTreeChars;
+          Model.commit('toysOnTreeChars', this.toysOnTreeChars);
+        }
+      }
+
+      return currentToy;
+    });
+
+    this.chosenToys = modifiedChosenToys;
+    Model.commit('chosenToys', this.chosenToys);
+
+    return curToy;
+  }
+
+  getAmountOfCurrentToy(toyChars: IToyChars) {
+    const curToy = this.getDraggableToys().find(
+      toy => toy.num === toyChars.num
+    ) as ICard;
+
+    return curToy.count;
+  }
+
+  static getToysOnTreeChars() {
+    return Model.pull<IToyOnTree[]>('toysOnTreeChars');
   }
 }
 
