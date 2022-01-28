@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>reveal.js</title>
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/beige.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Server-Side Rendering</h1>
+        </section>
+
+        <section>
+          <section>
+            <h2>SPA</h2>
+            <p class="fragment">
+              is a web application or a website that uses only HTML-document as
+              a wrapper for all web pages.
+            </p>
+
+            <img class="fragment" src="./assets/images/spa.png" alt="SPA" />
+          </section>
+
+          <section>
+            <h2>Traditional scheme</h2>
+            <div class="fragment fade-up">
+              <p>
+                HTML layout has been generated at the server and sent with the
+                response together
+              </p>
+              <img
+                src="./assets/images/traditional.png"
+                alt="Traditional scheme"
+              />
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <img src="./assets/images/click.jpg" alt="Click" />
+          </section>
+          <section>
+            <img src="./assets/images/disadvantage.jpg" alt="Disadvantage" />
+          </section>
+          <section>
+            <img src="./assets/images/spa-modif.png" alt="Spa modified" />
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <img src="./assets/images/problem.jpg" alt="Problem" />
+          </section>
+          <section>
+            <img
+              style="height: 500px; width: 500px"
+              class="shrink"
+              src="./assets/images/empty-pc.png"
+              alt="Empty-pc"
+            />
+          </section>
+          <section>
+            <img
+              style="height: 500px; width: 400px"
+              class="shrink"
+              src="./assets/images/red-card.png"
+              alt="Red card"
+            />
+          </section>
+          <section data-auto-animate>
+            <h2 data-id="code-title">
+              The typical server's response for the SPA
+            </h2>
+            <pre
+              data-id="code-animation"
+            ><code class="hljs" data-trim data-line-numbers>
+
+ <div id="root">
+ <!-- there're nothing -->
+ </div>   
+            </code></pre>
+          </section>
+
+          <section>
+            <section>
+              <h2 class="fragment">Advantages</h2>
+              <ul>
+                <li class="fragment">Native-like applications</li>
+                <li class="fragment">Throughput economy</li>
+                <li class="fragment">Service Worker cache</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 class="fragment">Limitations</h2>
+              <ul>
+                <li class="fragment">Large weight of HTML/CSS/JS</li>
+                <li class="fragment">SEO – troubles</li>
+                <li class="fragment">Hard work at the client side</li>
+              </ul>
+            </section>
+          </section>
+        </section>
+
+        <section>
+          <img
+            style="width: 500px; height: 500px"
+            src="./assets/images/ssr.png"
+            alt="SSR"
+          />
+        </section>
+
+        <section>
+          <section>
+            <h2>HTML Meta Tags for SSR</h2>
+            <pre
+              data-id="code-animation"
+            ><code class="hljs" data-trim data-line-numbers> 
+  import Helmet from "react-helmet";
+  import MetaTags from 'react-meta-tags';
+  
+  async function createTags(id) {
+    const { title, description, link, image } 
+    = await gettingTheDataFromFirestore(id);
+  
+    return `<meta property="og:type" content="website">
+    <meta property="og:url" content="${link}">
+    <meta property="og:title" content="${title}">
+    <meta property="og:description" content="${description}">
+    <meta property="og:image" content="${image}">`;
+  }
+              </code></pre>
+          </section>
+
+          <section>
+            <h2>Dynamic imports</h2>
+            <pre
+              data-id="code-animation"
+            ><code class="hljs" data-trim data-line-numbers> 
+                import dynamic from 'next/dynamic'
+
+                const Sample = dynamic(() => import('../Sample.js'))
+                
+                const Demo = () => {
+                  return (
+                    <React.Fragment>
+                      <Sample/>
+                    </React.Fragment>
+                  )
+                }
+                
+              </code></pre>
+          </section>
+
+          <section>
+            <h2>Data storage</h2>
+            <img
+              class="fragment fade-in-then-semi-out"
+              src="./assets/images/cookie.jpg"
+              alt="Cookie"
+            />
+          </section>
+
+          <section>
+            <h2>React Server Components</h2>
+            <img
+              src="./assets/images/server-components.jpeg"
+              alt="React Components"
+            />
+          </section>
+
+          <section>
+            <h2>Debugging</h2>
+            <img
+              style="width: 450px; height: 450px"
+              src="./assets/images/debugging.jpg"
+              alt="Debugging"
+            />
+          </section>
+
+          <section>
+            <h2>Routing</h2>
+            <img src="./assets/images/routing.png" alt="Routing" />
+          </section>
+
+          <section>
+            <h2>Next.JS with the core features</h2>
+            <ul>
+              <li class="fragment fade-up">Minimal config</li>
+              <li class="fragment fade-bottom">Pre-rendering pages</li>
+              <li class="fragment fade-left">Built-in CSS support</li>
+              <li class="fragment fade-right">Fast refresh</li>
+              <li class="fragment fade-up">Image Optimization</li>
+              <li class="fragment fade-bottom">Typescript support</li>
+              <li class="fragment fade-left">Analytics</li>
+              <li class="fragment fade-right">Automatic Code Splitting</li>
+              <li class="fragment fade-up">Dynamic Components</li>
+              <li class="fragment fade-down">Static Exports</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <img
+            style="width: 500px; height: 500px"
+            src="./assets/images/thanks.webp"
+            alt="Thanks Pic"
+          />
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
