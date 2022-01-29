@@ -17,6 +17,15 @@
       <div class="slides">
         <section>
           <h1>Server-Side Rendering</h1>
+
+          <aside class="notes">
+            <div style="font-size: 14px">
+              Hello everyone! My name is Illia. Today I want to tell you about
+              an interesting theme, which calls Server-Side Rendering using
+              Next.JS. Before we start, I want to tell you about what the SPA
+              is.
+            </div>
+          </aside>
         </section>
 
         <section>
@@ -27,12 +36,36 @@
               a wrapper for all web pages.
             </p>
 
+            <aside class="notes">
+              <div style="font-size: 14px">
+                <p>
+                  SPA is a web application or a website that uses only
+                  HTML-document as a wrapper for all web pages and organizes
+                  interaction with users through dynamically downloaded HTML /
+                  CSS / JS with AJAX without a page reloading.
+                </p>
+                <p>
+                  Such frameworks and libraries ( React, Angular, Vue) are on
+                  the top with their abilities to create and develop a SPA very
+                  quickly and effectively.
+                </p>
+              </div>
+            </aside>
+
             <img class="fragment" src="./assets/images/spa.png" alt="SPA" />
           </section>
 
           <section>
             <h2>Traditional scheme</h2>
             <div class="fragment fade-up">
+              <aside class="notes">
+                <div style="font-size: 14px">
+                  Until recently, the HTML layout for a lot of websites has been
+                  generated at the server and sent with the response together,
+                  that was so the browser could visualize it from the screen.
+                </div>
+              </aside>
+
               <p>
                 HTML layout has been generated at the server and sent with the
                 response together
@@ -48,18 +81,60 @@
         <section>
           <section>
             <img src="./assets/images/click.jpg" alt="Click" />
+            <aside class="notes">
+              <div style="font-size: 14px">
+                The user is pushing the button for access to a new page, we are
+                sending a new request to the server to generate a new HTML for
+                this page.
+                <p>
+                  The user is waiting for some seconds while the server receives
+                  a request, collects data, creates an HTML file, and returns a
+                  response.
+                </p>
+                <p>
+                  So that it was a full-page downloading process, a browser
+                  needed to wait for all resources.
+                </p>
+              </div>
+            </aside>
           </section>
           <section>
             <img src="./assets/images/disadvantage.jpg" alt="Disadvantage" />
+            <aside class="notes">
+              <div style="font-size: 14px">
+                It was a huge inconvenience for a user.
+              </div>
+            </aside>
           </section>
           <section>
             <img src="./assets/images/spa-modif.png" alt="Spa modified" />
+            <aside class="notes">
+              <div style="font-size: 14px">
+                <p>
+                  Nowadays a lot of browsers request only data from the server
+                  and HTML generates on the client-side.
+                </p>
+                <p>
+                  That is, instead of sending a new request to the server for
+                  getting an HTML page, we are creating HTML from the
+                  client-side, mounting new components, and requesting data that
+                  needs for the filling of HTML itself.
+                </p>
+                <p>
+                  In this way, we propagate full reloading for the web page and
+                  greatly improve page time-loading.
+                </p>
+              </div>
+            </aside>
           </section>
         </section>
 
         <section>
           <section>
             <img src="./assets/images/problem.jpg" alt="Problem" />
+            <aside class="notes">
+              <div style="font-size: 14px">So what is the problem?</div>
+            </aside>
           </section>
           <section>
             <img
@@ -68,6 +143,15 @@
               src="./assets/images/empty-pc.png"
               alt="Empty-pc"
             />
+            <aside class="notes">
+              <div style="font-size: 14px">
+                <p>
+                  The main problem with SPA is that the server gives away an
+                  empty page to the client.
+                </p>
+                <p>Its formation starts only after all JS is downloaded.</p>
+              </div>
+            </aside>
           </section>
           <section>
             <img
@@ -76,6 +160,18 @@
               src="./assets/images/red-card.png"
               alt="Red card"
             />
+            <aside class="notes">
+              <div style="font-size: 14px">
+                <p>
+                  At least it affects SEO, and Google gives red cards if the
+                  website renders in three or more seconds.
+                </p>
+                <p>
+                  First Contentful Paint, Time to Interactive - these are the
+                  metrics that will be underestimated with a SPA.
+                </p>
+              </div>
+            </aside>
           </section>
           <section data-auto-animate>
             <h2 data-id="code-title">
@@ -89,9 +185,56 @@
  <!-- there're nothing -->
  </div>   
             </code></pre>
+
+            <aside class="notes">
+              <div style="font-size: 14px">
+                The typical HTML response from the server looks like that ...
+
+                <div id="root"></div>
+                is a container or a "root-element" for the SPA - application.
+              </div>
+            </aside>
           </section>
 
           <section>
+            <aside class="notes">
+              <div style="font-size: 14px">
+                <p>
+                  <h3>
+                    SPA advantages
+                  </h3>    
+                  <p>
+                   - SPA gives an experience of interaction that is
+                  similar to the native applications,
+                  </p>
+                  <p>
+                    - HTML generates very
+                    quickly CSS + JS are loading only once === throughput economy
+                  </p>
+                 <p>
+                 - SPA is caching with using the Service Worker and can be
+                  accessed offline
+                 </p>
+         
+                </p>
+                <p>
+                <h3>SPA limitations</h3>
+                <p>- SPA has to serve JS and CSS files, so they're
+                  too "heavyweight" together === first loading of the
+                  application demands a lot of time, and the user is seeing an
+                  empty screen </p>
+                  <p>
+                  - this problem follows from the first === SEO -
+                  optimization problems the same 
+                  </p>
+                  <p>
+                    - the client-side needs more
+                  powerful tools computing power
+                  </p>
+                </p>
+              </div>
+            </aside>
+
             <section>
               <h2 class="fragment">Advantages</h2>
               <ul>
@@ -118,6 +261,32 @@
             src="./assets/images/ssr.png"
             alt="SSR"
           />
+
+          <aside class="notes">
+            <div style="font-size: 14px">
+              There're some interesting solutions, but we want to pay attention
+              to SSR. 
+              <p>Let's figure out how it works!</p>
+            
+              <p>
+                We need to have a server
+              that runs our application in the same way as the user did in the
+              browser.
+              </p> 
+              <p>
+                The server sends to the client fulfilled HTML and needed
+              JS / CSS files etc.
+              </p> When the client receives HTML and resources,
+              it synchronizes the state of the application and works with it
+              like with the usual SPA For its description, we need to figure out
+              some nuances: the application divides into a client and a server
+              the server has to handle requests to the API with the data; these
+              operations are asynchronous === Side Effects At the client, our
+              application has to synchronize the state and continues to work as
+              a regular SPA - application Let's pay attention to the other
+              features:
+            </div>
+          </aside>
         </section>
 
         <section>
@@ -140,6 +309,22 @@
     <meta property="og:image" content="${image}">`;
   }
               </code></pre>
+
+            <aside class="notes">
+              <div style="font-size: 14px">
+                <h3>HTML Meta Tags for SSR</h3>
+                 An important aspect with the SSR -
+                developing is using the correct HTML meta tags. <p>
+                  They inform
+                valuable information to the crawler about the web page.
+                </p> 
+                <p>
+                  For the
+                realization, it recommends using modules such as
+                React-Helmet-Async and React-Meta-Tags.
+                </p>
+              </div>
+            </aside>
           </section>
 
           <section>
@@ -160,6 +345,19 @@
                 }
                 
               </code></pre>
+            <aside class="notes">
+              <div style="font-size: 14px">
+                <h3>
+                  Dynamic Imports
+                </h3>
+                 To reduce the size of a final bundle the
+                application itself is divided into parts. <p>
+                  We can take out the
+                separate pages into chunks or blocks.
+                </p> So there is a need to
+                handle the application's fragments such as one entity.
+              </div>
+            </aside>
           </section>
 
           <section>
@@ -169,6 +367,26 @@
               src="./assets/images/cookie.jpg"
               alt="Cookie"
             />
+
+            <aside class="notes">
+              <div style="font-size: 14px">
+                  <h3>Data storage</h3>
+                Node.JS didn't support localStorage. 
+                <p>
+                  For caching
+                the session files, we use cookies instead of localStorage. These
+                files send automatically with every request. Some data have to
+                pass into the URL. An example, if we use localization in our
+                website, the current language will be a part of the URL.
+                </p> 
+                <p>
+                  This
+                approach improves SEO, so far as we already have the different
+                URL - addresses for the different localizations of the
+                application.
+                </p>
+              </div>
+            </aside>
           </section>
 
           <section>
@@ -177,6 +395,18 @@
               src="./assets/images/server-components.jpeg"
               alt="React Components"
             />
+
+            <aside class="notes">
+              <div style="font-size: 14px">
+                <h3>
+                  React Server Components
+                </h3>
+                 React Server Components probably will be
+                a good addition to the SSR. Its main idea is that we see the
+                load reducing to the bundle by executing the components on the
+                server and issuing a ready-made JSON React tree.
+              </div>
+            </aside>
           </section>
 
           <section>
@@ -186,11 +416,34 @@
               src="./assets/images/debugging.jpg"
               alt="Debugging"
             />
+
+            <aside class="notes">
+              <div style="font-size: 14px">
+                <h3>
+                  Debugging
+                </h3>
+                 The debugging at the server executes the same way as
+                every debug Node.JS application through Inspect. So we need to
+                include into the webpack.config the "devtool: source-map"
+                setting.
+              </div>
+            </aside>
           </section>
 
           <section>
             <h2>Routing</h2>
             <img src="./assets/images/routing.png" alt="Routing" />
+            <aside class="notes">
+              <div style="font-size: 14px">
+                <h3>
+                  Routing
+                </h3>
+                React Router uses the SSR for the box solution. The
+                difference is that the server uses the StaticRouter with the
+                passed current URL, but the client - Router defines the URL
+                automatically with the location API.
+              </div>
+            </aside>
           </section>
 
           <section>
@@ -207,6 +460,67 @@
               <li class="fragment fade-up">Dynamic Components</li>
               <li class="fragment fade-down">Static Exports</li>
             </ul>
+
+            <aside class="notes">
+              <div style="font-size: 14px">
+                Next.JS This is one of the popular solutions that help to create
+                the application with SSR - support. Some core features of
+                Next.js are: 
+
+                <ul>
+                  <li>
+                    Minimal config – it provides automatic compilation
+                and bundling. 
+                  </li>
+                  <li>
+                    Pre-rendering pages – pages can be rendered at
+                build time or request time in a single project. 
+                  </li>
+                  <li>
+                    Built-in CSS
+                support – option to import CSS files from a JS file. 
+                  </li>
+                  <li>
+                    Fast
+                refresh – fast editing experience with hot code reloading. 
+                  </li>
+                  <li>
+                    Image
+                Optimization – images are automatically optimized. 
+                  </li>
+                  <li>
+                    Typescript
+                support – automatic configuration and compilation.
+                  </li>
+                  <li>
+                    Analytics –
+                    it provides a mechanism to measure performance. 
+                  </li>
+                  <li>
+                    Automatic Code
+                    Splitting – only the necessary libraries and script files
+                    required at the time are rendered. 
+                  </li>
+                  <li>
+                    Dynamic Components –
+                    JavaScript modules and React Components can be imported
+                    dynamically. 
+                  </li>
+                  <li>
+                    Static Exports – a fully static site from an app
+                    can be exported.
+                  </li>
+                </ul>
+
+                <h3>Conclusion</h3>
+                <p>
+                  The advantage of using SSR is that we have an application and
+                  its content can be seen with bundler, even if it can't execute
+                  the JS - code. It can help SEO and send the metadata to the
+                  canals of social media.
+                </p>
+              </div>
+            </aside>
           </section>
         </section>
 
